@@ -1,0 +1,27 @@
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<GridPane xmlns:fx="http://javafx.com/fxml"
+          stylesheets="/drakonli/dota2/hero_grid_customizer/view/main/MainView.css"
+          fx:controller="drakonli.dota2.hero_grid_customizer.view.main.MainView"
+          prefHeight="800"
+          prefWidth="600"
+          alignment="CENTER" hgap="10.0" vgap="10.0">
+
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+    </padding>
+
+    <fx:include fx:id="heroTranslationsTable"
+                source="/drakonli/dota2/hero_grid_customizer/view/hero_translations_table/HeroTranslationsTableView.fxml"/>
+
+    <HBox spacing="10" alignment="bottom_right" GridPane.columnIndex="0" GridPane.rowIndex="2">
+        <fx:include fx:id="loadHeroNamesButton"
+                    source="/drakonli/dota2/hero_grid_customizer/view/load/LoadHeroNamesFileButtonView.fxml"/>
+        <fx:include fx:id="saveHeroNamesButton"
+                    source="/drakonli/dota2/hero_grid_customizer/view/save/SaveHeroNamesFileButtonView.fxml"/>
+        <fx:include fx:id="restoreHeroNamesButton"
+                    source="/drakonli/dota2/hero_grid_customizer/view/restore/RestoreHeroNamesButtonView.fxml"/>
+    </HBox>
+
+</GridPane>
