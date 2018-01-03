@@ -1,10 +1,11 @@
 package drakonli.dota2.hero_grid_customizer.component.hero.names.file.importer;
 
 import drakonli.component.file.chooser.InvalidFileFormatException;
+import drakonli.component.file.scanner.factory.ScannerFactoryInterface;
 import drakonli.dota2.hero_grid_customizer.view_model.hero.translation.HeroTranslationViewModel;
 
-import java.io.*;
-import java.nio.charset.StandardCharsets;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -15,10 +16,17 @@ public class HeroNamesFileImporter
     private static final String LINE_TO_BEGIN_EXTRACTING_HERO_NAMES_WITH = "//Hero Names";
     private static final String LINE_TO_END_EXTRACTING_HERO_NAMES_WITH = "// Hero Hype";
 
+    private ScannerFactoryInterface scannerFactory;
+
+    public HeroNamesFileImporter(ScannerFactoryInterface scannerFactory)
+    {
+        this.scannerFactory = scannerFactory;
+    }
+
     public void importHeroNamesByFile(File heroNamesFile, List<HeroTranslationViewModel> heroTranslations)
             throws FileNotFoundException, InvalidFileFormatException
     {
-        Scanner fileScanner = this.createScannerForFile(heroNamesFile);
+        Scanner fileScanner = this.scannerFactory.createScanner(heroNamesFile);
 
         if (!this.skipToHeroNamesStartLine(fileScanner)) {
             throw new InvalidFileFormatException(
@@ -48,18 +56,6 @@ public class HeroNamesFileImporter
         }
 
         fileScanner.close();
-    }
-
-    private Scanner createScannerForFile(File file) throws FileNotFoundException
-    {
-        return new Scanner(
-                new BufferedReader(
-                        new InputStreamReader(
-                                new FileInputStream(file),
-                                StandardCharsets.UTF_16LE
-                        )
-                )
-        );
     }
 
     private Boolean skipToHeroNamesStartLine(Scanner fileScanner)

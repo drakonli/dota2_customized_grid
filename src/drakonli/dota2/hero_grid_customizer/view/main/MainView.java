@@ -2,12 +2,13 @@ package drakonli.dota2.hero_grid_customizer.view.main;
 
 import drakonli.component.file.backuper.FileBackuper;
 import drakonli.component.file.chooser.GuessedDirectoryTxtFileChooserFactory;
+import drakonli.component.file.scanner.factory.BufferedCharsetScannerFactory;
+import drakonli.component.notificator.AlertNotificator;
+import drakonli.component.notificator.NotificatorInterface;
 import drakonli.dota2.hero_grid_customizer.component.hero.names.file.importer.HeroNamesFileImporter;
 import drakonli.dota2.hero_grid_customizer.component.hero.names.file.replacer.HeroNamesInFileReplacer;
 import drakonli.dota2.hero_grid_customizer.component.hero.names.restorer.HeroNamesByFileStorageRestorer;
 import drakonli.dota2.hero_grid_customizer.component.hero.names.storage.HeroNamesByFileStorage;
-import drakonli.component.notificator.AlertNotificator;
-import drakonli.component.notificator.NotificatorInterface;
 import drakonli.dota2.hero_grid_customizer.view.hero_translations_table.HeroTranslationsTableView;
 import drakonli.dota2.hero_grid_customizer.view.load.LoadHeroNamesFileButtonView;
 import drakonli.dota2.hero_grid_customizer.view.load.handler.AddHeroTranslationsByFileHandler;
@@ -26,6 +27,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -53,6 +55,7 @@ public class MainView implements Initializable
     private HeroGridViewModel heroGridViewModel;
     private HeroNamesByFileStorage heroNamesByFileStorage;
     private NotificatorInterface notificator;
+    private BufferedCharsetScannerFactory heroGridFileScanner;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -60,6 +63,7 @@ public class MainView implements Initializable
         this.heroNamesByFileStorage = new HeroNamesByFileStorage();
         this.heroGridViewModel = new HeroGridViewModel();
         this.notificator = new AlertNotificator();
+        this.heroGridFileScanner = new BufferedCharsetScannerFactory(StandardCharsets.UTF_16LE);
 
         this.initHeroTranslationsTableController();
         this.initLoadHeroNamesButtonController();
@@ -76,7 +80,7 @@ public class MainView implements Initializable
     {
         List<LoadButtonHandlerInterface> loadButtonHandlers = new ArrayList<>();
         loadButtonHandlers.add(
-                new AddHeroTranslationsByFileHandler(new HeroNamesFileImporter())
+                new AddHeroTranslationsByFileHandler(new HeroNamesFileImporter(this.heroGridFileScanner))
         );
 
         this.loadHeroNamesButtonController.init(
@@ -103,7 +107,7 @@ public class MainView implements Initializable
         );
         saveHeroNamesButtonHandlers.add(
                 new ReplaceHeroNamesInTranslationsFileHandler(
-                        new HeroNamesInFileReplacer(),
+                        new HeroNamesInFileReplacer(this.heroGridFileScanner),
                         converter
                 )
         );
