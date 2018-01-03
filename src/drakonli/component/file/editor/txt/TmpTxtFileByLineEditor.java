@@ -48,12 +48,12 @@ public class TmpTxtFileByLineEditor implements TxtFileByLineEditorInterface
             writer.write(currentLine);
         }
 
+        fileReader.close();
+        writer.close();
+
         if (!fileIsQualified) {
             throw new NoLineQualifiedForEditException();
         }
-
-        fileReader.close();
-        writer.close();
 
         Files.move(tmpFile.toPath(), file.toPath(), StandardCopyOption.REPLACE_EXISTING);
     }
