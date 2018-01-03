@@ -2,7 +2,9 @@ package drakonli.dota2.hero_grid_customizer.view.main;
 
 import drakonli.component.file.backuper.FileBackuper;
 import drakonli.component.file.chooser.GuessedDirectoryTxtFileChooserFactory;
+import drakonli.component.file.editor.txt.TmpTxtFileByLineEditor;
 import drakonli.component.file.scanner.factory.BufferedCharsetScannerFactory;
+import drakonli.component.file.writer.factory.BufferedCharsetFileWriterFactory;
 import drakonli.component.notificator.AlertNotificator;
 import drakonli.component.notificator.NotificatorInterface;
 import drakonli.dota2.hero_grid_customizer.component.hero.names.file.importer.HeroNamesFileImporter;
@@ -55,7 +57,7 @@ public class MainView implements Initializable
     private HeroGridViewModel heroGridViewModel;
     private HeroNamesByFileStorage heroNamesByFileStorage;
     private NotificatorInterface notificator;
-    private BufferedCharsetScannerFactory heroGridFileScanner;
+    private BufferedCharsetScannerFactory dota2FilesScannerFactory;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -63,7 +65,7 @@ public class MainView implements Initializable
         this.heroNamesByFileStorage = new HeroNamesByFileStorage();
         this.heroGridViewModel = new HeroGridViewModel();
         this.notificator = new AlertNotificator();
-        this.heroGridFileScanner = new BufferedCharsetScannerFactory(StandardCharsets.UTF_16LE);
+        this.dota2FilesScannerFactory = new BufferedCharsetScannerFactory(StandardCharsets.UTF_16LE);
 
         this.initHeroTranslationsTableController();
         this.initLoadHeroNamesButtonController();
@@ -80,7 +82,7 @@ public class MainView implements Initializable
     {
         List<LoadButtonHandlerInterface> loadButtonHandlers = new ArrayList<>();
         loadButtonHandlers.add(
-                new AddHeroTranslationsByFileHandler(new HeroNamesFileImporter(this.heroGridFileScanner))
+                new AddHeroTranslationsByFileHandler(new HeroNamesFileImporter(this.dota2FilesScannerFactory))
         );
 
         this.loadHeroNamesButtonController.init(
@@ -107,7 +109,12 @@ public class MainView implements Initializable
         );
         saveHeroNamesButtonHandlers.add(
                 new ReplaceHeroNamesInTranslationsFileHandler(
-                        new HeroNamesInFileReplacer(this.heroGridFileScanner),
+                        new HeroNamesInFileReplacer(
+                                new TmpTxtFileByLineEditor(
+                                        this.dota2FilesScannerFactory,
+                                        new BufferedCharsetFileWriterFactory(StandardCharsets.UTF_16LE)
+                                )
+                        ),
                         converter
                 )
         );
