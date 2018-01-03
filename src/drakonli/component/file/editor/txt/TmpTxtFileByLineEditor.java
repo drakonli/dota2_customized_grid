@@ -1,5 +1,6 @@
 package drakonli.component.file.editor.txt;
 
+import drakonli.component.file.editor.txt.exception.NoLineQualifiedForEditException;
 import drakonli.component.file.scanner.factory.ScannerFactoryInterface;
 import drakonli.component.file.writer.factory.FileWriterFactoryInterface;
 
@@ -25,7 +26,7 @@ public class TmpTxtFileByLineEditor implements TxtFileByLineEditorInterface
     }
 
     public void edit(File file, TxtLineEditorInterface editor, TxtLineForEditQualifierInterface qualifier)
-            throws IOException
+            throws IOException, NoLineQualifiedForEditException
     {
         File tmpFile =
                 File.createTempFile(TmpTxtFileByLineEditor.TMP_FILE_PREFIX, TmpTxtFileByLineEditor.TMP_FILE_SUFFIX);
@@ -33,14 +34,22 @@ public class TmpTxtFileByLineEditor implements TxtFileByLineEditorInterface
         Scanner fileReader = this.scannerFactory.createScanner(file);
         Writer writer = this.fileWriterFactory.createWriter(tmpFile);
 
+        Boolean fileIsQualified = false;
+
         while (fileReader.hasNextLine()) {
             String currentLine = fileReader.nextLine() + System.lineSeparator();
 
             if (!currentLine.isEmpty() && qualifier.isLineQualifiedForEdit(currentLine)) {
+                fileIsQualified = true;
+
                 currentLine = editor.editLine(currentLine);
             }
 
             writer.write(currentLine);
+        }
+
+        if (!fileIsQualified) {
+            throw new NoLineQualifiedForEditException();
         }
 
         fileReader.close();
