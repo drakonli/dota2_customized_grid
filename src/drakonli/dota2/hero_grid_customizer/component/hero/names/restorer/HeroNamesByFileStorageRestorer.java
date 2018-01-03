@@ -17,12 +17,12 @@ public class HeroNamesByFileStorageRestorer
     }
 
     public void restoreLatestHeroNames(List<HeroTranslationViewModel> heroTranslationViewModels)
-            throws ClassNotFoundException, IOException, LastVersionOfHeroNamesIsEmpty
+            throws ClassNotFoundException, IOException, LastVersionOfHeroNamesIsEmptyException
     {
         List<HeroTranslation> heroNamesList = this.storage.getLatest();
 
         if (heroNamesList.isEmpty()) {
-            throw new LastVersionOfHeroNamesIsEmpty();
+            throw new LastVersionOfHeroNamesIsEmptyException();
         }
 
         heroTranslationViewModels.clear();

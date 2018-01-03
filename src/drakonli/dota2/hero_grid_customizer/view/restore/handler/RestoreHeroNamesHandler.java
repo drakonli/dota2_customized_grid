@@ -1,7 +1,7 @@
 package drakonli.dota2.hero_grid_customizer.view.restore.handler;
 
 import drakonli.dota2.hero_grid_customizer.component.hero.names.restorer.HeroNamesByFileStorageRestorer;
-import drakonli.dota2.hero_grid_customizer.component.hero.names.restorer.LastVersionOfHeroNamesIsEmpty;
+import drakonli.dota2.hero_grid_customizer.component.hero.names.restorer.LastVersionOfHeroNamesIsEmptyException;
 import drakonli.dota2.hero_grid_customizer.view.handler.HandlerException;
 import drakonli.dota2.hero_grid_customizer.view_model.hero.grid.HeroGridViewModel;
 
@@ -21,7 +21,7 @@ public class RestoreHeroNamesHandler implements RestoreButtonHandlerInterface
     {
         try {
             this.restorer.restoreLatestHeroNames(heroGridViewModel.getHeroTranslations());
-        } catch (IOException | ClassNotFoundException | LastVersionOfHeroNamesIsEmpty e) {
+        } catch (IOException | ClassNotFoundException | LastVersionOfHeroNamesIsEmptyException e) {
             throw new HandlerException(e.getMessage(), e);
         }
     }
