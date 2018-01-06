@@ -1,5 +1,8 @@
-package drakonli.component.file.editor.txt;
+package drakonli.component.file.editor.txt.tmp;
 
+import drakonli.component.file.editor.txt.TxtFileByLineEditorInterface;
+import drakonli.component.file.editor.txt.TxtLineEditorInterface;
+import drakonli.component.file.editor.txt.TxtLineForEditQualifierInterface;
 import drakonli.component.file.editor.txt.exception.NoLineQualifiedForEditException;
 import drakonli.component.file.scanner.factory.ScannerFactoryInterface;
 import drakonli.component.file.writer.factory.FileWriterFactoryInterface;
@@ -25,11 +28,13 @@ public class TmpTxtFileByLineEditor implements TxtFileByLineEditorInterface
         this.fileWriterFactory = fileWriterFactory;
     }
 
-    public void edit(File file, TxtLineEditorInterface editor, TxtLineForEditQualifierInterface qualifier)
+    public void edit(File file, TxtLineEditorInterface lineEditor, TxtLineForEditQualifierInterface qualifier)
             throws IOException, NoLineQualifiedForEditException
     {
-        File tmpFile =
-                File.createTempFile(TmpTxtFileByLineEditor.TMP_FILE_PREFIX, TmpTxtFileByLineEditor.TMP_FILE_SUFFIX);
+        File tmpFile = File.createTempFile(
+                TmpTxtFileByLineEditor.TMP_FILE_PREFIX,
+                TmpTxtFileByLineEditor.TMP_FILE_SUFFIX
+        );
 
         Scanner fileReader = this.scannerFactory.createScanner(file);
         Writer writer = this.fileWriterFactory.createWriter(tmpFile);
@@ -42,7 +47,7 @@ public class TmpTxtFileByLineEditor implements TxtFileByLineEditorInterface
             if (!currentLine.isEmpty() && qualifier.isLineQualifiedForEdit(currentLine)) {
                 fileIsQualified = true;
 
-                currentLine = editor.editLine(currentLine);
+                currentLine = lineEditor.editLine(currentLine);
             }
 
             writer.write(currentLine);

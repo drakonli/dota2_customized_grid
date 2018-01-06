@@ -7,6 +7,6 @@ import java.io.IOException;
 
 public interface TxtFileByLineEditorInterface
 {
-    void edit(File file, TxtLineEditorInterface editor, TxtLineForEditQualifierInterface qualifier)
+    void edit(File file, TxtLineEditorInterface lineEditor, TxtLineForEditQualifierInterface qualifier)
             throws IOException, NoLineQualifiedForEditException;
 }

@@ -1,4 +1,4 @@
-package drakonli.component.file.chooser;
+package drakonli.component.file.exception;
 
 public class InvalidFileFormatException extends Exception
 {
