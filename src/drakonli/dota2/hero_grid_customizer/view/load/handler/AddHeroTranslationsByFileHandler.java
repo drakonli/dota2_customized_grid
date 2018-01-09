@@ -1,6 +1,6 @@
 package drakonli.dota2.hero_grid_customizer.view.load.handler;
 
-import drakonli.component.file.exception.InvalidFileFormatException;
+import drakonli.dota2.hero_grid_customizer.component.hero.names.file.exception.Dota2InvalidFileFormatException;
 import drakonli.dota2.hero_grid_customizer.component.hero.names.file.importer.HeroNamesFileImporter;
 import drakonli.dota2.hero_grid_customizer.view.handler.HandlerException;
 import drakonli.dota2.hero_grid_customizer.view_model.hero.grid.HeroGridViewModel;
@@ -24,7 +24,7 @@ public class AddHeroTranslationsByFileHandler implements LoadButtonHandlerInterf
                     heroGridViewModel.getChosenHeroGridFile(),
                     heroGridViewModel.getHeroTranslations()
             );
-        } catch (IOException | InvalidFileFormatException e) {
+        } catch (IOException | Dota2InvalidFileFormatException e) {
             throw new HandlerException(e.getMessage(), e);
         }
     }

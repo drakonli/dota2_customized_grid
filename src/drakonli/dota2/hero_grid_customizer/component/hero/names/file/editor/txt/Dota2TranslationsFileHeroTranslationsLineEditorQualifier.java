@@ -2,59 +2,57 @@ package drakonli.dota2.hero_grid_customizer.component.hero.names.file.editor.txt
 
 import drakonli.component.file.editor.txt.TxtLineEditorInterface;
 import drakonli.component.file.editor.txt.TxtLineForEditQualifierInterface;
+import drakonli.dota2.hero_grid_customizer.component.hero.names.file.extractor.HeroTranslationViewModelByFileLineExtractor;
+import drakonli.dota2.hero_grid_customizer.view_model.hero.translation.HeroTranslationViewModel;
 
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Dota2TranslationsFileHeroTranslationsLineEditorQualifier implements
         TxtLineEditorInterface,
         TxtLineForEditQualifierInterface
 {
-    private Matcher lastMatchedMatcher;
+    private HeroTranslationViewModel lastMatchedHeroTranslation;
 
     private final Map<String, String> heroCodeToHeroNameMap;
-    private final String heroTranslationMatchPattern;
+    private final HeroTranslationViewModelByFileLineExtractor heroTranslationViewModelExtractor;
 
     public Dota2TranslationsFileHeroTranslationsLineEditorQualifier(
             Map<String, String> heroCodeToHeroNameMap,
-            String heroTranslationMatchPattern
+            HeroTranslationViewModelByFileLineExtractor heroTranslationViewModelExtractor
     )
     {
         this.heroCodeToHeroNameMap = heroCodeToHeroNameMap;
-        this.heroTranslationMatchPattern = heroTranslationMatchPattern;
+        this.heroTranslationViewModelExtractor = heroTranslationViewModelExtractor;
     }
 
     @Override
     public Boolean isLineQualifiedForEdit(String line)
     {
-        Pattern pattern = Pattern.compile(this.heroTranslationMatchPattern);
-        Matcher matcher = pattern.matcher(line);
-        Boolean isMatched = matcher.find();
-
-        if (isMatched) {
-            this.lastMatchedMatcher = matcher;
+        if (line.isEmpty()) {
+            return false;
         }
 
-        return isMatched;
+        this.lastMatchedHeroTranslation = this.heroTranslationViewModelExtractor.extractByLine(line);
+
+        return null != this.lastMatchedHeroTranslation;
     }
 
     @Override
     public String editLine(String line)
     {
-        if (null == this.lastMatchedMatcher) {
+        if (null == this.lastMatchedHeroTranslation) {
             return line;
         }
 
-        String hero_code = this.lastMatchedMatcher.group(1);
-        String current_hero_name = this.lastMatchedMatcher.group(2);
+        String heroCode = this.lastMatchedHeroTranslation.getHeroCode();
+        String heroName = this.lastMatchedHeroTranslation.getHeroName();
 
-        String newHeroName = this.heroCodeToHeroNameMap.get(hero_code);
+        String newHeroName = this.heroCodeToHeroNameMap.get(heroCode);
 
-        if (null != newHeroName) {
-            return line.replace("\"" + current_hero_name + "\"", "\"" + newHeroName + "\"");
+        if (null == newHeroName) {
+            return line;
         }
 
-        return line;
+        return line.replace("\"" + heroName + "\"", "\"" + newHeroName + "\"");
     }
 }

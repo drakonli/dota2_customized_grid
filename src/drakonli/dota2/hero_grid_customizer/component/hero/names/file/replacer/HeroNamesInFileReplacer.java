@@ -2,8 +2,9 @@ package drakonli.dota2.hero_grid_customizer.component.hero.names.file.replacer;
 
 import drakonli.component.file.editor.txt.TxtFileByLineEditorInterface;
 import drakonli.component.file.editor.txt.exception.NoLineQualifiedForEditException;
-import drakonli.component.file.exception.InvalidFileFormatException;
 import drakonli.dota2.hero_grid_customizer.component.hero.names.file.editor.txt.Dota2TranslationsFileHeroTranslationsLineEditorQualifier;
+import drakonli.dota2.hero_grid_customizer.component.hero.names.file.exception.Dota2InvalidFileFormatException;
+import drakonli.dota2.hero_grid_customizer.component.hero.names.file.extractor.HeroTranslationViewModelByFileLineExtractor;
 import drakonli.dota2.hero_grid_customizer.entity.HeroTranslation;
 
 import java.io.File;
@@ -14,30 +15,33 @@ import java.util.Map;
 
 public class HeroNamesInFileReplacer
 {
-    private static final String HERO_TRANSLATION_MATCH_PATTERN = "\"(npc_dota_hero_[^_]*)\".*\"(.*)\"";
-
     private TxtFileByLineEditorInterface txtFileByLineEditor;
+    private final HeroTranslationViewModelByFileLineExtractor heroTranslationViewModelExtractor;
 
-    public HeroNamesInFileReplacer(TxtFileByLineEditorInterface txtFileByLineEditor)
+    public HeroNamesInFileReplacer(
+            TxtFileByLineEditorInterface txtFileByLineEditor,
+            HeroTranslationViewModelByFileLineExtractor heroTranslationViewModelExtractor
+    )
     {
         this.txtFileByLineEditor = txtFileByLineEditor;
+        this.heroTranslationViewModelExtractor = heroTranslationViewModelExtractor;
     }
 
     public void replaceHeroNames(File heroNamesFile, List<HeroTranslation> heroTranslations)
-            throws InvalidFileFormatException, IOException
+            throws Dota2InvalidFileFormatException, IOException
     {
         Map<String, String> heroCodeToHeroNameMap = this.createMapOfHeroCodesToNames(heroTranslations);
 
-        Dota2TranslationsFileHeroTranslationsLineEditorQualifier editorQualifier =
+        Dota2TranslationsFileHeroTranslationsLineEditorQualifier lineEditorAndQualifier =
                 new Dota2TranslationsFileHeroTranslationsLineEditorQualifier(
                         heroCodeToHeroNameMap,
-                        HERO_TRANSLATION_MATCH_PATTERN
+                        this.heroTranslationViewModelExtractor
                 );
 
         try {
-            this.txtFileByLineEditor.edit(heroNamesFile, editorQualifier, editorQualifier);
+            this.txtFileByLineEditor.edit(heroNamesFile, lineEditorAndQualifier, lineEditorAndQualifier);
         } catch (NoLineQualifiedForEditException e) {
-            throw new InvalidFileFormatException("Chosen file has wrong format. Please, choose dota2 translation file");
+            throw new Dota2InvalidFileFormatException();
         }
     }
 

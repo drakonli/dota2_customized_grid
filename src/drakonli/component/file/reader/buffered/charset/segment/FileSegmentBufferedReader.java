@@ -1,6 +1,6 @@
-package drakonli.component.file.reader.buffered.segment;
+package drakonli.component.file.reader.buffered.charset.segment;
 
-import drakonli.component.filter.FilterInterface;
+import drakonli.component.matcher.MatcherInterface;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,14 +13,16 @@ import java.io.Reader;
  */
 public class FileSegmentBufferedReader extends BufferedReader
 {
-    private FilterInterface<String> skipToLineMatcher;
-    private FilterInterface<String> skipFromLineMatcher;
+    private final MatcherInterface<String> skipToLineMatcher;
+    private final MatcherInterface<String> skipFromLineMatcher;
+
+    private Boolean startSkipped = false;
 
     public FileSegmentBufferedReader(
             Reader in, int sz,
-            FilterInterface<String> skipFromLineMatcher,
-            FilterInterface<String> skipToLineMatcher
-    ) throws IOException, InvalidSkipToMatcherException
+            MatcherInterface<String> skipFromLineMatcher,
+            MatcherInterface<String> skipToLineMatcher
+    ) throws IOException
     {
         super(in, sz);
         this.skipFromLineMatcher = skipFromLineMatcher;
@@ -31,9 +33,9 @@ public class FileSegmentBufferedReader extends BufferedReader
 
     public FileSegmentBufferedReader(
             Reader in,
-            FilterInterface<String> skipFromLineMatcher,
-            FilterInterface<String> skipToLineMatcher
-    ) throws IOException, InvalidSkipToMatcherException
+            MatcherInterface<String> skipFromLineMatcher,
+            MatcherInterface<String> skipToLineMatcher
+    ) throws IOException
     {
         super(in);
         this.skipFromLineMatcher = skipFromLineMatcher;
@@ -42,11 +44,13 @@ public class FileSegmentBufferedReader extends BufferedReader
         this.skipStart();
     }
 
-    private void skipStart() throws IOException, InvalidSkipToMatcherException
+    private void skipStart() throws IOException
     {
         String currentLine;
         while (null != (currentLine = this.readLine())) {
             if (this.skipFromLineMatcher.match(currentLine)) {
+                this.startSkipped = true;
+
                 return;
             }
         }
@@ -59,7 +63,7 @@ public class FileSegmentBufferedReader extends BufferedReader
     {
         String currentLine = super.readLine();
 
-        if (null != currentLine && this.skipToLineMatcher.match(currentLine)) {
+        if (this.startSkipped && null != currentLine && this.skipToLineMatcher.match(currentLine)) {
             return null;
         }
 

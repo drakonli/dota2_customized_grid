@@ -1,6 +1,6 @@
 package drakonli.dota2.hero_grid_customizer.view.save.handler;
 
-import drakonli.component.file.exception.InvalidFileFormatException;
+import drakonli.dota2.hero_grid_customizer.component.hero.names.file.exception.Dota2InvalidFileFormatException;
 import drakonli.dota2.hero_grid_customizer.component.hero.names.file.replacer.HeroNamesInFileReplacer;
 import drakonli.dota2.hero_grid_customizer.view.handler.HandlerException;
 import drakonli.dota2.hero_grid_customizer.view_model.hero.grid.HeroGridViewModel;
@@ -30,7 +30,7 @@ public class ReplaceHeroNamesInTranslationsFileHandler implements SaveButtonHand
                     heroGridViewModel.getChosenHeroGridFile(),
                     converter.convert(heroGridViewModel.getHeroTranslations())
             );
-        } catch (InvalidFileFormatException | IOException e) {
+        } catch (Dota2InvalidFileFormatException | IOException e) {
             throw new HandlerException(e.getMessage(), e);
         }
     }

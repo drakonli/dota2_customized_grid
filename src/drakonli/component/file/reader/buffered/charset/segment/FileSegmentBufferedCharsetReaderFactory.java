@@ -1,20 +1,20 @@
-package drakonli.component.file.reader.buffered.segment;
+package drakonli.component.file.reader.buffered.charset.segment;
 
 import drakonli.component.file.reader.buffered.BufferedFileReaderFactoryInterface;
-import drakonli.component.filter.FilterInterface;
+import drakonli.component.matcher.MatcherInterface;
 
 import java.io.*;
 import java.nio.charset.Charset;
 
 public class FileSegmentBufferedCharsetReaderFactory implements BufferedFileReaderFactoryInterface
 {
-    final private FilterInterface<String> skipFromLineMatcher;
-    final private FilterInterface<String> skipToLineMatcher;
+    final private MatcherInterface<String> skipFromLineMatcher;
+    final private MatcherInterface<String> skipToLineMatcher;
     final private Charset charset;
 
     public FileSegmentBufferedCharsetReaderFactory(
-            FilterInterface<String> skipFromLineMatcher,
-            FilterInterface<String> skipToLineMatcher,
+            MatcherInterface<String> skipFromLineMatcher,
+            MatcherInterface<String> skipToLineMatcher,
             Charset charset
     )
     {
@@ -24,7 +24,7 @@ public class FileSegmentBufferedCharsetReaderFactory implements BufferedFileRead
     }
 
     @Override
-    public BufferedReader createFileReader(File file) throws IOException, InvalidSkipToMatcherException
+    public BufferedReader createFileReader(File file) throws IOException
     {
         return new FileSegmentBufferedReader(
                 new InputStreamReader(

@@ -44,7 +44,7 @@ public class TmpTxtFileByLineEditor implements TxtFileByLineEditorInterface
         while (fileReader.hasNextLine()) {
             String currentLine = fileReader.nextLine() + System.lineSeparator();
 
-            if (!currentLine.isEmpty() && qualifier.isLineQualifiedForEdit(currentLine)) {
+            if (qualifier.isLineQualifiedForEdit(currentLine)) {
                 fileIsQualified = true;
 
                 currentLine = lineEditor.editLine(currentLine);
