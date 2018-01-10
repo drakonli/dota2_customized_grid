@@ -2,7 +2,7 @@ package drakonli.dota2.hero_grid_customizer.component.hero.names.file.replacer;
 
 import drakonli.component.file.editor.txt.TxtFileByLineEditorInterface;
 import drakonli.component.file.editor.txt.exception.NoLineQualifiedForEditException;
-import drakonli.dota2.hero_grid_customizer.component.hero.names.file.editor.txt.Dota2TranslationsFileHeroTranslationsLineEditorQualifier;
+import drakonli.dota2.hero_grid_customizer.component.hero.names.file.editor.txt.Dota2TranslationsFileHeroTranslationsLineEditorAndMatcher;
 import drakonli.dota2.hero_grid_customizer.component.hero.names.file.exception.Dota2InvalidFileFormatException;
 import drakonli.dota2.hero_grid_customizer.component.hero.names.file.extractor.HeroTranslationViewModelByFileLineExtractor;
 import drakonli.dota2.hero_grid_customizer.entity.HeroTranslation;
@@ -32,8 +32,8 @@ public class HeroNamesInFileReplacer
     {
         Map<String, String> heroCodeToHeroNameMap = this.createMapOfHeroCodesToNames(heroTranslations);
 
-        Dota2TranslationsFileHeroTranslationsLineEditorQualifier lineEditorAndQualifier =
-                new Dota2TranslationsFileHeroTranslationsLineEditorQualifier(
+        Dota2TranslationsFileHeroTranslationsLineEditorAndMatcher lineEditorAndQualifier =
+                new Dota2TranslationsFileHeroTranslationsLineEditorAndMatcher(
                         heroCodeToHeroNameMap,
                         this.heroTranslationViewModelExtractor
                 );

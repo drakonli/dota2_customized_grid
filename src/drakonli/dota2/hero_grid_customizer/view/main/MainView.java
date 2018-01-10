@@ -5,7 +5,6 @@ import drakonli.component.file.chooser.GuessedDirectoryTxtFileChooserFactory;
 import drakonli.component.file.editor.txt.tmp.TmpTxtFileByLineEditor;
 import drakonli.component.file.reader.buffered.BufferedFileReaderFactoryInterface;
 import drakonli.component.file.reader.buffered.charset.BufferedCharsetFileReaderFactory;
-import drakonli.component.file.scanner.factory.BufferedCharsetScannerFactory;
 import drakonli.component.file.writer.factory.BufferedCharsetFileWriterFactory;
 import drakonli.component.notificator.AlertNotificator;
 import drakonli.component.notificator.NotificatorInterface;
@@ -32,6 +31,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +44,9 @@ public class MainView implements Initializable
             "C:\\Program Files\\Steam\\steamapps\\common\\dota 2 beta\\game\\dota\\resource"
     };
 
-    private static final String HERO_TRANSLATION_LINE_PATTERN = "\"(npc_dota_hero_[^_]*)\".*\"(.*)\"";
+    private static final Charset DOTA2_TRANSLATION_FILE_CHARSET = StandardCharsets.UTF_16LE;
+    private static final String TMP_DOTA2_FILE_PREFIX = "txt_by_line_editor";
+    private static final String TMP_DOTA2_FILE_SUFFIX = ".tmp";
 
     @FXML
     private LoadHeroNamesFileButtonView loadHeroNamesButtonController;
@@ -63,7 +65,6 @@ public class MainView implements Initializable
     private HeroGridViewModel heroGridViewModel;
     private HeroNamesByFileStorage heroNamesByFileStorage;
     private NotificatorInterface notificator;
-    private BufferedCharsetScannerFactory dota2FilesScannerFactory;
     private BufferedFileReaderFactoryInterface dota2TranslationsFileReaderFactory;
     private HeroTranslationViewModelByFileLineExtractor heroTranslationViewModelByFileLineExtractor;
 
@@ -73,8 +74,7 @@ public class MainView implements Initializable
         this.heroNamesByFileStorage = new HeroNamesByFileStorage();
         this.heroGridViewModel = new HeroGridViewModel();
         this.notificator = new AlertNotificator();
-        this.dota2FilesScannerFactory = new BufferedCharsetScannerFactory(StandardCharsets.UTF_16LE);
-        this.dota2TranslationsFileReaderFactory = new BufferedCharsetFileReaderFactory(StandardCharsets.UTF_16LE);
+        this.dota2TranslationsFileReaderFactory = new BufferedCharsetFileReaderFactory(DOTA2_TRANSLATION_FILE_CHARSET);
         this.heroTranslationViewModelByFileLineExtractor = new HeroTranslationViewModelByFileLineExtractor();
 
         this.initHeroTranslationsTableController();
@@ -126,8 +126,10 @@ public class MainView implements Initializable
                 new ReplaceHeroNamesInTranslationsFileHandler(
                         new HeroNamesInFileReplacer(
                                 new TmpTxtFileByLineEditor(
-                                        this.dota2FilesScannerFactory,
-                                        new BufferedCharsetFileWriterFactory(StandardCharsets.UTF_16LE)
+                                        TMP_DOTA2_FILE_PREFIX,
+                                        TMP_DOTA2_FILE_SUFFIX,
+                                        this.dota2TranslationsFileReaderFactory,
+                                        new BufferedCharsetFileWriterFactory(DOTA2_TRANSLATION_FILE_CHARSET)
                                 ),
                             this.heroTranslationViewModelByFileLineExtractor
                         ),

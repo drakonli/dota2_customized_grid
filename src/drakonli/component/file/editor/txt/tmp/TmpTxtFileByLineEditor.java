@@ -2,49 +2,56 @@ package drakonli.component.file.editor.txt.tmp;
 
 import drakonli.component.file.editor.txt.TxtFileByLineEditorInterface;
 import drakonli.component.file.editor.txt.TxtLineEditorInterface;
-import drakonli.component.file.editor.txt.TxtLineForEditQualifierInterface;
 import drakonli.component.file.editor.txt.exception.NoLineQualifiedForEditException;
-import drakonli.component.file.scanner.factory.ScannerFactoryInterface;
+import drakonli.component.file.reader.buffered.BufferedFileReaderFactoryInterface;
 import drakonli.component.file.writer.factory.FileWriterFactoryInterface;
+import drakonli.dota2.hero_grid_customizer.component.hero.names.file.matcher.LineToEditMatcherInterface;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
-import java.util.Scanner;
 
 public class TmpTxtFileByLineEditor implements TxtFileByLineEditorInterface
 {
-    private static final String TMP_FILE_PREFIX = "txt_by_line_editor";
-    private static final String TMP_FILE_SUFFIX = ".tmp";
+    private final String tmpFilePrefix;
+    private final String tmpFileSuffix;
+    private final BufferedFileReaderFactoryInterface bufferedReaderFactory;
+    private final FileWriterFactoryInterface fileWriterFactory;
 
-    private ScannerFactoryInterface scannerFactory;
-    private FileWriterFactoryInterface fileWriterFactory;
-
-    public TmpTxtFileByLineEditor(ScannerFactoryInterface scannerFactory, FileWriterFactoryInterface fileWriterFactory)
+    public TmpTxtFileByLineEditor(
+            String tmpFilePrefix,
+            String tmpFileSuffix,
+            BufferedFileReaderFactoryInterface bufferedReaderFactory,
+            FileWriterFactoryInterface fileWriterFactory
+    )
     {
-        this.scannerFactory = scannerFactory;
+        this.tmpFilePrefix = tmpFilePrefix;
+        this.tmpFileSuffix = tmpFileSuffix;
+        this.bufferedReaderFactory = bufferedReaderFactory;
         this.fileWriterFactory = fileWriterFactory;
     }
 
-    public void edit(File file, TxtLineEditorInterface lineEditor, TxtLineForEditQualifierInterface qualifier)
+    public void edit(File file, TxtLineEditorInterface lineEditor, LineToEditMatcherInterface lineToEditMatcher)
             throws IOException, NoLineQualifiedForEditException
     {
         File tmpFile = File.createTempFile(
-                TmpTxtFileByLineEditor.TMP_FILE_PREFIX,
-                TmpTxtFileByLineEditor.TMP_FILE_SUFFIX
+                this.tmpFilePrefix,
+                this.tmpFileSuffix
         );
 
-        Scanner fileReader = this.scannerFactory.createScanner(file);
+        BufferedReader fileReader = this.bufferedReaderFactory.createFileReader(file);
         Writer writer = this.fileWriterFactory.createWriter(tmpFile);
 
         Boolean fileIsQualified = false;
 
-        while (fileReader.hasNextLine()) {
-            String currentLine = fileReader.nextLine() + System.lineSeparator();
+        String currentLine;
+        while (null != (currentLine = fileReader.readLine())) {
+            currentLine = currentLine.concat(System.lineSeparator());
 
-            if (qualifier.isLineQualifiedForEdit(currentLine)) {
+            if (lineToEditMatcher.match(currentLine)) {
                 fileIsQualified = true;
 
                 currentLine = lineEditor.editLine(currentLine);

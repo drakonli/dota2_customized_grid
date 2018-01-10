@@ -1,22 +1,22 @@
 package drakonli.dota2.hero_grid_customizer.component.hero.names.file.editor.txt;
 
 import drakonli.component.file.editor.txt.TxtLineEditorInterface;
-import drakonli.component.file.editor.txt.TxtLineForEditQualifierInterface;
 import drakonli.dota2.hero_grid_customizer.component.hero.names.file.extractor.HeroTranslationViewModelByFileLineExtractor;
+import drakonli.dota2.hero_grid_customizer.component.hero.names.file.matcher.LineToEditMatcherInterface;
 import drakonli.dota2.hero_grid_customizer.view_model.hero.translation.HeroTranslationViewModel;
 
 import java.util.Map;
 
-public class Dota2TranslationsFileHeroTranslationsLineEditorQualifier implements
+public class Dota2TranslationsFileHeroTranslationsLineEditorAndMatcher implements
         TxtLineEditorInterface,
-        TxtLineForEditQualifierInterface
+        LineToEditMatcherInterface
 {
     private HeroTranslationViewModel lastMatchedHeroTranslation;
 
     private final Map<String, String> heroCodeToHeroNameMap;
     private final HeroTranslationViewModelByFileLineExtractor heroTranslationViewModelExtractor;
 
-    public Dota2TranslationsFileHeroTranslationsLineEditorQualifier(
+    public Dota2TranslationsFileHeroTranslationsLineEditorAndMatcher(
             Map<String, String> heroCodeToHeroNameMap,
             HeroTranslationViewModelByFileLineExtractor heroTranslationViewModelExtractor
     )
@@ -26,7 +26,7 @@ public class Dota2TranslationsFileHeroTranslationsLineEditorQualifier implements
     }
 
     @Override
-    public Boolean isLineQualifiedForEdit(String line)
+    public Boolean match(String line)
     {
         if (line.isEmpty()) {
             return false;
