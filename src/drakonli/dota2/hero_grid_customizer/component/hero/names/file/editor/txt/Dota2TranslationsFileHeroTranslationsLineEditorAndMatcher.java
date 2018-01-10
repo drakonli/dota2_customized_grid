@@ -15,7 +15,7 @@ public class Dota2TranslationsFileHeroTranslationsLineEditorAndMatcher implement
         TxtLineEditorInterface,
         LineToEditMatcherInterface
 {
-    private HeroTranslation lastMatchedHeroTranslation;
+    private HeroTranslation currentHeroTranslationInLine;
 
     private final Map<String, String> heroCodeToHeroNameMap;
     private final HeroTranslationByFileLineExtractor heroTranslationByLineExtractor;
@@ -36,26 +36,26 @@ public class Dota2TranslationsFileHeroTranslationsLineEditorAndMatcher implement
             return false;
         }
 
-        this.lastMatchedHeroTranslation = this.heroTranslationByLineExtractor.extractByLine(line);
+        this.currentHeroTranslationInLine = this.heroTranslationByLineExtractor.extractByLine(line);
 
-        return null != this.lastMatchedHeroTranslation;
+        return null != this.currentHeroTranslationInLine;
     }
 
     @Override
     public String editLine(String line)
     {
-        if (null == this.lastMatchedHeroTranslation) {
+        if (null == this.currentHeroTranslationInLine) {
             return line;
         }
 
         String newHeroName = this.heroCodeToHeroNameMap.get(
-                this.lastMatchedHeroTranslation.getHeroCode()
+                this.currentHeroTranslationInLine.getHeroCode()
         );
 
         if (null == newHeroName) {
             return line;
         }
 
-        return line.replace("\"" + this.lastMatchedHeroTranslation.getHeroName() + "\"", "\"" + newHeroName + "\"");
+        return line.replace("\"" + this.currentHeroTranslationInLine.getHeroName() + "\"", "\"" + newHeroName + "\"");
     }
 }
