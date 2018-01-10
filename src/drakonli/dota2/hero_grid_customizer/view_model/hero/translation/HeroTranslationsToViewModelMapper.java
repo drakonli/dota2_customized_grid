@@ -6,7 +6,7 @@ import java.util.List;
 
 public class HeroTranslationsToViewModelMapper
 {
-    public void reMap(
+    public void map(
             List<HeroTranslation> heroTranslations,
             List<HeroTranslationViewModel> heroTranslationViewModels
     )
