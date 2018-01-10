@@ -2,7 +2,6 @@ package drakonli.dota2.hero_grid_customizer.component.hero.names.restorer;
 
 import drakonli.dota2.hero_grid_customizer.component.hero.names.storage.HeroNamesByFileStorage;
 import drakonli.dota2.hero_grid_customizer.entity.HeroTranslation;
-import drakonli.dota2.hero_grid_customizer.view_model.hero.translation.HeroTranslationViewModel;
 
 import java.io.IOException;
 import java.util.List;
@@ -16,20 +15,20 @@ public class HeroNamesByFileStorageRestorer
         this.storage = storage;
     }
 
-    public void restoreLatestHeroNames(List<HeroTranslationViewModel> heroTranslationViewModels)
+    public void restoreLatestHeroNames(List<HeroTranslation> heroTranslations)
             throws ClassNotFoundException, IOException, LastVersionOfHeroNamesIsEmptyException
     {
-        List<HeroTranslation> heroNamesList = this.storage.getLatest();
+        List<HeroTranslation> storedHeroTranslations = this.storage.getLatest();
 
-        if (heroNamesList.isEmpty()) {
+        if (storedHeroTranslations.isEmpty()) {
             throw new LastVersionOfHeroNamesIsEmptyException();
         }
 
-        heroTranslationViewModels.clear();
+        heroTranslations.clear();
 
-        for (HeroTranslation heroTranslation : heroNamesList) {
-            heroTranslationViewModels.add(
-                    new HeroTranslationViewModel(heroTranslation.getHeroName(), heroTranslation.getHeroCode())
+        for (HeroTranslation heroTranslation : storedHeroTranslations) {
+            heroTranslations.add(
+                    new HeroTranslation(heroTranslation.getHeroCode(), heroTranslation.getHeroName())
             );
         }
     }

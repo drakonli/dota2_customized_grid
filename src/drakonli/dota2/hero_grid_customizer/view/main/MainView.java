@@ -69,6 +69,7 @@ public class MainView implements Initializable
     private BufferedFileReaderFactoryInterface dota2TranslationsFileReaderFactory;
     private HeroTranslationByFileLineExtractor heroTranslationViewModelByFileLineExtractor;
     private HeroTranslationViewModelsToEntityMapper heroTranslationViewModelsToEntityMapper;
+    private HeroTranslationsToViewModelMapper heroTranslationsToViewModelMapper;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -79,6 +80,7 @@ public class MainView implements Initializable
         this.dota2TranslationsFileReaderFactory = new BufferedCharsetFileReaderFactory(DOTA2_TRANSLATION_FILE_CHARSET);
         this.heroTranslationViewModelByFileLineExtractor = new HeroTranslationByFileLineExtractor();
         this.heroTranslationViewModelsToEntityMapper = new HeroTranslationViewModelsToEntityMapper();
+        this.heroTranslationsToViewModelMapper = new HeroTranslationsToViewModelMapper();
 
         this.initHeroTranslationsTableController();
         this.initLoadHeroNamesButtonController();
@@ -101,7 +103,7 @@ public class MainView implements Initializable
                                 this.heroTranslationViewModelByFileLineExtractor
                         ),
                         this.heroTranslationViewModelsToEntityMapper,
-                        new HeroTranslationsToViewModelMapper()
+                        this.heroTranslationsToViewModelMapper
                 )
         );
 
@@ -121,7 +123,7 @@ public class MainView implements Initializable
         );
         saveHeroNamesButtonHandlers.add(
                 new StoreHeroNamesHandler(
-                        new HeroNamesByFileStorage(),
+                        this.heroNamesByFileStorage,
                         this.heroTranslationViewModelsToEntityMapper
                 )
         );
@@ -147,7 +149,13 @@ public class MainView implements Initializable
     {
         List<RestoreButtonHandlerInterface> restoreButtonHandlers = new ArrayList<>();
         restoreButtonHandlers.add(
-                new RestoreHeroNamesHandler(new HeroNamesByFileStorageRestorer(this.heroNamesByFileStorage))
+                new RestoreHeroNamesHandler(
+                        new HeroNamesByFileStorageRestorer(
+                                this.heroNamesByFileStorage
+                        ),
+                        this.heroTranslationViewModelsToEntityMapper,
+                        this.heroTranslationsToViewModelMapper
+                )
         );
 
         this.restoreHeroNamesButtonController.init(this.heroGridViewModel, this.notificator, restoreButtonHandlers);
