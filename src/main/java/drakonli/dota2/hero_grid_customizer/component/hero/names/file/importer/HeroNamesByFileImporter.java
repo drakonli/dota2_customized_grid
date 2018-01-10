@@ -1,9 +1,9 @@
 package drakonli.dota2.hero_grid_customizer.component.hero.names.file.importer;
 
-import drakonli.component.file.reader.buffered.BufferedFileReaderFactoryInterface;
 import drakonli.dota2.hero_grid_customizer.component.hero.names.file.exception.Dota2InvalidFileFormatException;
 import drakonli.dota2.hero_grid_customizer.component.hero.names.file.extractor.HeroTranslationByFileLineExtractor;
 import drakonli.dota2.hero_grid_customizer.entity.HeroTranslation;
+import drakonli.jcomponents.file.reader.buffered.BufferedFileReaderFactoryInterface;
 
 import java.io.BufferedReader;
 import java.io.File;

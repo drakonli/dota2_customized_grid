@@ -1,15 +1,14 @@
 package drakonli.dota2.hero_grid_customizer.component.hero.names.file.editor.txt;
 
-import drakonli.component.file.editor.txt.TxtLineEditorInterface;
 import drakonli.dota2.hero_grid_customizer.component.hero.names.file.extractor.HeroTranslationByFileLineExtractor;
-import drakonli.dota2.hero_grid_customizer.component.hero.names.file.matcher.LineToEditMatcherInterface;
 import drakonli.dota2.hero_grid_customizer.entity.HeroTranslation;
+import drakonli.jcomponents.file.editor.txt.TxtLineEditorInterface;
+import drakonli.jcomponents.file.matcher.LineToEditMatcherInterface;
 
 import java.util.Map;
 
 /**
- * Two interfaces are joined for optimization purposes - the result of pattern matching in extractor should be
- * used in
+ * Two interfaces are joined for optimization purposes
  */
 public class Dota2TranslationsFileHeroTranslationsLineEditorAndMatcher implements
         TxtLineEditorInterface,

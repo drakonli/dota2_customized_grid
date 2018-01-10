@@ -1,8 +1,8 @@
 package drakonli.dota2.hero_grid_customizer;
 
-import drakonli.component.notificator.AlertNotificator;
-import drakonli.component.notificator.NotificatorInterface;
 import drakonli.dota2.hero_grid_customizer.view.main.MainView;
+import drakonli.jcomponents.notificator.AlertNotificator;
+import drakonli.jcomponents.notificator.NotificatorInterface;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

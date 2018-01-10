@@ -1,11 +1,11 @@
 package drakonli.dota2.hero_grid_customizer.view.load;
 
-import drakonli.component.file.chooser.FileChooserFactoryInterface;
-import drakonli.component.notificator.NotificatorInterface;
 import drakonli.dota2.hero_grid_customizer.view.error.HeroGridNotInitializedError;
 import drakonli.dota2.hero_grid_customizer.view.handler.HandlerException;
 import drakonli.dota2.hero_grid_customizer.view.load.handler.LoadButtonHandlerInterface;
 import drakonli.dota2.hero_grid_customizer.view_model.hero.grid.HeroGridViewModel;
+import drakonli.jcomponents.file.chooser.FileChooserFactoryInterface;
+import drakonli.jcomponents.notificator.NotificatorInterface;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 

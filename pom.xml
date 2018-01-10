@@ -7,6 +7,13 @@
     <groupId>drakonli</groupId>
     <artifactId>dota2_customized_grid</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <dependencies>
+        <dependency>
+            <groupId>drakonli</groupId>
+            <artifactId>jcomponents</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
     <properties>
         <!-- The final name for the JAR that you can find in target directory-->
         <jar.final.name>dota2_hero_grid_customizer</jar.final.name>
@@ -46,6 +53,7 @@
                 <directory>src/main/java</directory>
                 <includes>
                     <include>**/*.fxml</include>
+                    <include>**/*.css</include>
                 </includes>
             </resource>
         </resources>

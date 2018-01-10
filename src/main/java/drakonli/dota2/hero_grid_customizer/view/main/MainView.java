@@ -1,13 +1,5 @@
 package drakonli.dota2.hero_grid_customizer.view.main;
 
-import drakonli.component.file.backuper.FileBackuper;
-import drakonli.component.file.chooser.GuessedDirectoryTxtFileChooserFactory;
-import drakonli.component.file.editor.txt.tmp.TmpTxtFileByLineEditor;
-import drakonli.component.file.reader.buffered.BufferedFileReaderFactoryInterface;
-import drakonli.component.file.reader.buffered.charset.BufferedCharsetFileReaderFactory;
-import drakonli.component.file.writer.factory.BufferedCharsetFileWriterFactory;
-import drakonli.component.notificator.AlertNotificator;
-import drakonli.component.notificator.NotificatorInterface;
 import drakonli.dota2.hero_grid_customizer.component.hero.names.file.exporter.HeroNamesIntoFileExporter;
 import drakonli.dota2.hero_grid_customizer.component.hero.names.file.extractor.HeroTranslationByFileLineExtractor;
 import drakonli.dota2.hero_grid_customizer.component.hero.names.file.importer.HeroNamesByFileImporter;
@@ -28,6 +20,14 @@ import drakonli.dota2.hero_grid_customizer.view.save.handler.StoreHeroNamesHandl
 import drakonli.dota2.hero_grid_customizer.view_model.hero.grid.HeroGridViewModel;
 import drakonli.dota2.hero_grid_customizer.view_model.hero.translation.HeroTranslationViewModelsToEntityMapper;
 import drakonli.dota2.hero_grid_customizer.view_model.hero.translation.HeroTranslationsToViewModelMapper;
+import drakonli.jcomponents.file.backuper.FileBackuper;
+import drakonli.jcomponents.file.chooser.GuessedDirectoryTxtFileChooserFactory;
+import drakonli.jcomponents.file.editor.txt.tmp.TmpTxtFileByLineEditor;
+import drakonli.jcomponents.file.reader.buffered.BufferedFileReaderFactoryInterface;
+import drakonli.jcomponents.file.reader.buffered.charset.BufferedCharsetFileReaderFactory;
+import drakonli.jcomponents.file.writer.factory.BufferedCharsetFileWriterFactory;
+import drakonli.jcomponents.notificator.AlertNotificator;
+import drakonli.jcomponents.notificator.NotificatorInterface;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 

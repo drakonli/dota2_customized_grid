@@ -1,11 +1,11 @@
 package drakonli.dota2.hero_grid_customizer.view.restore;
 
-import drakonli.component.notificator.NotificatorInterface;
 import drakonli.dota2.hero_grid_customizer.view.error.HeroGridNotInitializedError;
 import drakonli.dota2.hero_grid_customizer.view.handler.HandlerException;
 import drakonli.dota2.hero_grid_customizer.view.restore.handler.RestoreButtonHandlerInterface;
 import drakonli.dota2.hero_grid_customizer.view_model.hero.grid.HeroGridViewModel;
 import drakonli.dota2.hero_grid_customizer.view_model.hero.translation.HeroTranslationViewModel;
+import drakonli.jcomponents.notificator.NotificatorInterface;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
