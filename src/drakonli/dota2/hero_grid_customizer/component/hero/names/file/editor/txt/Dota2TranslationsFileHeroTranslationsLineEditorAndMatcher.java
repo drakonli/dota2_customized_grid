@@ -7,6 +7,10 @@ import drakonli.dota2.hero_grid_customizer.entity.HeroTranslation;
 
 import java.util.Map;
 
+/**
+ * Two interfaces are joined for optimization purposes - the result of pattern matching in extractor should be
+ * used in
+ */
 public class Dota2TranslationsFileHeroTranslationsLineEditorAndMatcher implements
         TxtLineEditorInterface,
         LineToEditMatcherInterface
@@ -44,15 +48,14 @@ public class Dota2TranslationsFileHeroTranslationsLineEditorAndMatcher implement
             return line;
         }
 
-        String heroCode = this.lastMatchedHeroTranslation.getHeroCode();
-        String heroName = this.lastMatchedHeroTranslation.getHeroName();
-
-        String newHeroName = this.heroCodeToHeroNameMap.get(heroCode);
+        String newHeroName = this.heroCodeToHeroNameMap.get(
+                this.lastMatchedHeroTranslation.getHeroCode()
+        );
 
         if (null == newHeroName) {
             return line;
         }
 
-        return line.replace("\"" + heroName + "\"", "\"" + newHeroName + "\"");
+        return line.replace("\"" + this.lastMatchedHeroTranslation.getHeroName() + "\"", "\"" + newHeroName + "\"");
     }
 }
