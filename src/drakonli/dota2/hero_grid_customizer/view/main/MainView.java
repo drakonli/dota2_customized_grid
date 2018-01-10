@@ -8,9 +8,9 @@ import drakonli.component.file.reader.buffered.charset.BufferedCharsetFileReader
 import drakonli.component.file.writer.factory.BufferedCharsetFileWriterFactory;
 import drakonli.component.notificator.AlertNotificator;
 import drakonli.component.notificator.NotificatorInterface;
+import drakonli.dota2.hero_grid_customizer.component.hero.names.file.exporter.HeroNamesIntoFileExporter;
 import drakonli.dota2.hero_grid_customizer.component.hero.names.file.extractor.HeroTranslationViewModelByFileLineExtractor;
-import drakonli.dota2.hero_grid_customizer.component.hero.names.file.importer.HeroNamesFileImporter;
-import drakonli.dota2.hero_grid_customizer.component.hero.names.file.replacer.HeroNamesInFileReplacer;
+import drakonli.dota2.hero_grid_customizer.component.hero.names.file.importer.HeroNamesByFileImporter;
 import drakonli.dota2.hero_grid_customizer.component.hero.names.restorer.HeroNamesByFileStorageRestorer;
 import drakonli.dota2.hero_grid_customizer.component.hero.names.storage.HeroNamesByFileStorage;
 import drakonli.dota2.hero_grid_customizer.view.hero_translations_table.HeroTranslationsTableView;
@@ -93,7 +93,7 @@ public class MainView implements Initializable
         List<LoadButtonHandlerInterface> loadButtonHandlers = new ArrayList<>();
         loadButtonHandlers.add(
                 new AddHeroTranslationsByFileHandler(
-                        new HeroNamesFileImporter(
+                        new HeroNamesByFileImporter(
                                 this.dota2TranslationsFileReaderFactory,
                                 this.heroTranslationViewModelByFileLineExtractor
                         )
@@ -124,7 +124,7 @@ public class MainView implements Initializable
         );
         saveHeroNamesButtonHandlers.add(
                 new ReplaceHeroNamesInTranslationsFileHandler(
-                        new HeroNamesInFileReplacer(
+                        new HeroNamesIntoFileExporter(
                                 new TmpTxtFileByLineEditor(
                                         TMP_DOTA2_FILE_PREFIX,
                                         TMP_DOTA2_FILE_SUFFIX,

@@ -10,12 +10,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public class HeroNamesFileImporter
+public class HeroNamesByFileImporter
 {
     private final BufferedFileReaderFactoryInterface readerFactory;
     private final HeroTranslationViewModelByFileLineExtractor heroTranslationViewModelExtractor;
 
-    public HeroNamesFileImporter(
+    public HeroNamesByFileImporter(
             BufferedFileReaderFactoryInterface readerFactory,
             HeroTranslationViewModelByFileLineExtractor heroTranslationViewModelExtractor
     )

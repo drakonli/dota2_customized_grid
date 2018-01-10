@@ -1,4 +1,4 @@
-package drakonli.dota2.hero_grid_customizer.component.hero.names.file.replacer;
+package drakonli.dota2.hero_grid_customizer.component.hero.names.file.exporter;
 
 import drakonli.component.file.editor.txt.TxtFileByLineEditorInterface;
 import drakonli.component.file.editor.txt.exception.NoLineQualifiedForEditException;
@@ -13,12 +13,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class HeroNamesInFileReplacer
+public class HeroNamesIntoFileExporter
 {
     private TxtFileByLineEditorInterface txtFileByLineEditor;
     private final HeroTranslationViewModelByFileLineExtractor heroTranslationViewModelExtractor;
 
-    public HeroNamesInFileReplacer(
+    public HeroNamesIntoFileExporter(
             TxtFileByLineEditorInterface txtFileByLineEditor,
             HeroTranslationViewModelByFileLineExtractor heroTranslationViewModelExtractor
     )
@@ -32,14 +32,14 @@ public class HeroNamesInFileReplacer
     {
         Map<String, String> heroCodeToHeroNameMap = this.createMapOfHeroCodesToNames(heroTranslations);
 
-        Dota2TranslationsFileHeroTranslationsLineEditorAndMatcher lineEditorAndQualifier =
+        Dota2TranslationsFileHeroTranslationsLineEditorAndMatcher lineEditorAndMatcher =
                 new Dota2TranslationsFileHeroTranslationsLineEditorAndMatcher(
                         heroCodeToHeroNameMap,
                         this.heroTranslationViewModelExtractor
                 );
 
         try {
-            this.txtFileByLineEditor.edit(heroNamesFile, lineEditorAndQualifier, lineEditorAndQualifier);
+            this.txtFileByLineEditor.edit(heroNamesFile, lineEditorAndMatcher, lineEditorAndMatcher);
         } catch (NoLineQualifiedForEditException e) {
             throw new Dota2InvalidFileFormatException();
         }
@@ -47,6 +47,7 @@ public class HeroNamesInFileReplacer
 
     private Map<String, String> createMapOfHeroCodesToNames(List<HeroTranslation> heroTranslations)
     {
+        // @TODO: change to Guava
         Map<String, String> heroCodeToHeroName = new HashMap<>();
 
         for (HeroTranslation heroTranslation : heroTranslations) {
