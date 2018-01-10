@@ -9,7 +9,6 @@ import drakonli.dota2.hero_grid_customizer.view_model.hero.translation.HeroTrans
 import drakonli.dota2.hero_grid_customizer.view_model.hero.translation.HeroTranslationsToViewModelMapper;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class AddHeroTranslationsByFileHandler implements LoadButtonHandlerInterface
@@ -33,9 +32,8 @@ public class AddHeroTranslationsByFileHandler implements LoadButtonHandlerInterf
     public void handle(HeroGridViewModel heroGridViewModel) throws HandlerException
     {
         try {
-            List<HeroTranslation> heroTranslations = new ArrayList<>();
-
-            this.heroTranslationViewModelsToEntityMapper.map(heroGridViewModel.getHeroTranslations(), heroTranslations);
+            List<HeroTranslation> heroTranslations = this.heroTranslationViewModelsToEntityMapper
+                    .mapToNewEntityList(heroGridViewModel.getHeroTranslations());
 
             this.importer.importHeroNamesByFile(
                     heroGridViewModel.getChosenHeroGridFile(),

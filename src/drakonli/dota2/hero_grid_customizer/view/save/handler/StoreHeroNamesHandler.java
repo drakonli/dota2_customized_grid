@@ -7,7 +7,6 @@ import drakonli.dota2.hero_grid_customizer.view_model.hero.grid.HeroGridViewMode
 import drakonli.dota2.hero_grid_customizer.view_model.hero.translation.HeroTranslationViewModelsToEntityMapper;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class StoreHeroNamesHandler implements SaveButtonHandlerInterface
@@ -28,9 +27,8 @@ public class StoreHeroNamesHandler implements SaveButtonHandlerInterface
     public void handle(HeroGridViewModel heroGridViewModel) throws HandlerException
     {
         try {
-            List<HeroTranslation> heroTranslations = new ArrayList<>();
-
-            this.heroTranslationViewModelsToEntityMapper.map(heroGridViewModel.getHeroTranslations(), heroTranslations);
+            List<HeroTranslation> heroTranslations = this.heroTranslationViewModelsToEntityMapper
+                    .mapToNewEntityList(heroGridViewModel.getHeroTranslations());
 
             this.heroNamesStorage.store(heroTranslations);
         } catch (IOException e) {

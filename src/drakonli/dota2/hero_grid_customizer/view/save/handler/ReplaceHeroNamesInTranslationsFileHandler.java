@@ -8,20 +8,19 @@ import drakonli.dota2.hero_grid_customizer.view_model.hero.grid.HeroGridViewMode
 import drakonli.dota2.hero_grid_customizer.view_model.hero.translation.HeroTranslationViewModelsToEntityMapper;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ReplaceHeroNamesInTranslationsFileHandler implements SaveButtonHandlerInterface
 {
-    private final HeroNamesIntoFileExporter replacer;
+    private final HeroNamesIntoFileExporter heroNamesIntoFileExporter;
     private final HeroTranslationViewModelsToEntityMapper heroTranslationViewModelsToEntityMapper;
 
     public ReplaceHeroNamesInTranslationsFileHandler(
-            HeroNamesIntoFileExporter replacer,
+            HeroNamesIntoFileExporter heroNamesIntoFileExporter,
             HeroTranslationViewModelsToEntityMapper heroTranslationViewModelsToEntityMapper
     )
     {
-        this.replacer = replacer;
+        this.heroNamesIntoFileExporter = heroNamesIntoFileExporter;
         this.heroTranslationViewModelsToEntityMapper = heroTranslationViewModelsToEntityMapper;
     }
 
@@ -29,11 +28,10 @@ public class ReplaceHeroNamesInTranslationsFileHandler implements SaveButtonHand
     public void handle(HeroGridViewModel heroGridViewModel) throws HandlerException
     {
         try {
-            List<HeroTranslation> heroTranslations = new ArrayList<>();
+            List<HeroTranslation> heroTranslations = this.heroTranslationViewModelsToEntityMapper
+                    .mapToNewEntityList(heroGridViewModel.getHeroTranslations());
 
-            this.heroTranslationViewModelsToEntityMapper.map(heroGridViewModel.getHeroTranslations(), heroTranslations);
-
-            this.replacer.replaceHeroNames(
+            this.heroNamesIntoFileExporter.export(
                     heroGridViewModel.getChosenHeroGridFile(),
                     heroTranslations
             );

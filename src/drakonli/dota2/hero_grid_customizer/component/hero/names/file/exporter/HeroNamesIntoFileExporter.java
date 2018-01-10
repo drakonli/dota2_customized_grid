@@ -27,7 +27,7 @@ public class HeroNamesIntoFileExporter
         this.heroTranslationViewModelExtractor = heroTranslationViewModelExtractor;
     }
 
-    public void replaceHeroNames(File heroNamesFile, List<HeroTranslation> heroTranslations)
+    public void export(File heroNamesFile, List<HeroTranslation> heroTranslations)
             throws Dota2InvalidFileFormatException, IOException
     {
         Map<String, String> heroCodeToHeroNameMap = this.createMapOfHeroCodesToNames(heroTranslations);
