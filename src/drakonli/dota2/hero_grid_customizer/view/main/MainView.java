@@ -9,7 +9,7 @@ import drakonli.component.file.writer.factory.BufferedCharsetFileWriterFactory;
 import drakonli.component.notificator.AlertNotificator;
 import drakonli.component.notificator.NotificatorInterface;
 import drakonli.dota2.hero_grid_customizer.component.hero.names.file.exporter.HeroNamesIntoFileExporter;
-import drakonli.dota2.hero_grid_customizer.component.hero.names.file.extractor.HeroTranslationViewModelByFileLineExtractor;
+import drakonli.dota2.hero_grid_customizer.component.hero.names.file.extractor.HeroTranslationByFileLineExtractor;
 import drakonli.dota2.hero_grid_customizer.component.hero.names.file.importer.HeroNamesByFileImporter;
 import drakonli.dota2.hero_grid_customizer.component.hero.names.restorer.HeroNamesByFileStorageRestorer;
 import drakonli.dota2.hero_grid_customizer.component.hero.names.storage.HeroNamesByFileStorage;
@@ -26,7 +26,8 @@ import drakonli.dota2.hero_grid_customizer.view.save.handler.ReplaceHeroNamesInT
 import drakonli.dota2.hero_grid_customizer.view.save.handler.SaveButtonHandlerInterface;
 import drakonli.dota2.hero_grid_customizer.view.save.handler.StoreHeroNamesHandler;
 import drakonli.dota2.hero_grid_customizer.view_model.hero.grid.HeroGridViewModel;
-import drakonli.dota2.hero_grid_customizer.view_model.hero.translation.HeroTranslationViewModelsToEntityConverter;
+import drakonli.dota2.hero_grid_customizer.view_model.hero.translation.HeroTranslationViewModelsToEntityMapper;
+import drakonli.dota2.hero_grid_customizer.view_model.hero.translation.HeroTranslationsToViewModelMapper;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
@@ -66,7 +67,8 @@ public class MainView implements Initializable
     private HeroNamesByFileStorage heroNamesByFileStorage;
     private NotificatorInterface notificator;
     private BufferedFileReaderFactoryInterface dota2TranslationsFileReaderFactory;
-    private HeroTranslationViewModelByFileLineExtractor heroTranslationViewModelByFileLineExtractor;
+    private HeroTranslationByFileLineExtractor heroTranslationViewModelByFileLineExtractor;
+    private HeroTranslationViewModelsToEntityMapper heroTranslationViewModelsToEntityMapper;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -75,7 +77,8 @@ public class MainView implements Initializable
         this.heroGridViewModel = new HeroGridViewModel();
         this.notificator = new AlertNotificator();
         this.dota2TranslationsFileReaderFactory = new BufferedCharsetFileReaderFactory(DOTA2_TRANSLATION_FILE_CHARSET);
-        this.heroTranslationViewModelByFileLineExtractor = new HeroTranslationViewModelByFileLineExtractor();
+        this.heroTranslationViewModelByFileLineExtractor = new HeroTranslationByFileLineExtractor();
+        this.heroTranslationViewModelsToEntityMapper = new HeroTranslationViewModelsToEntityMapper();
 
         this.initHeroTranslationsTableController();
         this.initLoadHeroNamesButtonController();
@@ -96,7 +99,9 @@ public class MainView implements Initializable
                         new HeroNamesByFileImporter(
                                 this.dota2TranslationsFileReaderFactory,
                                 this.heroTranslationViewModelByFileLineExtractor
-                        )
+                        ),
+                        this.heroTranslationViewModelsToEntityMapper,
+                        new HeroTranslationsToViewModelMapper()
                 )
         );
 
@@ -110,8 +115,6 @@ public class MainView implements Initializable
 
     private void initSaveHeroNamesButtonController()
     {
-        HeroTranslationViewModelsToEntityConverter converter = new HeroTranslationViewModelsToEntityConverter();
-
         List<SaveButtonHandlerInterface> saveHeroNamesButtonHandlers = new ArrayList<>();
         saveHeroNamesButtonHandlers.add(
                 new BackupHeroTranslationFileHandler(new FileBackuper())
@@ -119,7 +122,7 @@ public class MainView implements Initializable
         saveHeroNamesButtonHandlers.add(
                 new StoreHeroNamesHandler(
                         new HeroNamesByFileStorage(),
-                        converter
+                        this.heroTranslationViewModelsToEntityMapper
                 )
         );
         saveHeroNamesButtonHandlers.add(
@@ -133,7 +136,7 @@ public class MainView implements Initializable
                                 ),
                             this.heroTranslationViewModelByFileLineExtractor
                         ),
-                        converter
+                        this.heroTranslationViewModelsToEntityMapper
                 )
         );
 

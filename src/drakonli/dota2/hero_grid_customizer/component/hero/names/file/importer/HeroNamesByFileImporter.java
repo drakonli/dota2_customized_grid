@@ -2,8 +2,8 @@ package drakonli.dota2.hero_grid_customizer.component.hero.names.file.importer;
 
 import drakonli.component.file.reader.buffered.BufferedFileReaderFactoryInterface;
 import drakonli.dota2.hero_grid_customizer.component.hero.names.file.exception.Dota2InvalidFileFormatException;
-import drakonli.dota2.hero_grid_customizer.component.hero.names.file.extractor.HeroTranslationViewModelByFileLineExtractor;
-import drakonli.dota2.hero_grid_customizer.view_model.hero.translation.HeroTranslationViewModel;
+import drakonli.dota2.hero_grid_customizer.component.hero.names.file.extractor.HeroTranslationByFileLineExtractor;
+import drakonli.dota2.hero_grid_customizer.entity.HeroTranslation;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -13,18 +13,18 @@ import java.util.List;
 public class HeroNamesByFileImporter
 {
     private final BufferedFileReaderFactoryInterface readerFactory;
-    private final HeroTranslationViewModelByFileLineExtractor heroTranslationViewModelExtractor;
+    private final HeroTranslationByFileLineExtractor heroTranslationByFileLineExtractor;
 
     public HeroNamesByFileImporter(
             BufferedFileReaderFactoryInterface readerFactory,
-            HeroTranslationViewModelByFileLineExtractor heroTranslationViewModelExtractor
+            HeroTranslationByFileLineExtractor heroTranslationByFileLineExtractor
     )
     {
         this.readerFactory = readerFactory;
-        this.heroTranslationViewModelExtractor = heroTranslationViewModelExtractor;
+        this.heroTranslationByFileLineExtractor = heroTranslationByFileLineExtractor;
     }
 
-    public void importHeroNamesByFile(File heroNamesFile, List<HeroTranslationViewModel> heroTranslations)
+    public void importHeroNamesByFile(File heroNamesFile, List<HeroTranslation> heroTranslations)
             throws Dota2InvalidFileFormatException, IOException
     {
         BufferedReader reader = this.readerFactory.createFileReader(heroNamesFile);
@@ -37,14 +37,13 @@ public class HeroNamesByFileImporter
                 continue;
             }
 
-            HeroTranslationViewModel heroTranslationViewModel =
-                    this.heroTranslationViewModelExtractor.extractByLine(currentLine);
+            HeroTranslation heroTranslation = this.heroTranslationByFileLineExtractor.extractByLine(currentLine);
 
-            if (null == heroTranslationViewModel) {
+            if (null == heroTranslation) {
                 continue;
             }
 
-            heroTranslations.add(heroTranslationViewModel);
+            heroTranslations.add(heroTranslation);
         }
 
         reader.close();

@@ -1,9 +1,9 @@
 package drakonli.dota2.hero_grid_customizer.component.hero.names.file.editor.txt;
 
 import drakonli.component.file.editor.txt.TxtLineEditorInterface;
-import drakonli.dota2.hero_grid_customizer.component.hero.names.file.extractor.HeroTranslationViewModelByFileLineExtractor;
+import drakonli.dota2.hero_grid_customizer.component.hero.names.file.extractor.HeroTranslationByFileLineExtractor;
 import drakonli.dota2.hero_grid_customizer.component.hero.names.file.matcher.LineToEditMatcherInterface;
-import drakonli.dota2.hero_grid_customizer.view_model.hero.translation.HeroTranslationViewModel;
+import drakonli.dota2.hero_grid_customizer.entity.HeroTranslation;
 
 import java.util.Map;
 
@@ -11,18 +11,18 @@ public class Dota2TranslationsFileHeroTranslationsLineEditorAndMatcher implement
         TxtLineEditorInterface,
         LineToEditMatcherInterface
 {
-    private HeroTranslationViewModel lastMatchedHeroTranslation;
+    private HeroTranslation lastMatchedHeroTranslation;
 
     private final Map<String, String> heroCodeToHeroNameMap;
-    private final HeroTranslationViewModelByFileLineExtractor heroTranslationViewModelExtractor;
+    private final HeroTranslationByFileLineExtractor heroTranslationByLineExtractor;
 
     public Dota2TranslationsFileHeroTranslationsLineEditorAndMatcher(
             Map<String, String> heroCodeToHeroNameMap,
-            HeroTranslationViewModelByFileLineExtractor heroTranslationViewModelExtractor
+            HeroTranslationByFileLineExtractor heroTranslationExtractor
     )
     {
         this.heroCodeToHeroNameMap = heroCodeToHeroNameMap;
-        this.heroTranslationViewModelExtractor = heroTranslationViewModelExtractor;
+        this.heroTranslationByLineExtractor = heroTranslationExtractor;
     }
 
     @Override
@@ -32,7 +32,7 @@ public class Dota2TranslationsFileHeroTranslationsLineEditorAndMatcher implement
             return false;
         }
 
-        this.lastMatchedHeroTranslation = this.heroTranslationViewModelExtractor.extractByLine(line);
+        this.lastMatchedHeroTranslation = this.heroTranslationByLineExtractor.extractByLine(line);
 
         return null != this.lastMatchedHeroTranslation;
     }

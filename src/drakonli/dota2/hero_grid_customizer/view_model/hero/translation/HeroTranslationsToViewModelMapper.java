@@ -4,9 +4,9 @@ import drakonli.dota2.hero_grid_customizer.entity.HeroTranslation;
 
 import java.util.List;
 
-public class HeroTranslationViewModelToEntityMapper
+public class HeroTranslationsToViewModelMapper
 {
-    public void reMapEntityListToVMList(
+    public void reMap(
             List<HeroTranslation> heroTranslations,
             List<HeroTranslationViewModel> heroTranslationViewModels
     )

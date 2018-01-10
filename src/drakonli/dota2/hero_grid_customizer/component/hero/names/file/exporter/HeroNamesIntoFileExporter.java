@@ -4,7 +4,7 @@ import drakonli.component.file.editor.txt.TxtFileByLineEditorInterface;
 import drakonli.component.file.editor.txt.exception.NoLineQualifiedForEditException;
 import drakonli.dota2.hero_grid_customizer.component.hero.names.file.editor.txt.Dota2TranslationsFileHeroTranslationsLineEditorAndMatcher;
 import drakonli.dota2.hero_grid_customizer.component.hero.names.file.exception.Dota2InvalidFileFormatException;
-import drakonli.dota2.hero_grid_customizer.component.hero.names.file.extractor.HeroTranslationViewModelByFileLineExtractor;
+import drakonli.dota2.hero_grid_customizer.component.hero.names.file.extractor.HeroTranslationByFileLineExtractor;
 import drakonli.dota2.hero_grid_customizer.entity.HeroTranslation;
 
 import java.io.File;
@@ -16,11 +16,11 @@ import java.util.Map;
 public class HeroNamesIntoFileExporter
 {
     private TxtFileByLineEditorInterface txtFileByLineEditor;
-    private final HeroTranslationViewModelByFileLineExtractor heroTranslationViewModelExtractor;
+    private final HeroTranslationByFileLineExtractor heroTranslationViewModelExtractor;
 
     public HeroNamesIntoFileExporter(
             TxtFileByLineEditorInterface txtFileByLineEditor,
-            HeroTranslationViewModelByFileLineExtractor heroTranslationViewModelExtractor
+            HeroTranslationByFileLineExtractor heroTranslationViewModelExtractor
     )
     {
         this.txtFileByLineEditor = txtFileByLineEditor;

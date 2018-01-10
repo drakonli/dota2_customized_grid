@@ -1,18 +1,18 @@
 package drakonli.dota2.hero_grid_customizer.component.hero.names.file.extractor;
 
-import drakonli.dota2.hero_grid_customizer.view_model.hero.translation.HeroTranslationViewModel;
+import drakonli.dota2.hero_grid_customizer.entity.HeroTranslation;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class HeroTranslationViewModelByFileLineExtractor
+public class HeroTranslationByFileLineExtractor
 {
     private static final String HERO_TRANSLATION_MATCH_PATTERN = "\"(npc_dota_hero_[^_]*)\".*\"(.*)\"";
     private static final String[] HERO_TRANSLATION_FORBIDDEN_STRING_SUFFIXES = {
             "_bio", "_radiant", "_dire", "_hype", "_bio"
     };
 
-    public HeroTranslationViewModel extractByLine(String line)
+    public HeroTranslation extractByLine(String line)
     {
         Pattern pattern = Pattern.compile(HERO_TRANSLATION_MATCH_PATTERN);
         Matcher matcher = pattern.matcher(line);
@@ -28,7 +28,7 @@ public class HeroTranslationViewModelByFileLineExtractor
             return null;
         }
 
-        return new HeroTranslationViewModel(heroName, heroCode);
+        return new HeroTranslation(heroCode, heroName);
     }
 
     private Boolean heroCodeEndsWithForbiddenString(String heroCode)
