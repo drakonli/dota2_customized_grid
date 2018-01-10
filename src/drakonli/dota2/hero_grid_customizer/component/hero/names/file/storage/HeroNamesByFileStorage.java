@@ -1,4 +1,4 @@
-package drakonli.dota2.hero_grid_customizer.component.hero.names.storage;
+package drakonli.dota2.hero_grid_customizer.component.hero.names.file.storage;
 
 import drakonli.dota2.hero_grid_customizer.entity.HeroTranslation;
 
