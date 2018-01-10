@@ -5,9 +5,10 @@ import drakonli.jcomponents.notificator.AlertNotificator;
 import drakonli.jcomponents.notificator.NotificatorInterface;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.IOException;
 
@@ -18,14 +19,17 @@ public class Dota2HeroGridCustomizer extends Application {
     public void start(Stage primaryStage) throws Exception
     {
         try {
-            Parent graph = FXMLLoader.load(MainView.class.getResource("MainView.fxml"));
+            ApplicationContext context = new ClassPathXmlApplicationContext("services.xml");
+
+            FXMLLoader loader = new FXMLLoader(MainView.class.getResource("MainView.fxml"));
+            loader.setControllerFactory(context::getBean);
 
             primaryStage.setTitle("Dota 2 Grid Customization");
-            primaryStage.setScene(new Scene(graph));
+            primaryStage.setScene(new Scene(loader.load()));
             primaryStage.show();
 
         } catch (IOException exception) {
-            notificator.error(exception.getMessage());
+            throw new IOException(exception);
         }
     }
 
