@@ -2,13 +2,10 @@ package drakonli.dota2.hero_grid_customizer.view.main;
 
 import drakonli.dota2.hero_grid_customizer.component.hero.names.file.exporter.HeroNamesIntoFileExporter;
 import drakonli.dota2.hero_grid_customizer.component.hero.names.file.extractor.HeroTranslationByFileLineExtractor;
-import drakonli.dota2.hero_grid_customizer.component.hero.names.file.importer.HeroNamesByFileImporter;
 import drakonli.dota2.hero_grid_customizer.component.hero.names.file.storage.HeroNamesByFileStorage;
 import drakonli.dota2.hero_grid_customizer.component.hero.names.restorer.HeroNamesByFileStorageRestorer;
 import drakonli.dota2.hero_grid_customizer.view.hero_translations_table.HeroTranslationsTableView;
 import drakonli.dota2.hero_grid_customizer.view.load.LoadHeroNamesFileButtonView;
-import drakonli.dota2.hero_grid_customizer.view.load.handler.AddHeroTranslationsByFileHandler;
-import drakonli.dota2.hero_grid_customizer.view.load.handler.LoadButtonHandlerInterface;
 import drakonli.dota2.hero_grid_customizer.view.restore.RestoreHeroNamesButtonView;
 import drakonli.dota2.hero_grid_customizer.view.restore.handler.RestoreButtonHandlerInterface;
 import drakonli.dota2.hero_grid_customizer.view.restore.handler.RestoreHeroNamesHandler;
@@ -21,12 +18,10 @@ import drakonli.dota2.hero_grid_customizer.view_model.hero.grid.HeroGridViewMode
 import drakonli.dota2.hero_grid_customizer.view_model.hero.translation.HeroTranslationViewModelsToEntityMapper;
 import drakonli.dota2.hero_grid_customizer.view_model.hero.translation.HeroTranslationsToViewModelMapper;
 import drakonli.jcomponents.file.backuper.FileBackuper;
-import drakonli.jcomponents.file.chooser.GuessedDirectoryTxtFileChooserFactory;
 import drakonli.jcomponents.file.editor.txt.tmp.TmpTxtFileByLineEditor;
 import drakonli.jcomponents.file.reader.buffered.BufferedFileReaderFactoryInterface;
 import drakonli.jcomponents.file.reader.buffered.charset.BufferedCharsetFileReaderFactory;
 import drakonli.jcomponents.file.writer.factory.BufferedCharsetFileWriterFactory;
-import drakonli.jcomponents.notificator.AlertNotificator;
 import drakonli.jcomponents.notificator.NotificatorInterface;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -40,11 +35,6 @@ import java.util.ResourceBundle;
 
 public class MainView implements Initializable
 {
-    private static final String[] INITIAL_DIRECTORY_GUESSES = {
-            "C:\\Program Files (x86)\\Steam\\steamapps\\common\\dota 2 beta\\game\\dota\\resource",
-            "C:\\Program Files\\Steam\\steamapps\\common\\dota 2 beta\\game\\dota\\resource"
-    };
-
     private static final Charset DOTA2_TRANSLATION_FILE_CHARSET = StandardCharsets.UTF_16LE;
     private static final String TMP_DOTA2_FILE_PREFIX = "txt_by_line_editor";
     private static final String TMP_DOTA2_FILE_SUFFIX = ".tmp";
@@ -71,19 +61,22 @@ public class MainView implements Initializable
     private HeroTranslationViewModelsToEntityMapper heroTranslationViewModelsToEntityMapper;
     private HeroTranslationsToViewModelMapper heroTranslationsToViewModelMapper;
 
+    public MainView(NotificatorInterface notificator, HeroGridViewModel heroGridViewModel)
+    {
+        this.notificator = notificator;
+        this.heroGridViewModel = heroGridViewModel;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
         this.heroNamesByFileStorage = new HeroNamesByFileStorage();
-        this.heroGridViewModel = new HeroGridViewModel();
-        this.notificator = new AlertNotificator();
         this.dota2TranslationsFileReaderFactory = new BufferedCharsetFileReaderFactory(DOTA2_TRANSLATION_FILE_CHARSET);
         this.heroTranslationViewModelByFileLineExtractor = new HeroTranslationByFileLineExtractor();
         this.heroTranslationViewModelsToEntityMapper = new HeroTranslationViewModelsToEntityMapper();
         this.heroTranslationsToViewModelMapper = new HeroTranslationsToViewModelMapper();
 
         this.initHeroTranslationsTableController();
-        this.initLoadHeroNamesButtonController();
         this.initSaveHeroNamesButtonController();
         this.initRestoreHeroNamesButtonController();
     }
@@ -91,28 +84,6 @@ public class MainView implements Initializable
     private void initHeroTranslationsTableController()
     {
         this.heroTranslationsTableController.init(this.heroGridViewModel);
-    }
-
-    private void initLoadHeroNamesButtonController()
-    {
-        List<LoadButtonHandlerInterface> loadButtonHandlers = new ArrayList<>();
-        loadButtonHandlers.add(
-                new AddHeroTranslationsByFileHandler(
-                        new HeroNamesByFileImporter(
-                                this.dota2TranslationsFileReaderFactory,
-                                this.heroTranslationViewModelByFileLineExtractor
-                        ),
-                        this.heroTranslationViewModelsToEntityMapper,
-                        this.heroTranslationsToViewModelMapper
-                )
-        );
-
-        this.loadHeroNamesButtonController.init(
-                this.heroGridViewModel,
-                new GuessedDirectoryTxtFileChooserFactory(MainView.INITIAL_DIRECTORY_GUESSES),
-                this.notificator,
-                loadButtonHandlers
-        );
     }
 
     private void initSaveHeroNamesButtonController()

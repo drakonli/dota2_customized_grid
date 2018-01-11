@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+     http://www.springframework.org/schema/util  http://www.springframework.org/schema/util/spring-util-3.1.xsd">
+
+    <bean id="dota2HeroGridCustomizer-Notificator-Main"
+          class="drakonli.jcomponents.notificator.AlertNotificator">
+    </bean>
+
+    <bean id="dota2HeroGridCustomizer-HeroGridVM"
+          class="drakonli.dota2.hero_grid_customizer.view_model.hero.grid.HeroGridViewModel">
+    </bean>
+
+    <bean id="dota2HeroGridCustomizer-FileChooserFactory-Main"
+          class="drakonli.jcomponents.file.chooser.GuessedDirectoryTxtFileChooserFactory">
+        <constructor-arg>
+            <list>
+                <value>C:\Program Files (x86)\Steam\steamapps\common\dota 2 beta\game\dota\resource</value>
+                <value>C:\Program Files\Steam\steamapps\common\dota 2 beta\game\dota\resource</value>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id="dota2HeroGridCustomizer-HeroTranslationByFileLineExtractor"
+          class="drakonli.dota2.hero_grid_customizer.component.hero.names.file.extractor.HeroTranslationByFileLineExtractor">
+    </bean>
+
+    <bean id="dota2HeroGridCustomizer-dota2TranslationReaderFactory"
+          class="drakonli.jcomponents.file.reader.buffered.charset.BufferedCharsetFileReaderFactory">
+        <constructor-arg>
+            <util:constant static-field="java.nio.charset.StandardCharsets.UTF_16LE"/>
+        </constructor-arg>
+    </bean>
+
+    <bean id="dota2HeroGridCustomizer-heroTranslationsToViewModelMapper"
+          class="drakonli.dota2.hero_grid_customizer.view_model.hero.translation.HeroTranslationsToViewModelMapper">
+    </bean>
+
+    <bean id="dota2HeroGridCustomizer-heroTranslationViewModelsToEntityMapper"
+          class="drakonli.dota2.hero_grid_customizer.view_model.hero.translation.HeroTranslationViewModelsToEntityMapper">
+    </bean>
+
+    <bean id="dota2HeroGridCustomizer-HeroNamesByFileImporter"
+          class="drakonli.dota2.hero_grid_customizer.component.hero.names.file.importer.HeroNamesByFileImporter">
+        <constructor-arg ref="dota2HeroGridCustomizer-dota2TranslationReaderFactory"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-HeroTranslationByFileLineExtractor"/>
+    </bean>
+</beans>

@@ -7,6 +7,8 @@
     <bean id="drakonli.dota2.hero_grid_customizer.view.main.MainView"
           class="drakonli.dota2.hero_grid_customizer.view.main.MainView"
           scope="prototype">
+        <constructor-arg ref="dota2HeroGridCustomizer-Notificator-Main"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-HeroGridVM"/>
     </bean>
 
     <bean id="drakonli.dota2.hero_grid_customizer.view.hero_translations_table.HeroTranslationsTableView"
@@ -17,6 +19,14 @@
     <bean id="drakonli.dota2.hero_grid_customizer.view.load.LoadHeroNamesFileButtonView"
           class="drakonli.dota2.hero_grid_customizer.view.load.LoadHeroNamesFileButtonView"
           scope="prototype">
+        <constructor-arg ref="dota2HeroGridCustomizer-HeroGridVM"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-FileChooserFactory-Main"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-Notificator-Main"/>
+        <constructor-arg>
+            <list>
+                <ref bean="dota2HeroGridCustomizer-AddHeroTranslationsByFileHandler"/>
+            </list>
+        </constructor-arg>
     </bean>
 
     <bean id="drakonli.dota2.hero_grid_customizer.view.save.SaveHeroNamesIntoFileButtonView"

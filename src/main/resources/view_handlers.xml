@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="dota2HeroGridCustomizer-AddHeroTranslationsByFileHandler"
+          class="drakonli.dota2.hero_grid_customizer.view.load.handler.AddHeroTranslationsByFileHandler">
+        <constructor-arg ref="dota2HeroGridCustomizer-HeroGridVM"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-HeroNamesByFileImporter"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-heroTranslationViewModelsToEntityMapper"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-heroTranslationsToViewModelMapper"/>
+    </bean>
+</beans>

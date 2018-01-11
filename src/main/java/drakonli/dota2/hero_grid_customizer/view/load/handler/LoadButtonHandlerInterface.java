@@ -1,7 +1,7 @@
 package drakonli.dota2.hero_grid_customizer.view.load.handler;
 
-import drakonli.dota2.hero_grid_customizer.view_model.hero.grid.HeroGridViewModelHandlerInterface;
+import drakonli.dota2.hero_grid_customizer.view.handler.ViewActionHandlerInterface;
 
-public interface LoadButtonHandlerInterface extends HeroGridViewModelHandlerInterface
+public interface LoadButtonHandlerInterface extends ViewActionHandlerInterface
 {
 }

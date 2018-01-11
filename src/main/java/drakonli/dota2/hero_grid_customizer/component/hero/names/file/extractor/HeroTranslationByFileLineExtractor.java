@@ -22,11 +22,12 @@ public class HeroTranslationByFileLineExtractor
         }
 
         String heroCode = matcher.group(1);
-        String heroName = matcher.group(2);
 
         if (this.heroCodeEndsWithForbiddenString(heroCode)) {
             return null;
         }
+
+        String heroName = matcher.group(2);
 
         return new HeroTranslation(heroCode, heroName);
     }

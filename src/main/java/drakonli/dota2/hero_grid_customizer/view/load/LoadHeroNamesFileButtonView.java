@@ -21,7 +21,7 @@ public class LoadHeroNamesFileButtonView
     private NotificatorInterface notificator;
     private List<LoadButtonHandlerInterface> loadButtonHandlers;
 
-    public void init(
+    public LoadHeroNamesFileButtonView(
             HeroGridViewModel heroGridViewModel,
             FileChooserFactoryInterface fileChooserFactory,
             NotificatorInterface notificator,
@@ -30,16 +30,12 @@ public class LoadHeroNamesFileButtonView
     {
         this.heroGridViewModel = heroGridViewModel;
         this.fileChooserFactory = fileChooserFactory;
-        this.loadButtonHandlers = loadButtonHandlers;
         this.notificator = notificator;
+        this.loadButtonHandlers = loadButtonHandlers;
     }
 
     public void onLoadClick(ActionEvent actionEvent) throws HeroGridNotInitializedError
     {
-        if (null == this.heroGridViewModel) {
-            throw new HeroGridNotInitializedError();
-        }
-
         File file = this.fileChooserFactory.createFileChooser().showOpenDialog(this.loadButton.getScene().getWindow());
 
         if (null == file) {
@@ -50,7 +46,7 @@ public class LoadHeroNamesFileButtonView
 
         try {
             for (LoadButtonHandlerInterface handler : loadButtonHandlers) {
-                handler.handle(this.heroGridViewModel);
+                handler.handle();
             }
         } catch (HandlerException e) {
             notificator.error(e.getCause().getMessage());

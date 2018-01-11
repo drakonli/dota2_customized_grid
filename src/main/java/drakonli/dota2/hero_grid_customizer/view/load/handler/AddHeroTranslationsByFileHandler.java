@@ -13,34 +13,37 @@ import java.util.List;
 
 public class AddHeroTranslationsByFileHandler implements LoadButtonHandlerInterface
 {
+    private final HeroGridViewModel heroGridViewModel;
     private final HeroNamesByFileImporter importer;
     private final HeroTranslationViewModelsToEntityMapper heroTranslationViewModelsToEntityMapper;
     private final HeroTranslationsToViewModelMapper heroTranslationsToViewModelMapper;
 
     public AddHeroTranslationsByFileHandler(
+            HeroGridViewModel heroGridViewModel,
             HeroNamesByFileImporter importer,
             HeroTranslationViewModelsToEntityMapper heroTranslationViewModelsToEntityMapper,
             HeroTranslationsToViewModelMapper heroTranslationsToViewModelMapper
     )
     {
+        this.heroGridViewModel = heroGridViewModel;
         this.importer = importer;
         this.heroTranslationViewModelsToEntityMapper = heroTranslationViewModelsToEntityMapper;
         this.heroTranslationsToViewModelMapper = heroTranslationsToViewModelMapper;
     }
 
     @Override
-    public void handle(HeroGridViewModel heroGridViewModel) throws HandlerException
+    public void handle() throws HandlerException
     {
         try {
             List<HeroTranslation> heroTranslations = this.heroTranslationViewModelsToEntityMapper
-                    .mapToNewEntityList(heroGridViewModel.getHeroTranslations());
+                    .mapToNewEntityList(this.heroGridViewModel.getHeroTranslations());
 
             this.importer.importHeroNamesByFile(
-                    heroGridViewModel.getChosenHeroGridFile(),
+                    this.heroGridViewModel.getChosenHeroGridFile(),
                     heroTranslations
             );
 
-            this.heroTranslationsToViewModelMapper.map(heroTranslations, heroGridViewModel.getHeroTranslations());
+            this.heroTranslationsToViewModelMapper.map(heroTranslations, this.heroGridViewModel.getHeroTranslations());
         } catch (IOException | Dota2InvalidFileFormatException e) {
             throw new HandlerException(e.getMessage(), e);
         }
