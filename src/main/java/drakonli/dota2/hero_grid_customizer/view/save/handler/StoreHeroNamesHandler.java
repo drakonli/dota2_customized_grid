@@ -11,24 +11,27 @@ import java.util.List;
 
 public class StoreHeroNamesHandler implements SaveButtonHandlerInterface
 {
+    private final HeroGridViewModel heroGridViewModel;
     private final HeroNamesByFileStorage heroNamesStorage;
     private final HeroTranslationViewModelsToEntityMapper heroTranslationViewModelsToEntityMapper;
 
     public StoreHeroNamesHandler(
+            HeroGridViewModel heroGridViewModel,
             HeroNamesByFileStorage heroNamesStorage,
             HeroTranslationViewModelsToEntityMapper heroTranslationViewModelsToEntityMapper
     )
     {
+        this.heroGridViewModel = heroGridViewModel;
         this.heroNamesStorage = heroNamesStorage;
         this.heroTranslationViewModelsToEntityMapper = heroTranslationViewModelsToEntityMapper;
     }
 
     @Override
-    public void handle(HeroGridViewModel heroGridViewModel) throws HandlerException
+    public void handle() throws HandlerException
     {
         try {
             List<HeroTranslation> heroTranslations = this.heroTranslationViewModelsToEntityMapper
-                    .mapToNewEntityList(heroGridViewModel.getHeroTranslations());
+                    .mapToNewEntityList(this.heroGridViewModel.getHeroTranslations());
 
             this.heroNamesStorage.store(heroTranslations);
         } catch (IOException e) {

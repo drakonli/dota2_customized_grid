@@ -8,19 +8,24 @@ import java.io.IOException;
 
 public class BackupHeroTranslationFileHandler implements SaveButtonHandlerInterface
 {
+    private final HeroGridViewModel heroGridViewModel;
     private final FileBackuper backuper;
 
-    public BackupHeroTranslationFileHandler(FileBackuper backuper)
+    public BackupHeroTranslationFileHandler(
+            HeroGridViewModel heroGridViewModel,
+            FileBackuper backuper
+    )
     {
+        this.heroGridViewModel = heroGridViewModel;
         this.backuper = backuper;
     }
 
     @Override
-    public void handle(HeroGridViewModel heroGridViewModel) throws HandlerException
+    public void handle() throws HandlerException
     {
         try {
             this.backuper.backupOriginal(
-                    heroGridViewModel.getChosenHeroGridFile()
+                    this.heroGridViewModel.getChosenHeroGridFile()
             );
         } catch (IOException e) {
             throw new HandlerException(e.getMessage(), e);

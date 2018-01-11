@@ -12,27 +12,30 @@ import java.util.List;
 
 public class ReplaceHeroNamesInTranslationsFileHandler implements SaveButtonHandlerInterface
 {
+    private final HeroGridViewModel heroGridViewModel;
     private final HeroNamesIntoFileExporter heroNamesIntoFileExporter;
     private final HeroTranslationViewModelsToEntityMapper heroTranslationViewModelsToEntityMapper;
 
     public ReplaceHeroNamesInTranslationsFileHandler(
+            HeroGridViewModel heroGridViewModel,
             HeroNamesIntoFileExporter heroNamesIntoFileExporter,
             HeroTranslationViewModelsToEntityMapper heroTranslationViewModelsToEntityMapper
     )
     {
+        this.heroGridViewModel = heroGridViewModel;
         this.heroNamesIntoFileExporter = heroNamesIntoFileExporter;
         this.heroTranslationViewModelsToEntityMapper = heroTranslationViewModelsToEntityMapper;
     }
 
     @Override
-    public void handle(HeroGridViewModel heroGridViewModel) throws HandlerException
+    public void handle() throws HandlerException
     {
         try {
             List<HeroTranslation> heroTranslations = this.heroTranslationViewModelsToEntityMapper
-                    .mapToNewEntityList(heroGridViewModel.getHeroTranslations());
+                    .mapToNewEntityList(this.heroGridViewModel.getHeroTranslations());
 
             this.heroNamesIntoFileExporter.export(
-                    heroGridViewModel.getChosenHeroGridFile(),
+                    this.heroGridViewModel.getChosenHeroGridFile(),
                     heroTranslations
             );
         } catch (Dota2InvalidFileFormatException | IOException e) {

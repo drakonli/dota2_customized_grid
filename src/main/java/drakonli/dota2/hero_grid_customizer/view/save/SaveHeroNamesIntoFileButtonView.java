@@ -1,6 +1,5 @@
 package drakonli.dota2.hero_grid_customizer.view.save;
 
-import drakonli.dota2.hero_grid_customizer.view.error.HeroGridNotInitializedError;
 import drakonli.dota2.hero_grid_customizer.view.handler.HandlerException;
 import drakonli.dota2.hero_grid_customizer.view.save.handler.SaveButtonHandlerInterface;
 import drakonli.dota2.hero_grid_customizer.view_model.hero.grid.HeroGridViewModel;
@@ -8,56 +7,58 @@ import drakonli.dota2.hero_grid_customizer.view_model.hero.translation.HeroTrans
 import drakonli.jcomponents.notificator.NotificatorInterface;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
+import java.net.URL;
 import java.util.List;
+import java.util.ResourceBundle;
 
-public class SaveHeroNamesIntoFileButtonView
+public class SaveHeroNamesIntoFileButtonView implements Initializable
 {
     public Button saveButton;
 
-    private HeroGridViewModel heroGridViewModel;
-    private NotificatorInterface notificator;
-    private List<SaveButtonHandlerInterface> saveButtonHandlers;
+    private final HeroGridViewModel heroGridViewModel;
+    private final NotificatorInterface notificator;
+    private final List<SaveButtonHandlerInterface> saveButtonHandlers;
 
-    public void init(
+    public SaveHeroNamesIntoFileButtonView(
             HeroGridViewModel heroGridViewModel,
             NotificatorInterface notificator,
             List<SaveButtonHandlerInterface> saveButtonHandlers
     )
     {
         this.heroGridViewModel = heroGridViewModel;
-        this.saveButtonHandlers = saveButtonHandlers;
         this.notificator = notificator;
+        this.saveButtonHandlers = saveButtonHandlers;
+    }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources)
+    {
         this.changeSaveButtonManagementOnHeroCollectionChange();
     }
 
     private void changeSaveButtonManagementOnHeroCollectionChange()
     {
-        saveButton.setManaged(false);
+        this.saveButton.setManaged(false);
 
-        heroGridViewModel.getHeroTranslations().addListener(new ListChangeListener<HeroTranslationViewModel>() {
-            public void onChanged(Change<? extends HeroTranslationViewModel > change) {
-                saveButton.setManaged(!change.getList().isEmpty());
-            }
-        });
+        this.heroGridViewModel.getHeroTranslations().addListener(
+            (ListChangeListener.Change<? extends HeroTranslationViewModel > change)
+                    -> this.saveButton.setManaged(!change.getList().isEmpty())
+        );
     }
 
-    public void onSaveClick(ActionEvent actionEvent) throws HeroGridNotInitializedError
+    public void onSaveClick(ActionEvent actionEvent)
     {
-        if (null == this.heroGridViewModel) {
-            throw new HeroGridNotInitializedError();
-        }
-
         try {
             for (SaveButtonHandlerInterface handler : this.saveButtonHandlers) {
-                handler.handle(this.heroGridViewModel);
+                handler.handle();
             }
 
-            notificator.success("Save success!");
+            this.notificator.success("Save success!");
         } catch (HandlerException e) {
-            notificator.error(e.getCause().getMessage());
+            this.notificator.error(e.getCause().getMessage());
         }
     }
 }

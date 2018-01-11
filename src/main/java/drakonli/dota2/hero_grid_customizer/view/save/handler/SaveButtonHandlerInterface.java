@@ -1,7 +1,7 @@
 package drakonli.dota2.hero_grid_customizer.view.save.handler;
 
-import drakonli.dota2.hero_grid_customizer.view_model.hero.grid.HeroGridViewModelHandlerInterface;
+import drakonli.dota2.hero_grid_customizer.view.handler.ViewActionHandlerInterface;
 
-public interface SaveButtonHandlerInterface extends HeroGridViewModelHandlerInterface
+public interface SaveButtonHandlerInterface extends ViewActionHandlerInterface
 {
 }

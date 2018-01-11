@@ -1,6 +1,5 @@
 package drakonli.dota2.hero_grid_customizer.view.load;
 
-import drakonli.dota2.hero_grid_customizer.view.error.HeroGridNotInitializedError;
 import drakonli.dota2.hero_grid_customizer.view.handler.HandlerException;
 import drakonli.dota2.hero_grid_customizer.view.load.handler.LoadButtonHandlerInterface;
 import drakonli.dota2.hero_grid_customizer.view_model.hero.grid.HeroGridViewModel;
@@ -34,7 +33,7 @@ public class LoadHeroNamesFileButtonView
         this.loadButtonHandlers = loadButtonHandlers;
     }
 
-    public void onLoadClick(ActionEvent actionEvent) throws HeroGridNotInitializedError
+    public void onLoadClick(ActionEvent actionEvent)
     {
         File file = this.fileChooserFactory.createFileChooser().showOpenDialog(this.loadButton.getScene().getWindow());
 
