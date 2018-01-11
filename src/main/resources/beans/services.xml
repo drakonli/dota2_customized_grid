@@ -4,8 +4,8 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <import resource="all_services.xml"/>
+    <import resource="general.xml"/>
     <import resource="view_handlers.xml"/>
-    <import resource="controllers.xml"/>
+    <import resource="views.xml"/>
 
 </beans>

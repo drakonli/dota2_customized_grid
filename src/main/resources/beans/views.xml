@@ -14,6 +14,7 @@
     <bean id="drakonli.dota2.hero_grid_customizer.view.hero_translations_table.HeroTranslationsTableView"
           class="drakonli.dota2.hero_grid_customizer.view.hero_translations_table.HeroTranslationsTableView"
           scope="prototype">
+        <constructor-arg ref="dota2HeroGridCustomizer-HeroGridVM"/>
     </bean>
 
     <bean id="drakonli.dota2.hero_grid_customizer.view.load.LoadHeroNamesFileButtonView"

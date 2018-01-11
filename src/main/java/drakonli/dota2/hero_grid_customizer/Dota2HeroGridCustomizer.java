@@ -1,8 +1,6 @@
 package drakonli.dota2.hero_grid_customizer;
 
 import drakonli.dota2.hero_grid_customizer.view.main.MainView;
-import drakonli.jcomponents.notificator.AlertNotificator;
-import drakonli.jcomponents.notificator.NotificatorInterface;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -13,13 +11,11 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import java.io.IOException;
 
 public class Dota2HeroGridCustomizer extends Application {
-    private final NotificatorInterface notificator = new AlertNotificator();
-
     @Override
     public void start(Stage primaryStage) throws Exception
     {
         try {
-            ApplicationContext context = new ClassPathXmlApplicationContext("services.xml");
+            ApplicationContext context = new ClassPathXmlApplicationContext("beans/services.xml");
 
             FXMLLoader loader = new FXMLLoader(MainView.class.getResource("MainView.fxml"));
             loader.setControllerFactory(context::getBean);

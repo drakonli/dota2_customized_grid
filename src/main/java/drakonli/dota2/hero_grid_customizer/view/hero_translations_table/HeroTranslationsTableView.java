@@ -2,24 +2,37 @@ package drakonli.dota2.hero_grid_customizer.view.hero_translations_table;
 
 import drakonli.dota2.hero_grid_customizer.view_model.hero.grid.HeroGridViewModel;
 import drakonli.dota2.hero_grid_customizer.view_model.hero.translation.HeroTranslationViewModel;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
-public class HeroTranslationsTableView
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class HeroTranslationsTableView implements Initializable
 {
     public TableView<HeroTranslationViewModel> heroTranslationsTableView;
     public TableColumn<HeroTranslationViewModel, String> heroNameColumn;
 
-    public void init(HeroGridViewModel heroGridViewModel)
-    {
-        heroGridViewModel.setHeroTranslations(heroTranslationsTableView.getItems());
+    private final HeroGridViewModel heroGridViewModel;
 
+    public HeroTranslationsTableView(
+            HeroGridViewModel heroGridViewModel
+    )
+    {
+        this.heroGridViewModel = heroGridViewModel;
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources)
+    {
+        this.heroGridViewModel.setHeroTranslations(this.heroTranslationsTableView.getItems());
         this.handleHeroNameColumnEdit();
     }
 
     private void handleHeroNameColumnEdit()
     {
-        heroNameColumn.setOnEditCommit(
+        this.heroNameColumn.setOnEditCommit(
                 (TableColumn.CellEditEvent<HeroTranslationViewModel, String> editEvent) -> {
                     final int currentRowNumber = editEvent.getTablePosition().getRow();
 
