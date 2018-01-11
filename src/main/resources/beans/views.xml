@@ -7,25 +7,25 @@
     <bean id="drakonli.dota2.hero_grid_customizer.view.main.MainView"
           class="drakonli.dota2.hero_grid_customizer.view.main.MainView"
           scope="prototype">
-        <constructor-arg ref="dota2HeroGridCustomizer-Notificator-Main"/>
-        <constructor-arg ref="dota2HeroGridCustomizer-HeroGridVM"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-notificator-main"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-heroGridVM"/>
     </bean>
 
     <bean id="drakonli.dota2.hero_grid_customizer.view.hero_translations_table.HeroTranslationsTableView"
           class="drakonli.dota2.hero_grid_customizer.view.hero_translations_table.HeroTranslationsTableView"
           scope="prototype">
-        <constructor-arg ref="dota2HeroGridCustomizer-HeroGridVM"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-heroGridVM"/>
     </bean>
 
     <bean id="drakonli.dota2.hero_grid_customizer.view.load.LoadHeroNamesFileButtonView"
           class="drakonli.dota2.hero_grid_customizer.view.load.LoadHeroNamesFileButtonView"
           scope="prototype">
-        <constructor-arg ref="dota2HeroGridCustomizer-HeroGridVM"/>
-        <constructor-arg ref="dota2HeroGridCustomizer-FileChooserFactory-Main"/>
-        <constructor-arg ref="dota2HeroGridCustomizer-Notificator-Main"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-heroGridVM"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-fileChooserFactory-main"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-notificator-main"/>
         <constructor-arg>
             <list>
-                <ref bean="dota2HeroGridCustomizer-AddHeroTranslationsByFileHandler"/>
+                <ref bean="dota2HeroGridCustomizer-addHeroTranslationsByFileHandler"/>
             </list>
         </constructor-arg>
     </bean>
@@ -38,6 +38,13 @@
     <bean id="drakonli.dota2.hero_grid_customizer.view.restore.RestoreHeroNamesButtonView"
           class="drakonli.dota2.hero_grid_customizer.view.restore.RestoreHeroNamesButtonView"
           scope="prototype">
+        <constructor-arg ref="dota2HeroGridCustomizer-heroGridVM"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-notificator-main"/>
+        <constructor-arg>
+            <list>
+                <ref bean="dota2HeroGridCustomizer-restoreHeroNamesHandler"/>
+            </list>
+        </constructor-arg>
     </bean>
 
 </beans>

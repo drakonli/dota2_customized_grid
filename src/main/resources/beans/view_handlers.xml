@@ -4,10 +4,18 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="dota2HeroGridCustomizer-AddHeroTranslationsByFileHandler"
+    <bean id="dota2HeroGridCustomizer-addHeroTranslationsByFileHandler"
           class="drakonli.dota2.hero_grid_customizer.view.load.handler.AddHeroTranslationsByFileHandler">
-        <constructor-arg ref="dota2HeroGridCustomizer-HeroGridVM"/>
-        <constructor-arg ref="dota2HeroGridCustomizer-HeroNamesByFileImporter"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-heroGridVM"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-heroNamesByFileImporter"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-heroTranslationViewModelsToEntityMapper"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-heroTranslationsToViewModelMapper"/>
+    </bean>
+
+    <bean id="dota2HeroGridCustomizer-restoreHeroNamesHandler"
+          class="drakonli.dota2.hero_grid_customizer.view.restore.handler.RestoreHeroNamesHandler">
+        <constructor-arg ref="dota2HeroGridCustomizer-heroGridVM"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-heroNamesByFileStorageRestorer"/>
         <constructor-arg ref="dota2HeroGridCustomizer-heroTranslationViewModelsToEntityMapper"/>
         <constructor-arg ref="dota2HeroGridCustomizer-heroTranslationsToViewModelMapper"/>
     </bean>

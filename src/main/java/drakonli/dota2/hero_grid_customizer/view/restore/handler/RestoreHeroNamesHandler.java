@@ -13,31 +13,34 @@ import java.util.List;
 
 public class RestoreHeroNamesHandler implements RestoreButtonHandlerInterface
 {
+    private final HeroGridViewModel heroGridViewModel;
     private final HeroNamesByFileStorageRestorer restorer;
     private final HeroTranslationViewModelsToEntityMapper heroTranslationViewModelsToEntityMapper;
     private final HeroTranslationsToViewModelMapper heroTranslationsToViewModelMapper;
 
     public RestoreHeroNamesHandler(
+            HeroGridViewModel heroGridViewModel,
             HeroNamesByFileStorageRestorer restorer,
             HeroTranslationViewModelsToEntityMapper heroTranslationViewModelsToEntityMapper,
             HeroTranslationsToViewModelMapper heroTranslationsToViewModelMapper
     )
     {
+        this.heroGridViewModel = heroGridViewModel;
         this.restorer = restorer;
         this.heroTranslationViewModelsToEntityMapper = heroTranslationViewModelsToEntityMapper;
         this.heroTranslationsToViewModelMapper = heroTranslationsToViewModelMapper;
     }
 
     @Override
-    public void handle(HeroGridViewModel heroGridViewModel) throws HandlerException
+    public void handle() throws HandlerException
     {
         try {
             List<HeroTranslation> heroTranslations = this.heroTranslationViewModelsToEntityMapper
-                    .mapToNewEntityList(heroGridViewModel.getHeroTranslations());
+                    .mapToNewEntityList(this.heroGridViewModel.getHeroTranslations());
 
             this.restorer.restoreLatestHeroNames(heroTranslations);
 
-            this.heroTranslationsToViewModelMapper.map(heroTranslations, heroGridViewModel.getHeroTranslations());
+            this.heroTranslationsToViewModelMapper.map(heroTranslations, this.heroGridViewModel.getHeroTranslations());
         } catch (IOException | ClassNotFoundException | LastVersionOfHeroNamesIsEmptyException e) {
             throw new HandlerException(e.getMessage(), e);
         }

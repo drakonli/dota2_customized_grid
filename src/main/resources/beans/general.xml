@@ -6,15 +6,15 @@
      http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
      http://www.springframework.org/schema/util  http://www.springframework.org/schema/util/spring-util-3.1.xsd">
 
-    <bean id="dota2HeroGridCustomizer-Notificator-Main"
+    <bean id="dota2HeroGridCustomizer-notificator-main"
           class="drakonli.jcomponents.notificator.AlertNotificator">
     </bean>
 
-    <bean id="dota2HeroGridCustomizer-HeroGridVM"
+    <bean id="dota2HeroGridCustomizer-heroGridVM"
           class="drakonli.dota2.hero_grid_customizer.view_model.hero.grid.HeroGridViewModel">
     </bean>
 
-    <bean id="dota2HeroGridCustomizer-FileChooserFactory-Main"
+    <bean id="dota2HeroGridCustomizer-fileChooserFactory-main"
           class="drakonli.jcomponents.file.chooser.GuessedDirectoryTxtFileChooserFactory">
         <constructor-arg>
             <list>
@@ -24,7 +24,7 @@
         </constructor-arg>
     </bean>
 
-    <bean id="dota2HeroGridCustomizer-HeroTranslationByFileLineExtractor"
+    <bean id="dota2HeroGridCustomizer-heroTranslationByFileLineExtractor"
           class="drakonli.dota2.hero_grid_customizer.component.hero.names.file.extractor.HeroTranslationByFileLineExtractor">
     </bean>
 
@@ -43,9 +43,18 @@
           class="drakonli.dota2.hero_grid_customizer.view_model.hero.translation.HeroTranslationViewModelsToEntityMapper">
     </bean>
 
-    <bean id="dota2HeroGridCustomizer-HeroNamesByFileImporter"
+    <bean id="dota2HeroGridCustomizer-heroNamesByFileImporter"
           class="drakonli.dota2.hero_grid_customizer.component.hero.names.file.importer.HeroNamesByFileImporter">
         <constructor-arg ref="dota2HeroGridCustomizer-dota2TranslationReaderFactory"/>
-        <constructor-arg ref="dota2HeroGridCustomizer-HeroTranslationByFileLineExtractor"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-heroTranslationByFileLineExtractor"/>
+    </bean>
+
+    <bean id="dota2HeroGridCustomizer-heroNamesByFileStorage"
+          class="drakonli.dota2.hero_grid_customizer.component.hero.names.file.storage.HeroNamesByFileStorage">
+    </bean>
+
+    <bean id="dota2HeroGridCustomizer-heroNamesByFileStorageRestorer"
+          class="drakonli.dota2.hero_grid_customizer.component.hero.names.restorer.HeroNamesByFileStorageRestorer">
+        <constructor-arg ref="dota2HeroGridCustomizer-heroNamesByFileStorage"/>
     </bean>
 </beans>

@@ -3,11 +3,6 @@ package drakonli.dota2.hero_grid_customizer.view.main;
 import drakonli.dota2.hero_grid_customizer.component.hero.names.file.exporter.HeroNamesIntoFileExporter;
 import drakonli.dota2.hero_grid_customizer.component.hero.names.file.extractor.HeroTranslationByFileLineExtractor;
 import drakonli.dota2.hero_grid_customizer.component.hero.names.file.storage.HeroNamesByFileStorage;
-import drakonli.dota2.hero_grid_customizer.component.hero.names.restorer.HeroNamesByFileStorageRestorer;
-import drakonli.dota2.hero_grid_customizer.view.hero_translations_table.HeroTranslationsTableView;
-import drakonli.dota2.hero_grid_customizer.view.restore.RestoreHeroNamesButtonView;
-import drakonli.dota2.hero_grid_customizer.view.restore.handler.RestoreButtonHandlerInterface;
-import drakonli.dota2.hero_grid_customizer.view.restore.handler.RestoreHeroNamesHandler;
 import drakonli.dota2.hero_grid_customizer.view.save.SaveHeroNamesIntoFileButtonView;
 import drakonli.dota2.hero_grid_customizer.view.save.handler.BackupHeroTranslationFileHandler;
 import drakonli.dota2.hero_grid_customizer.view.save.handler.ReplaceHeroNamesInTranslationsFileHandler;
@@ -15,7 +10,6 @@ import drakonli.dota2.hero_grid_customizer.view.save.handler.SaveButtonHandlerIn
 import drakonli.dota2.hero_grid_customizer.view.save.handler.StoreHeroNamesHandler;
 import drakonli.dota2.hero_grid_customizer.view_model.hero.grid.HeroGridViewModel;
 import drakonli.dota2.hero_grid_customizer.view_model.hero.translation.HeroTranslationViewModelsToEntityMapper;
-import drakonli.dota2.hero_grid_customizer.view_model.hero.translation.HeroTranslationsToViewModelMapper;
 import drakonli.jcomponents.file.backuper.FileBackuper;
 import drakonli.jcomponents.file.editor.txt.tmp.TmpTxtFileByLineEditor;
 import drakonli.jcomponents.file.reader.buffered.BufferedFileReaderFactoryInterface;
@@ -41,12 +35,6 @@ public class MainView implements Initializable
     @FXML
     private SaveHeroNamesIntoFileButtonView saveHeroNamesButtonController;
 
-    @FXML
-    private RestoreHeroNamesButtonView restoreHeroNamesButtonController;
-
-    @FXML
-    private HeroTranslationsTableView heroTranslationsTableController;
-
     // multiple-times injections
     // note: one-time injections are injected directly into a class with "new"
     private HeroGridViewModel heroGridViewModel;
@@ -55,7 +43,6 @@ public class MainView implements Initializable
     private BufferedFileReaderFactoryInterface dota2TranslationsFileReaderFactory;
     private HeroTranslationByFileLineExtractor heroTranslationViewModelByFileLineExtractor;
     private HeroTranslationViewModelsToEntityMapper heroTranslationViewModelsToEntityMapper;
-    private HeroTranslationsToViewModelMapper heroTranslationsToViewModelMapper;
 
     public MainView(NotificatorInterface notificator, HeroGridViewModel heroGridViewModel)
     {
@@ -70,10 +57,8 @@ public class MainView implements Initializable
         this.dota2TranslationsFileReaderFactory = new BufferedCharsetFileReaderFactory(DOTA2_TRANSLATION_FILE_CHARSET);
         this.heroTranslationViewModelByFileLineExtractor = new HeroTranslationByFileLineExtractor();
         this.heroTranslationViewModelsToEntityMapper = new HeroTranslationViewModelsToEntityMapper();
-        this.heroTranslationsToViewModelMapper = new HeroTranslationsToViewModelMapper();
 
         this.initSaveHeroNamesButtonController();
-        this.initRestoreHeroNamesButtonController();
     }
 
     private void initSaveHeroNamesButtonController()
@@ -104,21 +89,5 @@ public class MainView implements Initializable
         );
 
         this.saveHeroNamesButtonController.init(this.heroGridViewModel, this.notificator, saveHeroNamesButtonHandlers);
-    }
-
-    private void initRestoreHeroNamesButtonController()
-    {
-        List<RestoreButtonHandlerInterface> restoreButtonHandlers = new ArrayList<>();
-        restoreButtonHandlers.add(
-                new RestoreHeroNamesHandler(
-                        new HeroNamesByFileStorageRestorer(
-                                this.heroNamesByFileStorage
-                        ),
-                        this.heroTranslationViewModelsToEntityMapper,
-                        this.heroTranslationsToViewModelMapper
-                )
-        );
-
-        this.restoreHeroNamesButtonController.init(this.heroGridViewModel, this.notificator, restoreButtonHandlers);
     }
 }

@@ -1,6 +1,5 @@
 package drakonli.dota2.hero_grid_customizer.view.restore;
 
-import drakonli.dota2.hero_grid_customizer.view.error.HeroGridNotInitializedError;
 import drakonli.dota2.hero_grid_customizer.view.handler.HandlerException;
 import drakonli.dota2.hero_grid_customizer.view.restore.handler.RestoreButtonHandlerInterface;
 import drakonli.dota2.hero_grid_customizer.view_model.hero.grid.HeroGridViewModel;
@@ -8,11 +7,14 @@ import drakonli.dota2.hero_grid_customizer.view_model.hero.translation.HeroTrans
 import drakonli.jcomponents.notificator.NotificatorInterface;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
+import java.net.URL;
 import java.util.List;
+import java.util.ResourceBundle;
 
-public class RestoreHeroNamesButtonView
+public class RestoreHeroNamesButtonView implements Initializable
 {
     public Button restoreButton;
 
@@ -20,39 +22,38 @@ public class RestoreHeroNamesButtonView
     private NotificatorInterface notificator;
     private List<RestoreButtonHandlerInterface> restoreButtonHandlers;
 
-    public void init(
+    public RestoreHeroNamesButtonView(
             HeroGridViewModel heroGridViewModel,
             NotificatorInterface notificator,
             List<RestoreButtonHandlerInterface> restoreButtonHandlers
     )
     {
         this.heroGridViewModel = heroGridViewModel;
-        this.restoreButtonHandlers = restoreButtonHandlers;
         this.notificator = notificator;
+        this.restoreButtonHandlers = restoreButtonHandlers;
+    }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources)
+    {
         this.changeRestoreButtonManagementOnHeroCollectionChange();
     }
 
     private void changeRestoreButtonManagementOnHeroCollectionChange()
     {
-        restoreButton.setManaged(false);
+        this.restoreButton.setManaged(false);
 
-        heroGridViewModel.getHeroTranslations().addListener(new ListChangeListener<HeroTranslationViewModel>() {
-            public void onChanged(Change<? extends HeroTranslationViewModel > change) {
-                restoreButton.setManaged(!change.getList().isEmpty());
-            }
-        });
+        this.heroGridViewModel.getHeroTranslations().addListener(
+            (ListChangeListener.Change<? extends HeroTranslationViewModel > change)
+                    -> this.restoreButton.setManaged(!change.getList().isEmpty())
+        );
     }
 
     public void onRestoreClick(ActionEvent actionEvent)
     {
-        if (null == this.heroGridViewModel) {
-            throw new HeroGridNotInitializedError();
-        }
-
         try {
             for (RestoreButtonHandlerInterface handler : restoreButtonHandlers) {
-                handler.handle(this.heroGridViewModel);
+                handler.handle();
             }
 
             notificator.success("Restore success!");
