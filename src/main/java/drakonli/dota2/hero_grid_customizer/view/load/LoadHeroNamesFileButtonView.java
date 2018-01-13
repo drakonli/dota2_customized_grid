@@ -15,10 +15,10 @@ public class LoadHeroNamesFileButtonView
 {
     public Button loadButton;
 
-    private HeroGridViewModel heroGridViewModel;
-    private FileChooserFactoryInterface fileChooserFactory;
-    private NotificatorInterface notificator;
-    private List<LoadButtonHandlerInterface> loadButtonHandlers;
+    private final HeroGridViewModel heroGridViewModel;
+    private final FileChooserFactoryInterface fileChooserFactory;
+    private final NotificatorInterface notificator;
+    private final List<LoadButtonHandlerInterface> loadButtonHandlers;
 
     public LoadHeroNamesFileButtonView(
             HeroGridViewModel heroGridViewModel,
@@ -44,11 +44,11 @@ public class LoadHeroNamesFileButtonView
         this.heroGridViewModel.setChosenHeroGridFile(file);
 
         try {
-            for (LoadButtonHandlerInterface handler : loadButtonHandlers) {
+            for (LoadButtonHandlerInterface handler : this.loadButtonHandlers) {
                 handler.handle();
             }
         } catch (HandlerException e) {
-            notificator.error(e.getCause().getMessage());
+            this.notificator.error(e.getCause().getMessage());
 
             this.heroGridViewModel.setChosenHeroGridFile(null);
         }

@@ -3,7 +3,6 @@
 <?import javafx.scene.layout.HBox?>
 <GridPane xmlns:fx="http://javafx.com/fxml"
           stylesheets="/drakonli/dota2/hero_grid_customizer/view/main/MainView.css"
-          fx:controller="drakonli.dota2.hero_grid_customizer.view.main.MainView"
           prefHeight="800"
           prefWidth="600"
           alignment="CENTER" hgap="10.0" vgap="10.0">

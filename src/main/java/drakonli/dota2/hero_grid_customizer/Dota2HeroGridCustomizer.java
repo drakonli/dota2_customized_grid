@@ -1,6 +1,5 @@
 package drakonli.dota2.hero_grid_customizer;
 
-import drakonli.dota2.hero_grid_customizer.view.main.MainView;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -17,7 +16,7 @@ public class Dota2HeroGridCustomizer extends Application {
         try {
             ApplicationContext context = new ClassPathXmlApplicationContext("beans/services.xml");
 
-            FXMLLoader loader = new FXMLLoader(MainView.class.getResource("MainView.fxml"));
+            FXMLLoader loader = new FXMLLoader(Class.class.getResource("/drakonli/dota2/hero_grid_customizer/view/main/MainView.fxml"));
             loader.setControllerFactory(context::getBean);
 
             primaryStage.setTitle("Dota 2 Grid Customization");

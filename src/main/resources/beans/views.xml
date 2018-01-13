@@ -4,11 +4,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="drakonli.dota2.hero_grid_customizer.view.main.MainView"
-          class="drakonli.dota2.hero_grid_customizer.view.main.MainView"
-          scope="prototype">
-    </bean>
-
     <bean id="drakonli.dota2.hero_grid_customizer.view.hero_translations_table.HeroTranslationsTableView"
           class="drakonli.dota2.hero_grid_customizer.view.hero_translations_table.HeroTranslationsTableView"
           scope="prototype">
