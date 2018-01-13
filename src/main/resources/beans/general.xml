@@ -34,6 +34,13 @@
                 <value>C:\Program Files\Steam\steamapps\common\dota 2 beta\game\dota\resource</value>
             </list>
         </constructor-arg>
+        <constructor-arg>
+            <list>
+                <value>*.txt</value>
+            </list>
+        </constructor-arg>
+        <constructor-arg value="TEXT files (*.txt)" />
+        <constructor-arg value="Open dota2 translations file" />
     </bean>
 
     <bean id="dota2HeroGridCustomizer-heroTranslationByFileLineExtractor"
