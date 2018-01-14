@@ -3,8 +3,16 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="
-     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-     http://www.springframework.org/schema/util  http://www.springframework.org/schema/util/spring-util-3.1.xsd">
+     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+     http://www.springframework.org/schema/util  http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <util:constant id="dota2HeroGridCustomizer-translationsFileCharset"
+                   static-field="java.nio.charset.StandardCharsets.UTF_16LE"/>
+
+    <util:list id="dota2HeroGridCustomizer-TranslationFileDirectoryGuesses">
+        <value>C:\Program Files (x86)\Steam\steamapps\common\dota 2 beta\game\dota\resource</value>
+        <value>C:\Program Files\Steam\steamapps\common\dota 2 beta\game\dota\resource</value>
+    </util:list>
 
     <bean id="dota2HeroGridCustomizer-fileBackuper-main"
           class="drakonli.jcomponents.file.backuper.FileBackuper">
@@ -28,19 +36,14 @@
 
     <bean id="dota2HeroGridCustomizer-fileChooserFactory-main"
           class="drakonli.jcomponents.file.chooser.GuessedDirectoryTxtFileChooserFactory">
-        <constructor-arg>
-            <list>
-                <value>C:\Program Files (x86)\Steam\steamapps\common\dota 2 beta\game\dota\resource</value>
-                <value>C:\Program Files\Steam\steamapps\common\dota 2 beta\game\dota\resource</value>
-            </list>
-        </constructor-arg>
+        <constructor-arg ref="dota2HeroGridCustomizer-TranslationFileDirectoryGuesses"/>
         <constructor-arg>
             <list>
                 <value>*.txt</value>
             </list>
         </constructor-arg>
-        <constructor-arg value="TEXT files (*.txt)" />
-        <constructor-arg value="Open dota2 translations file" />
+        <constructor-arg value="TEXT files (*.txt)"/>
+        <constructor-arg value="Open dota2 translations file"/>
     </bean>
 
     <bean id="dota2HeroGridCustomizer-heroTranslationByFileLineExtractor"
@@ -49,16 +52,12 @@
 
     <bean id="dota2HeroGridCustomizer-dota2TranslationReaderFactory"
           class="drakonli.jcomponents.file.reader.buffered.charset.BufferedCharsetFileReaderFactory">
-        <constructor-arg>
-            <util:constant static-field="java.nio.charset.StandardCharsets.UTF_16LE"/>
-        </constructor-arg>
+        <constructor-arg ref="dota2HeroGridCustomizer-translationsFileCharset"/>
     </bean>
 
     <bean id="dota2HeroGridCustomizer-dota2TranslationWriterFactory"
           class="drakonli.jcomponents.file.writer.factory.BufferedCharsetFileWriterFactory">
-        <constructor-arg>
-            <util:constant static-field="java.nio.charset.StandardCharsets.UTF_16LE"/>
-        </constructor-arg>
+        <constructor-arg ref="dota2HeroGridCustomizer-translationsFileCharset"/>
     </bean>
 
     <bean id="dota2HeroGridCustomizer-heroTranslationsToViewModelMapper"

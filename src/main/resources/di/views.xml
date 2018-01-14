@@ -1,8 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-           http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+     http://www.springframework.org/schema/util  http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <util:list id="dota2HeroGridCustomizer-saveHeroNamesIntoFileButtonViewHandlers">
+        <ref bean="dota2HeroGridCustomizer-backupHeroTranslationFileHandler"/>
+        <ref bean="dota2HeroGridCustomizer-storeHeroNamesHandler"/>
+        <ref bean="dota2HeroGridCustomizer-replaceHeroNamesInTranslationsFileHandler"/>
+    </util:list>
+
+    <util:list id="dota2HeroGridCustomizer-restoreHeroNamesButtonViewHandlers">
+        <ref bean="dota2HeroGridCustomizer-restoreHeroNamesHandler"/>
+    </util:list>
+
+    <util:list id="dota2HeroGridCustomizer-loadHeroNamesFileButtonViewHandlers">
+        <ref bean="dota2HeroGridCustomizer-addHeroTranslationsByFileHandler"/>
+    </util:list>
 
     <bean id="drakonli.dota2.hero_grid_customizer.view.hero_translations_table.HeroTranslationsTableView"
           class="drakonli.dota2.hero_grid_customizer.view.hero_translations_table.HeroTranslationsTableView"
@@ -16,11 +32,7 @@
         <constructor-arg ref="dota2HeroGridCustomizer-heroGridVM"/>
         <constructor-arg ref="dota2HeroGridCustomizer-fileChooserFactory-main"/>
         <constructor-arg ref="dota2HeroGridCustomizer-notificator-main"/>
-        <constructor-arg>
-            <list>
-                <ref bean="dota2HeroGridCustomizer-addHeroTranslationsByFileHandler"/>
-            </list>
-        </constructor-arg>
+        <constructor-arg ref="dota2HeroGridCustomizer-loadHeroNamesFileButtonViewHandlers"/>
     </bean>
 
     <bean id="drakonli.dota2.hero_grid_customizer.view.save.SaveHeroNamesIntoFileButtonView"
@@ -28,13 +40,7 @@
           scope="prototype">
         <constructor-arg ref="dota2HeroGridCustomizer-heroGridVM"/>
         <constructor-arg ref="dota2HeroGridCustomizer-notificator-main"/>
-        <constructor-arg>
-            <list>
-                <ref bean="dota2HeroGridCustomizer-backupHeroTranslationFileHandler"/>
-                <ref bean="dota2HeroGridCustomizer-storeHeroNamesHandler"/>
-                <ref bean="dota2HeroGridCustomizer-replaceHeroNamesInTranslationsFileHandler"/>
-            </list>
-        </constructor-arg>
+        <constructor-arg ref="dota2HeroGridCustomizer-saveHeroNamesIntoFileButtonViewHandlers"/>
     </bean>
 
     <bean id="drakonli.dota2.hero_grid_customizer.view.restore.RestoreHeroNamesButtonView"
@@ -42,11 +48,7 @@
           scope="prototype">
         <constructor-arg ref="dota2HeroGridCustomizer-heroGridVM"/>
         <constructor-arg ref="dota2HeroGridCustomizer-notificator-main"/>
-        <constructor-arg>
-            <list>
-                <ref bean="dota2HeroGridCustomizer-restoreHeroNamesHandler"/>
-            </list>
-        </constructor-arg>
+        <constructor-arg ref="dota2HeroGridCustomizer-restoreHeroNamesButtonViewHandlers"/>
     </bean>
 
 </beans>
