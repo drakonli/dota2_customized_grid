@@ -1,11 +1,11 @@
 package drakonli.dota2.hero_grid_customizer.application.view_model.translation;
 
-import drakonli.dota2.hero_grid_customizer.domain.entity.HeroTranslation;
+import drakonli.dota2.hero_grid_customizer.domain.model.HeroTranslation;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HeroTranslationViewModelsToEntityMapper
+public class HeroTranslationViewModelsToDomainModelMapper
 {
     public List<HeroTranslation> mapToNewEntityList(List<HeroTranslationViewModel> heroTranslationViewModels)
     {

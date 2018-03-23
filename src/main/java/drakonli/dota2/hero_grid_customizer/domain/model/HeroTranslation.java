@@ -1,4 +1,4 @@
-package drakonli.dota2.hero_grid_customizer.domain.entity;
+package drakonli.dota2.hero_grid_customizer.domain.model;
 
 import java.io.Serializable;
 

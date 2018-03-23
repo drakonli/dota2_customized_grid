@@ -64,8 +64,8 @@
           class="drakonli.dota2.hero_grid_customizer.application.view_model.translation.HeroTranslationsToViewModelMapper">
     </bean>
 
-    <bean id="dota2HeroGridCustomizer-heroTranslationViewModelsToEntityMapper"
-          class="drakonli.dota2.hero_grid_customizer.application.view_model.translation.HeroTranslationViewModelsToEntityMapper">
+    <bean id="dota2HeroGridCustomizer-heroTranslationViewModelsToDomainModelMapper"
+          class="drakonli.dota2.hero_grid_customizer.application.view_model.translation.HeroTranslationViewModelsToDomainModelMapper">
     </bean>
 
     <bean id="dota2HeroGridCustomizer-heroNamesByFileImporter"

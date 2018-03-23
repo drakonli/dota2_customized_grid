@@ -1,6 +1,6 @@
 package drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.storage;
 
-import drakonli.dota2.hero_grid_customizer.domain.entity.HeroTranslation;
+import drakonli.dota2.hero_grid_customizer.domain.model.HeroTranslation;
 
 import java.io.*;
 import java.util.ArrayList;
