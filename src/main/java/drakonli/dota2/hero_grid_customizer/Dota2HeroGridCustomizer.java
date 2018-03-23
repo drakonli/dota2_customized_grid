@@ -7,12 +7,13 @@ import javafx.stage.Stage;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class Dota2HeroGridCustomizer extends Application {
+public class Dota2HeroGridCustomizer extends Application
+{
 
     @Override
     public void start(Stage primaryStage) throws Exception
     {
-        ApplicationContext context = new ClassPathXmlApplicationContext("di/services.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("di/*");
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ui/main/MainView.fxml"));
         loader.setControllerFactory(context::getBean);
