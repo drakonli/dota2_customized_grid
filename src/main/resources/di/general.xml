@@ -31,7 +31,7 @@
     </bean>
 
     <bean id="dota2HeroGridCustomizer-heroGridVM"
-          class="drakonli.dota2.hero_grid_customizer.view_model.hero.grid.HeroGridViewModel">
+          class="drakonli.dota2.hero_grid_customizer.application.view_model.grid.HeroGridViewModel">
     </bean>
 
     <bean id="dota2HeroGridCustomizer-fileChooserFactory-main"
@@ -61,11 +61,11 @@
     </bean>
 
     <bean id="dota2HeroGridCustomizer-heroTranslationsToViewModelMapper"
-          class="drakonli.dota2.hero_grid_customizer.view_model.hero.translation.HeroTranslationsToViewModelMapper">
+          class="drakonli.dota2.hero_grid_customizer.application.view_model.translation.HeroTranslationsToViewModelMapper">
     </bean>
 
     <bean id="dota2HeroGridCustomizer-heroTranslationViewModelsToEntityMapper"
-          class="drakonli.dota2.hero_grid_customizer.view_model.hero.translation.HeroTranslationViewModelsToEntityMapper">
+          class="drakonli.dota2.hero_grid_customizer.application.view_model.translation.HeroTranslationViewModelsToEntityMapper">
     </bean>
 
     <bean id="dota2HeroGridCustomizer-heroNamesByFileImporter"

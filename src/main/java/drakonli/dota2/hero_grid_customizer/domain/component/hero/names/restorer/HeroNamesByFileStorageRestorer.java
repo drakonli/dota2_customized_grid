@@ -1,7 +1,7 @@
 package drakonli.dota2.hero_grid_customizer.domain.component.hero.names.restorer;
 
 import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.storage.HeroNamesByFileStorage;
-import drakonli.dota2.hero_grid_customizer.entity.HeroTranslation;
+import drakonli.dota2.hero_grid_customizer.domain.entity.HeroTranslation;
 
 import java.io.IOException;
 import java.util.List;

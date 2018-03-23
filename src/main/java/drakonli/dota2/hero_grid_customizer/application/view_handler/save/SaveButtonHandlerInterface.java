@@ -1,0 +1,7 @@
+package drakonli.dota2.hero_grid_customizer.application.view_handler.save;
+
+import drakonli.dota2.hero_grid_customizer.application.view_handler.ParameterlessViewActionHandlerInterface;
+
+public interface SaveButtonHandlerInterface extends ParameterlessViewActionHandlerInterface
+{
+}
