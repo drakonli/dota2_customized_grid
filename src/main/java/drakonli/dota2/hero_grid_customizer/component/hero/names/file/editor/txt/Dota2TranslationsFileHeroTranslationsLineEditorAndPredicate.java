@@ -10,7 +10,12 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Two interfaces are joined for optimization purposes
+ * This class is used to test a line in a file to be a dota2 hero translation line and to edit that line using the
+ * "new" translations list. So that the current line that holds a translation for specific hero would be replaced by
+ * a new line that's currently in the "heroTranslations" List.
+ *
+ * Two interfaces are joined for optimization purposes - so that when we wouldn't need to extract the same translation
+ * twice from a line.
  */
 public class Dota2TranslationsFileHeroTranslationsLineEditorAndPredicate implements
         TxtLineEditorInterface,
