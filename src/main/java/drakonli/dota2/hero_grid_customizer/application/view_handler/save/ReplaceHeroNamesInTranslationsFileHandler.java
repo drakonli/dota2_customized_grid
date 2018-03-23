@@ -1,6 +1,7 @@
 package drakonli.dota2.hero_grid_customizer.application.view_handler.save;
 
 import drakonli.dota2.hero_grid_customizer.application.view_handler.HandlerException;
+import drakonli.dota2.hero_grid_customizer.application.view_model.export_import.file.ExportImportHeroGridByFileViewModel;
 import drakonli.dota2.hero_grid_customizer.application.view_model.grid.HeroGridViewModel;
 import drakonli.dota2.hero_grid_customizer.application.view_model.translation.HeroTranslationViewModelsToDomainModelMapper;
 import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.exception.Dota2InvalidFileFormatException;
@@ -13,16 +14,19 @@ import java.util.List;
 public class ReplaceHeroNamesInTranslationsFileHandler implements SaveButtonHandlerInterface
 {
     private final HeroGridViewModel heroGridViewModel;
+    private final ExportImportHeroGridByFileViewModel exportImportHeroGridByFileViewModel;
     private final HeroNamesIntoFileExporter heroNamesIntoFileExporter;
     private final HeroTranslationViewModelsToDomainModelMapper heroTranslationViewModelsToDomainModelMapper;
 
     public ReplaceHeroNamesInTranslationsFileHandler(
             HeroGridViewModel heroGridViewModel,
+            ExportImportHeroGridByFileViewModel exportImportHeroGridByFileViewModel,
             HeroNamesIntoFileExporter heroNamesIntoFileExporter,
             HeroTranslationViewModelsToDomainModelMapper heroTranslationViewModelsToDomainModelMapper
     )
     {
         this.heroGridViewModel = heroGridViewModel;
+        this.exportImportHeroGridByFileViewModel = exportImportHeroGridByFileViewModel;
         this.heroNamesIntoFileExporter = heroNamesIntoFileExporter;
         this.heroTranslationViewModelsToDomainModelMapper = heroTranslationViewModelsToDomainModelMapper;
     }
@@ -35,7 +39,7 @@ public class ReplaceHeroNamesInTranslationsFileHandler implements SaveButtonHand
                     .mapToNewEntityList(this.heroGridViewModel.getHeroTranslations());
 
             this.heroNamesIntoFileExporter.export(
-                    this.heroGridViewModel.getChosenHeroGridFile(),
+                    this.exportImportHeroGridByFileViewModel.getChosenHeroGridFile(),
                     heroTranslations
             );
         } catch (Dota2InvalidFileFormatException | IOException e) {

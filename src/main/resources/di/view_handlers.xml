@@ -7,6 +7,7 @@
     <bean id="dota2HeroGridCustomizer-addHeroTranslationsByFileHandler"
           class="drakonli.dota2.hero_grid_customizer.application.view_handler.load.AddHeroTranslationsByFileHandler">
         <constructor-arg ref="dota2HeroGridCustomizer-heroGridVM"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-exportImportByFileVM"/>
         <constructor-arg ref="dota2HeroGridCustomizer-heroNamesByFileImporter"/>
         <constructor-arg ref="dota2HeroGridCustomizer-heroTranslationViewModelsToDomainModelMapper"/>
         <constructor-arg ref="dota2HeroGridCustomizer-heroTranslationsToViewModelMapper"/>
@@ -22,7 +23,7 @@
 
     <bean id="dota2HeroGridCustomizer-backupHeroTranslationFileHandler"
           class="drakonli.dota2.hero_grid_customizer.application.view_handler.save.BackupHeroTranslationFileHandler">
-        <constructor-arg ref="dota2HeroGridCustomizer-heroGridVM"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-exportImportByFileVM"/>
         <constructor-arg ref="dota2HeroGridCustomizer-fileBackuper-main"/>
     </bean>
 
@@ -36,6 +37,7 @@
     <bean id="dota2HeroGridCustomizer-replaceHeroNamesInTranslationsFileHandler"
           class="drakonli.dota2.hero_grid_customizer.application.view_handler.save.ReplaceHeroNamesInTranslationsFileHandler">
         <constructor-arg ref="dota2HeroGridCustomizer-heroGridVM"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-exportImportByFileVM"/>
         <constructor-arg ref="dota2HeroGridCustomizer-heroNamesIntoFileExporter"/>
         <constructor-arg ref="dota2HeroGridCustomizer-heroTranslationViewModelsToDomainModelMapper"/>
     </bean>

@@ -1,22 +1,22 @@
 package drakonli.dota2.hero_grid_customizer.application.view_handler.save;
 
 import drakonli.dota2.hero_grid_customizer.application.view_handler.HandlerException;
-import drakonli.dota2.hero_grid_customizer.application.view_model.grid.HeroGridViewModel;
+import drakonli.dota2.hero_grid_customizer.application.view_model.export_import.file.ExportImportHeroGridByFileViewModel;
 import drakonli.jcomponents.file.backuper.FileBackuper;
 
 import java.io.IOException;
 
 public class BackupHeroTranslationFileHandler implements SaveButtonHandlerInterface
 {
-    private final HeroGridViewModel heroGridViewModel;
+    private final ExportImportHeroGridByFileViewModel exportImportHeroGridByFileViewModel;
     private final FileBackuper backuper;
 
     public BackupHeroTranslationFileHandler(
-            HeroGridViewModel heroGridViewModel,
+            ExportImportHeroGridByFileViewModel exportImportHeroGridByFileViewModel,
             FileBackuper backuper
     )
     {
-        this.heroGridViewModel = heroGridViewModel;
+        this.exportImportHeroGridByFileViewModel = exportImportHeroGridByFileViewModel;
         this.backuper = backuper;
     }
 
@@ -25,8 +25,9 @@ public class BackupHeroTranslationFileHandler implements SaveButtonHandlerInterf
     {
         try {
             this.backuper.backupOriginal(
-                    this.heroGridViewModel.getChosenHeroGridFile()
+                    this.exportImportHeroGridByFileViewModel.getChosenHeroGridFile()
             );
+
         } catch (IOException e) {
             throw new HandlerException(e.getMessage(), e);
         }

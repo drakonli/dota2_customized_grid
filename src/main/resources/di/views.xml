@@ -29,7 +29,7 @@
     <bean id="drakonli.dota2.hero_grid_customizer.ui.load.LoadHeroNamesFileButtonView"
           class="drakonli.dota2.hero_grid_customizer.ui.load.LoadHeroNamesFileButtonView"
           scope="prototype">
-        <constructor-arg ref="dota2HeroGridCustomizer-heroGridVM"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-exportImportByFileVM"/>
         <constructor-arg ref="dota2HeroGridCustomizer-fileChooserFactory-main"/>
         <constructor-arg ref="dota2HeroGridCustomizer-notificator-main"/>
         <constructor-arg ref="dota2HeroGridCustomizer-loadHeroNamesFileButtonViewHandlers"/>

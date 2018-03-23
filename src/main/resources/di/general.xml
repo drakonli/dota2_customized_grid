@@ -34,6 +34,10 @@
           class="drakonli.dota2.hero_grid_customizer.application.view_model.grid.HeroGridViewModel">
     </bean>
 
+    <bean id="dota2HeroGridCustomizer-exportImportByFileVM"
+          class="drakonli.dota2.hero_grid_customizer.application.view_model.export_import.file.ExportImportHeroGridByFileViewModel">
+    </bean>
+
     <bean id="dota2HeroGridCustomizer-fileChooserFactory-main"
           class="drakonli.jcomponents.file.chooser.GuessedDirectoryTxtFileChooserFactory">
         <constructor-arg ref="dota2HeroGridCustomizer-TranslationFileDirectoryGuesses"/>

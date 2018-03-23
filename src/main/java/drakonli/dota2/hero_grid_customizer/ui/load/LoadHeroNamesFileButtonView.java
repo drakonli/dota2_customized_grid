@@ -2,7 +2,7 @@ package drakonli.dota2.hero_grid_customizer.ui.load;
 
 import drakonli.dota2.hero_grid_customizer.application.view_handler.HandlerException;
 import drakonli.dota2.hero_grid_customizer.application.view_handler.load.LoadButtonHandlerInterface;
-import drakonli.dota2.hero_grid_customizer.application.view_model.grid.HeroGridViewModel;
+import drakonli.dota2.hero_grid_customizer.application.view_model.export_import.file.ExportImportHeroGridByFileViewModel;
 import drakonli.jcomponents.file.chooser.FileChooserFactoryInterface;
 import drakonli.jcomponents.notificator.NotificatorInterface;
 import javafx.event.ActionEvent;
@@ -17,19 +17,19 @@ public class LoadHeroNamesFileButtonView
     @FXML
     public Button loadButton;
 
-    private final HeroGridViewModel heroGridViewModel;
+    private final ExportImportHeroGridByFileViewModel exportImportHeroGridByFileViewModel;
     private final FileChooserFactoryInterface fileChooserFactory;
     private final NotificatorInterface notificator;
     private final List<LoadButtonHandlerInterface> loadButtonHandlers;
 
     public LoadHeroNamesFileButtonView(
-            HeroGridViewModel heroGridViewModel,
+            ExportImportHeroGridByFileViewModel exportImportHeroGridByFileViewModel,
             FileChooserFactoryInterface fileChooserFactory,
             NotificatorInterface notificator,
             List<LoadButtonHandlerInterface> loadButtonHandlers
     )
     {
-        this.heroGridViewModel = heroGridViewModel;
+        this.exportImportHeroGridByFileViewModel = exportImportHeroGridByFileViewModel;
         this.fileChooserFactory = fileChooserFactory;
         this.notificator = notificator;
         this.loadButtonHandlers = loadButtonHandlers;
@@ -43,7 +43,7 @@ public class LoadHeroNamesFileButtonView
             return;
         }
 
-        this.heroGridViewModel.setChosenHeroGridFile(file);
+        this.exportImportHeroGridByFileViewModel.setChosenHeroGridFile(file);
 
         try {
             for (LoadButtonHandlerInterface handler : this.loadButtonHandlers) {
@@ -52,7 +52,7 @@ public class LoadHeroNamesFileButtonView
         } catch (HandlerException e) {
             this.notificator.error(e.getCause().getMessage());
 
-            this.heroGridViewModel.setChosenHeroGridFile(null);
+            this.exportImportHeroGridByFileViewModel.setChosenHeroGridFile(null);
         }
     }
 }
