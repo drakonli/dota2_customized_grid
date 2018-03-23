@@ -1,4 +1,4 @@
-package drakonli.dota2.hero_grid_customizer.component.hero.names.predicate;
+package drakonli.dota2.hero_grid_customizer.domain.component.hero.names.predicate;
 
 import drakonli.dota2.hero_grid_customizer.entity.HeroTranslation;
 

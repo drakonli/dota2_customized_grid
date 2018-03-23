@@ -47,7 +47,7 @@
     </bean>
 
     <bean id="dota2HeroGridCustomizer-heroTranslationByFileLineExtractor"
-          class="drakonli.dota2.hero_grid_customizer.component.hero.names.file.extractor.HeroTranslationByFileLineExtractor">
+          class="drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.extractor.HeroTranslationByFileLineExtractor">
     </bean>
 
     <bean id="dota2HeroGridCustomizer-dota2TranslationReaderFactory"
@@ -69,22 +69,22 @@
     </bean>
 
     <bean id="dota2HeroGridCustomizer-heroNamesByFileImporter"
-          class="drakonli.dota2.hero_grid_customizer.component.hero.names.file.importer.HeroNamesByFileImporter">
+          class="drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.importer.HeroNamesByFileImporter">
         <constructor-arg ref="dota2HeroGridCustomizer-dota2TranslationReaderFactory"/>
         <constructor-arg ref="dota2HeroGridCustomizer-heroTranslationByFileLineExtractor"/>
     </bean>
 
     <bean id="dota2HeroGridCustomizer-heroNamesByFileStorage"
-          class="drakonli.dota2.hero_grid_customizer.component.hero.names.file.storage.HeroNamesByFileStorage">
+          class="drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.storage.HeroNamesByFileStorage">
     </bean>
 
     <bean id="dota2HeroGridCustomizer-heroNamesByFileStorageRestorer"
-          class="drakonli.dota2.hero_grid_customizer.component.hero.names.restorer.HeroNamesByFileStorageRestorer">
+          class="drakonli.dota2.hero_grid_customizer.domain.component.hero.names.restorer.HeroNamesByFileStorageRestorer">
         <constructor-arg ref="dota2HeroGridCustomizer-heroNamesByFileStorage"/>
     </bean>
 
     <bean id="dota2HeroGridCustomizer-heroNamesIntoFileExporter"
-          class="drakonli.dota2.hero_grid_customizer.component.hero.names.file.exporter.HeroNamesIntoFileExporter">
+          class="drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.exporter.HeroNamesIntoFileExporter">
         <constructor-arg ref="dota2HeroGridCustomizer-txtFileByLineEditor-main"/>
         <constructor-arg ref="dota2HeroGridCustomizer-heroTranslationByFileLineExtractor"/>
     </bean>

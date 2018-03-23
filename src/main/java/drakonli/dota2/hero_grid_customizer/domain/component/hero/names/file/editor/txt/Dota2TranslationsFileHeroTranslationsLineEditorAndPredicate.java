@@ -1,7 +1,7 @@
-package drakonli.dota2.hero_grid_customizer.component.hero.names.file.editor.txt;
+package drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.editor.txt;
 
-import drakonli.dota2.hero_grid_customizer.component.hero.names.file.extractor.HeroTranslationByFileLineExtractor;
-import drakonli.dota2.hero_grid_customizer.component.hero.names.predicate.HeroTranslationByHeroCodePredicate;
+import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.extractor.HeroTranslationByFileLineExtractor;
+import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.predicate.HeroTranslationByHeroCodePredicate;
 import drakonli.dota2.hero_grid_customizer.entity.HeroTranslation;
 import drakonli.jcomponents.file.editor.txt.TxtLineEditorInterface;
 import drakonli.jcomponents.predicate.TxtLinePredicateInterface;

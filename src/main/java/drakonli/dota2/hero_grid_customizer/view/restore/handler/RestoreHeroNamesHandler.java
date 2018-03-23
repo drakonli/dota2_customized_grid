@@ -1,7 +1,7 @@
 package drakonli.dota2.hero_grid_customizer.view.restore.handler;
 
-import drakonli.dota2.hero_grid_customizer.component.hero.names.restorer.HeroNamesByFileStorageRestorer;
-import drakonli.dota2.hero_grid_customizer.component.hero.names.restorer.LastVersionOfHeroNamesIsEmptyException;
+import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.restorer.HeroNamesByFileStorageRestorer;
+import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.restorer.LastVersionOfHeroNamesIsEmptyException;
 import drakonli.dota2.hero_grid_customizer.entity.HeroTranslation;
 import drakonli.dota2.hero_grid_customizer.view.handler.HandlerException;
 import drakonli.dota2.hero_grid_customizer.view_model.hero.grid.HeroGridViewModel;
