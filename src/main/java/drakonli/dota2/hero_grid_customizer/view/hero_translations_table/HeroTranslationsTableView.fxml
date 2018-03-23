@@ -12,7 +12,7 @@
            editable="true"
            GridPane.hgrow="ALWAYS"
            GridPane.vgrow="ALWAYS"
-           fx:id="heroTranslationsTableView"
+           fx:id="tableView"
            fx:controller="drakonli.dota2.hero_grid_customizer.view.hero_translations_table.HeroTranslationsTableView">
     <columnResizePolicy>
         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>

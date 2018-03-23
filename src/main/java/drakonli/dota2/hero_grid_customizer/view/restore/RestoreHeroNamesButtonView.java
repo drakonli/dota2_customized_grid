@@ -7,6 +7,7 @@ import drakonli.dota2.hero_grid_customizer.view_model.hero.translation.HeroTrans
 import drakonli.jcomponents.notificator.NotificatorInterface;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
@@ -16,6 +17,7 @@ import java.util.ResourceBundle;
 
 public class RestoreHeroNamesButtonView implements Initializable
 {
+    @FXML
     public Button restoreButton;
 
     private HeroGridViewModel heroGridViewModel;

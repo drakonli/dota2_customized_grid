@@ -6,6 +6,7 @@ import drakonli.dota2.hero_grid_customizer.view_model.hero.grid.HeroGridViewMode
 import drakonli.jcomponents.file.chooser.FileChooserFactoryInterface;
 import drakonli.jcomponents.notificator.NotificatorInterface;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
 import java.io.File;
@@ -13,6 +14,7 @@ import java.util.List;
 
 public class LoadHeroNamesFileButtonView
 {
+    @FXML
     public Button loadButton;
 
     private final HeroGridViewModel heroGridViewModel;
