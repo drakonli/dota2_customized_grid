@@ -3,9 +3,8 @@ package drakonli.dota2.hero_grid_customizer.ui.save;
 import drakonli.dota2.hero_grid_customizer.application.view_handler.HandlerException;
 import drakonli.dota2.hero_grid_customizer.application.view_handler.save.SaveButtonHandlerInterface;
 import drakonli.dota2.hero_grid_customizer.application.view_model.grid.HeroGridViewModel;
-import drakonli.dota2.hero_grid_customizer.application.view_model.translation.HeroTranslationViewModel;
+import drakonli.dota2.hero_grid_customizer.ui.handler.HideNodeOnObvservableListEmptyHandler;
 import drakonli.jcomponents.notificator.NotificatorInterface;
-import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -38,17 +37,10 @@ public class SaveHeroNamesIntoFileButtonView implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        this.changeSaveButtonManagementOnHeroCollectionChange();
-    }
-
-    private void changeSaveButtonManagementOnHeroCollectionChange()
-    {
-        this.saveButton.setManaged(false);
-
-        this.heroGridViewModel.getHeroTranslations().addListener(
-            (ListChangeListener.Change<? extends HeroTranslationViewModel > change)
-                    -> this.saveButton.setManaged(!change.getList().isEmpty())
-        );
+        new HideNodeOnObvservableListEmptyHandler(
+                this.heroGridViewModel.getHeroTranslations(),
+                this.saveButton
+        ).handle();
     }
 
     public void onSaveClick(ActionEvent actionEvent)

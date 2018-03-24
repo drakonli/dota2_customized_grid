@@ -19,6 +19,7 @@
         <fx:include source="/drakonli/dota2/hero_grid_customizer/ui/load/LoadHeroNamesFileButtonView.fxml"/>
         <fx:include source="/drakonli/dota2/hero_grid_customizer/ui/save/SaveHeroNamesFileButtonView.fxml"/>
         <fx:include source="/drakonli/dota2/hero_grid_customizer/ui/restore/RestoreHeroNamesButtonView.fxml"/>
+        <fx:include source="/drakonli/dota2/hero_grid_customizer/ui/clear/ClearButtonView.fxml"/>
     </HBox>
 
 </GridPane>

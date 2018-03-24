@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<Button
+        xmlns="http://javafx.com/javafx"
+        xmlns:fx="http://javafx.com/fxml"
+        fx:id="clearButton"
+        fx:controller="drakonli.dota2.hero_grid_customizer.ui.clear.ClearButtonView"
+        onAction="#onClearClick"
+        text="Clear"
+/>

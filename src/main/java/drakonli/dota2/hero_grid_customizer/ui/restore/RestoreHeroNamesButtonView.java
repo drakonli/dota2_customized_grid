@@ -3,9 +3,8 @@ package drakonli.dota2.hero_grid_customizer.ui.restore;
 import drakonli.dota2.hero_grid_customizer.application.view_handler.HandlerException;
 import drakonli.dota2.hero_grid_customizer.application.view_handler.restore.RestoreButtonHandlerInterface;
 import drakonli.dota2.hero_grid_customizer.application.view_model.grid.HeroGridViewModel;
-import drakonli.dota2.hero_grid_customizer.application.view_model.translation.HeroTranslationViewModel;
+import drakonli.dota2.hero_grid_customizer.ui.handler.HideNodeOnObvservableListEmptyHandler;
 import drakonli.jcomponents.notificator.NotificatorInterface;
-import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -38,17 +37,10 @@ public class RestoreHeroNamesButtonView implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        this.changeRestoreButtonManagementOnHeroCollectionChange();
-    }
-
-    private void changeRestoreButtonManagementOnHeroCollectionChange()
-    {
-        this.restoreButton.setManaged(false);
-
-        this.heroGridViewModel.getHeroTranslations().addListener(
-            (ListChangeListener.Change<? extends HeroTranslationViewModel > change)
-                    -> this.restoreButton.setManaged(!change.getList().isEmpty())
-        );
+        new HideNodeOnObvservableListEmptyHandler(
+                this.heroGridViewModel.getHeroTranslations(),
+                this.restoreButton
+        ).handle();
     }
 
     public void onRestoreClick(ActionEvent actionEvent)
