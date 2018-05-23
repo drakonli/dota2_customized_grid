@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<Button
+<?import javafx.scene.control.MenuItem?>
+<MenuItem
         xmlns="http://javafx.com/javafx"
         xmlns:fx="http://javafx.com/fxml"
         fx:id="restoreButton"
         fx:controller="drakonli.dota2.hero_grid_customizer.ui.restore.RestoreHeroNamesButtonView"
         onAction="#onRestoreClick"
-        text="Restore"
+        text="Restore from last saved"
 />

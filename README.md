@@ -24,10 +24,10 @@ Domain - consists of services and models that are directly involved in main conc
 concerns itself with actually doing the job that is required: loading data, saving data, backing-up, etc. Domain layer
 only works with domain model, not the ViewModel.
 
-Infrastructure (does not have a package, because it's the underlying layer for everything): Spring IoC, Maven, JavaFX.
+Infrastructure: Spring IoC, Maven, JavaFX and my custom "jcomponents" package for general utilities.
 
 Also, about my vision of MVVM:
 
 I see ViewModels as a "glue" between UI/Application and Domain Layer. Application and UI layer concerns itself with
-changing ViewModels and invoking appropriate Domain services when user actions are received, but never is ViewModel
+changing ViewModels, Application concerns itself with invoking appropriate Domain services when user actions are received, but never is ViewModel
 passed to Domain services. Only Application and UI are aware of ViewModels.

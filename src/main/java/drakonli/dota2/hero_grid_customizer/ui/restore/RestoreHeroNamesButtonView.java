@@ -2,13 +2,12 @@ package drakonli.dota2.hero_grid_customizer.ui.restore;
 
 import drakonli.dota2.hero_grid_customizer.application.view_handler.HandlerException;
 import drakonli.dota2.hero_grid_customizer.application.view_handler.restore.RestoreButtonHandlerInterface;
-import drakonli.dota2.hero_grid_customizer.application.view_model.grid.HeroGridViewModel;
-import drakonli.dota2.hero_grid_customizer.ui.handler.HideNodeOnObvservableListEmptyHandler;
+import drakonli.dota2.hero_grid_customizer.application.view_model.export_import.latest.ExportImportHeroGridByLatestSaveViewModel;
 import drakonli.jcomponents.notificator.NotificatorInterface;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
 
 import java.net.URL;
 import java.util.List;
@@ -17,30 +16,29 @@ import java.util.ResourceBundle;
 public class RestoreHeroNamesButtonView implements Initializable
 {
     @FXML
-    public Button restoreButton;
+    public MenuItem restoreButton;
 
-    private HeroGridViewModel heroGridViewModel;
     private NotificatorInterface notificator;
     private List<RestoreButtonHandlerInterface> restoreButtonHandlers;
+    private ExportImportHeroGridByLatestSaveViewModel exportImportHeroGridByLatestSaveViewModel;
 
     public RestoreHeroNamesButtonView(
-            HeroGridViewModel heroGridViewModel,
             NotificatorInterface notificator,
-            List<RestoreButtonHandlerInterface> restoreButtonHandlers
+            List<RestoreButtonHandlerInterface> restoreButtonHandlers,
+            ExportImportHeroGridByLatestSaveViewModel exportImportHeroGridByLatestSaveViewModel
     )
     {
-        this.heroGridViewModel = heroGridViewModel;
         this.notificator = notificator;
         this.restoreButtonHandlers = restoreButtonHandlers;
+        this.exportImportHeroGridByLatestSaveViewModel = exportImportHeroGridByLatestSaveViewModel;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        new HideNodeOnObvservableListEmptyHandler(
-                this.heroGridViewModel.getHeroTranslations(),
-                this.restoreButton
-        ).handle();
+        this.restoreButton.visibleProperty().bind(
+                this.exportImportHeroGridByLatestSaveViewModel.getRestoreAvailableProperty()
+        );
     }
 
     public void onRestoreClick(ActionEvent actionEvent)
@@ -50,9 +48,9 @@ public class RestoreHeroNamesButtonView implements Initializable
                 handler.handle();
             }
 
-            notificator.success("Restore success!");
+            this.notificator.success("Restore success!");
         } catch (HandlerException e) {
-            notificator.error(e.getCause().getMessage());
+            this.notificator.error(e.getCause().getMessage());
         }
     }
 }

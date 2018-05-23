@@ -30,9 +30,9 @@
     <bean id="drakonli.dota2.hero_grid_customizer.ui.restore.RestoreHeroNamesButtonView"
           class="drakonli.dota2.hero_grid_customizer.ui.restore.RestoreHeroNamesButtonView"
           scope="prototype">
-        <constructor-arg ref="dota2HeroGridCustomizer-heroGridVM"/>
         <constructor-arg ref="dota2HeroGridCustomizer-notificator-main"/>
         <constructor-arg ref="dota2HeroGridCustomizer-restoreHeroNamesButtonViewHandlers"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-exportImportHeroGridByLatestSaveVM"/>
     </bean>
 
     <bean id="drakonli.dota2.hero_grid_customizer.ui.clear.ClearButtonView"

@@ -4,16 +4,11 @@
 <?import javafx.scene.control.cell.TextFieldTableCell?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.GridPane?>
 <TableView
-            xmlns:fx="http://javafx.com/fxml"
-           GridPane.columnIndex="0"
-           GridPane.rowIndex="1"
-           editable="true"
-           GridPane.hgrow="ALWAYS"
-           GridPane.vgrow="ALWAYS"
-           fx:id="tableView"
-           fx:controller="drakonli.dota2.hero_grid_customizer.ui.hero_translations_table.HeroTranslationsTableView">
+        xmlns:fx="http://javafx.com/fxml"
+        editable="true"
+        fx:id="tableView"
+        fx:controller="drakonli.dota2.hero_grid_customizer.ui.hero_translations_table.HeroTranslationsTableView">
     <columnResizePolicy>
         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
     </columnResizePolicy>
