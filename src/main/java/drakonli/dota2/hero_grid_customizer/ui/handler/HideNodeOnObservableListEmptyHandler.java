@@ -4,12 +4,12 @@ import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 
-public class HideNodeOnObvservableListEmptyHandler
+public class HideNodeOnObservableListEmptyHandler
 {
     private final ObservableList list;
     private final Node node;
 
-    public HideNodeOnObvservableListEmptyHandler(ObservableList list, Node node)
+    public HideNodeOnObservableListEmptyHandler(ObservableList list, Node node)
     {
         this.list = list;
         this.node = node;

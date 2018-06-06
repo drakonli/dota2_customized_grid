@@ -41,4 +41,9 @@
         <constructor-arg ref="dota2HeroGridCustomizer-heroGridVM"/>
         <constructor-arg ref="dota2HeroGridCustomizer-notificator-main"/>
     </bean>
+
+    <bean id="drakonli.dota2.hero_grid_customizer.ui.import_configuration.ImportConfigurationMenuButton"
+          class="drakonli.dota2.hero_grid_customizer.ui.import_configuration.ImportConfigurationMenuButton"
+          scope="prototype">
+    </bean>
 </beans>

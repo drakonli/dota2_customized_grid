@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<MenuBar xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.121"
+         fx:controller="drakonli.dota2.hero_grid_customizer.ui.import_configuration.ImportConfigurationMenuButton">
+    <Menu mnemonicParsing="false" text="Import" fx:id="import_button_menu">
+        <fx:include source="/drakonli/dota2/hero_grid_customizer/ui/restore/RestoreHeroNamesButtonView.fxml"/>
+    </Menu>
+</MenuBar>
