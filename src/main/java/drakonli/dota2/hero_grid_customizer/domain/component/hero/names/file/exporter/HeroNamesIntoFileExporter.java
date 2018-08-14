@@ -14,15 +14,15 @@ import java.util.List;
 public class HeroNamesIntoFileExporter
 {
     private TxtFileByLineEditorInterface txtFileByLineEditor;
-    private final HeroTranslationByFileLineExtractor heroTranslationViewModelExtractor;
+    private final HeroTranslationByFileLineExtractor heroTranslationByFileLineExtractor;
 
     public HeroNamesIntoFileExporter(
             TxtFileByLineEditorInterface txtFileByLineEditor,
-            HeroTranslationByFileLineExtractor heroTranslationViewModelExtractor
+            HeroTranslationByFileLineExtractor heroTranslationByFileLineExtractor
     )
     {
         this.txtFileByLineEditor = txtFileByLineEditor;
-        this.heroTranslationViewModelExtractor = heroTranslationViewModelExtractor;
+        this.heroTranslationByFileLineExtractor = heroTranslationByFileLineExtractor;
     }
 
     public void export(File heroNamesFile, List<HeroTranslation> heroTranslations)
@@ -31,7 +31,7 @@ public class HeroNamesIntoFileExporter
         Dota2TranslationsFileHeroTranslationsLineEditorAndPredicate lineEditorAndPredicate =
                 new Dota2TranslationsFileHeroTranslationsLineEditorAndPredicate(
                         heroTranslations,
-                        this.heroTranslationViewModelExtractor
+                        this.heroTranslationByFileLineExtractor
                 );
 
         try {
