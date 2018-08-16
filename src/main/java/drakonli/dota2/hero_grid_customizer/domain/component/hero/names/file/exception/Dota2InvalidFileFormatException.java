@@ -6,6 +6,6 @@ public class Dota2InvalidFileFormatException extends InvalidFileFormatException
 {
     public Dota2InvalidFileFormatException()
     {
-        super("Chosen file has wrong format. Please, choose dota2 translation file");
+        super("File is not a dota2 translations file");
     }
 }

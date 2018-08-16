@@ -71,8 +71,8 @@
         <constructor-arg ref="dota2HeroGridCustomizer-heroNamesByFileStorage"/>
     </bean>
 
-    <bean id="dota2HeroGridCustomizer-heroNamesIntoFileExporter"
-          class="drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.exporter.HeroNamesIntoFileExporter">
+    <bean id="dota2HeroGridCustomizer-heroGridConfigToDota2TranslationsFileExporter"
+          class="drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.exporter.HeroGridConfigToDota2TranslationsFileExporter">
         <constructor-arg ref="dota2HeroGridCustomizer-txtFileByLineEditor-main"/>
         <constructor-arg ref="dota2HeroGridCustomizer-heroTranslationByFileLineExtractor"/>
     </bean>

@@ -93,7 +93,7 @@
           class="drakonli.dota2.hero_grid_customizer.application.view_handler.save.ReplaceHeroNamesInTranslationsFileHandler">
         <constructor-arg ref="dota2HeroGridCustomizer-heroGridVM"/>
         <constructor-arg ref="dota2HeroGridCustomizer-exportImportByFileVM"/>
-        <constructor-arg ref="dota2HeroGridCustomizer-heroNamesIntoFileExporter"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-heroGridConfigToDota2TranslationsFileExporter"/>
         <constructor-arg ref="dota2HeroGridCustomizer-heroTranslationViewModelsToDomainModelMapper"/>
     </bean>
 </beans>
