@@ -36,7 +36,7 @@ public class ReplaceHeroNamesInTranslationsFileHandler implements SaveButtonHand
     {
         try {
             List<HeroTranslation> heroTranslations = this.heroTranslationViewModelsToDomainModelMapper
-                    .mapToNewEntityList(this.heroGridViewModel.getHeroTranslations());
+                    .mapToNewEntityList(this.heroGridViewModel.getHeroTranslationsViewModels());
 
             this.heroGridConfigToFileExporter.export(
                     this.exportImportHeroGridByFileViewModel.getChosenHeroGridFile(),

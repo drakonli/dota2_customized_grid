@@ -25,13 +25,13 @@ public class ClearButtonView
 
     public void onClearClick(ActionEvent actionEvent)
     {
-        if (this.heroGridViewModel.getHeroTranslations().isEmpty()) {
+        if (this.heroGridViewModel.getHeroTranslationsViewModels().isEmpty()) {
             this.notificator.success("The Hero Grid is already empty");
 
             return;
         }
 
-        this.heroGridViewModel.getHeroTranslations().clear();
+        this.heroGridViewModel.getHeroTranslationsViewModels().clear();
 
         this.notificator.success("The Hero Grid has been cleared");
     }

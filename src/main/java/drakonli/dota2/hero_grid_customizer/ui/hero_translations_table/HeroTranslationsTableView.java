@@ -30,7 +30,7 @@ public class HeroTranslationsTableView implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        this.tableView.itemsProperty().bind(new SimpleListProperty<>(this.heroGridViewModel.getHeroTranslations()));
+        this.tableView.itemsProperty().bind(new SimpleListProperty<>(this.heroGridViewModel.getHeroTranslationsViewModels()));
         this.handleHeroNameColumnEdit();
     }
 

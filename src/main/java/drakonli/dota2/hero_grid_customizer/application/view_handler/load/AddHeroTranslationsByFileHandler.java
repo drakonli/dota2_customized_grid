@@ -40,14 +40,14 @@ public class AddHeroTranslationsByFileHandler implements LoadButtonHandlerInterf
     {
         try {
             List<HeroTranslation> heroTranslations = this.heroTranslationViewModelsToDomainModelMapper
-                    .mapToNewEntityList(this.heroGridViewModel.getHeroTranslations());
+                    .mapToNewEntityList(this.heroGridViewModel.getHeroTranslationsViewModels());
 
             this.importer.importHeroNamesByFile(
                     this.exportImportHeroGridByFileViewModel.getChosenHeroGridFile(),
                     heroTranslations
             );
 
-            this.heroTranslationsToViewModelMapper.map(heroTranslations, this.heroGridViewModel.getHeroTranslations());
+            this.heroTranslationsToViewModelMapper.map(heroTranslations, this.heroGridViewModel.getHeroTranslationsViewModels());
         } catch (IOException | Dota2InvalidFileFormatException e) {
             throw new HandlerException(e.getMessage(), e);
         }

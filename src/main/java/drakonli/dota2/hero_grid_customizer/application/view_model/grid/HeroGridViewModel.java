@@ -8,7 +8,7 @@ public class HeroGridViewModel
 {
     private ObservableList<HeroTranslationViewModel> heroTranslations = FXCollections.observableArrayList();
 
-    public ObservableList<HeroTranslationViewModel> getHeroTranslations()
+    public ObservableList<HeroTranslationViewModel> getHeroTranslationsViewModels()
     {
         return this.heroTranslations;
     }

@@ -36,11 +36,11 @@ public class RestoreHeroNamesHandler implements RestoreButtonHandlerInterface
     {
         try {
             List<HeroTranslation> heroTranslations = this.heroTranslationViewModelsToDomainModelMapper
-                    .mapToNewEntityList(this.heroGridViewModel.getHeroTranslations());
+                    .mapToNewEntityList(this.heroGridViewModel.getHeroTranslationsViewModels());
 
             this.restorer.restoreLatestHeroNames(heroTranslations);
 
-            this.heroTranslationsToViewModelMapper.map(heroTranslations, this.heroGridViewModel.getHeroTranslations());
+            this.heroTranslationsToViewModelMapper.map(heroTranslations, this.heroGridViewModel.getHeroTranslationsViewModels());
         } catch (IOException | ClassNotFoundException | LastVersionOfHeroNamesIsEmptyException e) {
             throw new HandlerException(e.getMessage(), e);
         }

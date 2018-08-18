@@ -31,7 +31,7 @@ public class StoreHeroNamesHandler implements SaveButtonHandlerInterface
     {
         try {
             List<HeroTranslation> heroTranslations = this.heroTranslationViewModelsToDomainModelMapper
-                    .mapToNewEntityList(this.heroGridViewModel.getHeroTranslations());
+                    .mapToNewEntityList(this.heroGridViewModel.getHeroTranslationsViewModels());
 
             this.heroNamesStorage.store(heroTranslations);
         } catch (IOException e) {

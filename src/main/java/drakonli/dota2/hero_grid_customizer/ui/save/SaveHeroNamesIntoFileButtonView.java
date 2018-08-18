@@ -38,7 +38,7 @@ public class SaveHeroNamesIntoFileButtonView implements Initializable
     public void initialize(URL location, ResourceBundle resources)
     {
         new HideNodeOnObservableListEmptyHandler(
-                this.heroGridViewModel.getHeroTranslations(),
+                this.heroGridViewModel.getHeroTranslationsViewModels(),
                 this.saveButton
         ).handle();
     }
