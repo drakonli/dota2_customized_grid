@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface IHeroGridConfigToFileExporter
 {
-    public void export(File heroTranslationsFile, List<HeroTranslation> heroTranslations)
+    public void export(File file, List<HeroTranslation> heroTranslations)
             throws InvalidFileFormatException, IOException;
 }

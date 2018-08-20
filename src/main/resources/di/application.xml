@@ -7,8 +7,6 @@
            http://www.springframework.org/schema/util  http://www.springframework.org/schema/util/spring-util.xsd">
 
     <util:list id="dota2HeroGridCustomizer-saveHeroNamesIntoFileButtonViewHandlers">
-        <ref bean="dota2HeroGridCustomizer-backupHeroTranslationFileHandler"/>
-        <ref bean="dota2HeroGridCustomizer-storeHeroNamesHandler"/>
         <ref bean="dota2HeroGridCustomizer-replaceHeroNamesInTranslationsFileHandler"/>
         <ref bean="dota2HeroGridCustomizer_restoreAvailabilityHandler"/>
     </util:list>
@@ -74,19 +72,6 @@
           class="drakonli.dota2.hero_grid_customizer.application.view_handler.save.RestoreAvailabilityHandler">
         <constructor-arg ref="dota2HeroGridCustomizer_fileStorageRestoreAvailabilityManager"/>
         <constructor-arg ref="dota2HeroGridCustomizer-exportImportHeroGridByLatestSaveVM"/>
-    </bean>
-
-    <bean id="dota2HeroGridCustomizer-backupHeroTranslationFileHandler"
-          class="drakonli.dota2.hero_grid_customizer.application.view_handler.save.BackupHeroTranslationFileHandler">
-        <constructor-arg ref="dota2HeroGridCustomizer-exportImportByFileVM"/>
-        <constructor-arg ref="dota2HeroGridCustomizer-fileBackuper-main"/>
-    </bean>
-
-    <bean id="dota2HeroGridCustomizer-storeHeroNamesHandler"
-          class="drakonli.dota2.hero_grid_customizer.application.view_handler.save.StoreHeroNamesHandler">
-        <constructor-arg ref="dota2HeroGridCustomizer-heroGridVM"/>
-        <constructor-arg ref="dota2HeroGridCustomizer-heroNamesByFileStorage"/>
-        <constructor-arg ref="dota2HeroGridCustomizer-heroTranslationViewModelsToDomainModelMapper"/>
     </bean>
 
     <bean id="dota2HeroGridCustomizer-replaceHeroNamesInTranslationsFileHandler"

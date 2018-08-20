@@ -26,7 +26,7 @@ public class HeroGridConfigToDota2TranslationsFileExporter implements IHeroGridC
         this.heroTranslationByFileLineExtractor = heroTranslationByFileLineExtractor;
     }
 
-    public void export(File heroNamesFile, List<HeroTranslation> heroTranslations)
+    public void export(File file, List<HeroTranslation> heroTranslations)
             throws Dota2InvalidFileFormatException, IOException
     {
         Dota2TranslationsFileHeroTranslationsLineEditorAndPredicate lineEditorAndPredicate =
@@ -36,7 +36,7 @@ public class HeroGridConfigToDota2TranslationsFileExporter implements IHeroGridC
                 );
 
         try {
-            this.txtFileByLineEditor.edit(heroNamesFile, lineEditorAndPredicate, lineEditorAndPredicate);
+            this.txtFileByLineEditor.edit(file, lineEditorAndPredicate, lineEditorAndPredicate);
         } catch (NoLineQualifiedForEditException e) {
             throw new Dota2InvalidFileFormatException();
         }
