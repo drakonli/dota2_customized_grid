@@ -11,11 +11,6 @@ public class ExportImportHeroGridByLatestSaveViewModel
         this.isRestoreAvailable = isRestoreAvailable;
     }
 
-    public boolean isIsRestoreAvailable()
-    {
-        return isRestoreAvailable.get();
-    }
-
     public void setIsRestoreAvailable(boolean isRestoreAvailable)
     {
         this.isRestoreAvailable.set(isRestoreAvailable);

@@ -6,9 +6,8 @@ import drakonli.dota2.hero_grid_customizer.application.view_model.grid.HeroGridV
 import drakonli.dota2.hero_grid_customizer.application.view_model.translation.HeroTranslationViewModelsToDomainModelMapper;
 import drakonli.dota2.hero_grid_customizer.domain.model.HeroTranslation;
 import drakonli.dota2.hero_grid_customizer.domain.services.IHeroGridConfigToFileExporter;
-import drakonli.jcomponents.file.exception.InvalidFileFormatException;
 
-import java.io.IOException;
+import java.io.File;
 import java.util.List;
 
 public class ReplaceHeroNamesInTranslationsFileHandler implements SaveButtonHandlerInterface
@@ -38,11 +37,12 @@ public class ReplaceHeroNamesInTranslationsFileHandler implements SaveButtonHand
             List<HeroTranslation> heroTranslations = this.heroTranslationViewModelsToDomainModelMapper
                     .mapToNewEntityList(this.heroGridViewModel.getHeroTranslationsViewModels());
 
-            this.heroGridConfigToFileExporter.export(
-                    this.exportImportHeroGridByFileViewModel.getChosenHeroGridFile(),
-                    heroTranslations
-            );
-        } catch (InvalidFileFormatException | IOException e) {
+            File file = this.exportImportHeroGridByFileViewModel
+                    .getOptionalChosenHeroGridFile()
+                    .orElseThrow(() -> new NullPointerException("No File was chosen"));
+
+            this.heroGridConfigToFileExporter.export(file, heroTranslations);
+        } catch (Exception e) {
             throw new HandlerException(e.getMessage(), e);
         }
     }

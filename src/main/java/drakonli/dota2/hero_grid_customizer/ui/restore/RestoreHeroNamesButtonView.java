@@ -2,8 +2,10 @@ package drakonli.dota2.hero_grid_customizer.ui.restore;
 
 import drakonli.dota2.hero_grid_customizer.application.view_handler.HandlerException;
 import drakonli.dota2.hero_grid_customizer.application.view_handler.restore.RestoreButtonHandlerInterface;
+import drakonli.dota2.hero_grid_customizer.application.view_model.export_import.file.ExportImportHeroGridByFileViewModel;
 import drakonli.dota2.hero_grid_customizer.application.view_model.export_import.latest.ExportImportHeroGridByLatestSaveViewModel;
 import drakonli.jcomponents.notificator.NotificatorInterface;
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,23 +23,29 @@ public class RestoreHeroNamesButtonView implements Initializable
     private NotificatorInterface notificator;
     private List<RestoreButtonHandlerInterface> restoreButtonHandlers;
     private ExportImportHeroGridByLatestSaveViewModel exportImportHeroGridByLatestSaveViewModel;
+    private ExportImportHeroGridByFileViewModel exportImportHeroGridByFileViewModel;
 
     public RestoreHeroNamesButtonView(
             NotificatorInterface notificator,
             List<RestoreButtonHandlerInterface> restoreButtonHandlers,
-            ExportImportHeroGridByLatestSaveViewModel exportImportHeroGridByLatestSaveViewModel
+            ExportImportHeroGridByLatestSaveViewModel exportImportHeroGridByLatestSaveViewModel,
+            ExportImportHeroGridByFileViewModel exportImportHeroGridByFileViewModel
     )
     {
         this.notificator = notificator;
         this.restoreButtonHandlers = restoreButtonHandlers;
         this.exportImportHeroGridByLatestSaveViewModel = exportImportHeroGridByLatestSaveViewModel;
+        this.exportImportHeroGridByFileViewModel = exportImportHeroGridByFileViewModel;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
         this.restoreButton.visibleProperty().bind(
-                this.exportImportHeroGridByLatestSaveViewModel.getRestoreAvailableProperty()
+                Bindings.and(
+                        this.exportImportHeroGridByLatestSaveViewModel.getRestoreAvailableProperty(),
+                        this.exportImportHeroGridByFileViewModel.getChosenHeroGridFileAvailableProperty()
+                )
         );
     }
 

@@ -2,8 +2,7 @@ package drakonli.dota2.hero_grid_customizer.ui.save;
 
 import drakonli.dota2.hero_grid_customizer.application.view_handler.HandlerException;
 import drakonli.dota2.hero_grid_customizer.application.view_handler.save.SaveButtonHandlerInterface;
-import drakonli.dota2.hero_grid_customizer.application.view_model.grid.HeroGridViewModel;
-import drakonli.dota2.hero_grid_customizer.ui.handler.HideNodeOnObservableListEmptyHandler;
+import drakonli.dota2.hero_grid_customizer.application.view_model.export_import.file.ExportImportHeroGridByFileViewModel;
 import drakonli.jcomponents.notificator.NotificatorInterface;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,17 +18,17 @@ public class SaveHeroNamesIntoFileButtonView implements Initializable
     @FXML
     public Button saveButton;
 
-    private final HeroGridViewModel heroGridViewModel;
+    private final ExportImportHeroGridByFileViewModel exportImportHeroGridByFileViewModel;
     private final NotificatorInterface notificator;
     private final List<SaveButtonHandlerInterface> saveButtonHandlers;
 
     public SaveHeroNamesIntoFileButtonView(
-            HeroGridViewModel heroGridViewModel,
+            ExportImportHeroGridByFileViewModel exportImportHeroGridByFileViewModel,
             NotificatorInterface notificator,
             List<SaveButtonHandlerInterface> saveButtonHandlers
     )
     {
-        this.heroGridViewModel = heroGridViewModel;
+        this.exportImportHeroGridByFileViewModel = exportImportHeroGridByFileViewModel;
         this.notificator = notificator;
         this.saveButtonHandlers = saveButtonHandlers;
     }
@@ -37,10 +36,11 @@ public class SaveHeroNamesIntoFileButtonView implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        new HideNodeOnObservableListEmptyHandler(
-                this.heroGridViewModel.getHeroTranslationsViewModels(),
-                this.saveButton
-        ).handle();
+        this.saveButton.visibleProperty().bind(
+                this.exportImportHeroGridByFileViewModel.getChosenHeroGridFileAvailableProperty()
+        );
+
+        this.saveButton.managedProperty().bind(this.saveButton.visibleProperty());
     }
 
     public void onSaveClick(ActionEvent actionEvent)
