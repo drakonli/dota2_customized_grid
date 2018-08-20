@@ -22,9 +22,10 @@
     <bean id="drakonli.dota2.hero_grid_customizer.ui.save.SaveHeroNamesIntoFileButtonView"
           class="drakonli.dota2.hero_grid_customizer.ui.save.SaveHeroNamesIntoFileButtonView"
           scope="prototype">
-        <constructor-arg ref="dota2HeroGridCustomizer-exportImportByFileVM"/>
         <constructor-arg ref="dota2HeroGridCustomizer-notificator-main"/>
-        <constructor-arg ref="dota2HeroGridCustomizer-saveHeroNamesIntoFileButtonViewHandlers"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-basicExportConfigIntoFileAction"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-exportImportByFileVM"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-heroGridVM"/>
     </bean>
 
     <bean id="drakonli.dota2.hero_grid_customizer.ui.restore.RestoreHeroNamesButtonView"

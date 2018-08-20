@@ -1,16 +1,16 @@
 package drakonli.dota2.hero_grid_customizer.ui.save;
 
-import drakonli.dota2.hero_grid_customizer.application.view_handler.HandlerException;
-import drakonli.dota2.hero_grid_customizer.application.view_handler.save.SaveButtonHandlerInterface;
+import drakonli.dota2.hero_grid_customizer.application.action.config_import.dota_translation_file.IExportConfigIntoFileAction;
 import drakonli.dota2.hero_grid_customizer.application.view_model.models.ExportImportHeroGridByFileViewModel;
+import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroGridViewModel;
 import drakonli.jcomponents.notificator.NotificatorInterface;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
+import java.io.File;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class SaveHeroNamesIntoFileButtonView implements Initializable
@@ -18,19 +18,22 @@ public class SaveHeroNamesIntoFileButtonView implements Initializable
     @FXML
     public Button saveButton;
 
-    private final ExportImportHeroGridByFileViewModel exportImportHeroGridByFileViewModel;
     private final NotificatorInterface notificator;
-    private final List<SaveButtonHandlerInterface> saveButtonHandlers;
+    private final IExportConfigIntoFileAction exportConfigIntoFileAction;
+    private final ExportImportHeroGridByFileViewModel exportImportHeroGridByFileViewModel;
+    private final HeroGridViewModel heroGridViewModel;
 
     public SaveHeroNamesIntoFileButtonView(
-            ExportImportHeroGridByFileViewModel exportImportHeroGridByFileViewModel,
             NotificatorInterface notificator,
-            List<SaveButtonHandlerInterface> saveButtonHandlers
+            IExportConfigIntoFileAction exportConfigIntoFileAction,
+            ExportImportHeroGridByFileViewModel exportImportHeroGridByFileViewModel,
+            HeroGridViewModel heroGridViewModel
     )
     {
-        this.exportImportHeroGridByFileViewModel = exportImportHeroGridByFileViewModel;
         this.notificator = notificator;
-        this.saveButtonHandlers = saveButtonHandlers;
+        this.exportConfigIntoFileAction = exportConfigIntoFileAction;
+        this.exportImportHeroGridByFileViewModel = exportImportHeroGridByFileViewModel;
+        this.heroGridViewModel = heroGridViewModel;
     }
 
     @Override
@@ -46,13 +49,15 @@ public class SaveHeroNamesIntoFileButtonView implements Initializable
     public void onSaveClick(ActionEvent actionEvent)
     {
         try {
-            for (SaveButtonHandlerInterface handler : this.saveButtonHandlers) {
-                handler.handle();
-            }
+            File file = this.exportImportHeroGridByFileViewModel
+                    .getOptionalChosenHeroGridFile()
+                    .orElseThrow(() -> new NullPointerException("No File was chosen"));
+
+            this.exportConfigIntoFileAction.exportConfig(file, this.heroGridViewModel.getHeroTranslationsViewModels());
 
             this.notificator.success("Save success!");
-        } catch (HandlerException e) {
-            this.notificator.error(e.getCause().getMessage());
+        } catch (Exception e) {
+            this.notificator.error(e.getMessage());
         }
     }
 }

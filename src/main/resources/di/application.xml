@@ -6,11 +6,6 @@
            http://www.springframework.org/schema/beans/spring-beans.xsd
            http://www.springframework.org/schema/util  http://www.springframework.org/schema/util/spring-util.xsd">
 
-    <util:list id="dota2HeroGridCustomizer-saveHeroNamesIntoFileButtonViewHandlers">
-        <ref bean="dota2HeroGridCustomizer-replaceHeroNamesInTranslationsFileHandler"/>
-        <ref bean="dota2HeroGridCustomizer_restoreAvailabilityHandler"/>
-    </util:list>
-
     <util:list id="dota2HeroGridCustomizer-restoreHeroNamesButtonViewHandlers">
         <ref bean="dota2HeroGridCustomizer-restoreHeroNamesHandler"/>
     </util:list>
@@ -68,17 +63,20 @@
         <constructor-arg ref="dota2HeroGridCustomizer-heroTranslationsToViewModelMapper"/>
     </bean>
 
-    <bean id="dota2HeroGridCustomizer_restoreAvailabilityHandler"
-          class="drakonli.dota2.hero_grid_customizer.application.view_handler.save.RestoreAvailabilityHandler">
-        <constructor-arg ref="dota2HeroGridCustomizer_fileStorageRestoreAvailabilityManager"/>
-        <constructor-arg ref="dota2HeroGridCustomizer-exportImportHeroGridByLatestSaveVM"/>
-    </bean>
-
-    <bean id="dota2HeroGridCustomizer-replaceHeroNamesInTranslationsFileHandler"
-          class="drakonli.dota2.hero_grid_customizer.application.view_handler.save.ReplaceHeroNamesInTranslationsFileHandler">
-        <constructor-arg ref="dota2HeroGridCustomizer-heroGridVM"/>
-        <constructor-arg ref="dota2HeroGridCustomizer-exportImportByFileVM"/>
+    <bean id="dota2HeroGridCustomizer-basicExportConfigIntoFileAction"
+            class="drakonli.dota2.hero_grid_customizer.application.action.config_import.dota_translation_file.BasicExportConfigIntoFileAction">
         <constructor-arg ref="dota2HeroGridCustomizer-heroGridConfigToDota2TranslationsFileExporter"/>
         <constructor-arg ref="dota2HeroGridCustomizer-heroTranslationViewModelsToDomainModelMapper"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-applicationEventPublisherAwareExportConfigIntoFileActionEventPublisher"/>
+    </bean>
+
+    <bean id="dota2HeroGridCustomizer-applicationEventPublisherAwareExportConfigIntoFileActionEventPublisher"
+          class="drakonli.dota2.hero_grid_customizer.application.action.config_import.dota_translation_file.event.publisher.ApplicationEventPublisherAwareExportConfigIntoFileActionEventPublisher">
+    </bean>
+
+    <bean id="dota2HeroGridCostumizer-SetRestoreAvailableBeforeExportConfigIntoFileActionEventListener"
+          class="drakonli.dota2.hero_grid_customizer.application.action.config_import.dota_translation_file.event.listener.SetRestoreAvailableBeforeExportConfigIntoFileActionEventListener">
+        <constructor-arg ref="dota2HeroGridCustomizer_fileStorageRestoreAvailabilityManager"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-exportImportHeroGridByLatestSaveVM"/>
     </bean>
 </beans>
