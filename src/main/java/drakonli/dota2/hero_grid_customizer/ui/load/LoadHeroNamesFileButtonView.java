@@ -2,7 +2,7 @@ package drakonli.dota2.hero_grid_customizer.ui.load;
 
 import drakonli.dota2.hero_grid_customizer.application.view_handler.HandlerException;
 import drakonli.dota2.hero_grid_customizer.application.view_handler.load.LoadButtonHandlerInterface;
-import drakonli.dota2.hero_grid_customizer.application.view_model.export_import.file.ExportImportHeroGridByFileViewModel;
+import drakonli.dota2.hero_grid_customizer.application.view_model.models.ExportImportHeroGridByFileViewModel;
 import drakonli.jcomponents.file.chooser.FileChooserFactoryInterface;
 import drakonli.jcomponents.notificator.NotificatorInterface;
 import javafx.event.ActionEvent;

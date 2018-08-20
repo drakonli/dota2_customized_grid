@@ -1,7 +1,7 @@
 package drakonli.dota2.hero_grid_customizer.application.view_handler.save;
 
 import drakonli.dota2.hero_grid_customizer.application.services.RestoreAvailabilityManagerInterface;
-import drakonli.dota2.hero_grid_customizer.application.view_model.export_import.latest.ExportImportHeroGridByLatestSaveViewModel;
+import drakonli.dota2.hero_grid_customizer.application.view_model.models.ExportImportHeroGridByLatestSaveViewModel;
 
 public class RestoreAvailabilityHandler implements SaveButtonHandlerInterface
 {

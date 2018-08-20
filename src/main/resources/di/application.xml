@@ -20,15 +20,15 @@
     </util:list>
 
     <bean id="dota2HeroGridCustomizer-heroGridVM"
-          class="drakonli.dota2.hero_grid_customizer.application.view_model.grid.HeroGridViewModel">
+          class="drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroGridViewModel">
     </bean>
 
     <bean id="dota2HeroGridCustomizer-exportImportByFileVM"
-          class="drakonli.dota2.hero_grid_customizer.application.view_model.export_import.file.ExportImportHeroGridByFileViewModel">
+          class="drakonli.dota2.hero_grid_customizer.application.view_model.models.ExportImportHeroGridByFileViewModel">
     </bean>
 
     <bean id="dota2HeroGridCustomizer-exportImportHeroGridByLatestSaveVM"
-          class="drakonli.dota2.hero_grid_customizer.application.view_model.export_import.latest.ExportImportHeroGridByLatestSaveViewModel">
+          class="drakonli.dota2.hero_grid_customizer.application.view_model.models.ExportImportHeroGridByLatestSaveViewModel">
         <constructor-arg ref="dota2HeroGridCustomizer-initialValueForFileStorageRestoreAvailability"/>
     </bean>
 
@@ -44,11 +44,11 @@
     </bean>
 
     <bean id="dota2HeroGridCustomizer-heroTranslationsToViewModelMapper"
-          class="drakonli.dota2.hero_grid_customizer.application.view_model.translation.HeroTranslationsToViewModelMapper">
+          class="drakonli.dota2.hero_grid_customizer.application.view_model.services.HeroTranslationsToViewModelMapper">
     </bean>
 
     <bean id="dota2HeroGridCustomizer-heroTranslationViewModelsToDomainModelMapper"
-          class="drakonli.dota2.hero_grid_customizer.application.view_model.translation.HeroTranslationViewModelsToDomainModelMapper">
+          class="drakonli.dota2.hero_grid_customizer.application.view_model.services.HeroTranslationViewModelsToDomainModelMapper">
     </bean>
 
     <bean id="dota2HeroGridCustomizer-addHeroTranslationsByFileHandler"

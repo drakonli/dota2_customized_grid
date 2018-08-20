@@ -1,6 +1,5 @@
-package drakonli.dota2.hero_grid_customizer.application.view_model.grid;
+package drakonli.dota2.hero_grid_customizer.application.view_model.models;
 
-import drakonli.dota2.hero_grid_customizer.application.view_model.translation.HeroTranslationViewModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

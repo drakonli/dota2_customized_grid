@@ -2,8 +2,8 @@ package drakonli.dota2.hero_grid_customizer.ui.restore;
 
 import drakonli.dota2.hero_grid_customizer.application.view_handler.HandlerException;
 import drakonli.dota2.hero_grid_customizer.application.view_handler.restore.RestoreButtonHandlerInterface;
-import drakonli.dota2.hero_grid_customizer.application.view_model.export_import.file.ExportImportHeroGridByFileViewModel;
-import drakonli.dota2.hero_grid_customizer.application.view_model.export_import.latest.ExportImportHeroGridByLatestSaveViewModel;
+import drakonli.dota2.hero_grid_customizer.application.view_model.models.ExportImportHeroGridByFileViewModel;
+import drakonli.dota2.hero_grid_customizer.application.view_model.models.ExportImportHeroGridByLatestSaveViewModel;
 import drakonli.jcomponents.notificator.NotificatorInterface;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;

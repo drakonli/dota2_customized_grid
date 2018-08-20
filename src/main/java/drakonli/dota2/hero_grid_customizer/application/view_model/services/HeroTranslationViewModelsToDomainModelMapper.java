@@ -1,5 +1,6 @@
-package drakonli.dota2.hero_grid_customizer.application.view_model.translation;
+package drakonli.dota2.hero_grid_customizer.application.view_model.services;
 
+import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroTranslationViewModel;
 import drakonli.dota2.hero_grid_customizer.domain.model.HeroTranslation;
 
 import java.util.ArrayList;

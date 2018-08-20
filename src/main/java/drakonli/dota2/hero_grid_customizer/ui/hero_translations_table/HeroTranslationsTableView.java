@@ -1,7 +1,7 @@
 package drakonli.dota2.hero_grid_customizer.ui.hero_translations_table;
 
-import drakonli.dota2.hero_grid_customizer.application.view_model.grid.HeroGridViewModel;
-import drakonli.dota2.hero_grid_customizer.application.view_model.translation.HeroTranslationViewModel;
+import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroGridViewModel;
+import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroTranslationViewModel;
 import javafx.beans.property.SimpleListProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
