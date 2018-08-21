@@ -20,9 +20,9 @@ abstract class HeroGridConfigToFileExporterAbstractDecorator implements IHeroGri
     }
 
     @Override
-    public void export(File file, List<HeroTranslation> heroTranslations)
+    public void export(File file, List<HeroTranslation> heroTranslationsToExport)
             throws InvalidFileFormatException, IOException
     {
-        this.heroGridConfigToFileExporter.export(file, heroTranslations);
+        this.heroGridConfigToFileExporter.export(file, heroTranslationsToExport);
     }
 }

@@ -13,4 +13,10 @@ public interface IExportConfigIntoFileActionEventPublisher
             List<HeroTranslationViewModel> heroTranslationViewModels,
             List<HeroTranslation> heroTranslations
     );
+
+    public void publishAfterExportEvent(
+            File file,
+            List<HeroTranslationViewModel> heroTranslationViewModels,
+            List<HeroTranslation> heroTranslations
+    );
 }

@@ -7,8 +7,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public interface IHeroGridConfigToFileExporter
+public interface IHeroGridConfigFromFileImporter
 {
-    public void export(File file, List<HeroTranslation> heroTranslationsToExport)
+    public void importHeroNamesByFile(File file, List<HeroTranslation> heroTranslations)
             throws InvalidFileFormatException, IOException;
 }

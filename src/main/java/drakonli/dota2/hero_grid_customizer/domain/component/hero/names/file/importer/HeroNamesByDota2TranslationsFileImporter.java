@@ -3,6 +3,7 @@ package drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.imp
 import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.exception.Dota2InvalidFileFormatException;
 import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.extractor.HeroTranslationByFileLineExtractor;
 import drakonli.dota2.hero_grid_customizer.domain.model.HeroTranslation;
+import drakonli.dota2.hero_grid_customizer.domain.services.IHeroGridConfigFromFileImporter;
 import drakonli.jcomponents.file.reader.buffered.BufferedFileReaderFactoryInterface;
 
 import java.io.BufferedReader;
@@ -10,12 +11,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public class HeroNamesByFileImporter
+public class HeroNamesByDota2TranslationsFileImporter implements IHeroGridConfigFromFileImporter
 {
     private final BufferedFileReaderFactoryInterface readerFactory;
     private final HeroTranslationByFileLineExtractor heroTranslationByFileLineExtractor;
 
-    public HeroNamesByFileImporter(
+    public HeroNamesByDota2TranslationsFileImporter(
             BufferedFileReaderFactoryInterface readerFactory,
             HeroTranslationByFileLineExtractor heroTranslationByFileLineExtractor
     )

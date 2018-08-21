@@ -13,7 +13,7 @@ import java.util.List;
 
 public class BasicExportConfigIntoFileAction implements IExportConfigIntoFileAction
 {
-    private final IHeroGridConfigToFileExporter heroGridConfigToFileExporter;
+    private final IHeroGridConfigToFileExporter exporter;
     private final HeroTranslationViewModelsToDomainModelMapper heroTranslationViewModelsToDomainModelMapper;
     private final IExportConfigIntoFileActionEventPublisher eventPublisher;
 
@@ -23,20 +23,22 @@ public class BasicExportConfigIntoFileAction implements IExportConfigIntoFileAct
             IExportConfigIntoFileActionEventPublisher eventPublisher
     )
     {
-        this.heroGridConfigToFileExporter = heroGridConfigToFileExporter;
+        this.exporter = heroGridConfigToFileExporter;
         this.heroTranslationViewModelsToDomainModelMapper = heroTranslationViewModelsToDomainModelMapper;
         this.eventPublisher = eventPublisher;
     }
 
     @Override
-    public void exportConfig(File file, List<HeroTranslationViewModel> heroTranslationViewModels)
+    public void exportConfig(File file, List<HeroTranslationViewModel> heroTranslationViewModelsToExport)
             throws InvalidFileFormatException, IOException
     {
-        List<HeroTranslation> heroTranslations = this.heroTranslationViewModelsToDomainModelMapper
-                .mapToNewEntityList(heroTranslationViewModels);
+        List<HeroTranslation> heroTranslationsToExport = this.heroTranslationViewModelsToDomainModelMapper
+                .mapToNewEntityList(heroTranslationViewModelsToExport);
 
-        this.eventPublisher.publishBeforeExportEvent(file, heroTranslationViewModels , heroTranslations);
+        this.eventPublisher.publishBeforeExportEvent(file, heroTranslationViewModelsToExport, heroTranslationsToExport);
 
-        this.heroGridConfigToFileExporter.export(file, heroTranslations);
+        this.exporter.export(file, heroTranslationsToExport);
+
+        this.eventPublisher.publishAfterExportEvent(file, heroTranslationViewModelsToExport, heroTranslationsToExport);
     }
 }

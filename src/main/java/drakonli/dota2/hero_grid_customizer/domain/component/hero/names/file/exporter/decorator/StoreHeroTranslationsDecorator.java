@@ -24,11 +24,11 @@ public class StoreHeroTranslationsDecorator extends HeroGridConfigToFileExporter
     }
 
     @Override
-    public void export(File file, List<HeroTranslation> heroTranslations)
+    public void export(File file, List<HeroTranslation> heroTranslationsToExport)
             throws InvalidFileFormatException, IOException
     {
-        super.export(file, heroTranslations);
+        super.export(file, heroTranslationsToExport);
 
-        this.heroNamesByFileStorage.store(heroTranslations);
+        this.heroNamesByFileStorage.store(heroTranslationsToExport);
     }
 }

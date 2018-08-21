@@ -25,10 +25,10 @@ public class BackupFileDecorator extends HeroGridConfigToFileExporterAbstractDec
 
     @Override
     public void export(
-            File file, List<HeroTranslation> heroTranslations
+            File file, List<HeroTranslation> heroTranslationsToExport
     ) throws InvalidFileFormatException, IOException
     {
-        super.export(file, heroTranslations);
+        super.export(file, heroTranslationsToExport);
 
         this.backuper.backup(file);
     }

@@ -10,6 +10,6 @@ import java.util.List;
 
 public interface IExportConfigIntoFileAction
 {
-    public void exportConfig(File file, List<HeroTranslationViewModel> heroTranslationViewModels) throws
+    public void exportConfig(File file, List<HeroTranslationViewModel> heroTranslationViewModelsToExport) throws
             InvalidFileFormatException, IOException, ApplicationActionException;
 }

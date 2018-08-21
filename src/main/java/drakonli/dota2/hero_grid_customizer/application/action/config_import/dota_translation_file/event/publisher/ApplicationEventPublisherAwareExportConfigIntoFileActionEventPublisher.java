@@ -1,5 +1,6 @@
 package drakonli.dota2.hero_grid_customizer.application.action.config_import.dota_translation_file.event.publisher;
 
+import drakonli.dota2.hero_grid_customizer.application.action.config_import.dota_translation_file.event.AfterExportConfigIntoFileActionEvent;
 import drakonli.dota2.hero_grid_customizer.application.action.config_import.dota_translation_file.event.BeforeExportConfigIntoFileActionEvent;
 import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroTranslationViewModel;
 import drakonli.dota2.hero_grid_customizer.domain.model.HeroTranslation;
@@ -32,6 +33,17 @@ public class ApplicationEventPublisherAwareExportConfigIntoFileActionEventPublis
     {
         BeforeExportConfigIntoFileActionEvent event =
                 new BeforeExportConfigIntoFileActionEvent(this, file, heroTranslationViewModels, heroTranslations);
+
+        this.applicationEventPublisher.publishEvent(event);
+    }
+
+    @Override
+    public void publishAfterExportEvent(
+            File file, List<HeroTranslationViewModel> heroTranslationViewModels, List<HeroTranslation> heroTranslations
+    )
+    {
+        AfterExportConfigIntoFileActionEvent event =
+                new AfterExportConfigIntoFileActionEvent(this, file, heroTranslationViewModels, heroTranslations);
 
         this.applicationEventPublisher.publishEvent(event);
     }

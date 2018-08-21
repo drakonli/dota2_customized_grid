@@ -5,7 +5,7 @@ import drakonli.dota2.hero_grid_customizer.application.view_model.models.ExportI
 import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroGridViewModel;
 import drakonli.dota2.hero_grid_customizer.application.view_model.services.HeroTranslationViewModelsToDomainModelMapper;
 import drakonli.dota2.hero_grid_customizer.application.view_model.services.HeroTranslationsToViewModelMapper;
-import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.importer.HeroNamesByFileImporter;
+import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.importer.HeroNamesByDota2TranslationsFileImporter;
 import drakonli.dota2.hero_grid_customizer.domain.model.HeroTranslation;
 
 import java.io.File;
@@ -15,14 +15,14 @@ public class AddHeroTranslationsByFileHandler implements LoadButtonHandlerInterf
 {
     private final HeroGridViewModel heroGridViewModel;
     private final ExportImportHeroGridByFileViewModel exportImportHeroGridByFileViewModel;
-    private final HeroNamesByFileImporter importer;
+    private final HeroNamesByDota2TranslationsFileImporter importer;
     private final HeroTranslationViewModelsToDomainModelMapper heroTranslationViewModelsToDomainModelMapper;
     private final HeroTranslationsToViewModelMapper heroTranslationsToViewModelMapper;
 
     public AddHeroTranslationsByFileHandler(
             HeroGridViewModel heroGridViewModel,
             ExportImportHeroGridByFileViewModel exportImportHeroGridByFileViewModel,
-            HeroNamesByFileImporter importer,
+            HeroNamesByDota2TranslationsFileImporter importer,
             HeroTranslationViewModelsToDomainModelMapper heroTranslationViewModelsToDomainModelMapper,
             HeroTranslationsToViewModelMapper heroTranslationsToViewModelMapper
     )
@@ -47,7 +47,10 @@ public class AddHeroTranslationsByFileHandler implements LoadButtonHandlerInterf
 
             this.importer.importHeroNamesByFile(file, heroTranslations);
 
-            this.heroTranslationsToViewModelMapper.map(heroTranslations, this.heroGridViewModel.getHeroTranslationsViewModels());
+            this.heroTranslationsToViewModelMapper.map(
+                    heroTranslations,
+                    this.heroGridViewModel.getHeroTranslationsViewModels()
+            );
         } catch (Exception e) {
             throw new HandlerException(e.getMessage(), e);
         }

@@ -7,9 +7,9 @@ import drakonli.dota2.hero_grid_customizer.domain.model.HeroTranslation;
 import java.io.File;
 import java.util.List;
 
-public class BeforeExportConfigIntoFileActionEvent extends AbstractHeroTranslationsAndFileAwareApplicationEvent
+public class AfterExportConfigIntoFileActionEvent extends AbstractHeroTranslationsAndFileAwareApplicationEvent
 {
-    public BeforeExportConfigIntoFileActionEvent(
+    public AfterExportConfigIntoFileActionEvent(
             Object source, File file,
             List<HeroTranslationViewModel> heroTranslationViewModels,
             List<HeroTranslation> heroTranslations
