@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 public class HeroTranslationByFileLineExtractor
 {
     private static final String HERO_TRANSLATION_MATCH_PATTERN = "\"(npc_dota_hero_[^_]*)\".*\"(.*)\"";
-    private static final String[] HERO_TRANSLATION_FORBIDDEN_STRING_SUFFIXES = {
+    private static final String[] HERO_TRANSLATION_UNSUITED_SUFFIXES = {
             "_bio", "_radiant", "_dire", "_hype", "_bio"
     };
 
@@ -23,7 +23,7 @@ public class HeroTranslationByFileLineExtractor
 
         String heroCode = matcher.group(1);
 
-        if (this.heroCodeEndsWithForbiddenString(heroCode)) {
+        if (this.heroCodeEndsWithUnsuitedSuffix(heroCode)) {
             return null;
         }
 
@@ -32,9 +32,9 @@ public class HeroTranslationByFileLineExtractor
         return new HeroTranslation(heroCode, heroName);
     }
 
-    private Boolean heroCodeEndsWithForbiddenString(String heroCode)
+    private Boolean heroCodeEndsWithUnsuitedSuffix(String heroCode)
     {
-        for (String suffix : HERO_TRANSLATION_FORBIDDEN_STRING_SUFFIXES) {
+        for (String suffix : HERO_TRANSLATION_UNSUITED_SUFFIXES) {
             if (heroCode.endsWith(suffix)) {
                 return true;
             }
