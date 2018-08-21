@@ -1,8 +1,7 @@
 package drakonli.dota2.hero_grid_customizer.ui.load;
 
-import drakonli.dota2.hero_grid_customizer.application.view_handler.HandlerException;
-import drakonli.dota2.hero_grid_customizer.application.view_handler.load.LoadButtonHandlerInterface;
-import drakonli.dota2.hero_grid_customizer.application.view_model.models.ExportImportHeroGridByFileViewModel;
+import drakonli.dota2.hero_grid_customizer.application.action.config_import.dota_translation_file.IImportConfigFromFileAction;
+import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroGridViewModel;
 import drakonli.jcomponents.file.chooser.FileChooserFactoryInterface;
 import drakonli.jcomponents.notificator.NotificatorInterface;
 import javafx.event.ActionEvent;
@@ -10,29 +9,28 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
 import java.io.File;
-import java.util.List;
 
 public class LoadHeroNamesFileButtonView
 {
     @FXML
     public Button loadButton;
 
-    private final ExportImportHeroGridByFileViewModel exportImportHeroGridByFileViewModel;
     private final FileChooserFactoryInterface fileChooserFactory;
     private final NotificatorInterface notificator;
-    private final List<LoadButtonHandlerInterface> loadButtonHandlers;
+    private final IImportConfigFromFileAction importConfigFromFileAction;
+    private final HeroGridViewModel heroGridViewModel;
 
     public LoadHeroNamesFileButtonView(
-            ExportImportHeroGridByFileViewModel exportImportHeroGridByFileViewModel,
             FileChooserFactoryInterface fileChooserFactory,
             NotificatorInterface notificator,
-            List<LoadButtonHandlerInterface> loadButtonHandlers
+            IImportConfigFromFileAction importConfigFromFileAction,
+            HeroGridViewModel heroGridViewModel
     )
     {
-        this.exportImportHeroGridByFileViewModel = exportImportHeroGridByFileViewModel;
         this.fileChooserFactory = fileChooserFactory;
         this.notificator = notificator;
-        this.loadButtonHandlers = loadButtonHandlers;
+        this.importConfigFromFileAction = importConfigFromFileAction;
+        this.heroGridViewModel = heroGridViewModel;
     }
 
     public void onLoadClick(ActionEvent actionEvent)
@@ -43,16 +41,10 @@ public class LoadHeroNamesFileButtonView
             return;
         }
 
-        this.exportImportHeroGridByFileViewModel.setChosenHeroGridFile(file);
-
         try {
-            for (LoadButtonHandlerInterface handler : this.loadButtonHandlers) {
-                handler.handle();
-            }
-        } catch (HandlerException e) {
+            this.importConfigFromFileAction.importConfig(file, this.heroGridViewModel.getHeroTranslationsViewModels());
+        } catch (Exception e) {
             this.notificator.error(e.getCause().getMessage());
-
-            this.exportImportHeroGridByFileViewModel.setChosenHeroGridFile(null);
         }
     }
 }

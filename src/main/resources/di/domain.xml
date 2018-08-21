@@ -56,7 +56,7 @@
         <constructor-arg ref="dota2HeroGridCustomizer-translationsFileCharset"/>
     </bean>
 
-    <bean id="dota2HeroGridCustomizer-heroNamesByFileImporter"
+    <bean id="dota2HeroGridCustomizer-heroNamesByDota2TranslationsFileImporter"
           class="drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.importer.HeroNamesByDota2TranslationsFileImporter">
         <constructor-arg ref="dota2HeroGridCustomizer-dota2TranslationReaderFactory"/>
         <constructor-arg ref="dota2HeroGridCustomizer-heroTranslationByFileLineExtractor"/>
