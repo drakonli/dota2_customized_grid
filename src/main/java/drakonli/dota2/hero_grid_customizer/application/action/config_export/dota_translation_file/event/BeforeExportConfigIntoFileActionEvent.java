@@ -1,4 +1,4 @@
-package drakonli.dota2.hero_grid_customizer.application.action.config_import.dota_translation_file.event;
+package drakonli.dota2.hero_grid_customizer.application.action.config_export.dota_translation_file.event;
 
 import drakonli.dota2.hero_grid_customizer.application.action.event.AbstractHeroTranslationsAndFileAwareApplicationEvent;
 import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroTranslationViewModel;

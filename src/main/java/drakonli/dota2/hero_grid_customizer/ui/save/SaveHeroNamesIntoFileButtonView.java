@@ -1,6 +1,6 @@
 package drakonli.dota2.hero_grid_customizer.ui.save;
 
-import drakonli.dota2.hero_grid_customizer.application.action.config_import.dota_translation_file.IExportConfigIntoFileAction;
+import drakonli.dota2.hero_grid_customizer.application.action.config_export.dota_translation_file.IExportConfigIntoFileAction;
 import drakonli.dota2.hero_grid_customizer.application.view_model.models.ExportImportHeroGridByFileViewModel;
 import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroGridViewModel;
 import drakonli.jcomponents.notificator.NotificatorInterface;

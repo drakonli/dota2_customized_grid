@@ -1,6 +1,6 @@
-package drakonli.dota2.hero_grid_customizer.application.action.config_import.dota_translation_file.event.listener;
+package drakonli.dota2.hero_grid_customizer.application.action.config_export.dota_translation_file.event.listener;
 
-import drakonli.dota2.hero_grid_customizer.application.action.config_import.dota_translation_file.event.AfterExportConfigIntoFileActionEvent;
+import drakonli.dota2.hero_grid_customizer.application.action.config_export.dota_translation_file.event.AfterExportConfigIntoFileActionEvent;
 import drakonli.dota2.hero_grid_customizer.application.services.RestoreAvailabilityManagerInterface;
 import drakonli.dota2.hero_grid_customizer.application.view_model.models.ExportImportHeroGridByLatestSaveViewModel;
 import org.springframework.context.ApplicationListener;
