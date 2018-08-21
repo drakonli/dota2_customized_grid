@@ -1,10 +1,12 @@
 package drakonli.dota2.hero_grid_customizer.application.action.config_export.dota_translation_file;
 
+import drakonli.dota2.hero_grid_customizer.application.action.ApplicationActionException;
 import drakonli.dota2.hero_grid_customizer.application.action.config_export.dota_translation_file.event.publisher.IExportConfigIntoFileActionEventPublisher;
 import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroTranslationViewModel;
 import drakonli.dota2.hero_grid_customizer.application.view_model.services.HeroTranslationViewModelsToDomainModelMapper;
 import drakonli.dota2.hero_grid_customizer.domain.model.HeroTranslation;
 import drakonli.dota2.hero_grid_customizer.domain.services.IHeroGridConfigToFileExporter;
+import drakonli.dota2.hero_grid_customizer.domain.services.export.ExportException;
 import drakonli.jcomponents.file.exception.InvalidFileFormatException;
 
 import java.io.File;
@@ -30,14 +32,18 @@ public class BasicExportConfigIntoFileAction implements IExportConfigIntoFileAct
 
     @Override
     public void exportConfig(File file, List<HeroTranslationViewModel> heroTranslationViewModelsToExport)
-            throws InvalidFileFormatException, IOException
+            throws InvalidFileFormatException, IOException, ApplicationActionException
     {
         List<HeroTranslation> heroTranslationsToExport = this.heroTranslationViewModelsToDomainModelMapper
                 .mapToNewEntityList(heroTranslationViewModelsToExport);
 
         this.eventPublisher.publishBeforeExportEvent(file, heroTranslationViewModelsToExport, heroTranslationsToExport);
 
-        this.exporter.export(file, heroTranslationsToExport);
+        try {
+            this.exporter.export(file, heroTranslationsToExport);
+        } catch (ExportException e) {
+            throw new ApplicationActionException(e);
+        }
 
         this.eventPublisher.publishAfterExportEvent(file, heroTranslationViewModelsToExport, heroTranslationsToExport);
     }

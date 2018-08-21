@@ -10,17 +10,22 @@ public class HeroNamesByFileStorage
 {
     private static final String HERO_NAMES_SAVE_FILENAME = "hero_names_save.txt";
 
-    public void store(List<HeroTranslation> heroTranslations) throws IOException
+    public void store(List<HeroTranslation> heroTranslations) throws StorageException
     {
-        File heroSavesFile = new File(HERO_NAMES_SAVE_FILENAME);
-        FileOutputStream fileOut = new FileOutputStream(heroSavesFile);
-        ObjectOutputStream out = new ObjectOutputStream(fileOut);
-        out.writeObject(heroTranslations);
-        out.close();
-        fileOut.close();
+        try {
+            File heroSavesFile = new File(HERO_NAMES_SAVE_FILENAME);
+            FileOutputStream fileOut = new FileOutputStream(heroSavesFile);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(heroTranslations);
+            out.close();
+            fileOut.close();
+        } catch (Exception e)
+        {
+            throw new StorageException(e);
+        }
     }
 
-    public List<HeroTranslation> getLatest() throws IOException, ClassNotFoundException
+    public List<HeroTranslation> getLatest() throws StorageException
     {
         File heroNamesSaveFile = new File(HERO_NAMES_SAVE_FILENAME);
 
@@ -28,12 +33,17 @@ public class HeroNamesByFileStorage
             return new ArrayList<>();
         }
 
-        FileInputStream fileIn = new FileInputStream(HERO_NAMES_SAVE_FILENAME);
-        ObjectInputStream in = new ObjectInputStream(fileIn);
-        List<HeroTranslation> heroCodeToHeroName =  (List<HeroTranslation>) in.readObject();
-        in.close();
-        fileIn.close();
+        try {
+            FileInputStream fileIn = new FileInputStream(HERO_NAMES_SAVE_FILENAME);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            List<HeroTranslation> heroCodeToHeroName =  (List<HeroTranslation>) in.readObject();
+            in.close();
+            fileIn.close();
 
-        return heroCodeToHeroName;
+            return heroCodeToHeroName;
+        } catch (Exception e)
+        {
+            throw new StorageException(e);
+        }
     }
 }

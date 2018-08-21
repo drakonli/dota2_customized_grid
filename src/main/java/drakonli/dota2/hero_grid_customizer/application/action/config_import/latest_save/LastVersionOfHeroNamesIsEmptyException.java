@@ -1,4 +1,4 @@
-package drakonli.dota2.hero_grid_customizer.domain.component.hero.names.restorer;
+package drakonli.dota2.hero_grid_customizer.application.action.config_import.latest_save;
 
 public class LastVersionOfHeroNamesIsEmptyException extends Exception
 {

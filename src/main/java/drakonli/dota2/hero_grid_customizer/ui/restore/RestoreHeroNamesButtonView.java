@@ -1,9 +1,9 @@
 package drakonli.dota2.hero_grid_customizer.ui.restore;
 
-import drakonli.dota2.hero_grid_customizer.application.view_handler.HandlerException;
-import drakonli.dota2.hero_grid_customizer.application.view_handler.restore.RestoreButtonHandlerInterface;
+import drakonli.dota2.hero_grid_customizer.application.action.config_import.latest_save.IImportConfigByLatestSaveAction;
 import drakonli.dota2.hero_grid_customizer.application.view_model.models.ExportImportHeroGridByFileViewModel;
 import drakonli.dota2.hero_grid_customizer.application.view_model.models.ExportImportHeroGridByLatestSaveViewModel;
+import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroGridViewModel;
 import drakonli.jcomponents.notificator.NotificatorInterface;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
@@ -12,7 +12,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.MenuItem;
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class RestoreHeroNamesButtonView implements Initializable
@@ -21,21 +20,24 @@ public class RestoreHeroNamesButtonView implements Initializable
     public MenuItem restoreButton;
 
     private NotificatorInterface notificator;
-    private List<RestoreButtonHandlerInterface> restoreButtonHandlers;
     private ExportImportHeroGridByLatestSaveViewModel exportImportHeroGridByLatestSaveViewModel;
     private ExportImportHeroGridByFileViewModel exportImportHeroGridByFileViewModel;
+    private HeroGridViewModel heroGridViewModel;
+    private IImportConfigByLatestSaveAction importConfigByLatestSaveAction;
 
     public RestoreHeroNamesButtonView(
             NotificatorInterface notificator,
-            List<RestoreButtonHandlerInterface> restoreButtonHandlers,
             ExportImportHeroGridByLatestSaveViewModel exportImportHeroGridByLatestSaveViewModel,
-            ExportImportHeroGridByFileViewModel exportImportHeroGridByFileViewModel
+            ExportImportHeroGridByFileViewModel exportImportHeroGridByFileViewModel,
+            HeroGridViewModel heroGridViewModel,
+            IImportConfigByLatestSaveAction importConfigByLatestSaveAction
     )
     {
         this.notificator = notificator;
-        this.restoreButtonHandlers = restoreButtonHandlers;
         this.exportImportHeroGridByLatestSaveViewModel = exportImportHeroGridByLatestSaveViewModel;
         this.exportImportHeroGridByFileViewModel = exportImportHeroGridByFileViewModel;
+        this.heroGridViewModel = heroGridViewModel;
+        this.importConfigByLatestSaveAction = importConfigByLatestSaveAction;
     }
 
     @Override
@@ -52,13 +54,11 @@ public class RestoreHeroNamesButtonView implements Initializable
     public void onRestoreClick(ActionEvent actionEvent)
     {
         try {
-            for (RestoreButtonHandlerInterface handler : restoreButtonHandlers) {
-                handler.handle();
-            }
+            this.importConfigByLatestSaveAction.importConfig(this.heroGridViewModel.getHeroTranslationsViewModels());
 
             this.notificator.success("Restore success!");
-        } catch (HandlerException e) {
-            this.notificator.error(e.getCause().getMessage());
+        } catch (Exception e) {
+            this.notificator.error(e.getMessage());
         }
     }
 }

@@ -2,6 +2,7 @@ package drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.exp
 
 import drakonli.dota2.hero_grid_customizer.domain.model.HeroTranslation;
 import drakonli.dota2.hero_grid_customizer.domain.services.IHeroGridConfigToFileExporter;
+import drakonli.dota2.hero_grid_customizer.domain.services.export.ExportException;
 import drakonli.jcomponents.file.backuper.FileBackuper;
 import drakonli.jcomponents.file.exception.InvalidFileFormatException;
 
@@ -26,7 +27,7 @@ public class BackupFileDecorator extends HeroGridConfigToFileExporterAbstractDec
     @Override
     public void export(
             File file, List<HeroTranslation> heroTranslationsToExport
-    ) throws InvalidFileFormatException, IOException
+    ) throws InvalidFileFormatException, IOException, ExportException
     {
         super.export(file, heroTranslationsToExport);
 
