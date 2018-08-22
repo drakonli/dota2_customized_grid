@@ -3,7 +3,7 @@ package drakonli.dota2.hero_grid_customizer.application.action.config_export.dot
 import drakonli.dota2.hero_grid_customizer.application.action.config_export.dota_translation_file.event.AfterExportConfigIntoFileActionEvent;
 import drakonli.dota2.hero_grid_customizer.application.action.config_export.dota_translation_file.event.BeforeExportConfigIntoFileActionEvent;
 import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroTranslationViewModel;
-import drakonli.dota2.hero_grid_customizer.domain.model.HeroNameCustomization;
+import drakonli.dota2.hero_grid_customizer.domain.model.HeroNamesGridCustomization;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
 
@@ -28,22 +28,34 @@ public class ApplicationEventPublisherAwareExportConfigIntoFileActionEventPublis
     public void publishBeforeExportEvent(
             File file,
             List<HeroTranslationViewModel> heroTranslationViewModels,
-            List<HeroNameCustomization> heroNameCustomizations
+            HeroNamesGridCustomization heroNamesGridCustomization
     )
     {
         BeforeExportConfigIntoFileActionEvent event =
-                new BeforeExportConfigIntoFileActionEvent(this, file, heroTranslationViewModels, heroNameCustomizations);
+                new BeforeExportConfigIntoFileActionEvent(
+                        this,
+                        file,
+                        heroTranslationViewModels,
+                        heroNamesGridCustomization
+                );
 
         this.applicationEventPublisher.publishEvent(event);
     }
 
     @Override
     public void publishAfterExportEvent(
-            File file, List<HeroTranslationViewModel> heroTranslationViewModels, List<HeroNameCustomization> heroNameCustomizations
+            File file,
+            List<HeroTranslationViewModel> heroTranslationViewModels,
+            HeroNamesGridCustomization heroNamesGridCustomization
     )
     {
         AfterExportConfigIntoFileActionEvent event =
-                new AfterExportConfigIntoFileActionEvent(this, file, heroTranslationViewModels, heroNameCustomizations);
+                new AfterExportConfigIntoFileActionEvent(
+                        this,
+                        file,
+                        heroTranslationViewModels,
+                        heroNamesGridCustomization
+                );
 
         this.applicationEventPublisher.publishEvent(event);
     }

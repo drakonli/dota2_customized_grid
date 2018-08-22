@@ -1,19 +1,19 @@
 package drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.editor.txt;
 
 import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.extractor.HeroTranslationByFileLineExtractor;
-import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.predicate.HeroTranslationByHeroCodePredicate;
+import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.predicate.HeroTranslationByHeroNameUIDPredicate;
 import drakonli.dota2.hero_grid_customizer.domain.model.HeroNameCustomization;
+import drakonli.dota2.hero_grid_customizer.domain.model.HeroNamesGridCustomization;
 import drakonli.jcomponents.file.editor.txt.TxtLineEditorInterface;
 import drakonli.jcomponents.predicate.TxtLinePredicateInterface;
 
-import java.util.List;
 import java.util.Optional;
 
 /**
  * This class is used to test a line in a file to be a dota2 hero translation line and to edit that line using the
  * "new" translations list. So that the current line that holds a translation for specific hero would be replaced by
  * a new line that's currently in the "heroNameCustomizations" List.
- *
+ * <p>
  * Two interfaces are joined for optimization purposes - so that when we wouldn't need to extract the same translation
  * twice from a line.
  */
@@ -23,15 +23,15 @@ public class Dota2TranslationsFileHeroTranslationsLineEditorAndPredicate impleme
 {
     private HeroNameCustomization currentHeroNameCustomizationInLine;
 
-    private final List<HeroNameCustomization> heroNameCustomizations;
+    private final HeroNamesGridCustomization heroNamesGridCustomization;
     private final HeroTranslationByFileLineExtractor heroTranslationByLineExtractor;
 
     public Dota2TranslationsFileHeroTranslationsLineEditorAndPredicate(
-            List<HeroNameCustomization> heroNameCustomizations,
+            HeroNamesGridCustomization heroNamesGridCustomization,
             HeroTranslationByFileLineExtractor heroTranslationByLineExtractor
     )
     {
-        this.heroNameCustomizations = heroNameCustomizations;
+        this.heroNamesGridCustomization = heroNamesGridCustomization;
         this.heroTranslationByLineExtractor = heroTranslationByLineExtractor;
     }
 
@@ -54,9 +54,13 @@ public class Dota2TranslationsFileHeroTranslationsLineEditorAndPredicate impleme
             return line;
         }
 
-        Optional<HeroNameCustomization> optionalHeroTranslation = this.heroNameCustomizations
+        Optional<HeroNameCustomization> optionalHeroTranslation = this.heroNamesGridCustomization
                 .stream()
-                .filter(new HeroTranslationByHeroCodePredicate(this.currentHeroNameCustomizationInLine.getHeroNameUID()))
+                .filter(
+                        new HeroTranslationByHeroNameUIDPredicate(
+                                this.currentHeroNameCustomizationInLine.getHeroNameUID()
+                        )
+                )
                 .findFirst();
 
         if (!optionalHeroTranslation.isPresent()) {

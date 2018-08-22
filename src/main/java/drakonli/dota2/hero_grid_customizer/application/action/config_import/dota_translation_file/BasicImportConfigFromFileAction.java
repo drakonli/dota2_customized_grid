@@ -1,9 +1,8 @@
 package drakonli.dota2.hero_grid_customizer.application.action.config_import.dota_translation_file;
 
 import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroTranslationViewModel;
-import drakonli.dota2.hero_grid_customizer.application.view_model.services.HeroTranslationViewModelsToDomainModelMapper;
-import drakonli.dota2.hero_grid_customizer.application.view_model.services.HeroTranslationsToViewModelMapper;
-import drakonli.dota2.hero_grid_customizer.domain.model.HeroNameCustomization;
+import drakonli.dota2.hero_grid_customizer.application.view_model.services.HeroNamesGridCustomizationToViewModelMapper;
+import drakonli.dota2.hero_grid_customizer.domain.model.HeroNamesGridCustomization;
 import drakonli.dota2.hero_grid_customizer.domain.services.IHeroGridConfigFromFileImporter;
 import drakonli.jcomponents.file.exception.InvalidFileFormatException;
 
@@ -14,29 +13,24 @@ import java.util.List;
 public class BasicImportConfigFromFileAction implements IImportConfigFromFileAction
 {
     private final IHeroGridConfigFromFileImporter importer;
-    private final HeroTranslationViewModelsToDomainModelMapper heroTranslationViewModelsToDomainModelMapper;
-    private final HeroTranslationsToViewModelMapper heroTranslationsToViewModelMapper;
+    private final HeroNamesGridCustomizationToViewModelMapper heroNamesGridCustomizationToViewModelMapper;
 
     public BasicImportConfigFromFileAction(
             IHeroGridConfigFromFileImporter importer,
-            HeroTranslationViewModelsToDomainModelMapper heroTranslationViewModelsToDomainModelMapper,
-            HeroTranslationsToViewModelMapper heroTranslationsToViewModelMapper
+            HeroNamesGridCustomizationToViewModelMapper heroNamesGridCustomizationToViewModelMapper
     )
     {
         this.importer = importer;
-        this.heroTranslationViewModelsToDomainModelMapper = heroTranslationViewModelsToDomainModelMapper;
-        this.heroTranslationsToViewModelMapper = heroTranslationsToViewModelMapper;
+        this.heroNamesGridCustomizationToViewModelMapper = heroNamesGridCustomizationToViewModelMapper;
     }
 
     @Override
     public void importConfig(File file, List<HeroTranslationViewModel> heroTranslationViewModelsToImportInto) throws
             InvalidFileFormatException, IOException
     {
-        List<HeroNameCustomization> heroNameCustomizations = this.heroTranslationViewModelsToDomainModelMapper
-                .mapToNewEntityList(heroTranslationViewModelsToImportInto);
+        HeroNamesGridCustomization heroNamesGridCustomization = this.importer.importHeroNamesByFile(file);
 
-        this.importer.importHeroNamesByFile(file, heroNameCustomizations);
-
-        this.heroTranslationsToViewModelMapper.map(heroNameCustomizations, heroTranslationViewModelsToImportInto);
+        this.heroNamesGridCustomizationToViewModelMapper
+                .map(heroNamesGridCustomization, heroTranslationViewModelsToImportInto);
     }
 }

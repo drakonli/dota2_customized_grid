@@ -9,5 +9,5 @@ import java.util.List;
 public interface IImportConfigByLatestSaveAction
 {
     public void importConfig(List<HeroTranslationViewModel> heroTranslationViewModelsToImportInto)
-            throws StorageException, LastVersionOfHeroNamesIsEmptyException, ApplicationActionException;
+            throws StorageException, LastVersionOfHeroNamesGridCustomizationIsEmptyException, ApplicationActionException;
 }

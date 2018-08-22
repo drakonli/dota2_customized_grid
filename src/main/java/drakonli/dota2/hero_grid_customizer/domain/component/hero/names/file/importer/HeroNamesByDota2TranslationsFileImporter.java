@@ -3,13 +3,14 @@ package drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.imp
 import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.exception.Dota2InvalidFileFormatException;
 import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.extractor.HeroTranslationByFileLineExtractor;
 import drakonli.dota2.hero_grid_customizer.domain.model.HeroNameCustomization;
+import drakonli.dota2.hero_grid_customizer.domain.model.HeroNamesGridCustomization;
 import drakonli.dota2.hero_grid_customizer.domain.services.IHeroGridConfigFromFileImporter;
+import drakonli.jcomponents.file.exception.InvalidFileFormatException;
 import drakonli.jcomponents.file.reader.buffered.BufferedFileReaderFactoryInterface;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 public class HeroNamesByDota2TranslationsFileImporter implements IHeroGridConfigFromFileImporter
 {
@@ -25,12 +26,11 @@ public class HeroNamesByDota2TranslationsFileImporter implements IHeroGridConfig
         this.heroTranslationByFileLineExtractor = heroTranslationByFileLineExtractor;
     }
 
-    public void importHeroNamesByFile(File heroNamesFile, List<HeroNameCustomization> heroNameCustomizations)
-            throws Dota2InvalidFileFormatException, IOException
+    public HeroNamesGridCustomization importHeroNamesByFile(File file) throws InvalidFileFormatException, IOException
     {
-        BufferedReader reader = this.readerFactory.createFileReader(heroNamesFile);
+        BufferedReader reader = this.readerFactory.createFileReader(file);
 
-        heroNameCustomizations.clear();
+        HeroNamesGridCustomization heroNamesGridCustomization = new HeroNamesGridCustomization();
 
         String currentLine;
         while (null != (currentLine = reader.readLine())) {
@@ -44,15 +44,15 @@ public class HeroNamesByDota2TranslationsFileImporter implements IHeroGridConfig
                 continue;
             }
 
-            heroNameCustomizations.add(heroNameCustomization);
+            heroNamesGridCustomization.add(heroNameCustomization);
         }
 
         reader.close();
 
-        if (!heroNameCustomizations.isEmpty()) {
-            return;
+        if (heroNamesGridCustomization.isEmpty()) {
+            throw new Dota2InvalidFileFormatException();
         }
 
-        throw new Dota2InvalidFileFormatException();
+        return heroNamesGridCustomization;
     }
 }
