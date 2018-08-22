@@ -11,9 +11,4 @@ public class HeroGridViewModel
     {
         return this.heroTranslations;
     }
-
-    public void setHeroTranslations(ObservableList<HeroTranslationViewModel> heroTranslations)
-    {
-        this.heroTranslations = heroTranslations;
-    }
 }
