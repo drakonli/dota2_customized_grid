@@ -1,10 +1,10 @@
 package drakonli.dota2.hero_grid_customizer.domain.component.hero.names.predicate;
 
-import drakonli.dota2.hero_grid_customizer.domain.model.HeroTranslation;
+import drakonli.dota2.hero_grid_customizer.domain.model.HeroNameCustomization;
 
 import java.util.function.Predicate;
 
-public class HeroTranslationByHeroCodePredicate implements Predicate<HeroTranslation>
+public class HeroTranslationByHeroCodePredicate implements Predicate<HeroNameCustomization>
 {
     private final String heroCode;
 
@@ -14,8 +14,8 @@ public class HeroTranslationByHeroCodePredicate implements Predicate<HeroTransla
     }
 
     @Override
-    public boolean test(HeroTranslation heroTranslation)
+    public boolean test(HeroNameCustomization heroNameCustomization)
     {
-        return heroTranslation.getHeroCode().equals(this.heroCode);
+        return heroNameCustomization.getHeroCode().equals(this.heroCode);
     }
 }

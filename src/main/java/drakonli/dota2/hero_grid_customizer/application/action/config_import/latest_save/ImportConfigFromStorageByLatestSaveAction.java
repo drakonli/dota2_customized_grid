@@ -4,7 +4,7 @@ import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroTra
 import drakonli.dota2.hero_grid_customizer.application.view_model.services.HeroTranslationsToViewModelMapper;
 import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.storage.HeroNamesByFileStorage;
 import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.storage.StorageException;
-import drakonli.dota2.hero_grid_customizer.domain.model.HeroTranslation;
+import drakonli.dota2.hero_grid_customizer.domain.model.HeroNameCustomization;
 
 import java.util.List;
 
@@ -26,14 +26,14 @@ public class ImportConfigFromStorageByLatestSaveAction implements IImportConfigB
     public void importConfig(List<HeroTranslationViewModel> heroTranslationViewModelsToImportInto)
             throws StorageException, LastVersionOfHeroNamesIsEmptyException
     {
-        List<HeroTranslation> heroTranslations = this.storage.getLatest();
+        List<HeroNameCustomization> heroNameCustomizations = this.storage.getLatest();
 
-        if (heroTranslations.isEmpty()) {
+        if (heroNameCustomizations.isEmpty()) {
             throw new LastVersionOfHeroNamesIsEmptyException();
         }
 
         heroTranslationViewModelsToImportInto.clear();
 
-        this.heroTranslationsToViewModelMapper.map(heroTranslations, heroTranslationViewModelsToImportInto);
+        this.heroTranslationsToViewModelMapper.map(heroNameCustomizations, heroTranslationViewModelsToImportInto);
     }
 }

@@ -1,6 +1,6 @@
 package drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.extractor;
 
-import drakonli.dota2.hero_grid_customizer.domain.model.HeroTranslation;
+import drakonli.dota2.hero_grid_customizer.domain.model.HeroNameCustomization;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -12,7 +12,7 @@ public class HeroTranslationByFileLineExtractor
             "_bio", "_radiant", "_dire", "_hype", "_bio"
     };
 
-    public HeroTranslation extractByLine(String line)
+    public HeroNameCustomization extractByLine(String line)
     {
         Pattern pattern = Pattern.compile(HERO_TRANSLATION_MATCH_PATTERN);
         Matcher matcher = pattern.matcher(line);
@@ -29,7 +29,7 @@ public class HeroTranslationByFileLineExtractor
 
         String heroName = matcher.group(2);
 
-        return new HeroTranslation(heroCode, heroName);
+        return new HeroNameCustomization(heroCode, heroName);
     }
 
     private Boolean heroCodeEndsWithUnsuitedSuffix(String heroCode)

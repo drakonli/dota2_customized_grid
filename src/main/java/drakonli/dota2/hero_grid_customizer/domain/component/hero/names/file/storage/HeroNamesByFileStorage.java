@@ -1,6 +1,6 @@
 package drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.storage;
 
-import drakonli.dota2.hero_grid_customizer.domain.model.HeroTranslation;
+import drakonli.dota2.hero_grid_customizer.domain.model.HeroNameCustomization;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -10,13 +10,13 @@ public class HeroNamesByFileStorage
 {
     private static final String HERO_NAMES_SAVE_FILENAME = "hero_names_save.txt";
 
-    public void store(List<HeroTranslation> heroTranslations) throws StorageException
+    public void store(List<HeroNameCustomization> heroNameCustomizations) throws StorageException
     {
         try {
             File heroSavesFile = new File(HERO_NAMES_SAVE_FILENAME);
             FileOutputStream fileOut = new FileOutputStream(heroSavesFile);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(heroTranslations);
+            out.writeObject(heroNameCustomizations);
             out.close();
             fileOut.close();
         } catch (Exception e)
@@ -25,7 +25,7 @@ public class HeroNamesByFileStorage
         }
     }
 
-    public List<HeroTranslation> getLatest() throws StorageException
+    public List<HeroNameCustomization> getLatest() throws StorageException
     {
         File heroNamesSaveFile = new File(HERO_NAMES_SAVE_FILENAME);
 
@@ -36,7 +36,7 @@ public class HeroNamesByFileStorage
         try {
             FileInputStream fileIn = new FileInputStream(HERO_NAMES_SAVE_FILENAME);
             ObjectInputStream in = new ObjectInputStream(fileIn);
-            List<HeroTranslation> heroCodeToHeroName =  (List<HeroTranslation>) in.readObject();
+            List<HeroNameCustomization> heroCodeToHeroName =  (List<HeroNameCustomization>) in.readObject();
             in.close();
             fileIn.close();
 

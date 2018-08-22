@@ -2,7 +2,7 @@ package drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.imp
 
 import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.exception.Dota2InvalidFileFormatException;
 import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.extractor.HeroTranslationByFileLineExtractor;
-import drakonli.dota2.hero_grid_customizer.domain.model.HeroTranslation;
+import drakonli.dota2.hero_grid_customizer.domain.model.HeroNameCustomization;
 import drakonli.dota2.hero_grid_customizer.domain.services.IHeroGridConfigFromFileImporter;
 import drakonli.jcomponents.file.reader.buffered.BufferedFileReaderFactoryInterface;
 
@@ -25,12 +25,12 @@ public class HeroNamesByDota2TranslationsFileImporter implements IHeroGridConfig
         this.heroTranslationByFileLineExtractor = heroTranslationByFileLineExtractor;
     }
 
-    public void importHeroNamesByFile(File heroNamesFile, List<HeroTranslation> heroTranslations)
+    public void importHeroNamesByFile(File heroNamesFile, List<HeroNameCustomization> heroNameCustomizations)
             throws Dota2InvalidFileFormatException, IOException
     {
         BufferedReader reader = this.readerFactory.createFileReader(heroNamesFile);
 
-        heroTranslations.clear();
+        heroNameCustomizations.clear();
 
         String currentLine;
         while (null != (currentLine = reader.readLine())) {
@@ -38,18 +38,18 @@ public class HeroNamesByDota2TranslationsFileImporter implements IHeroGridConfig
                 continue;
             }
 
-            HeroTranslation heroTranslation = this.heroTranslationByFileLineExtractor.extractByLine(currentLine);
+            HeroNameCustomization heroNameCustomization = this.heroTranslationByFileLineExtractor.extractByLine(currentLine);
 
-            if (null == heroTranslation) {
+            if (null == heroNameCustomization) {
                 continue;
             }
 
-            heroTranslations.add(heroTranslation);
+            heroNameCustomizations.add(heroNameCustomization);
         }
 
         reader.close();
 
-        if (!heroTranslations.isEmpty()) {
+        if (!heroNameCustomizations.isEmpty()) {
             return;
         }
 

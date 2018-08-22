@@ -4,7 +4,7 @@ import drakonli.dota2.hero_grid_customizer.application.action.ApplicationActionE
 import drakonli.dota2.hero_grid_customizer.application.action.config_export.dota_translation_file.event.publisher.IExportConfigIntoFileActionEventPublisher;
 import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroTranslationViewModel;
 import drakonli.dota2.hero_grid_customizer.application.view_model.services.HeroTranslationViewModelsToDomainModelMapper;
-import drakonli.dota2.hero_grid_customizer.domain.model.HeroTranslation;
+import drakonli.dota2.hero_grid_customizer.domain.model.HeroNameCustomization;
 import drakonli.dota2.hero_grid_customizer.domain.services.IHeroGridConfigToFileExporter;
 import drakonli.dota2.hero_grid_customizer.domain.services.export.ExportException;
 import drakonli.jcomponents.file.exception.InvalidFileFormatException;
@@ -34,7 +34,7 @@ public class BasicExportConfigIntoFileAction implements IExportConfigIntoFileAct
     public void exportConfig(File file, List<HeroTranslationViewModel> heroTranslationViewModelsToExport)
             throws InvalidFileFormatException, IOException, ApplicationActionException
     {
-        List<HeroTranslation> heroTranslationsToExport = this.heroTranslationViewModelsToDomainModelMapper
+        List<HeroNameCustomization> heroTranslationsToExport = this.heroTranslationViewModelsToDomainModelMapper
                 .mapToNewEntityList(heroTranslationViewModelsToExport);
 
         this.eventPublisher.publishBeforeExportEvent(file, heroTranslationViewModelsToExport, heroTranslationsToExport);

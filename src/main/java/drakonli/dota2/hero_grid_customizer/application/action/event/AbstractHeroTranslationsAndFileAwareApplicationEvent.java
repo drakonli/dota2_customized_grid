@@ -1,7 +1,7 @@
 package drakonli.dota2.hero_grid_customizer.application.action.event;
 
 import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroTranslationViewModel;
-import drakonli.dota2.hero_grid_customizer.domain.model.HeroTranslation;
+import drakonli.dota2.hero_grid_customizer.domain.model.HeroNameCustomization;
 import org.springframework.context.ApplicationEvent;
 
 import java.io.File;
@@ -11,20 +11,20 @@ abstract public class AbstractHeroTranslationsAndFileAwareApplicationEvent exten
 {
     private File file;
     private List<HeroTranslationViewModel> heroTranslationViewModels;
-    private List<HeroTranslation> heroTranslations;
+    private List<HeroNameCustomization> heroNameCustomizations;
 
     public AbstractHeroTranslationsAndFileAwareApplicationEvent(
             Object source,
             File file,
             List<HeroTranslationViewModel> heroTranslationViewModels,
-            List<HeroTranslation> heroTranslations
+            List<HeroNameCustomization> heroNameCustomizations
     )
     {
         super(source);
 
         this.file = file;
         this.heroTranslationViewModels = heroTranslationViewModels;
-        this.heroTranslations = heroTranslations;
+        this.heroNameCustomizations = heroNameCustomizations;
     }
 
     public File getFile()
@@ -37,8 +37,8 @@ abstract public class AbstractHeroTranslationsAndFileAwareApplicationEvent exten
         return heroTranslationViewModels;
     }
 
-    public List<HeroTranslation> getHeroTranslations()
+    public List<HeroNameCustomization> getHeroNameCustomizations()
     {
-        return heroTranslations;
+        return heroNameCustomizations;
     }
 }

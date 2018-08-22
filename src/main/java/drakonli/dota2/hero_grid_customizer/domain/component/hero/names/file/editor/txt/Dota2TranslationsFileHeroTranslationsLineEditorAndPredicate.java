@@ -2,7 +2,7 @@ package drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.edi
 
 import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.extractor.HeroTranslationByFileLineExtractor;
 import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.predicate.HeroTranslationByHeroCodePredicate;
-import drakonli.dota2.hero_grid_customizer.domain.model.HeroTranslation;
+import drakonli.dota2.hero_grid_customizer.domain.model.HeroNameCustomization;
 import drakonli.jcomponents.file.editor.txt.TxtLineEditorInterface;
 import drakonli.jcomponents.predicate.TxtLinePredicateInterface;
 
@@ -12,7 +12,7 @@ import java.util.Optional;
 /**
  * This class is used to test a line in a file to be a dota2 hero translation line and to edit that line using the
  * "new" translations list. So that the current line that holds a translation for specific hero would be replaced by
- * a new line that's currently in the "heroTranslations" List.
+ * a new line that's currently in the "heroNameCustomizations" List.
  *
  * Two interfaces are joined for optimization purposes - so that when we wouldn't need to extract the same translation
  * twice from a line.
@@ -21,17 +21,17 @@ public class Dota2TranslationsFileHeroTranslationsLineEditorAndPredicate impleme
         TxtLineEditorInterface,
         TxtLinePredicateInterface
 {
-    private HeroTranslation currentHeroTranslationInLine;
+    private HeroNameCustomization currentHeroNameCustomizationInLine;
 
-    private final List<HeroTranslation> heroTranslations;
+    private final List<HeroNameCustomization> heroNameCustomizations;
     private final HeroTranslationByFileLineExtractor heroTranslationByLineExtractor;
 
     public Dota2TranslationsFileHeroTranslationsLineEditorAndPredicate(
-            List<HeroTranslation> heroTranslations,
+            List<HeroNameCustomization> heroNameCustomizations,
             HeroTranslationByFileLineExtractor heroTranslationByLineExtractor
     )
     {
-        this.heroTranslations = heroTranslations;
+        this.heroNameCustomizations = heroNameCustomizations;
         this.heroTranslationByLineExtractor = heroTranslationByLineExtractor;
     }
 
@@ -42,21 +42,21 @@ public class Dota2TranslationsFileHeroTranslationsLineEditorAndPredicate impleme
             return false;
         }
 
-        this.currentHeroTranslationInLine = this.heroTranslationByLineExtractor.extractByLine(line);
+        this.currentHeroNameCustomizationInLine = this.heroTranslationByLineExtractor.extractByLine(line);
 
-        return null != this.currentHeroTranslationInLine;
+        return null != this.currentHeroNameCustomizationInLine;
     }
 
     @Override
     public String editLine(String line)
     {
-        if (null == this.currentHeroTranslationInLine) {
+        if (null == this.currentHeroNameCustomizationInLine) {
             return line;
         }
 
-        Optional<HeroTranslation> optionalHeroTranslation = this.heroTranslations
+        Optional<HeroNameCustomization> optionalHeroTranslation = this.heroNameCustomizations
                 .stream()
-                .filter(new HeroTranslationByHeroCodePredicate(this.currentHeroTranslationInLine.getHeroCode()))
+                .filter(new HeroTranslationByHeroCodePredicate(this.currentHeroNameCustomizationInLine.getHeroCode()))
                 .findFirst();
 
         if (!optionalHeroTranslation.isPresent()) {
@@ -64,7 +64,7 @@ public class Dota2TranslationsFileHeroTranslationsLineEditorAndPredicate impleme
         }
 
         return line.replace(
-                "\"" + this.currentHeroTranslationInLine.getHeroName() + "\"",
+                "\"" + this.currentHeroNameCustomizationInLine.getHeroName() + "\"",
                 "\"" + optionalHeroTranslation.get().getHeroName() + "\""
         );
     }

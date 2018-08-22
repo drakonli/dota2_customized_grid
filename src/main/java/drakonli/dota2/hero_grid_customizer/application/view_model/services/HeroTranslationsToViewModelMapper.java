@@ -1,24 +1,24 @@
 package drakonli.dota2.hero_grid_customizer.application.view_model.services;
 
 import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroTranslationViewModel;
-import drakonli.dota2.hero_grid_customizer.domain.model.HeroTranslation;
+import drakonli.dota2.hero_grid_customizer.domain.model.HeroNameCustomization;
 
 import java.util.List;
 
 public class HeroTranslationsToViewModelMapper
 {
     public void map(
-            List<HeroTranslation> heroTranslations,
+            List<HeroNameCustomization> heroNameCustomizations,
             List<HeroTranslationViewModel> heroTranslationViewModels
     )
     {
         heroTranslationViewModels.clear();
 
-        for (HeroTranslation heroTranslation : heroTranslations) {
+        for (HeroNameCustomization heroNameCustomization : heroNameCustomizations) {
             heroTranslationViewModels.add(
                     new HeroTranslationViewModel(
-                            heroTranslation.getHeroName(),
-                            heroTranslation.getHeroCode()
+                            heroNameCustomization.getHeroName(),
+                            heroNameCustomization.getHeroCode()
                     )
             );
         }

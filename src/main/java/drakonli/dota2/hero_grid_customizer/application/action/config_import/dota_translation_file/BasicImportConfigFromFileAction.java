@@ -3,7 +3,7 @@ package drakonli.dota2.hero_grid_customizer.application.action.config_import.dot
 import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroTranslationViewModel;
 import drakonli.dota2.hero_grid_customizer.application.view_model.services.HeroTranslationViewModelsToDomainModelMapper;
 import drakonli.dota2.hero_grid_customizer.application.view_model.services.HeroTranslationsToViewModelMapper;
-import drakonli.dota2.hero_grid_customizer.domain.model.HeroTranslation;
+import drakonli.dota2.hero_grid_customizer.domain.model.HeroNameCustomization;
 import drakonli.dota2.hero_grid_customizer.domain.services.IHeroGridConfigFromFileImporter;
 import drakonli.jcomponents.file.exception.InvalidFileFormatException;
 
@@ -32,11 +32,11 @@ public class BasicImportConfigFromFileAction implements IImportConfigFromFileAct
     public void importConfig(File file, List<HeroTranslationViewModel> heroTranslationViewModelsToImportInto) throws
             InvalidFileFormatException, IOException
     {
-        List<HeroTranslation> heroTranslations = this.heroTranslationViewModelsToDomainModelMapper
+        List<HeroNameCustomization> heroNameCustomizations = this.heroTranslationViewModelsToDomainModelMapper
                 .mapToNewEntityList(heroTranslationViewModelsToImportInto);
 
-        this.importer.importHeroNamesByFile(file, heroTranslations);
+        this.importer.importHeroNamesByFile(file, heroNameCustomizations);
 
-        this.heroTranslationsToViewModelMapper.map(heroTranslations, heroTranslationViewModelsToImportInto);
+        this.heroTranslationsToViewModelMapper.map(heroNameCustomizations, heroTranslationViewModelsToImportInto);
     }
 }
