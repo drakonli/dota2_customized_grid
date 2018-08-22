@@ -56,7 +56,7 @@ public class Dota2TranslationsFileHeroTranslationsLineEditorAndPredicate impleme
 
         Optional<HeroNameCustomization> optionalHeroTranslation = this.heroNameCustomizations
                 .stream()
-                .filter(new HeroTranslationByHeroCodePredicate(this.currentHeroNameCustomizationInLine.getHeroCode()))
+                .filter(new HeroTranslationByHeroCodePredicate(this.currentHeroNameCustomizationInLine.getHeroNameUID()))
                 .findFirst();
 
         if (!optionalHeroTranslation.isPresent()) {

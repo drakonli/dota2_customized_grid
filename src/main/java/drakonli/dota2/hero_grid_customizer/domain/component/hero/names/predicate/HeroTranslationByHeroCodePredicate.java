@@ -16,6 +16,6 @@ public class HeroTranslationByHeroCodePredicate implements Predicate<HeroNameCus
     @Override
     public boolean test(HeroNameCustomization heroNameCustomization)
     {
-        return heroNameCustomization.getHeroCode().equals(this.heroCode);
+        return heroNameCustomization.getHeroNameUID().equals(this.heroCode);
     }
 }

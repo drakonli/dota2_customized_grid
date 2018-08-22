@@ -4,18 +4,18 @@ import java.io.Serializable;
 
 public class HeroNameCustomization implements Serializable
 {
-    private final String heroCode;
+    private final String heroNameUID;
     private final String heroName;
 
-    public HeroNameCustomization(String heroCode, String heroName)
+    public HeroNameCustomization(String heroNameUID, String heroName)
     {
-        this.heroCode = heroCode;
+        this.heroNameUID = heroNameUID;
         this.heroName = heroName;
     }
 
-    public String getHeroCode()
+    public String getHeroNameUID()
     {
-        return this.heroCode;
+        return this.heroNameUID;
     }
 
     public String getHeroName()

@@ -18,7 +18,7 @@ public class HeroTranslationsToViewModelMapper
             heroTranslationViewModels.add(
                     new HeroTranslationViewModel(
                             heroNameCustomization.getHeroName(),
-                            heroNameCustomization.getHeroCode()
+                            heroNameCustomization.getHeroNameUID()
                     )
             );
         }
