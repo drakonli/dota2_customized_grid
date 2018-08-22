@@ -15,7 +15,7 @@ public class Dota2HeroGridCustomizer extends Application
     {
         ApplicationContext context = new ClassPathXmlApplicationContext("di/*");
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("ui/main/MainView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ui/MainView.fxml"));
         loader.setControllerFactory(context::getBean);
 
         primaryStage.setTitle("Dota 2 Grid Customization");

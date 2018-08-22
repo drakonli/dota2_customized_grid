@@ -1,4 +1,4 @@
-package drakonli.dota2.hero_grid_customizer.ui.load;
+package drakonli.dota2.hero_grid_customizer.ui.customization_menu_bar.import_customization.from_file;
 
 import drakonli.dota2.hero_grid_customizer.application.action.config_import.dota_translation_file.IImportConfigFromFileAction;
 import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroGridViewModel;
@@ -6,21 +6,21 @@ import drakonli.jcomponents.file.chooser.FileChooserFactoryInterface;
 import drakonli.jcomponents.notificator.NotificatorInterface;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
 
 import java.io.File;
 
-public class LoadHeroNamesFileButtonView
+public class ImportCustomizationFromFileMenuItemView
 {
     @FXML
-    public Button loadButton;
+    public MenuItem importByFileMenuItem;
 
     private final FileChooserFactoryInterface fileChooserFactory;
     private final NotificatorInterface notificator;
     private final IImportConfigFromFileAction importConfigFromFileAction;
     private final HeroGridViewModel heroGridViewModel;
 
-    public LoadHeroNamesFileButtonView(
+    public ImportCustomizationFromFileMenuItemView(
             FileChooserFactoryInterface fileChooserFactory,
             NotificatorInterface notificator,
             IImportConfigFromFileAction importConfigFromFileAction,
@@ -33,9 +33,11 @@ public class LoadHeroNamesFileButtonView
         this.heroGridViewModel = heroGridViewModel;
     }
 
-    public void onLoadClick(ActionEvent actionEvent)
+    public void onImportClick(ActionEvent actionEvent)
     {
-        File file = this.fileChooserFactory.createFileChooser().showOpenDialog(this.loadButton.getScene().getWindow());
+        File file = this.fileChooserFactory.createFileChooser().showOpenDialog(
+                this.importByFileMenuItem.getParentPopup().getScene().getWindow()
+        );
 
         if (null == file) {
             return;
@@ -43,6 +45,8 @@ public class LoadHeroNamesFileButtonView
 
         try {
             this.importConfigFromFileAction.importConfig(file, this.heroGridViewModel.getHeroTranslationsViewModels());
+
+            this.notificator.success("Import by file success!");
         } catch (Exception e) {
             this.notificator.error(e.getCause().getMessage());
         }
