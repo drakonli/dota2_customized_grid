@@ -17,7 +17,7 @@
                 source="/drakonli/dota2/hero_grid_customizer/ui/customization_table/HeroNamesCustomizationTableView.fxml"/>
 
     <HBox alignment="bottom_right" spacing="10" GridPane.rowIndex="3">
-        <fx:include source="/drakonli/dota2/hero_grid_customizer/ui/clear/ClearButtonView.fxml" />
+        <fx:include source="/drakonli/dota2/hero_grid_customizer/ui/customization_table/clear/ClearCustomizationButtonView.fxml" />
     </HBox>
 
 </GridPane>

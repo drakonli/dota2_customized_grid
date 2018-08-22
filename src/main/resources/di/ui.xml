@@ -37,8 +37,8 @@
         <constructor-arg ref="dota2HeroGridCustomizer-importConfigFromStorageByLatestSaveAction"/>
     </bean>
 
-    <bean id="drakonli.dota2.hero_grid_customizer.ui.clear.ClearButtonView"
-          class="drakonli.dota2.hero_grid_customizer.ui.clear.ClearButtonView"
+    <bean id="drakonli.dota2.hero_grid_customizer.ui.customization_table.clear.ClearCustomizationButtonView"
+          class="drakonli.dota2.hero_grid_customizer.ui.customization_table.clear.ClearCustomizationButtonView"
           scope="prototype">
         <constructor-arg ref="dota2HeroGridCustomizer-heroGridVM"/>
         <constructor-arg ref="dota2HeroGridCustomizer-exportImportByFileVM"/>
