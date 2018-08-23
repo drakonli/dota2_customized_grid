@@ -6,7 +6,7 @@ import drakonli.dota2.hero_grid_customizer.domain.model.HeroNameCustomization;
 
 import java.util.List;
 
-public class HeroGridCustomizationToViewModelMapper
+public class HeroGridCustomizationToViewModelsMapper
 {
     public void map(
             HeroGridCustomization heroGridCustomization,

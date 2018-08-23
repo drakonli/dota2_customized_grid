@@ -1,7 +1,7 @@
 package drakonli.dota2.hero_grid_customizer.application.action.config_import.dota_translation_file;
 
 import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroTranslationViewModel;
-import drakonli.dota2.hero_grid_customizer.application.view_model.services.HeroGridCustomizationToViewModelMapper;
+import drakonli.dota2.hero_grid_customizer.application.view_model.services.HeroGridCustomizationToViewModelsMapper;
 import drakonli.dota2.hero_grid_customizer.domain.model.HeroGridCustomization;
 import drakonli.dota2.hero_grid_customizer.domain.services.IHeroGridConfigFromFileImporter;
 import drakonli.jcomponents.file.exception.InvalidFileFormatException;
@@ -13,15 +13,15 @@ import java.util.List;
 public class BasicImportConfigFromFileAction implements IImportConfigFromFileAction
 {
     private final IHeroGridConfigFromFileImporter importer;
-    private final HeroGridCustomizationToViewModelMapper heroGridCustomizationToViewModelMapper;
+    private final HeroGridCustomizationToViewModelsMapper heroGridCustomizationToViewModelsMapper;
 
     public BasicImportConfigFromFileAction(
             IHeroGridConfigFromFileImporter importer,
-            HeroGridCustomizationToViewModelMapper heroGridCustomizationToViewModelMapper
+            HeroGridCustomizationToViewModelsMapper heroGridCustomizationToViewModelsMapper
     )
     {
         this.importer = importer;
-        this.heroGridCustomizationToViewModelMapper = heroGridCustomizationToViewModelMapper;
+        this.heroGridCustomizationToViewModelsMapper = heroGridCustomizationToViewModelsMapper;
     }
 
     @Override
@@ -30,7 +30,7 @@ public class BasicImportConfigFromFileAction implements IImportConfigFromFileAct
     {
         HeroGridCustomization heroGridCustomization = this.importer.importHeroNamesByFile(file);
 
-        this.heroGridCustomizationToViewModelMapper
+        this.heroGridCustomizationToViewModelsMapper
                 .map(heroGridCustomization, heroTranslationViewModelsToImportInto);
     }
 }
