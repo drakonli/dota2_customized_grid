@@ -1,6 +1,6 @@
 package drakonli.dota2.hero_grid_customizer.application.action.config_import.dota_translation_file;
 
-import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroTranslationViewModel;
+import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroNameCustomizationVM;
 import drakonli.dota2.hero_grid_customizer.application.view_model.services.HeroGridCustomizationToViewModelsMapper;
 import drakonli.dota2.hero_grid_customizer.domain.model.HeroGridCustomization;
 import drakonli.dota2.hero_grid_customizer.domain.services.IHeroGridConfigFromFileImporter;
@@ -25,12 +25,12 @@ public class BasicImportConfigFromFileAction implements IImportConfigFromFileAct
     }
 
     @Override
-    public void importConfig(File file, List<HeroTranslationViewModel> heroTranslationViewModelsToImportInto) throws
+    public void importConfig(File file, List<HeroNameCustomizationVM> heroNameCustomizationVMListToImportInto) throws
             InvalidFileFormatException, IOException
     {
         HeroGridCustomization heroGridCustomization = this.importer.importHeroNamesByFile(file);
 
         this.heroGridCustomizationToViewModelsMapper
-                .map(heroGridCustomization, heroTranslationViewModelsToImportInto);
+                .map(heroGridCustomization, heroNameCustomizationVMListToImportInto);
     }
 }

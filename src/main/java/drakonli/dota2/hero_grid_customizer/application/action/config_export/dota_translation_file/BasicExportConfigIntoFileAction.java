@@ -2,7 +2,7 @@ package drakonli.dota2.hero_grid_customizer.application.action.config_export.dot
 
 import drakonli.dota2.hero_grid_customizer.application.action.ApplicationActionException;
 import drakonli.dota2.hero_grid_customizer.application.action.config_export.dota_translation_file.event.publisher.IExportConfigIntoFileActionEventPublisher;
-import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroTranslationViewModel;
+import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroNameCustomizationVM;
 import drakonli.dota2.hero_grid_customizer.application.view_model.services.HeroGridCustomizationByViewModelsFactory;
 import drakonli.dota2.hero_grid_customizer.domain.model.HeroGridCustomization;
 import drakonli.dota2.hero_grid_customizer.domain.services.IHeroGridConfigToFileExporter;
@@ -31,15 +31,15 @@ public class BasicExportConfigIntoFileAction implements IExportConfigIntoFileAct
     }
 
     @Override
-    public void exportConfig(File file, List<HeroTranslationViewModel> heroTranslationViewModelsToExport)
+    public void exportConfig(File file, List<HeroNameCustomizationVM> heroNameCustomizationVMListToExport)
             throws InvalidFileFormatException, IOException, ApplicationActionException
     {
         HeroGridCustomization heroGridCustomization =
-                this.heroGridCustomizationFactory.create(heroTranslationViewModelsToExport);
+                this.heroGridCustomizationFactory.create(heroNameCustomizationVMListToExport);
 
         this.eventPublisher.publishBeforeExportEvent(
                 file,
-                heroTranslationViewModelsToExport,
+                heroNameCustomizationVMListToExport,
                 heroGridCustomization
         );
 
@@ -51,7 +51,7 @@ public class BasicExportConfigIntoFileAction implements IExportConfigIntoFileAct
 
         this.eventPublisher.publishAfterExportEvent(
                 file,
-                heroTranslationViewModelsToExport,
+                heroNameCustomizationVMListToExport,
                 heroGridCustomization
         );
     }

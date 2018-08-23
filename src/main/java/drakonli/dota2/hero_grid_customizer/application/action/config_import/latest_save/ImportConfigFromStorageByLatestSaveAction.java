@@ -1,6 +1,6 @@
 package drakonli.dota2.hero_grid_customizer.application.action.config_import.latest_save;
 
-import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroTranslationViewModel;
+import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroNameCustomizationVM;
 import drakonli.dota2.hero_grid_customizer.application.view_model.services.HeroGridCustomizationToViewModelsMapper;
 import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.storage.HeroGridCustomizationByFileStorage;
 import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.storage.StorageException;
@@ -23,7 +23,7 @@ public class ImportConfigFromStorageByLatestSaveAction implements IImportConfigB
     }
 
     @Override
-    public void importConfig(List<HeroTranslationViewModel> heroTranslationViewModelsToImportInto)
+    public void importConfig(List<HeroNameCustomizationVM> heroNameCustomizationVMListToImportInto)
             throws StorageException, LastVersionOfHeroGridCustomizationIsEmptyException
     {
         HeroGridCustomization heroGridCustomization = this.storage.getLatest();
@@ -33,6 +33,6 @@ public class ImportConfigFromStorageByLatestSaveAction implements IImportConfigB
         }
 
         this.heroGridCustomizationToViewModelsMapper
-                .map(heroGridCustomization, heroTranslationViewModelsToImportInto);
+                .map(heroGridCustomization, heroNameCustomizationVMListToImportInto);
     }
 }

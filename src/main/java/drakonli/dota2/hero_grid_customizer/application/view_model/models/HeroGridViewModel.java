@@ -5,10 +5,10 @@ import javafx.collections.ObservableList;
 
 public class HeroGridViewModel
 {
-    private ObservableList<HeroTranslationViewModel> heroTranslations = FXCollections.observableArrayList();
+    private ObservableList<HeroNameCustomizationVM> heroNameCustomizationVMList = FXCollections.observableArrayList();
 
-    public ObservableList<HeroTranslationViewModel> getHeroTranslationsViewModels()
+    public ObservableList<HeroNameCustomizationVM> getHeroNameCustomizationVMList()
     {
-        return this.heroTranslations;
+        return this.heroNameCustomizationVMList;
     }
 }

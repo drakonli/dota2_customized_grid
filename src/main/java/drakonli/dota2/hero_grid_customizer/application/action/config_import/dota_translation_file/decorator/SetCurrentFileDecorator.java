@@ -3,7 +3,7 @@ package drakonli.dota2.hero_grid_customizer.application.action.config_import.dot
 import drakonli.dota2.hero_grid_customizer.application.action.ApplicationActionException;
 import drakonli.dota2.hero_grid_customizer.application.action.config_import.dota_translation_file.IImportConfigFromFileAction;
 import drakonli.dota2.hero_grid_customizer.application.view_model.models.ExportImportHeroGridByFileViewModel;
-import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroTranslationViewModel;
+import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroNameCustomizationVM;
 import drakonli.jcomponents.file.exception.InvalidFileFormatException;
 
 import java.io.File;
@@ -26,10 +26,10 @@ public class SetCurrentFileDecorator extends AbstractImportConfigFromFileActionD
 
     @Override
     public void importConfig(
-            File file, List<HeroTranslationViewModel> heroTranslationViewModelsToImportInto
+            File file, List<HeroNameCustomizationVM> heroNameCustomizationVMListToImportInto
     ) throws InvalidFileFormatException, IOException, ApplicationActionException
     {
-        super.importConfig(file, heroTranslationViewModelsToImportInto);
+        super.importConfig(file, heroNameCustomizationVMListToImportInto);
 
         this.exportImportHeroGridByFileViewModel.setChosenHeroGridFile(file);
     }

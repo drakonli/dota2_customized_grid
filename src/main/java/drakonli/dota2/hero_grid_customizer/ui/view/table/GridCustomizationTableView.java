@@ -1,7 +1,7 @@
 package drakonli.dota2.hero_grid_customizer.ui.view.table;
 
 import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroGridViewModel;
-import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroTranslationViewModel;
+import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroNameCustomizationVM;
 import javafx.beans.property.SimpleListProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,9 +14,9 @@ import java.util.ResourceBundle;
 public class GridCustomizationTableView implements Initializable
 {
     @FXML
-    public TableView<HeroTranslationViewModel> tableView;
+    public TableView<HeroNameCustomizationVM> tableView;
     @FXML
-    public TableColumn<HeroTranslationViewModel, String> heroCustomizationColumn;
+    public TableColumn<HeroNameCustomizationVM, String> heroCustomizationColumn;
 
     private final HeroGridViewModel heroGridViewModel;
 
@@ -31,7 +31,7 @@ public class GridCustomizationTableView implements Initializable
     public void initialize(URL location, ResourceBundle resources)
     {
         this.tableView.itemsProperty().bind(
-                new SimpleListProperty<>(this.heroGridViewModel.getHeroTranslationsViewModels())
+                new SimpleListProperty<>(this.heroGridViewModel.getHeroNameCustomizationVMList())
         );
         this.handleHeroNameColumnEdit();
     }
@@ -39,10 +39,10 @@ public class GridCustomizationTableView implements Initializable
     private void handleHeroNameColumnEdit()
     {
         this.heroCustomizationColumn.setOnEditCommit(
-                (TableColumn.CellEditEvent<HeroTranslationViewModel, String> editEvent) -> {
+                (TableColumn.CellEditEvent<HeroNameCustomizationVM, String> editEvent) -> {
                     final int currentRowNumber = editEvent.getTablePosition().getRow();
 
-                    final HeroTranslationViewModel currentlyEditedViewModel =
+                    final HeroNameCustomizationVM currentlyEditedViewModel =
                             editEvent.getTableView().getItems().get(currentRowNumber);
 
                     currentlyEditedViewModel.setHeroName(editEvent.getNewValue());

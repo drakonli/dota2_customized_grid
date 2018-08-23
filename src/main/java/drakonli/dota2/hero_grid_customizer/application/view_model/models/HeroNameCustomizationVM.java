@@ -2,12 +2,12 @@ package drakonli.dota2.hero_grid_customizer.application.view_model.models;
 
 import javafx.beans.property.SimpleStringProperty;
 
-public class HeroTranslationViewModel
+public class HeroNameCustomizationVM
 {
     private final SimpleStringProperty heroName = new SimpleStringProperty("");
     private final SimpleStringProperty heroCode = new SimpleStringProperty("");
 
-    public HeroTranslationViewModel(String name, String code)
+    public HeroNameCustomizationVM(String name, String code)
     {
         this.setHeroName(name);
         this.setHeroCode(code);

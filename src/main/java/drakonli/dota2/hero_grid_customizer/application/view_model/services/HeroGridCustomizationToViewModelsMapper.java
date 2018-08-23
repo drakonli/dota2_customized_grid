@@ -1,6 +1,6 @@
 package drakonli.dota2.hero_grid_customizer.application.view_model.services;
 
-import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroTranslationViewModel;
+import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroNameCustomizationVM;
 import drakonli.dota2.hero_grid_customizer.domain.model.HeroGridCustomization;
 import drakonli.dota2.hero_grid_customizer.domain.model.HeroNameCustomization;
 
@@ -10,14 +10,14 @@ public class HeroGridCustomizationToViewModelsMapper
 {
     public void map(
             HeroGridCustomization heroGridCustomization,
-            List<HeroTranslationViewModel> heroTranslationViewModels
+            List<HeroNameCustomizationVM> heroNameCustomizationVMList
     )
     {
-        heroTranslationViewModels.clear();
+        heroNameCustomizationVMList.clear();
 
         for (HeroNameCustomization heroNameCustomization : heroGridCustomization) {
-            heroTranslationViewModels.add(
-                    new HeroTranslationViewModel(
+            heroNameCustomizationVMList.add(
+                    new HeroNameCustomizationVM(
                             heroNameCustomization.getHeroName(),
                             heroNameCustomization.getHeroNameUID()
                     )

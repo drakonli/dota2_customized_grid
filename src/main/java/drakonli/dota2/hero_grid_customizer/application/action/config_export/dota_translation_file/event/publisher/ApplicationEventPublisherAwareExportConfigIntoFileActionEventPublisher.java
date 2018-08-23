@@ -2,7 +2,7 @@ package drakonli.dota2.hero_grid_customizer.application.action.config_export.dot
 
 import drakonli.dota2.hero_grid_customizer.application.action.config_export.dota_translation_file.event.AfterExportConfigIntoFileActionEvent;
 import drakonli.dota2.hero_grid_customizer.application.action.config_export.dota_translation_file.event.BeforeExportConfigIntoFileActionEvent;
-import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroTranslationViewModel;
+import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroNameCustomizationVM;
 import drakonli.dota2.hero_grid_customizer.domain.model.HeroGridCustomization;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
@@ -27,7 +27,7 @@ public class ApplicationEventPublisherAwareExportConfigIntoFileActionEventPublis
     @Override
     public void publishBeforeExportEvent(
             File file,
-            List<HeroTranslationViewModel> heroTranslationViewModels,
+            List<HeroNameCustomizationVM> heroNameCustomizationVMList,
             HeroGridCustomization heroGridCustomization
     )
     {
@@ -35,7 +35,7 @@ public class ApplicationEventPublisherAwareExportConfigIntoFileActionEventPublis
                 new BeforeExportConfigIntoFileActionEvent(
                         this,
                         file,
-                        heroTranslationViewModels,
+                        heroNameCustomizationVMList,
                         heroGridCustomization
                 );
 
@@ -45,7 +45,7 @@ public class ApplicationEventPublisherAwareExportConfigIntoFileActionEventPublis
     @Override
     public void publishAfterExportEvent(
             File file,
-            List<HeroTranslationViewModel> heroTranslationViewModels,
+            List<HeroNameCustomizationVM> heroNameCustomizationVMList,
             HeroGridCustomization heroGridCustomization
     )
     {
@@ -53,7 +53,7 @@ public class ApplicationEventPublisherAwareExportConfigIntoFileActionEventPublis
                 new AfterExportConfigIntoFileActionEvent(
                         this,
                         file,
-                        heroTranslationViewModels,
+                        heroNameCustomizationVMList,
                         heroGridCustomization
                 );
 

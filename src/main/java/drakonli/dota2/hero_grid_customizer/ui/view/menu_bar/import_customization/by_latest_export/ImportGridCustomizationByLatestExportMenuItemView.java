@@ -46,7 +46,7 @@ public class ImportGridCustomizationByLatestExportMenuItemView implements Initia
     public void onImportClick(ActionEvent actionEvent)
     {
         try {
-            this.importConfigByLatestSaveAction.importConfig(this.heroGridViewModel.getHeroTranslationsViewModels());
+            this.importConfigByLatestSaveAction.importConfig(this.heroGridViewModel.getHeroNameCustomizationVMList());
 
             this.notificator.success("Import by latest save success!");
         } catch (Exception e) {

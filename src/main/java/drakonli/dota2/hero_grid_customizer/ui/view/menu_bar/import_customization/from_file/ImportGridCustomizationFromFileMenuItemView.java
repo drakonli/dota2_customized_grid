@@ -44,7 +44,7 @@ public class ImportGridCustomizationFromFileMenuItemView
         }
 
         try {
-            this.importConfigFromFileAction.importConfig(file, this.heroGridViewModel.getHeroTranslationsViewModels());
+            this.importConfigFromFileAction.importConfig(file, this.heroGridViewModel.getHeroNameCustomizationVMList());
 
             this.notificator.success("Import by file success!");
         } catch (Exception e) {

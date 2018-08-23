@@ -1,7 +1,7 @@
 package drakonli.dota2.hero_grid_customizer.application.action.config_export.dota_translation_file.event;
 
 import drakonli.dota2.hero_grid_customizer.application.action.event.AbstractHeroTranslationsAndFileAwareApplicationEvent;
-import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroTranslationViewModel;
+import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroNameCustomizationVM;
 import drakonli.dota2.hero_grid_customizer.domain.model.HeroGridCustomization;
 
 import java.io.File;
@@ -11,10 +11,10 @@ public class BeforeExportConfigIntoFileActionEvent extends AbstractHeroTranslati
 {
     public BeforeExportConfigIntoFileActionEvent(
             Object source, File file,
-            List<HeroTranslationViewModel> heroTranslationViewModels,
+            List<HeroNameCustomizationVM> heroNameCustomizationVMList,
             HeroGridCustomization heroGridCustomization
     )
     {
-        super(source, file, heroTranslationViewModels, heroGridCustomization);
+        super(source, file, heroNameCustomizationVMList, heroGridCustomization);
     }
 }

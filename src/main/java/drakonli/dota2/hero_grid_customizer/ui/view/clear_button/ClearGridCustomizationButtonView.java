@@ -29,13 +29,13 @@ public class ClearGridCustomizationButtonView
 
     public void onClearClick(ActionEvent actionEvent)
     {
-        if (this.heroGridViewModel.getHeroTranslationsViewModels().isEmpty()) {
+        if (this.heroGridViewModel.getHeroNameCustomizationVMList().isEmpty()) {
             this.notificator.success("The Hero Grid is already empty");
 
             return;
         }
 
-        this.heroGridViewModel.getHeroTranslationsViewModels().clear();
+        this.heroGridViewModel.getHeroNameCustomizationVMList().clear();
         this.exportImportHeroGridByFileViewModel.setChosenHeroGridFile(null);
 
         this.notificator.success("The Hero Grid has been cleared");

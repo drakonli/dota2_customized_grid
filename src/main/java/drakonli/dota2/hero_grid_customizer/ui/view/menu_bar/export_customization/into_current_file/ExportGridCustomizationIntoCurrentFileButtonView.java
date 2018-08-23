@@ -51,7 +51,7 @@ public class ExportGridCustomizationIntoCurrentFileButtonView implements Initial
                     .getOptionalChosenHeroGridFile()
                     .orElseThrow(() -> new NullPointerException("No File was chosen"));
 
-            this.exportConfigIntoFileAction.exportConfig(file, this.heroGridViewModel.getHeroTranslationsViewModels());
+            this.exportConfigIntoFileAction.exportConfig(file, this.heroGridViewModel.getHeroNameCustomizationVMList());
 
             this.notificator.success("Export success!");
         } catch (Exception e) {
