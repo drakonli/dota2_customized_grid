@@ -5,7 +5,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 import java.io.File;
 import java.util.Optional;
 
-public class ExportImportHeroGridByFileViewModel
+public class ExportImportHeroGridCustomizationByFileVM
 {
     private File chosenHeroGridFile;
     private SimpleBooleanProperty chosenHeroGridFileAvailableProperty = new SimpleBooleanProperty(false);

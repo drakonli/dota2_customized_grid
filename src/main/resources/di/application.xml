@@ -9,7 +9,7 @@
     </bean>
 
     <bean id="dota2HeroGridCustomizer-exportImportByFileVM"
-          class="drakonli.dota2.hero_grid_customizer.application.view_model.models.ExportImportHeroGridByFileViewModel">
+          class="drakonli.dota2.hero_grid_customizer.application.view_model.models.ExportImportHeroGridCustomizationByFileVM">
     </bean>
 
     <bean id="dota2HeroGridCustomizer-exportImportHeroGridByLatestSaveVM"

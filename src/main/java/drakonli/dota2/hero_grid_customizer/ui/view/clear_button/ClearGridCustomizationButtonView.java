@@ -1,6 +1,6 @@
 package drakonli.dota2.hero_grid_customizer.ui.view.clear_button;
 
-import drakonli.dota2.hero_grid_customizer.application.view_model.models.ExportImportHeroGridByFileViewModel;
+import drakonli.dota2.hero_grid_customizer.application.view_model.models.ExportImportHeroGridCustomizationByFileVM;
 import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroGridCustomizationVM;
 import drakonli.jcomponents.notificator.NotificatorInterface;
 import javafx.event.ActionEvent;
@@ -13,17 +13,17 @@ public class ClearGridCustomizationButtonView
     public Button clearButton;
 
     private final HeroGridCustomizationVM heroGridCustomizationVM;
-    private final ExportImportHeroGridByFileViewModel exportImportHeroGridByFileViewModel;
+    private final ExportImportHeroGridCustomizationByFileVM exportImportHeroGridCustomizationByFileVM;
     private final NotificatorInterface notificator;
 
     public ClearGridCustomizationButtonView(
             HeroGridCustomizationVM heroGridCustomizationVM,
-            ExportImportHeroGridByFileViewModel exportImportHeroGridByFileViewModel,
+            ExportImportHeroGridCustomizationByFileVM exportImportHeroGridCustomizationByFileVM,
             NotificatorInterface notificator
     )
     {
         this.heroGridCustomizationVM = heroGridCustomizationVM;
-        this.exportImportHeroGridByFileViewModel = exportImportHeroGridByFileViewModel;
+        this.exportImportHeroGridCustomizationByFileVM = exportImportHeroGridCustomizationByFileVM;
         this.notificator = notificator;
     }
 
@@ -36,7 +36,7 @@ public class ClearGridCustomizationButtonView
         }
 
         this.heroGridCustomizationVM.getHeroNameCustomizationVMList().clear();
-        this.exportImportHeroGridByFileViewModel.setChosenHeroGridFile(null);
+        this.exportImportHeroGridCustomizationByFileVM.setChosenHeroGridFile(null);
 
         this.notificator.success("The Hero Grid has been cleared");
     }
