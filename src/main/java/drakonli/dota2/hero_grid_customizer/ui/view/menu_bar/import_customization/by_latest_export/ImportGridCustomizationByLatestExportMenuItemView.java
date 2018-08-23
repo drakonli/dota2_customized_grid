@@ -12,7 +12,7 @@ import javafx.scene.control.MenuItem;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ImportCustomizationByLatestExportMenuItemView implements Initializable
+public class ImportGridCustomizationByLatestExportMenuItemView implements Initializable
 {
     @FXML
     public MenuItem importByLatestExportMenuItem;
@@ -22,7 +22,7 @@ public class ImportCustomizationByLatestExportMenuItemView implements Initializa
     private HeroGridViewModel heroGridViewModel;
     private IImportConfigByLatestSaveAction importConfigByLatestSaveAction;
 
-    public ImportCustomizationByLatestExportMenuItemView(
+    public ImportGridCustomizationByLatestExportMenuItemView(
             NotificatorInterface notificator,
             ExportImportHeroGridByLatestSaveViewModel exportImportHeroGridByLatestSaveViewModel,
             HeroGridViewModel heroGridViewModel,

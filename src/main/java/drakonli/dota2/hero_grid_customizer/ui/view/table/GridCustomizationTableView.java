@@ -11,7 +11,7 @@ import javafx.scene.control.TableView;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class HeroNamesCustomizationTableView implements Initializable
+public class GridCustomizationTableView implements Initializable
 {
     @FXML
     public TableView<HeroTranslationViewModel> tableView;
@@ -20,7 +20,7 @@ public class HeroNamesCustomizationTableView implements Initializable
 
     private final HeroGridViewModel heroGridViewModel;
 
-    public HeroNamesCustomizationTableView(
+    public GridCustomizationTableView(
             HeroGridViewModel heroGridViewModel
     )
     {

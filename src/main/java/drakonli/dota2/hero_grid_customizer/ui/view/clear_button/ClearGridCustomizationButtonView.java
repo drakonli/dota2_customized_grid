@@ -7,7 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class ClearCustomizationButtonView
+public class ClearGridCustomizationButtonView
 {
     @FXML
     public Button clearButton;
@@ -16,7 +16,7 @@ public class ClearCustomizationButtonView
     private final ExportImportHeroGridByFileViewModel exportImportHeroGridByFileViewModel;
     private final NotificatorInterface notificator;
 
-    public ClearCustomizationButtonView(
+    public ClearGridCustomizationButtonView(
             HeroGridViewModel heroGridViewModel,
             ExportImportHeroGridByFileViewModel exportImportHeroGridByFileViewModel,
             NotificatorInterface notificator

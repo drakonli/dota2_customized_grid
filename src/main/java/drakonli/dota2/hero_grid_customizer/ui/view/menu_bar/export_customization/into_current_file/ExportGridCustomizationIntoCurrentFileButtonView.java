@@ -13,7 +13,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ExportCustomizationIntoCurrentFileButtonView implements Initializable
+public class ExportGridCustomizationIntoCurrentFileButtonView implements Initializable
 {
     @FXML
     public MenuItem exportCustomizationIntoCurrentFileMenuItem;
@@ -23,7 +23,7 @@ public class ExportCustomizationIntoCurrentFileButtonView implements Initializab
     private final ExportImportHeroGridByFileViewModel exportImportHeroGridByFileViewModel;
     private final HeroGridViewModel heroGridViewModel;
 
-    public ExportCustomizationIntoCurrentFileButtonView(
+    public ExportGridCustomizationIntoCurrentFileButtonView(
             NotificatorInterface notificator,
             IExportConfigIntoFileAction exportConfigIntoFileAction,
             ExportImportHeroGridByFileViewModel exportImportHeroGridByFileViewModel,

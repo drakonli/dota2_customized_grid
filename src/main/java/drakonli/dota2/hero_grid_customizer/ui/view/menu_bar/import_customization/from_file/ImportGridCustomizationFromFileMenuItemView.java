@@ -10,7 +10,7 @@ import javafx.scene.control.MenuItem;
 
 import java.io.File;
 
-public class ImportCustomizationFromFileMenuItemView
+public class ImportGridCustomizationFromFileMenuItemView
 {
     @FXML
     public MenuItem importByFileMenuItem;
@@ -20,7 +20,7 @@ public class ImportCustomizationFromFileMenuItemView
     private final IImportConfigFromFileAction importConfigFromFileAction;
     private final HeroGridViewModel heroGridViewModel;
 
-    public ImportCustomizationFromFileMenuItemView(
+    public ImportGridCustomizationFromFileMenuItemView(
             FileChooserFactoryInterface fileChooserFactory,
             NotificatorInterface notificator,
             IImportConfigFromFileAction importConfigFromFileAction,
