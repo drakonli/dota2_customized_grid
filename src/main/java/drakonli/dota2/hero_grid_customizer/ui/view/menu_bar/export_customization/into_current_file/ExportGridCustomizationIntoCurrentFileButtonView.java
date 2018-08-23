@@ -2,7 +2,7 @@ package drakonli.dota2.hero_grid_customizer.ui.view.menu_bar.export_customizatio
 
 import drakonli.dota2.hero_grid_customizer.application.action.config_export.dota_translation_file.IExportConfigIntoFileAction;
 import drakonli.dota2.hero_grid_customizer.application.view_model.models.ExportImportHeroGridByFileViewModel;
-import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroGridViewModel;
+import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroGridCustomizationVM;
 import drakonli.jcomponents.notificator.NotificatorInterface;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,19 +21,19 @@ public class ExportGridCustomizationIntoCurrentFileButtonView implements Initial
     private final NotificatorInterface notificator;
     private final IExportConfigIntoFileAction exportConfigIntoFileAction;
     private final ExportImportHeroGridByFileViewModel exportImportHeroGridByFileViewModel;
-    private final HeroGridViewModel heroGridViewModel;
+    private final HeroGridCustomizationVM heroGridCustomizationVM;
 
     public ExportGridCustomizationIntoCurrentFileButtonView(
             NotificatorInterface notificator,
             IExportConfigIntoFileAction exportConfigIntoFileAction,
             ExportImportHeroGridByFileViewModel exportImportHeroGridByFileViewModel,
-            HeroGridViewModel heroGridViewModel
+            HeroGridCustomizationVM heroGridCustomizationVM
     )
     {
         this.notificator = notificator;
         this.exportConfigIntoFileAction = exportConfigIntoFileAction;
         this.exportImportHeroGridByFileViewModel = exportImportHeroGridByFileViewModel;
-        this.heroGridViewModel = heroGridViewModel;
+        this.heroGridCustomizationVM = heroGridCustomizationVM;
     }
 
     @Override
@@ -51,7 +51,10 @@ public class ExportGridCustomizationIntoCurrentFileButtonView implements Initial
                     .getOptionalChosenHeroGridFile()
                     .orElseThrow(() -> new NullPointerException("No File was chosen"));
 
-            this.exportConfigIntoFileAction.exportConfig(file, this.heroGridViewModel.getHeroNameCustomizationVMList());
+            this.exportConfigIntoFileAction.exportConfig(
+                    file,
+                    this.heroGridCustomizationVM.getHeroNameCustomizationVMList()
+            );
 
             this.notificator.success("Export success!");
         } catch (Exception e) {

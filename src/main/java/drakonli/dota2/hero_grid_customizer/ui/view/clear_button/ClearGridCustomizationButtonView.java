@@ -1,7 +1,7 @@
 package drakonli.dota2.hero_grid_customizer.ui.view.clear_button;
 
 import drakonli.dota2.hero_grid_customizer.application.view_model.models.ExportImportHeroGridByFileViewModel;
-import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroGridViewModel;
+import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroGridCustomizationVM;
 import drakonli.jcomponents.notificator.NotificatorInterface;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,30 +12,30 @@ public class ClearGridCustomizationButtonView
     @FXML
     public Button clearButton;
 
-    private final HeroGridViewModel heroGridViewModel;
+    private final HeroGridCustomizationVM heroGridCustomizationVM;
     private final ExportImportHeroGridByFileViewModel exportImportHeroGridByFileViewModel;
     private final NotificatorInterface notificator;
 
     public ClearGridCustomizationButtonView(
-            HeroGridViewModel heroGridViewModel,
+            HeroGridCustomizationVM heroGridCustomizationVM,
             ExportImportHeroGridByFileViewModel exportImportHeroGridByFileViewModel,
             NotificatorInterface notificator
     )
     {
-        this.heroGridViewModel = heroGridViewModel;
+        this.heroGridCustomizationVM = heroGridCustomizationVM;
         this.exportImportHeroGridByFileViewModel = exportImportHeroGridByFileViewModel;
         this.notificator = notificator;
     }
 
     public void onClearClick(ActionEvent actionEvent)
     {
-        if (this.heroGridViewModel.getHeroNameCustomizationVMList().isEmpty()) {
+        if (this.heroGridCustomizationVM.getHeroNameCustomizationVMList().isEmpty()) {
             this.notificator.success("The Hero Grid is already empty");
 
             return;
         }
 
-        this.heroGridViewModel.getHeroNameCustomizationVMList().clear();
+        this.heroGridCustomizationVM.getHeroNameCustomizationVMList().clear();
         this.exportImportHeroGridByFileViewModel.setChosenHeroGridFile(null);
 
         this.notificator.success("The Hero Grid has been cleared");

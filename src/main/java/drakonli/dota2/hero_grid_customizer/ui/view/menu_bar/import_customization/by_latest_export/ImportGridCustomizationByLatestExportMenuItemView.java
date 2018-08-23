@@ -2,7 +2,7 @@ package drakonli.dota2.hero_grid_customizer.ui.view.menu_bar.import_customizatio
 
 import drakonli.dota2.hero_grid_customizer.application.action.config_import.latest_save.IImportConfigByLatestSaveAction;
 import drakonli.dota2.hero_grid_customizer.application.view_model.models.ExportImportHeroGridByLatestSaveViewModel;
-import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroGridViewModel;
+import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroGridCustomizationVM;
 import drakonli.jcomponents.notificator.NotificatorInterface;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,19 +19,19 @@ public class ImportGridCustomizationByLatestExportMenuItemView implements Initia
 
     private NotificatorInterface notificator;
     private ExportImportHeroGridByLatestSaveViewModel exportImportHeroGridByLatestSaveViewModel;
-    private HeroGridViewModel heroGridViewModel;
+    private HeroGridCustomizationVM heroGridCustomizationVM;
     private IImportConfigByLatestSaveAction importConfigByLatestSaveAction;
 
     public ImportGridCustomizationByLatestExportMenuItemView(
             NotificatorInterface notificator,
             ExportImportHeroGridByLatestSaveViewModel exportImportHeroGridByLatestSaveViewModel,
-            HeroGridViewModel heroGridViewModel,
+            HeroGridCustomizationVM heroGridCustomizationVM,
             IImportConfigByLatestSaveAction importConfigByLatestSaveAction
     )
     {
         this.notificator = notificator;
         this.exportImportHeroGridByLatestSaveViewModel = exportImportHeroGridByLatestSaveViewModel;
-        this.heroGridViewModel = heroGridViewModel;
+        this.heroGridCustomizationVM = heroGridCustomizationVM;
         this.importConfigByLatestSaveAction = importConfigByLatestSaveAction;
     }
 
@@ -46,7 +46,9 @@ public class ImportGridCustomizationByLatestExportMenuItemView implements Initia
     public void onImportClick(ActionEvent actionEvent)
     {
         try {
-            this.importConfigByLatestSaveAction.importConfig(this.heroGridViewModel.getHeroNameCustomizationVMList());
+            this.importConfigByLatestSaveAction.importConfig(
+                    this.heroGridCustomizationVM.getHeroNameCustomizationVMList()
+            );
 
             this.notificator.success("Import by latest save success!");
         } catch (Exception e) {

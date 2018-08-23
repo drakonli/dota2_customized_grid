@@ -1,6 +1,6 @@
 package drakonli.dota2.hero_grid_customizer.ui.view.table;
 
-import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroGridViewModel;
+import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroGridCustomizationVM;
 import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroNameCustomizationVM;
 import javafx.beans.property.SimpleListProperty;
 import javafx.fxml.FXML;
@@ -18,20 +18,20 @@ public class GridCustomizationTableView implements Initializable
     @FXML
     public TableColumn<HeroNameCustomizationVM, String> heroCustomizationColumn;
 
-    private final HeroGridViewModel heroGridViewModel;
+    private final HeroGridCustomizationVM heroGridCustomizationVM;
 
     public GridCustomizationTableView(
-            HeroGridViewModel heroGridViewModel
+            HeroGridCustomizationVM heroGridCustomizationVM
     )
     {
-        this.heroGridViewModel = heroGridViewModel;
+        this.heroGridCustomizationVM = heroGridCustomizationVM;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
         this.tableView.itemsProperty().bind(
-                new SimpleListProperty<>(this.heroGridViewModel.getHeroNameCustomizationVMList())
+                new SimpleListProperty<>(this.heroGridCustomizationVM.getHeroNameCustomizationVMList())
         );
         this.handleHeroNameColumnEdit();
     }

@@ -14,8 +14,8 @@ Concepts and frameworks:
 * DDD (Layered Architecture)
 * MVVM (my own implementation)
 * IoC (spring)
-* JavaFX/FXML (I loved FXML in that it separates the work of a frontend and backend developer)
-* Maven (also separated infrastructure layer into a separate package)
+* JavaFX/FXML (I loved FXML in that it separates the work of a frontend and a backend developer)
+* Maven
 
 Every layer is separated to it's own package:
 
