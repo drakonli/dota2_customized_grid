@@ -1,4 +1,4 @@
-package drakonli.dota2.hero_grid_customizer.ui.view.customization.menu_bar.import_customization;
+package drakonli.dota2.hero_grid_customizer.ui.view.menu_bar.import_customization;
 
 import drakonli.dota2.hero_grid_customizer.ui.utilities.handler.HideMenuOnHiddenChildrenHandler;
 import javafx.fxml.FXML;

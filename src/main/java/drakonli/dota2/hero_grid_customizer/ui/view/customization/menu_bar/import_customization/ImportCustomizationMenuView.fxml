@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<?import javafx.scene.control.Menu?>
-<Menu mnemonicParsing="false" text="Import Customization" fx:id="importMenu" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.121"
-      fx:controller="drakonli.dota2.hero_grid_customizer.ui.view.customization.menu_bar.import_customization.ImportCustomizationMenuView">
-    <fx:include source="/drakonli/dota2/hero_grid_customizer/ui/view/customization/menu_bar/import_customization/by_latest_export/ImportCustomizationByLatestExportMenuItemView.fxml"/>
-    <fx:include source="/drakonli/dota2/hero_grid_customizer/ui/view/customization/menu_bar/import_customization/from_file/ImportCustomizationFromFileMenuItemView.fxml"/>
-</Menu>

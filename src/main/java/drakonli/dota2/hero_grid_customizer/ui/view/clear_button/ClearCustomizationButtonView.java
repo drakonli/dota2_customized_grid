@@ -1,4 +1,4 @@
-package drakonli.dota2.hero_grid_customizer.ui.view.customization.clear_button;
+package drakonli.dota2.hero_grid_customizer.ui.view.clear_button;
 
 import drakonli.dota2.hero_grid_customizer.application.view_model.models.ExportImportHeroGridByFileViewModel;
 import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroGridViewModel;

@@ -1,4 +1,4 @@
-package drakonli.dota2.hero_grid_customizer.ui.view.customization.menu_bar.import_customization.from_file;
+package drakonli.dota2.hero_grid_customizer.ui.view.menu_bar.import_customization.from_file;
 
 import drakonli.dota2.hero_grid_customizer.application.action.config_import.dota_translation_file.IImportConfigFromFileAction;
 import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroGridViewModel;

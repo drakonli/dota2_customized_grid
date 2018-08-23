@@ -4,14 +4,14 @@
        xsi:schemaLocation="
      http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="drakonli.dota2.hero_grid_customizer.ui.view.customization.table.HeroNamesCustomizationTableView"
-          class="drakonli.dota2.hero_grid_customizer.ui.view.customization.table.HeroNamesCustomizationTableView"
+    <bean id="drakonli.dota2.hero_grid_customizer.ui.view.table.HeroNamesCustomizationTableView"
+          class="drakonli.dota2.hero_grid_customizer.ui.view.table.HeroNamesCustomizationTableView"
           scope="prototype">
         <constructor-arg ref="dota2HeroGridCustomizer-heroGridVM"/>
     </bean>
 
-    <bean id="drakonli.dota2.hero_grid_customizer.ui.view.customization.menu_bar.import_customization.from_file.ImportCustomizationFromFileMenuItemView"
-          class="drakonli.dota2.hero_grid_customizer.ui.view.customization.menu_bar.import_customization.from_file.ImportCustomizationFromFileMenuItemView"
+    <bean id="drakonli.dota2.hero_grid_customizer.ui.view.menu_bar.import_customization.from_file.ImportCustomizationFromFileMenuItemView"
+          class="drakonli.dota2.hero_grid_customizer.ui.view.menu_bar.import_customization.from_file.ImportCustomizationFromFileMenuItemView"
           scope="prototype">
         <constructor-arg ref="dota2HeroGridCustomizer-fileChooserFactory-main"/>
         <constructor-arg ref="dota2HeroGridCustomizer-notificator-main"/>
@@ -19,8 +19,8 @@
         <constructor-arg ref="dota2HeroGridCustomizer-heroGridVM"/>
     </bean>
 
-    <bean id="drakonli.dota2.hero_grid_customizer.ui.view.customization.menu_bar.export_customization.into_current_file.ExportCustomizationIntoCurrentFileButtonView"
-          class="drakonli.dota2.hero_grid_customizer.ui.view.customization.menu_bar.export_customization.into_current_file.ExportCustomizationIntoCurrentFileButtonView"
+    <bean id="drakonli.dota2.hero_grid_customizer.ui.view.menu_bar.export_customization.into_current_file.ExportCustomizationIntoCurrentFileButtonView"
+          class="drakonli.dota2.hero_grid_customizer.ui.view.menu_bar.export_customization.into_current_file.ExportCustomizationIntoCurrentFileButtonView"
           scope="prototype">
         <constructor-arg ref="dota2HeroGridCustomizer-notificator-main"/>
         <constructor-arg ref="dota2HeroGridCustomizer-basicExportConfigIntoFileAction"/>
@@ -28,8 +28,8 @@
         <constructor-arg ref="dota2HeroGridCustomizer-heroGridVM"/>
     </bean>
 
-    <bean id="drakonli.dota2.hero_grid_customizer.ui.view.customization.menu_bar.import_customization.by_latest_export.ImportCustomizationByLatestExportMenuItemView"
-          class="drakonli.dota2.hero_grid_customizer.ui.view.customization.menu_bar.import_customization.by_latest_export.ImportCustomizationByLatestExportMenuItemView"
+    <bean id="drakonli.dota2.hero_grid_customizer.ui.view.menu_bar.import_customization.by_latest_export.ImportCustomizationByLatestExportMenuItemView"
+          class="drakonli.dota2.hero_grid_customizer.ui.view.menu_bar.import_customization.by_latest_export.ImportCustomizationByLatestExportMenuItemView"
           scope="prototype">
         <constructor-arg ref="dota2HeroGridCustomizer-notificator-main"/>
         <constructor-arg ref="dota2HeroGridCustomizer-exportImportHeroGridByLatestSaveVM"/>
@@ -37,19 +37,19 @@
         <constructor-arg ref="dota2HeroGridCustomizer-importConfigFromStorageByLatestSaveAction"/>
     </bean>
 
-    <bean id="drakonli.dota2.hero_grid_customizer.ui.view.customization.clear_button.ClearCustomizationButtonView"
-          class="drakonli.dota2.hero_grid_customizer.ui.view.customization.clear_button.ClearCustomizationButtonView"
+    <bean id="drakonli.dota2.hero_grid_customizer.ui.view.clear_button.ClearCustomizationButtonView"
+          class="drakonli.dota2.hero_grid_customizer.ui.view.clear_button.ClearCustomizationButtonView"
           scope="prototype">
         <constructor-arg ref="dota2HeroGridCustomizer-heroGridVM"/>
         <constructor-arg ref="dota2HeroGridCustomizer-exportImportByFileVM"/>
         <constructor-arg ref="dota2HeroGridCustomizer-notificator-main"/>
     </bean>
 
-    <bean id="drakonli.dota2.hero_grid_customizer.ui.view.customization.menu_bar.import_customization.ImportCustomizationMenuView"
-          class="drakonli.dota2.hero_grid_customizer.ui.view.customization.menu_bar.import_customization.ImportCustomizationMenuView"
+    <bean id="drakonli.dota2.hero_grid_customizer.ui.view.menu_bar.import_customization.ImportCustomizationMenuView"
+          class="drakonli.dota2.hero_grid_customizer.ui.view.menu_bar.import_customization.ImportCustomizationMenuView"
           scope="prototype"/>
 
-    <bean id="drakonli.dota2.hero_grid_customizer.ui.view.customization.menu_bar.export_customization.ExportCustomizationMenuButtonView"
-          class="drakonli.dota2.hero_grid_customizer.ui.view.customization.menu_bar.export_customization.ExportCustomizationMenuButtonView"
+    <bean id="drakonli.dota2.hero_grid_customizer.ui.view.menu_bar.export_customization.ExportCustomizationMenuButtonView"
+          class="drakonli.dota2.hero_grid_customizer.ui.view.menu_bar.export_customization.ExportCustomizationMenuButtonView"
           scope="prototype"/>
 </beans>
