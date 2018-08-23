@@ -5,7 +5,7 @@
         xmlns="http://javafx.com/javafx"
         xmlns:fx="http://javafx.com/fxml"
         fx:id="clearButton"
-        fx:controller="drakonli.dota2.hero_grid_customizer.ui.view.customization_table.clear.ClearCustomizationButtonView"
+        fx:controller="drakonli.dota2.hero_grid_customizer.ui.view.customization.clear_button.ClearCustomizationButtonView"
         onAction="#onClearClick"
         text="Clear"
 />

@@ -8,16 +8,16 @@
         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
     </padding>
 
-    <fx:include source="customization_menu_bar/CustomizationMenuBarView.fxml" />
+    <fx:include source="customization/menu_bar/CustomizationMenuBarView.fxml" />
 
     <fx:include GridPane.columnIndex="0"
                 GridPane.rowIndex="1"
                 GridPane.hgrow="ALWAYS"
                 GridPane.vgrow="ALWAYS"
-                source="/drakonli/dota2/hero_grid_customizer/ui/view/customization_table/HeroNamesCustomizationTableView.fxml"/>
+                source="/drakonli/dota2/hero_grid_customizer/ui/view/customization/table/HeroNamesCustomizationTableView.fxml"/>
 
     <HBox alignment="bottom_right" spacing="10" GridPane.rowIndex="3">
-        <fx:include source="/drakonli/dota2/hero_grid_customizer/ui/view/customization_table/clear/ClearCustomizationButtonView.fxml" />
+        <fx:include source="/drakonli/dota2/hero_grid_customizer/ui/view/customization/clear_button/ClearCustomizationButtonView.fxml" />
     </HBox>
 
 </GridPane>
