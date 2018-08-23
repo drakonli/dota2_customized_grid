@@ -4,7 +4,7 @@ A little program I wrote myself to make it easy to customize hero grid in dota2 
 
 Check out https://www.youtube.com/watch?v=U5hgxPfecv4 to learn more
 
-Main task of this program is to work with HeroGridCustomization
+Main task of this program is to import/export HeroGridCustomization which consists of HeroNameCustomization's.
 
 Main models:
 1. HeroGridCustomization or just GridCustomization
