@@ -4,6 +4,8 @@ A little program I wrote myself to make it easy to customize hero grid in dota2 
 
 More here https://www.youtube.com/watch?v=U5hgxPfecv4
 
+Main model - HeroNamesGridCustomization (or just Customization)
+
 Concepts and frameworks:
 * DDD (Layered Architecture)
 * MVVM (my own implementation)
@@ -17,10 +19,11 @@ UI - layer that consists of FXML files and View files. View files has 2 concerns
 to changes in ViewModels (if a table is empty, so should some ViewModel be empty); 2. receive and route user actions to
 Application layer.
 
-Application - this holds the application state. Consists of ViewHandlers (which are called in View layer), ViewModels
-and "helper" classes. Only cares about routing different user actions to Domain layer components.
+Application - this holds the application state. Consists of Actions (MVC controller-action would be the analogue),
+which are executed from View layer, ViewModels and "helper" classes. Only cares about routing different user actions
+to Domain layer components and binding Domain Models to ViewModels.
 
-Domain - consists of services and models that are directly involved in main concerns of the application. Domain layer
+Domain - consists of services and models that are directly involved in main tasks of the application. This layer
 concerns itself with actually doing the job that is required: loading data, saving data, backing-up, etc. Domain layer
 only works with domain model, not the ViewModel.
 
@@ -29,5 +32,5 @@ Infrastructure: Spring IoC, Maven, JavaFX and my custom "jcomponents" package fo
 Also, about my vision of MVVM:
 
 I see ViewModels as a "glue" between UI/Application and Domain Layer. Application and UI layer concerns itself with
-changing ViewModels, Application concerns itself with invoking appropriate Domain services when user actions are received, but never is ViewModel
-passed to Domain services. Only Application and UI are aware of ViewModels.
+changing ViewModels, Application concerns itself with invoking appropriate Domain services when user actions are
+received, but never is ViewModel passed to Domain services. Only Application and UI are aware of ViewModels.

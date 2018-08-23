@@ -5,7 +5,7 @@
         xmlns="http://javafx.com/javafx"
         xmlns:fx="http://javafx.com/fxml"
         fx:id="importByFileMenuItem"
-        fx:controller="drakonli.dota2.hero_grid_customizer.ui.customization_menu_bar.import_customization.from_file.ImportCustomizationFromFileMenuItemView"
+        fx:controller="drakonli.dota2.hero_grid_customizer.ui.view.customization_menu_bar.import_customization.from_file.ImportCustomizationFromFileMenuItemView"
         onAction="#onImportClick"
         text="Import customization from Dota2 translations file"
 />

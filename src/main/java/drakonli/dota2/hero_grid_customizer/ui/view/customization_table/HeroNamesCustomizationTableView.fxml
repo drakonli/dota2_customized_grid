@@ -8,7 +8,7 @@
         xmlns:fx="http://javafx.com/fxml"
         editable="true"
         fx:id="tableView"
-        fx:controller="drakonli.dota2.hero_grid_customizer.ui.customization_table.HeroNamesCustomizationTableView">
+        fx:controller="drakonli.dota2.hero_grid_customizer.ui.view.customization_table.HeroNamesCustomizationTableView">
     <columnResizePolicy>
         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
     </columnResizePolicy>
