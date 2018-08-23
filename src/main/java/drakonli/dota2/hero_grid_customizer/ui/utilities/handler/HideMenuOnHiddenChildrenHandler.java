@@ -1,4 +1,4 @@
-package drakonli.dota2.hero_grid_customizer.ui.handler;
+package drakonli.dota2.hero_grid_customizer.ui.utilities.handler;
 
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Menu;
