@@ -4,11 +4,11 @@ import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.stor
 import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.storage.StorageException;
 import drakonli.dota2.hero_grid_customizer.domain.model.HeroGridCustomization;
 
-public class FileStorageRestoreAvailabilityManager implements RestoreAvailabilityManagerInterface
+public class FileStorageImportByLatestExportAvailabilityManager implements ImportByLatestExportAvailabilityManagerInterface
 {
     private final HeroGridCustomizationByFileStorage heroGridCustomizationByFileStorage;
 
-    public FileStorageRestoreAvailabilityManager(
+    public FileStorageImportByLatestExportAvailabilityManager(
             HeroGridCustomizationByFileStorage heroGridCustomizationByFileStorage
     )
     {
@@ -16,7 +16,7 @@ public class FileStorageRestoreAvailabilityManager implements RestoreAvailabilit
     }
 
     @Override
-    public Boolean isRestoreAvailable()
+    public Boolean isImportByLatestExportAvailable()
     {
         try {
             HeroGridCustomization latestStoredHeroGridCustomization

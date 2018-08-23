@@ -13,19 +13,19 @@
     </bean>
 
     <bean id="dota2HeroGridCustomizer-exportImportHeroGridByLatestSaveVM"
-          class="drakonli.dota2.hero_grid_customizer.application.view_model.models.ExportImportHeroGridByLatestSaveViewModel">
+          class="drakonli.dota2.hero_grid_customizer.application.view_model.models.ImportHeroGridCustomizationByLatestExportVM">
         <constructor-arg ref="dota2HeroGridCustomizer-initialValueForFileStorageRestoreAvailability"/>
     </bean>
 
     <bean id="dota2HeroGridCustomizer_fileStorageRestoreAvailabilityManager"
-          class="drakonli.dota2.hero_grid_customizer.application.services.FileStorageRestoreAvailabilityManager">
+          class="drakonli.dota2.hero_grid_customizer.application.services.FileStorageImportByLatestExportAvailabilityManager">
         <constructor-arg ref="dota2HeroGridCustomizer-heroGridCustomizationByFileStorage"/>
     </bean>
 
     <bean id="dota2HeroGridCustomizer-initialValueForFileStorageRestoreAvailability"
           class="javafx.beans.property.SimpleBooleanProperty">
         <constructor-arg
-                value="#{ dota2HeroGridCustomizer_fileStorageRestoreAvailabilityManager.isRestoreAvailable() }"/>
+                value="#{ dota2HeroGridCustomizer_fileStorageRestoreAvailabilityManager.isImportByLatestExportAvailable() }"/>
     </bean>
 
     <bean id="dota2HeroGridCustomizer-heroGridCustomizationToViewModelsMapper"
@@ -44,7 +44,7 @@
     </bean>
 
     <bean id="dota2HeroGridCustomizer-SetRestoreAvailableBeforeExportConfigIntoFileActionEventListener"
-          class="drakonli.dota2.hero_grid_customizer.application.action.config_export.dota_translation_file.event.listener.SetRestoreAvailableAfterExportConfigIntoFileActionEventListener">
+          class="drakonli.dota2.hero_grid_customizer.application.action.config_export.dota_translation_file.event.listener.SetImportByLatestExportAvailableEventListener">
         <constructor-arg ref="dota2HeroGridCustomizer_fileStorageRestoreAvailabilityManager"/>
         <constructor-arg ref="dota2HeroGridCustomizer-exportImportHeroGridByLatestSaveVM"/>
     </bean>

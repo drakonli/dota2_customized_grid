@@ -1,8 +1,8 @@
 package drakonli.dota2.hero_grid_customizer.ui.view.menu_bar.import_customization.by_latest_export;
 
 import drakonli.dota2.hero_grid_customizer.application.action.config_import.latest_save.IImportConfigByLatestSaveAction;
-import drakonli.dota2.hero_grid_customizer.application.view_model.models.ExportImportHeroGridByLatestSaveViewModel;
 import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroGridCustomizationVM;
+import drakonli.dota2.hero_grid_customizer.application.view_model.models.ImportHeroGridCustomizationByLatestExportVM;
 import drakonli.jcomponents.notificator.NotificatorInterface;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,19 +18,19 @@ public class ImportGridCustomizationByLatestExportMenuItemView implements Initia
     public MenuItem importByLatestExportMenuItem;
 
     private NotificatorInterface notificator;
-    private ExportImportHeroGridByLatestSaveViewModel exportImportHeroGridByLatestSaveViewModel;
+    private ImportHeroGridCustomizationByLatestExportVM importHeroGridCustomizationByLatestExportVM;
     private HeroGridCustomizationVM heroGridCustomizationVM;
     private IImportConfigByLatestSaveAction importConfigByLatestSaveAction;
 
     public ImportGridCustomizationByLatestExportMenuItemView(
             NotificatorInterface notificator,
-            ExportImportHeroGridByLatestSaveViewModel exportImportHeroGridByLatestSaveViewModel,
+            ImportHeroGridCustomizationByLatestExportVM importHeroGridCustomizationByLatestExportVM,
             HeroGridCustomizationVM heroGridCustomizationVM,
             IImportConfigByLatestSaveAction importConfigByLatestSaveAction
     )
     {
         this.notificator = notificator;
-        this.exportImportHeroGridByLatestSaveViewModel = exportImportHeroGridByLatestSaveViewModel;
+        this.importHeroGridCustomizationByLatestExportVM = importHeroGridCustomizationByLatestExportVM;
         this.heroGridCustomizationVM = heroGridCustomizationVM;
         this.importConfigByLatestSaveAction = importConfigByLatestSaveAction;
     }
@@ -39,7 +39,7 @@ public class ImportGridCustomizationByLatestExportMenuItemView implements Initia
     public void initialize(URL location, ResourceBundle resources)
     {
         this.importByLatestExportMenuItem.visibleProperty().bind(
-                this.exportImportHeroGridByLatestSaveViewModel.getRestoreAvailableProperty()
+                this.importHeroGridCustomizationByLatestExportVM.getImportByLatestExportAvailableProperty()
         );
     }
 
