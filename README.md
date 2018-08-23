@@ -1,10 +1,14 @@
-# dota2_customized_grid
+# dota2_hero_grid_customizer
 
 A little program I wrote myself to make it easy to customize hero grid in dota2 version >7.00
 
-More here https://www.youtube.com/watch?v=U5hgxPfecv4
+Check out https://www.youtube.com/watch?v=U5hgxPfecv4 to learn more
 
-Main model - HeroNamesGridCustomization (or just Customization)
+Main task of this program is to work with HeroGridCustomization
+
+Main models:
+1. HeroGridCustomization or just GridCustomization
+2. HeroNameCustomization - which is a node of GridCustomization
 
 Concepts and frameworks:
 * DDD (Layered Architecture)
@@ -13,7 +17,7 @@ Concepts and frameworks:
 * JavaFX/FXML (I loved FXML in that it separates the work of a frontend and backend developer)
 * Maven (also separated infrastructure layer into a separate package)
 
-Every layer is divided in it's own package:
+Every layer is separated to it's own package:
 
 UI - layer that consists of FXML files and View files. View files has 2 concerns: 1. bind View component changes
 to changes in ViewModels (if a table is empty, so should some ViewModel be empty); 2. receive and route user actions to

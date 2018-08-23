@@ -2,8 +2,8 @@ package drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.edi
 
 import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.extractor.HeroTranslationByFileLineExtractor;
 import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.predicate.HeroTranslationByHeroNameUIDPredicate;
+import drakonli.dota2.hero_grid_customizer.domain.model.HeroGridCustomization;
 import drakonli.dota2.hero_grid_customizer.domain.model.HeroNameCustomization;
-import drakonli.dota2.hero_grid_customizer.domain.model.HeroNamesGridCustomization;
 import drakonli.jcomponents.file.editor.txt.TxtLineEditorInterface;
 import drakonli.jcomponents.predicate.TxtLinePredicateInterface;
 
@@ -23,15 +23,15 @@ public class Dota2TranslationsFileHeroTranslationsLineEditorAndPredicate impleme
 {
     private HeroNameCustomization currentHeroNameCustomizationInLine;
 
-    private final HeroNamesGridCustomization heroNamesGridCustomization;
+    private final HeroGridCustomization heroGridCustomization;
     private final HeroTranslationByFileLineExtractor heroTranslationByLineExtractor;
 
     public Dota2TranslationsFileHeroTranslationsLineEditorAndPredicate(
-            HeroNamesGridCustomization heroNamesGridCustomization,
+            HeroGridCustomization heroGridCustomization,
             HeroTranslationByFileLineExtractor heroTranslationByLineExtractor
     )
     {
-        this.heroNamesGridCustomization = heroNamesGridCustomization;
+        this.heroGridCustomization = heroGridCustomization;
         this.heroTranslationByLineExtractor = heroTranslationByLineExtractor;
     }
 
@@ -54,7 +54,7 @@ public class Dota2TranslationsFileHeroTranslationsLineEditorAndPredicate impleme
             return line;
         }
 
-        Optional<HeroNameCustomization> optionalHeroTranslation = this.heroNamesGridCustomization
+        Optional<HeroNameCustomization> optionalHeroTranslation = this.heroGridCustomization
                 .stream()
                 .filter(
                         new HeroTranslationByHeroNameUIDPredicate(

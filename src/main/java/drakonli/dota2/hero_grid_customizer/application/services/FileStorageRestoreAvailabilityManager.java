@@ -1,26 +1,26 @@
 package drakonli.dota2.hero_grid_customizer.application.services;
 
-import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.storage.HeroNamesGridCustomizationByFileStorage;
+import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.storage.HeroGridCustomizationByFileStorage;
 import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.storage.StorageException;
-import drakonli.dota2.hero_grid_customizer.domain.model.HeroNamesGridCustomization;
+import drakonli.dota2.hero_grid_customizer.domain.model.HeroGridCustomization;
 
 public class FileStorageRestoreAvailabilityManager implements RestoreAvailabilityManagerInterface
 {
-    private final HeroNamesGridCustomizationByFileStorage heroNamesGridCustomizationByFileStorage;
+    private final HeroGridCustomizationByFileStorage heroGridCustomizationByFileStorage;
 
     public FileStorageRestoreAvailabilityManager(
-            HeroNamesGridCustomizationByFileStorage heroNamesGridCustomizationByFileStorage
+            HeroGridCustomizationByFileStorage heroGridCustomizationByFileStorage
     )
     {
-        this.heroNamesGridCustomizationByFileStorage = heroNamesGridCustomizationByFileStorage;
+        this.heroGridCustomizationByFileStorage = heroGridCustomizationByFileStorage;
     }
 
     @Override
     public Boolean isRestoreAvailable()
     {
         try {
-            HeroNamesGridCustomization latestStoredHeroGridCustomization
-                    = this.heroNamesGridCustomizationByFileStorage.getLatest();
+            HeroGridCustomization latestStoredHeroGridCustomization
+                    = this.heroGridCustomizationByFileStorage.getLatest();
 
             return !latestStoredHeroGridCustomization.isEmpty();
         } catch (StorageException e) {

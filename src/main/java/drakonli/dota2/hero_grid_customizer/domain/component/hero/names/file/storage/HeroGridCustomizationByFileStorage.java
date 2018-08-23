@@ -1,20 +1,20 @@
 package drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.storage;
 
-import drakonli.dota2.hero_grid_customizer.domain.model.HeroNamesGridCustomization;
+import drakonli.dota2.hero_grid_customizer.domain.model.HeroGridCustomization;
 
 import java.io.*;
 
-public class HeroNamesGridCustomizationByFileStorage
+public class HeroGridCustomizationByFileStorage
 {
     private static final String HERO_NAMES_SAVE_FILENAME = "hero_names_save.txt";
 
-    public void store(HeroNamesGridCustomization heroNamesGridCustomization) throws StorageException
+    public void store(HeroGridCustomization heroGridCustomization) throws StorageException
     {
         try {
             File heroSavesFile = new File(HERO_NAMES_SAVE_FILENAME);
             FileOutputStream fileOut = new FileOutputStream(heroSavesFile);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(heroNamesGridCustomization);
+            out.writeObject(heroGridCustomization);
             out.close();
             fileOut.close();
         } catch (Exception e)
@@ -23,7 +23,7 @@ public class HeroNamesGridCustomizationByFileStorage
         }
     }
 
-    public HeroNamesGridCustomization getLatest() throws StorageException
+    public HeroGridCustomization getLatest() throws StorageException
     {
         File heroNamesSaveFile = new File(HERO_NAMES_SAVE_FILENAME);
 
@@ -34,11 +34,11 @@ public class HeroNamesGridCustomizationByFileStorage
         try {
             FileInputStream fileIn = new FileInputStream(HERO_NAMES_SAVE_FILENAME);
             ObjectInputStream in = new ObjectInputStream(fileIn);
-            HeroNamesGridCustomization heroNamesGridCustomization = (HeroNamesGridCustomization) in.readObject();
+            HeroGridCustomization heroGridCustomization = (HeroGridCustomization) in.readObject();
             in.close();
             fileIn.close();
 
-            return heroNamesGridCustomization;
+            return heroGridCustomization;
         } catch (Exception e)
         {
             throw new StorageException(e);

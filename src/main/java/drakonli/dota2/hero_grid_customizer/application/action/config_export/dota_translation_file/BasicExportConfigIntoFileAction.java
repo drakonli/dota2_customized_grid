@@ -3,8 +3,8 @@ package drakonli.dota2.hero_grid_customizer.application.action.config_export.dot
 import drakonli.dota2.hero_grid_customizer.application.action.ApplicationActionException;
 import drakonli.dota2.hero_grid_customizer.application.action.config_export.dota_translation_file.event.publisher.IExportConfigIntoFileActionEventPublisher;
 import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroTranslationViewModel;
-import drakonli.dota2.hero_grid_customizer.application.view_model.services.HeroNamesGridCustomizationByViewModelFactory;
-import drakonli.dota2.hero_grid_customizer.domain.model.HeroNamesGridCustomization;
+import drakonli.dota2.hero_grid_customizer.application.view_model.services.HeroGridCustomizationByViewModelsFactory;
+import drakonli.dota2.hero_grid_customizer.domain.model.HeroGridCustomization;
 import drakonli.dota2.hero_grid_customizer.domain.services.IHeroGridConfigToFileExporter;
 import drakonli.dota2.hero_grid_customizer.domain.services.export.ExportException;
 import drakonli.jcomponents.file.exception.InvalidFileFormatException;
@@ -16,17 +16,17 @@ import java.util.List;
 public class BasicExportConfigIntoFileAction implements IExportConfigIntoFileAction
 {
     private final IHeroGridConfigToFileExporter exporter;
-    private final HeroNamesGridCustomizationByViewModelFactory heroNamesGridCustomizationFactory;
+    private final HeroGridCustomizationByViewModelsFactory heroGridCustomizationFactory;
     private final IExportConfigIntoFileActionEventPublisher eventPublisher;
 
     public BasicExportConfigIntoFileAction(
             IHeroGridConfigToFileExporter exporter,
-            HeroNamesGridCustomizationByViewModelFactory heroNamesGridCustomizationFactory,
+            HeroGridCustomizationByViewModelsFactory heroGridCustomizationFactory,
             IExportConfigIntoFileActionEventPublisher eventPublisher
     )
     {
         this.exporter = exporter;
-        this.heroNamesGridCustomizationFactory = heroNamesGridCustomizationFactory;
+        this.heroGridCustomizationFactory = heroGridCustomizationFactory;
         this.eventPublisher = eventPublisher;
     }
 
@@ -34,17 +34,17 @@ public class BasicExportConfigIntoFileAction implements IExportConfigIntoFileAct
     public void exportConfig(File file, List<HeroTranslationViewModel> heroTranslationViewModelsToExport)
             throws InvalidFileFormatException, IOException, ApplicationActionException
     {
-        HeroNamesGridCustomization heroNamesGridCustomization =
-                this.heroNamesGridCustomizationFactory.create(heroTranslationViewModelsToExport);
+        HeroGridCustomization heroGridCustomization =
+                this.heroGridCustomizationFactory.create(heroTranslationViewModelsToExport);
 
         this.eventPublisher.publishBeforeExportEvent(
                 file,
                 heroTranslationViewModelsToExport,
-                heroNamesGridCustomization
+                heroGridCustomization
         );
 
         try {
-            this.exporter.export(file, heroNamesGridCustomization);
+            this.exporter.export(file, heroGridCustomization);
         } catch (ExportException e) {
             throw new ApplicationActionException(e);
         }
@@ -52,7 +52,7 @@ public class BasicExportConfigIntoFileAction implements IExportConfigIntoFileAct
         this.eventPublisher.publishAfterExportEvent(
                 file,
                 heroTranslationViewModelsToExport,
-                heroNamesGridCustomization
+                heroGridCustomization
         );
     }
 }

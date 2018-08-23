@@ -1,8 +1,8 @@
 package drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.exporter.decorator;
 
-import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.storage.HeroNamesGridCustomizationByFileStorage;
+import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.storage.HeroGridCustomizationByFileStorage;
 import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.storage.StorageException;
-import drakonli.dota2.hero_grid_customizer.domain.model.HeroNamesGridCustomization;
+import drakonli.dota2.hero_grid_customizer.domain.model.HeroGridCustomization;
 import drakonli.dota2.hero_grid_customizer.domain.services.IHeroGridConfigToFileExporter;
 import drakonli.dota2.hero_grid_customizer.domain.services.export.ExportException;
 import drakonli.jcomponents.file.exception.InvalidFileFormatException;
@@ -12,26 +12,26 @@ import java.io.IOException;
 
 public class StoreHeroTranslationsDecorator extends HeroGridConfigToFileExporterAbstractDecorator
 {
-    private HeroNamesGridCustomizationByFileStorage heroNamesGridCustomizationByFileStorage;
+    private HeroGridCustomizationByFileStorage heroGridCustomizationByFileStorage;
 
     public StoreHeroTranslationsDecorator(
             IHeroGridConfigToFileExporter heroGridConfigToFileExporter,
-            HeroNamesGridCustomizationByFileStorage heroNamesGridCustomizationByFileStorage
+            HeroGridCustomizationByFileStorage heroGridCustomizationByFileStorage
     )
     {
         super(heroGridConfigToFileExporter);
 
-        this.heroNamesGridCustomizationByFileStorage = heroNamesGridCustomizationByFileStorage;
+        this.heroGridCustomizationByFileStorage = heroGridCustomizationByFileStorage;
     }
 
     @Override
-    public void export(File file, HeroNamesGridCustomization heroNamesGridCustomization)
+    public void export(File file, HeroGridCustomization heroGridCustomization)
             throws InvalidFileFormatException, IOException, ExportException
     {
-        super.export(file, heroNamesGridCustomization);
+        super.export(file, heroGridCustomization);
 
         try {
-            this.heroNamesGridCustomizationByFileStorage.store(heroNamesGridCustomization);
+            this.heroGridCustomizationByFileStorage.store(heroGridCustomization);
         } catch (StorageException e) {
             throw new ExportException(e);
         }

@@ -1,38 +1,38 @@
 package drakonli.dota2.hero_grid_customizer.application.action.config_import.latest_save;
 
 import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroTranslationViewModel;
-import drakonli.dota2.hero_grid_customizer.application.view_model.services.HeroNamesGridCustomizationToViewModelMapper;
-import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.storage.HeroNamesGridCustomizationByFileStorage;
+import drakonli.dota2.hero_grid_customizer.application.view_model.services.HeroGridCustomizationToViewModelMapper;
+import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.storage.HeroGridCustomizationByFileStorage;
 import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.storage.StorageException;
-import drakonli.dota2.hero_grid_customizer.domain.model.HeroNamesGridCustomization;
+import drakonli.dota2.hero_grid_customizer.domain.model.HeroGridCustomization;
 
 import java.util.List;
 
 public class ImportConfigFromStorageByLatestSaveAction implements IImportConfigByLatestSaveAction
 {
-    private final HeroNamesGridCustomizationByFileStorage storage;
-    private final HeroNamesGridCustomizationToViewModelMapper heroNamesGridCustomizationToViewModelMapper;
+    private final HeroGridCustomizationByFileStorage storage;
+    private final HeroGridCustomizationToViewModelMapper heroGridCustomizationToViewModelMapper;
 
     public ImportConfigFromStorageByLatestSaveAction(
-            HeroNamesGridCustomizationByFileStorage storage,
-            HeroNamesGridCustomizationToViewModelMapper heroNamesGridCustomizationToViewModelMapper
+            HeroGridCustomizationByFileStorage storage,
+            HeroGridCustomizationToViewModelMapper heroGridCustomizationToViewModelMapper
     )
     {
         this.storage = storage;
-        this.heroNamesGridCustomizationToViewModelMapper = heroNamesGridCustomizationToViewModelMapper;
+        this.heroGridCustomizationToViewModelMapper = heroGridCustomizationToViewModelMapper;
     }
 
     @Override
     public void importConfig(List<HeroTranslationViewModel> heroTranslationViewModelsToImportInto)
-            throws StorageException, LastVersionOfHeroNamesGridCustomizationIsEmptyException
+            throws StorageException, LastVersionOfHeroGridCustomizationIsEmptyException
     {
-        HeroNamesGridCustomization heroNamesGridCustomization = this.storage.getLatest();
+        HeroGridCustomization heroGridCustomization = this.storage.getLatest();
 
-        if (heroNamesGridCustomization.isEmpty()) {
-            throw new LastVersionOfHeroNamesGridCustomizationIsEmptyException();
+        if (heroGridCustomization.isEmpty()) {
+            throw new LastVersionOfHeroGridCustomizationIsEmptyException();
         }
 
-        this.heroNamesGridCustomizationToViewModelMapper
-                .map(heroNamesGridCustomization, heroTranslationViewModelsToImportInto);
+        this.heroGridCustomizationToViewModelMapper
+                .map(heroGridCustomization, heroTranslationViewModelsToImportInto);
     }
 }

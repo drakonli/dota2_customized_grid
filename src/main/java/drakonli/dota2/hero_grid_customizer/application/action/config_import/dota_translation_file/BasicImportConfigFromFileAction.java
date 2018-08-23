@@ -1,8 +1,8 @@
 package drakonli.dota2.hero_grid_customizer.application.action.config_import.dota_translation_file;
 
 import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroTranslationViewModel;
-import drakonli.dota2.hero_grid_customizer.application.view_model.services.HeroNamesGridCustomizationToViewModelMapper;
-import drakonli.dota2.hero_grid_customizer.domain.model.HeroNamesGridCustomization;
+import drakonli.dota2.hero_grid_customizer.application.view_model.services.HeroGridCustomizationToViewModelMapper;
+import drakonli.dota2.hero_grid_customizer.domain.model.HeroGridCustomization;
 import drakonli.dota2.hero_grid_customizer.domain.services.IHeroGridConfigFromFileImporter;
 import drakonli.jcomponents.file.exception.InvalidFileFormatException;
 
@@ -13,24 +13,24 @@ import java.util.List;
 public class BasicImportConfigFromFileAction implements IImportConfigFromFileAction
 {
     private final IHeroGridConfigFromFileImporter importer;
-    private final HeroNamesGridCustomizationToViewModelMapper heroNamesGridCustomizationToViewModelMapper;
+    private final HeroGridCustomizationToViewModelMapper heroGridCustomizationToViewModelMapper;
 
     public BasicImportConfigFromFileAction(
             IHeroGridConfigFromFileImporter importer,
-            HeroNamesGridCustomizationToViewModelMapper heroNamesGridCustomizationToViewModelMapper
+            HeroGridCustomizationToViewModelMapper heroGridCustomizationToViewModelMapper
     )
     {
         this.importer = importer;
-        this.heroNamesGridCustomizationToViewModelMapper = heroNamesGridCustomizationToViewModelMapper;
+        this.heroGridCustomizationToViewModelMapper = heroGridCustomizationToViewModelMapper;
     }
 
     @Override
     public void importConfig(File file, List<HeroTranslationViewModel> heroTranslationViewModelsToImportInto) throws
             InvalidFileFormatException, IOException
     {
-        HeroNamesGridCustomization heroNamesGridCustomization = this.importer.importHeroNamesByFile(file);
+        HeroGridCustomization heroGridCustomization = this.importer.importHeroNamesByFile(file);
 
-        this.heroNamesGridCustomizationToViewModelMapper
-                .map(heroNamesGridCustomization, heroTranslationViewModelsToImportInto);
+        this.heroGridCustomizationToViewModelMapper
+                .map(heroGridCustomization, heroTranslationViewModelsToImportInto);
     }
 }
