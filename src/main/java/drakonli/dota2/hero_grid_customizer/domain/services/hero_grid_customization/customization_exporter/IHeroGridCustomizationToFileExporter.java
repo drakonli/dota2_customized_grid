@@ -1,6 +1,6 @@
 package drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.customization_exporter;
 
-import drakonli.dota2.hero_grid_customizer.domain.model.HeroGridCustomization;
+import drakonli.dota2.hero_grid_customizer.domain.models.HeroGridCustomization;
 import drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.customization_exporter.exception.ExportException;
 import drakonli.jcomponents.file.exception.InvalidFileFormatException;
 

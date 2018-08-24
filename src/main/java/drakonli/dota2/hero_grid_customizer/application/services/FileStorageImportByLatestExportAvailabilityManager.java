@@ -1,6 +1,6 @@
 package drakonli.dota2.hero_grid_customizer.application.services;
 
-import drakonli.dota2.hero_grid_customizer.domain.model.HeroGridCustomization;
+import drakonli.dota2.hero_grid_customizer.domain.models.HeroGridCustomization;
 import drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.storage.IHeroGridCustomizationStorage;
 import drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.storage.StorageException;
 

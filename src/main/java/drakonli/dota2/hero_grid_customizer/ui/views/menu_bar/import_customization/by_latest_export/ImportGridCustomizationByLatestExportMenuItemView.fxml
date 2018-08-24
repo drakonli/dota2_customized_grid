@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.MenuItem?>
+<MenuItem
+        xmlns="http://javafx.com/javafx"
+        xmlns:fx="http://javafx.com/fxml"
+        fx:id="importByLatestExportMenuItem"
+        fx:controller="drakonli.dota2.hero_grid_customizer.ui.views.menu_bar.import_customization.by_latest_export.ImportGridCustomizationByLatestExportMenuItemView"
+        onAction="#onImportClick"
+        text="Import from latest export"
+/>

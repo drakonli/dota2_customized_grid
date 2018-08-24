@@ -1,6 +1,6 @@
 package drakonli.dota2.hero_grid_customizer.domain.services.dota2_translations_file;
 
-import drakonli.dota2.hero_grid_customizer.domain.model.HeroNameCustomization;
+import drakonli.dota2.hero_grid_customizer.domain.models.HeroNameCustomization;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
