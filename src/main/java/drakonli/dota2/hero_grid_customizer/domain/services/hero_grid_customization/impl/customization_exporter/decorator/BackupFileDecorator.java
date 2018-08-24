@@ -28,8 +28,8 @@ public class BackupFileDecorator extends HeroGridCustomizationToFileExporterAbst
             File file, HeroGridCustomization heroGridCustomization
     ) throws InvalidFileFormatException, IOException, ExportException
     {
-        super.export(file, heroGridCustomization);
-
         this.backuper.backup(file);
+
+        super.export(file, heroGridCustomization);
     }
 }
