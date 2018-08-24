@@ -2,7 +2,7 @@ package drakonli.dota2.hero_grid_customizer.application.action.hero_grid_customi
 
 import drakonli.dota2.hero_grid_customizer.application.action.hero_grid_customization.export_customization.event.AfterExportHeroGridCustomizationIntoFileActionEvent;
 import drakonli.dota2.hero_grid_customizer.application.action.hero_grid_customization.export_customization.event.BeforeExportHeroGridCustomizationIntoFileActionEvent;
-import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroNameCustomizationVM;
+import drakonli.dota2.hero_grid_customizer.application.models.HeroNameCustomizationVM;
 import drakonli.dota2.hero_grid_customizer.domain.model.HeroGridCustomization;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;

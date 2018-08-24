@@ -1,7 +1,7 @@
 package drakonli.dota2.hero_grid_customizer.ui.view.table;
 
-import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroGridCustomizationVM;
-import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroNameCustomizationVM;
+import drakonli.dota2.hero_grid_customizer.application.models.HeroGridCustomizationVM;
+import drakonli.dota2.hero_grid_customizer.application.models.HeroNameCustomizationVM;
 import javafx.beans.property.SimpleListProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

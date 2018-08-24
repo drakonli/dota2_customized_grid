@@ -1,4 +1,4 @@
-package drakonli.dota2.hero_grid_customizer.application.view_model.models;
+package drakonli.dota2.hero_grid_customizer.application.models;
 
 import javafx.beans.property.SimpleBooleanProperty;
 

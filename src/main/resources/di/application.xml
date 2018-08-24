@@ -5,15 +5,15 @@
            http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="dota2HeroGridCustomizer-heroGridVM"
-          class="drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroGridCustomizationVM">
+          class="drakonli.dota2.hero_grid_customizer.application.models.HeroGridCustomizationVM">
     </bean>
 
     <bean id="dota2HeroGridCustomizer-exportImportByFileVM"
-          class="drakonli.dota2.hero_grid_customizer.application.view_model.models.ExportImportHeroGridCustomizationByFileVM">
+          class="drakonli.dota2.hero_grid_customizer.application.models.ExportImportHeroGridCustomizationByFileVM">
     </bean>
 
     <bean id="dota2HeroGridCustomizer-exportImportHeroGridByLatestSaveVM"
-          class="drakonli.dota2.hero_grid_customizer.application.view_model.models.ImportHeroGridCustomizationByLatestExportVM">
+          class="drakonli.dota2.hero_grid_customizer.application.models.ImportHeroGridCustomizationByLatestExportVM">
         <constructor-arg ref="dota2HeroGridCustomizer-initialValueForFileStorageRestoreAvailability"/>
     </bean>
 
@@ -29,7 +29,7 @@
     </bean>
 
     <bean id="dota2HeroGridCustomizer-heroGridCustomizationToViewModelsMapper"
-          class="drakonli.dota2.hero_grid_customizer.application.view_model.services.HeroGridCustomizationToViewModelsMapper">
+          class="drakonli.dota2.hero_grid_customizer.application.services.HeroGridCustomizationToViewModelsMapper">
     </bean>
 
     <bean id="dota2HeroGridCustomizer-basicExportConfigIntoFileAction"
@@ -71,5 +71,5 @@
     </bean>
 
     <bean id="dota2HeroGridCustomizer-heroGridCustomizationByHeroNamesCustomizationVMFactory"
-          class="drakonli.dota2.hero_grid_customizer.application.view_model.services.HeroGridCustomizationByViewModelsFactory"/>
+          class="drakonli.dota2.hero_grid_customizer.application.services.HeroGridCustomizationByViewModelsFactory"/>
 </beans>

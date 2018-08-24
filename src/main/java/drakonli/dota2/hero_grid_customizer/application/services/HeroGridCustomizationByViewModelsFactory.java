@@ -1,6 +1,6 @@
-package drakonli.dota2.hero_grid_customizer.application.view_model.services;
+package drakonli.dota2.hero_grid_customizer.application.services;
 
-import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroNameCustomizationVM;
+import drakonli.dota2.hero_grid_customizer.application.models.HeroNameCustomizationVM;
 import drakonli.dota2.hero_grid_customizer.domain.model.HeroGridCustomization;
 import drakonli.dota2.hero_grid_customizer.domain.model.HeroNameCustomization;
 

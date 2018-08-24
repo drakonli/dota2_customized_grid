@@ -1,7 +1,7 @@
 package drakonli.dota2.hero_grid_customizer.application.action.hero_grid_customization.import_customization.from_file;
 
-import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroNameCustomizationVM;
-import drakonli.dota2.hero_grid_customizer.application.view_model.services.HeroGridCustomizationToViewModelsMapper;
+import drakonli.dota2.hero_grid_customizer.application.models.HeroNameCustomizationVM;
+import drakonli.dota2.hero_grid_customizer.application.services.HeroGridCustomizationToViewModelsMapper;
 import drakonli.dota2.hero_grid_customizer.domain.model.HeroGridCustomization;
 import drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.customization_importer.IHeroGridCustomizationFromFileImporter;
 import drakonli.jcomponents.file.exception.InvalidFileFormatException;
