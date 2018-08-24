@@ -10,12 +10,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public class BasicImportConfigFromFileAction implements IImportConfigFromFileAction
+public class BasicImportHeroGridCustomizationFromFileAction implements IImportHeroGridCustomizationFromFileAction
 {
     private final IHeroGridConfigFromFileImporter importer;
     private final HeroGridCustomizationToViewModelsMapper heroGridCustomizationToViewModelsMapper;
 
-    public BasicImportConfigFromFileAction(
+    public BasicImportHeroGridCustomizationFromFileAction(
             IHeroGridConfigFromFileImporter importer,
             HeroGridCustomizationToViewModelsMapper heroGridCustomizationToViewModelsMapper
     )
@@ -25,8 +25,8 @@ public class BasicImportConfigFromFileAction implements IImportConfigFromFileAct
     }
 
     @Override
-    public void importConfig(File file, List<HeroNameCustomizationVM> heroNameCustomizationVMListToImportInto) throws
-            InvalidFileFormatException, IOException
+    public void importCustomization(File file, List<HeroNameCustomizationVM> heroNameCustomizationVMListToImportInto)
+            throws InvalidFileFormatException, IOException
     {
         HeroGridCustomization heroGridCustomization = this.importer.importHeroNamesByFile(file);
 

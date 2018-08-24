@@ -50,7 +50,7 @@
     </bean>
 
     <bean id="dota2HeroGridCustomizer-basicImportConfigFromFileAction"
-          class="drakonli.dota2.hero_grid_customizer.application.action.config_import.dota_translation_file.BasicImportConfigFromFileAction">
+          class="drakonli.dota2.hero_grid_customizer.application.action.config_import.dota_translation_file.BasicImportHeroGridCustomizationFromFileAction">
         <constructor-arg ref="dota2HeroGridCustomizer-heroNamesByDota2TranslationsFileImporter"/>
         <constructor-arg ref="dota2HeroGridCustomizer-heroGridCustomizationToViewModelsMapper"/>
     </bean>
@@ -61,11 +61,11 @@
         <constructor-arg ref="dota2HeroGridCustomizer-exportImportByFileVM"/>
     </bean>
 
-    <bean id="dota2HeroGridCustomizer-importConfigFromFileAction"
+    <bean id="dota2HeroGridCustomizer-importHeroGridCustomizationFromFileAction"
           parent="dota2HeroGridCustomizer-basicImportConfigFromFileAction-setCurrentFileDecorated"/>
 
     <bean id="dota2HeroGridCustomizer-importConfigFromStorageByLatestSaveAction"
-          class="drakonli.dota2.hero_grid_customizer.application.action.config_import.latest_save.ImportConfigFromStorageByLatestSaveAction">
+          class="drakonli.dota2.hero_grid_customizer.application.action.config_import.latest_save.ImportHeroGridCustomizationFromStorageByLatestSaveAction">
         <constructor-arg ref="dota2HeroGridCustomizer-heroGridCustomizationByFileStorage"/>
         <constructor-arg ref="dota2HeroGridCustomizer-heroGridCustomizationToViewModelsMapper"/>
     </bean>

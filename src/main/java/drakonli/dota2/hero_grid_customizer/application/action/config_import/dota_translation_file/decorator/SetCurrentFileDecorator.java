@@ -1,7 +1,7 @@
 package drakonli.dota2.hero_grid_customizer.application.action.config_import.dota_translation_file.decorator;
 
 import drakonli.dota2.hero_grid_customizer.application.action.ApplicationActionException;
-import drakonli.dota2.hero_grid_customizer.application.action.config_import.dota_translation_file.IImportConfigFromFileAction;
+import drakonli.dota2.hero_grid_customizer.application.action.config_import.dota_translation_file.IImportHeroGridCustomizationFromFileAction;
 import drakonli.dota2.hero_grid_customizer.application.view_model.models.ExportImportHeroGridCustomizationByFileVM;
 import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroNameCustomizationVM;
 import drakonli.jcomponents.file.exception.InvalidFileFormatException;
@@ -10,12 +10,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public class SetCurrentFileDecorator extends AbstractImportConfigFromFileActionDecorator
+public class SetCurrentFileDecorator extends AbstractImportHeroGridCustomizationFromFileActionDecorator
 {
     private final ExportImportHeroGridCustomizationByFileVM exportImportHeroGridCustomizationByFileVM;
 
     public SetCurrentFileDecorator(
-            IImportConfigFromFileAction importConfigFromFileAction,
+            IImportHeroGridCustomizationFromFileAction importConfigFromFileAction,
             ExportImportHeroGridCustomizationByFileVM exportImportHeroGridCustomizationByFileVM
     )
     {
@@ -25,11 +25,10 @@ public class SetCurrentFileDecorator extends AbstractImportConfigFromFileActionD
     }
 
     @Override
-    public void importConfig(
-            File file, List<HeroNameCustomizationVM> heroNameCustomizationVMListToImportInto
-    ) throws InvalidFileFormatException, IOException, ApplicationActionException
+    public void importCustomization(File file, List<HeroNameCustomizationVM> heroNameCustomizationVMListToImportInto)
+            throws InvalidFileFormatException, IOException, ApplicationActionException
     {
-        super.importConfig(file, heroNameCustomizationVMListToImportInto);
+        super.importCustomization(file, heroNameCustomizationVMListToImportInto);
 
         this.exportImportHeroGridCustomizationByFileVM.setChosenHeroGridFile(file);
     }

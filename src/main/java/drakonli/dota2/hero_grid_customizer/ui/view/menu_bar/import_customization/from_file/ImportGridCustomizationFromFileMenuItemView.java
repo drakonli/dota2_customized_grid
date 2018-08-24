@@ -1,6 +1,6 @@
 package drakonli.dota2.hero_grid_customizer.ui.view.menu_bar.import_customization.from_file;
 
-import drakonli.dota2.hero_grid_customizer.application.action.config_import.dota_translation_file.IImportConfigFromFileAction;
+import drakonli.dota2.hero_grid_customizer.application.action.config_import.dota_translation_file.IImportHeroGridCustomizationFromFileAction;
 import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroGridCustomizationVM;
 import drakonli.jcomponents.file.chooser.FileChooserFactoryInterface;
 import drakonli.jcomponents.notificator.NotificatorInterface;
@@ -15,21 +15,21 @@ public class ImportGridCustomizationFromFileMenuItemView
     @FXML
     public MenuItem importByFileMenuItem;
 
-    private final FileChooserFactoryInterface fileChooserFactory;
-    private final NotificatorInterface notificator;
-    private final IImportConfigFromFileAction importConfigFromFileAction;
-    private final HeroGridCustomizationVM heroGridCustomizationVM;
+    private final FileChooserFactoryInterface                fileChooserFactory;
+    private final NotificatorInterface                       notificator;
+    private final IImportHeroGridCustomizationFromFileAction importHeroGridCustomizationFromFileAction;
+    private final HeroGridCustomizationVM                    heroGridCustomizationVM;
 
     public ImportGridCustomizationFromFileMenuItemView(
             FileChooserFactoryInterface fileChooserFactory,
             NotificatorInterface notificator,
-            IImportConfigFromFileAction importConfigFromFileAction,
+            IImportHeroGridCustomizationFromFileAction importHeroGridCustomizationFromFileAction,
             HeroGridCustomizationVM heroGridCustomizationVM
     )
     {
         this.fileChooserFactory = fileChooserFactory;
         this.notificator = notificator;
-        this.importConfigFromFileAction = importConfigFromFileAction;
+        this.importHeroGridCustomizationFromFileAction = importHeroGridCustomizationFromFileAction;
         this.heroGridCustomizationVM = heroGridCustomizationVM;
     }
 
@@ -44,7 +44,7 @@ public class ImportGridCustomizationFromFileMenuItemView
         }
 
         try {
-            this.importConfigFromFileAction.importConfig(
+            this.importHeroGridCustomizationFromFileAction.importCustomization(
                     file,
                     this.heroGridCustomizationVM.getHeroNameCustomizationVMList()
             );

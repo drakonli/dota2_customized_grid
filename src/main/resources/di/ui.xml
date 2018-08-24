@@ -15,7 +15,7 @@
           scope="prototype">
         <constructor-arg ref="dota2HeroGridCustomizer-fileChooserFactory-main"/>
         <constructor-arg ref="dota2HeroGridCustomizer-notificator-main"/>
-        <constructor-arg ref="dota2HeroGridCustomizer-importConfigFromFileAction"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-importHeroGridCustomizationFromFileAction"/>
         <constructor-arg ref="dota2HeroGridCustomizer-heroGridVM"/>
     </bean>
 

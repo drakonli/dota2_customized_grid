@@ -6,8 +6,8 @@ import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.stor
 
 import java.util.List;
 
-public interface IImportConfigByLatestSaveAction
+public interface IImportHeroGridCustomizationByLatestSaveAction
 {
-    public void importConfig(List<HeroNameCustomizationVM> heroNameCustomizationVMListToImportInto)
+    public void importCustomization(List<HeroNameCustomizationVM> heroNameCustomizationVMListToImportInto)
             throws StorageException, LastVersionOfHeroGridCustomizationIsEmptyException, ApplicationActionException;
 }

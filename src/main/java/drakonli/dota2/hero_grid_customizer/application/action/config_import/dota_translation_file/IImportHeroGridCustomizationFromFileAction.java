@@ -8,8 +8,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public interface IImportConfigFromFileAction
+public interface IImportHeroGridCustomizationFromFileAction
 {
-    public void importConfig(File file, List<HeroNameCustomizationVM> heroNameCustomizationVMListToImportInto) throws
-            InvalidFileFormatException, IOException, ApplicationActionException;
+    public void importCustomization(File file, List<HeroNameCustomizationVM> heroNameCustomizationVMListToImportInto)
+            throws InvalidFileFormatException, IOException, ApplicationActionException;
 }

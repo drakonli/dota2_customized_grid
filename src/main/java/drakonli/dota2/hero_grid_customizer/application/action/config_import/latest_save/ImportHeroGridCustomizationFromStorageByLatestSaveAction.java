@@ -8,12 +8,13 @@ import drakonli.dota2.hero_grid_customizer.domain.model.HeroGridCustomization;
 
 import java.util.List;
 
-public class ImportConfigFromStorageByLatestSaveAction implements IImportConfigByLatestSaveAction
+public class ImportHeroGridCustomizationFromStorageByLatestSaveAction implements
+        IImportHeroGridCustomizationByLatestSaveAction
 {
     private final HeroGridCustomizationByFileStorage storage;
     private final HeroGridCustomizationToViewModelsMapper heroGridCustomizationToViewModelsMapper;
 
-    public ImportConfigFromStorageByLatestSaveAction(
+    public ImportHeroGridCustomizationFromStorageByLatestSaveAction(
             HeroGridCustomizationByFileStorage storage,
             HeroGridCustomizationToViewModelsMapper heroGridCustomizationToViewModelsMapper
     )
@@ -23,7 +24,7 @@ public class ImportConfigFromStorageByLatestSaveAction implements IImportConfigB
     }
 
     @Override
-    public void importConfig(List<HeroNameCustomizationVM> heroNameCustomizationVMListToImportInto)
+    public void importCustomization(List<HeroNameCustomizationVM> heroNameCustomizationVMListToImportInto)
             throws StorageException, LastVersionOfHeroGridCustomizationIsEmptyException
     {
         HeroGridCustomization heroGridCustomization = this.storage.getLatest();
