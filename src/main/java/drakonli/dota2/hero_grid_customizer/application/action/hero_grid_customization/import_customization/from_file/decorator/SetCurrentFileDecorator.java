@@ -15,11 +15,11 @@ public class SetCurrentFileDecorator extends AbstractImportHeroGridCustomization
     private final ExportImportHeroGridCustomizationByFileVM exportImportHeroGridCustomizationByFileVM;
 
     public SetCurrentFileDecorator(
-            IImportHeroGridCustomizationFromFileAction importConfigFromFileAction,
+            IImportHeroGridCustomizationFromFileAction importHeroGridCustomizationFromFileAction,
             ExportImportHeroGridCustomizationByFileVM exportImportHeroGridCustomizationByFileVM
     )
     {
-        super(importConfigFromFileAction);
+        super(importHeroGridCustomizationFromFileAction);
 
         this.exportImportHeroGridCustomizationByFileVM = exportImportHeroGridCustomizationByFileVM;
     }

@@ -19,19 +19,19 @@ public class ExportGridCustomizationIntoCurrentFileButtonView implements Initial
     public MenuItem exportCustomizationIntoCurrentFileMenuItem;
 
     private final NotificatorInterface                       notificator;
-    private final IExportHeroGridCustomizationIntoFileAction exportConfigIntoFileAction;
+    private final IExportHeroGridCustomizationIntoFileAction exportHeroGridCustomizationIntoFileAction;
     private final ExportImportHeroGridCustomizationByFileVM  exportImportHeroGridCustomizationByFileVM;
     private final HeroGridCustomizationVM                    heroGridCustomizationVM;
 
     public ExportGridCustomizationIntoCurrentFileButtonView(
             NotificatorInterface notificator,
-            IExportHeroGridCustomizationIntoFileAction exportConfigIntoFileAction,
+            IExportHeroGridCustomizationIntoFileAction exportHeroGridCustomizationIntoFileAction,
             ExportImportHeroGridCustomizationByFileVM exportImportHeroGridCustomizationByFileVM,
             HeroGridCustomizationVM heroGridCustomizationVM
     )
     {
         this.notificator = notificator;
-        this.exportConfigIntoFileAction = exportConfigIntoFileAction;
+        this.exportHeroGridCustomizationIntoFileAction = exportHeroGridCustomizationIntoFileAction;
         this.exportImportHeroGridCustomizationByFileVM = exportImportHeroGridCustomizationByFileVM;
         this.heroGridCustomizationVM = heroGridCustomizationVM;
     }
@@ -51,7 +51,7 @@ public class ExportGridCustomizationIntoCurrentFileButtonView implements Initial
                     .getOptionalChosenHeroGridFile()
                     .orElseThrow(() -> new NullPointerException("No File was chosen"));
 
-            this.exportConfigIntoFileAction.exportCustomization(
+            this.exportHeroGridCustomizationIntoFileAction.exportCustomization(
                     file,
                     this.heroGridCustomizationVM.getHeroNameCustomizationVMList()
             );
