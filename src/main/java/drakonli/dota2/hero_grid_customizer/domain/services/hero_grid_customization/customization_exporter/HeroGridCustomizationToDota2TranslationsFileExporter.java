@@ -1,9 +1,9 @@
 package drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.customization_exporter;
 
 import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.editor.txt.Dota2TranslationsFileHeroTranslationsLineEditorAndPredicate;
-import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.exception.Dota2InvalidFileFormatException;
 import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.extractor.HeroTranslationByFileLineExtractor;
 import drakonli.dota2.hero_grid_customizer.domain.model.HeroGridCustomization;
+import drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.exception.Dota2InvalidFileFormatException;
 import drakonli.jcomponents.file.editor.txt.TxtFileByLineEditorInterface;
 import drakonli.jcomponents.file.editor.txt.exception.NoLineQualifiedForEditException;
 

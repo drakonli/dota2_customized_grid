@@ -1,4 +1,4 @@
-package drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.exception;
+package drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.exception;
 
 import drakonli.jcomponents.file.exception.InvalidFileFormatException;
 
