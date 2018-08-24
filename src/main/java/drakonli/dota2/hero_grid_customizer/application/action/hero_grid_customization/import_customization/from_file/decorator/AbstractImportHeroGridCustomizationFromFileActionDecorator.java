@@ -12,19 +12,22 @@ import java.util.List;
 public class AbstractImportHeroGridCustomizationFromFileActionDecorator
         implements IImportHeroGridCustomizationFromFileAction
 {
-    private final IImportHeroGridCustomizationFromFileAction importConfigFromFileAction;
+    private final IImportHeroGridCustomizationFromFileAction importHeroGridCustomizationFromFileAction;
 
     public AbstractImportHeroGridCustomizationFromFileActionDecorator(
-            IImportHeroGridCustomizationFromFileAction importConfigFromFileAction
+            IImportHeroGridCustomizationFromFileAction importHeroGridCustomizationFromFileAction
     )
     {
-        this.importConfigFromFileAction = importConfigFromFileAction;
+        this.importHeroGridCustomizationFromFileAction = importHeroGridCustomizationFromFileAction;
     }
 
     @Override
     public void importCustomization(File file, List<HeroNameCustomizationVM> heroNameCustomizationVMListToImportInto)
             throws InvalidFileFormatException, IOException, ApplicationActionException
     {
-        this.importConfigFromFileAction.importCustomization(file, heroNameCustomizationVMListToImportInto);
+        this.importHeroGridCustomizationFromFileAction.importCustomization(
+                file,
+                heroNameCustomizationVMListToImportInto
+        );
     }
 }
