@@ -15,7 +15,7 @@
     </util:list>
 
     <bean id="dota2HeroGridCustomizer-fileBackuper-main"
-          class="drakonli.jcomponents.file.backuper.FileBackuper">
+          class="drakonli.jcomponents.file.backuper.ReplaceExistingFileSystemFileBackuper">
     </bean>
 
     <bean id="dota2HeroGridCustomizer-txtFileByLineEditor-main"
