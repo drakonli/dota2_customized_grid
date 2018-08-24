@@ -4,10 +4,11 @@ import drakonli.dota2.hero_grid_customizer.domain.model.HeroGridCustomization;
 
 import java.io.*;
 
-public class HeroGridCustomizationByFileStorage
+public class HeroGridCustomizationByFileStorage implements IHeroGridCustomizationStorage
 {
     private static final String HERO_NAMES_SAVE_FILENAME = "hero_names_save.txt";
 
+    @Override
     public void store(HeroGridCustomization heroGridCustomization) throws StorageException
     {
         try {
@@ -17,12 +18,12 @@ public class HeroGridCustomizationByFileStorage
             out.writeObject(heroGridCustomization);
             out.close();
             fileOut.close();
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             throw new StorageException(e);
         }
     }
 
+    @Override
     public HeroGridCustomization getLatest() throws StorageException
     {
         File heroNamesSaveFile = new File(HERO_NAMES_SAVE_FILENAME);
@@ -39,8 +40,7 @@ public class HeroGridCustomizationByFileStorage
             fileIn.close();
 
             return heroGridCustomization;
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             throw new StorageException(e);
         }
     }

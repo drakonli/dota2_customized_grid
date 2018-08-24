@@ -2,7 +2,7 @@ package drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customizat
 
 import drakonli.dota2.hero_grid_customizer.domain.model.HeroGridCustomization;
 import drakonli.dota2.hero_grid_customizer.domain.model.HeroNameCustomization;
-import drakonli.dota2.hero_grid_customizer.domain.services.dota2_translations_file.HeroNameCustomizationByDota2TranslationsFileLineExtractor;
+import drakonli.dota2.hero_grid_customizer.domain.services.dota2_translations_file.IHeroNameCustomizationByLineExtractor;
 import drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.exception.Dota2InvalidFileFormatException;
 import drakonli.jcomponents.file.exception.InvalidFileFormatException;
 import drakonli.jcomponents.file.reader.buffered.BufferedFileReaderFactoryInterface;
@@ -13,18 +13,16 @@ import java.io.IOException;
 
 public class HeroGridCustomizationFromDota2TranslationsFileImporter implements IHeroGridCustomizationFromFileImporter
 {
-    private final BufferedFileReaderFactoryInterface readerFactory;
-    private final HeroNameCustomizationByDota2TranslationsFileLineExtractor
-                                                     heroNameCustomizationByDota2TranslationsFileLineExtractor;
+    private final BufferedFileReaderFactoryInterface    readerFactory;
+    private final IHeroNameCustomizationByLineExtractor heroNameCustomizationByLineExtractor;
 
     public HeroGridCustomizationFromDota2TranslationsFileImporter(
             BufferedFileReaderFactoryInterface readerFactory,
-            HeroNameCustomizationByDota2TranslationsFileLineExtractor heroNameCustomizationByDota2TranslationsFileLineExtractor
+            IHeroNameCustomizationByLineExtractor heroNameCustomizationByLineExtractor
     )
     {
         this.readerFactory = readerFactory;
-        this.heroNameCustomizationByDota2TranslationsFileLineExtractor
-                = heroNameCustomizationByDota2TranslationsFileLineExtractor;
+        this.heroNameCustomizationByLineExtractor = heroNameCustomizationByLineExtractor;
     }
 
     public HeroGridCustomization importCustomization(File file) throws InvalidFileFormatException, IOException
@@ -40,7 +38,7 @@ public class HeroGridCustomizationFromDota2TranslationsFileImporter implements I
             }
 
             HeroNameCustomization heroNameCustomization
-                    = this.heroNameCustomizationByDota2TranslationsFileLineExtractor.extractByLine(currentLine);
+                    = this.heroNameCustomizationByLineExtractor.extractByLine(currentLine);
 
             if (null == heroNameCustomization) {
                 continue;

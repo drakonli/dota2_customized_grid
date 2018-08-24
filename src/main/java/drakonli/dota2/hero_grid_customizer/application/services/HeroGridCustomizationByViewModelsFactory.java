@@ -6,8 +6,9 @@ import drakonli.dota2.hero_grid_customizer.domain.model.HeroNameCustomization;
 
 import java.util.List;
 
-public class HeroGridCustomizationByViewModelsFactory
+public class HeroGridCustomizationByViewModelsFactory implements IHeroGridCustomizationByViewModelsFactory
 {
+    @Override
     public HeroGridCustomization create(List<HeroNameCustomizationVM> heroNameCustomizationVMList)
     {
         HeroGridCustomization heroGridCustomization = new HeroGridCustomization();

@@ -1,18 +1,18 @@
 package drakonli.dota2.hero_grid_customizer.application.services;
 
 import drakonli.dota2.hero_grid_customizer.domain.model.HeroGridCustomization;
-import drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.storage.HeroGridCustomizationByFileStorage;
+import drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.storage.IHeroGridCustomizationStorage;
 import drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.storage.StorageException;
 
 public class FileStorageImportByLatestExportAvailabilityManager implements ImportByLatestExportAvailabilityManagerInterface
 {
-    private final HeroGridCustomizationByFileStorage heroGridCustomizationByFileStorage;
+    private final IHeroGridCustomizationStorage heroGridCustomizationStorage;
 
     public FileStorageImportByLatestExportAvailabilityManager(
-            HeroGridCustomizationByFileStorage heroGridCustomizationByFileStorage
+            IHeroGridCustomizationStorage heroGridCustomizationStorage
     )
     {
-        this.heroGridCustomizationByFileStorage = heroGridCustomizationByFileStorage;
+        this.heroGridCustomizationStorage = heroGridCustomizationStorage;
     }
 
     @Override
@@ -20,7 +20,7 @@ public class FileStorageImportByLatestExportAvailabilityManager implements Impor
     {
         try {
             HeroGridCustomization latestStoredHeroGridCustomization
-                    = this.heroGridCustomizationByFileStorage.getLatest();
+                    = this.heroGridCustomizationStorage.getLatest();
 
             return !latestStoredHeroGridCustomization.isEmpty();
         } catch (StorageException e) {

@@ -3,7 +3,7 @@ package drakonli.dota2.hero_grid_customizer.application.action.hero_grid_customi
 import drakonli.dota2.hero_grid_customizer.application.action.ApplicationActionException;
 import drakonli.dota2.hero_grid_customizer.application.action.hero_grid_customization.export_customization.event.publisher.IExportHeroGridCustomizationIntoFileActionEventPublisher;
 import drakonli.dota2.hero_grid_customizer.application.models.HeroNameCustomizationVM;
-import drakonli.dota2.hero_grid_customizer.application.services.HeroGridCustomizationByViewModelsFactory;
+import drakonli.dota2.hero_grid_customizer.application.services.IHeroGridCustomizationByViewModelsFactory;
 import drakonli.dota2.hero_grid_customizer.domain.model.HeroGridCustomization;
 import drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.customization_exporter.IHeroGridCustomizationToFileExporter;
 import drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.customization_exporter.exception.ExportException;
@@ -16,12 +16,12 @@ import java.util.List;
 public class ExportHeroGridCustomizationIntoFileAction implements IExportHeroGridCustomizationIntoFileAction
 {
     private final IHeroGridCustomizationToFileExporter                     exporter;
-    private final HeroGridCustomizationByViewModelsFactory                 heroGridCustomizationFactory;
+    private final IHeroGridCustomizationByViewModelsFactory                heroGridCustomizationFactory;
     private final IExportHeroGridCustomizationIntoFileActionEventPublisher eventPublisher;
 
     public ExportHeroGridCustomizationIntoFileAction(
             IHeroGridCustomizationToFileExporter exporter,
-            HeroGridCustomizationByViewModelsFactory heroGridCustomizationFactory,
+            IHeroGridCustomizationByViewModelsFactory heroGridCustomizationFactory,
             IExportHeroGridCustomizationIntoFileActionEventPublisher eventPublisher
     )
     {

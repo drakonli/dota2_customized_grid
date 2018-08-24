@@ -21,12 +21,12 @@ public class Dota2TranslationsFileHeroTranslationsLineEditorAndPredicate impleme
 {
     private HeroNameCustomization heroNameCustomizationInCurrentLine;
 
-    private final HeroGridCustomization                                     heroGridCustomization;
-    private final HeroNameCustomizationByDota2TranslationsFileLineExtractor heroTranslationByLineExtractor;
+    private final HeroGridCustomization                 heroGridCustomization;
+    private final IHeroNameCustomizationByLineExtractor heroTranslationByLineExtractor;
 
     public Dota2TranslationsFileHeroTranslationsLineEditorAndPredicate(
             HeroGridCustomization heroGridCustomization,
-            HeroNameCustomizationByDota2TranslationsFileLineExtractor heroTranslationByLineExtractor
+            IHeroNameCustomizationByLineExtractor heroTranslationByLineExtractor
     )
     {
         this.heroGridCustomization = heroGridCustomization;
