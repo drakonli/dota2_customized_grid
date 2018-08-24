@@ -5,7 +5,7 @@ import drakonli.dota2.hero_grid_customizer.domain.model.HeroNameCustomization;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class HeroTranslationByFileLineExtractor
+public class HeroNameCustomizationByDota2TranslationsFileLineExtractor
 {
     private static final String HERO_TRANSLATION_MATCH_PATTERN = "\"(npc_dota_hero_[^_]*)\".*\"(.*)\"";
     private static final String[] HERO_TRANSLATION_UNSUITED_SUFFIXES = {

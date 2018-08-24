@@ -1,8 +1,8 @@
 package drakonli.dota2.hero_grid_customizer.application.services;
 
-import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.storage.HeroGridCustomizationByFileStorage;
-import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.storage.StorageException;
 import drakonli.dota2.hero_grid_customizer.domain.model.HeroGridCustomization;
+import drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.storage.HeroGridCustomizationByFileStorage;
+import drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.storage.StorageException;
 
 public class FileStorageImportByLatestExportAvailabilityManager implements ImportByLatestExportAvailabilityManagerInterface
 {

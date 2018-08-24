@@ -1,6 +1,6 @@
 package drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.customization_importer;
 
-import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.extractor.HeroTranslationByFileLineExtractor;
+import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.extractor.HeroNameCustomizationByDota2TranslationsFileLineExtractor;
 import drakonli.dota2.hero_grid_customizer.domain.model.HeroGridCustomization;
 import drakonli.dota2.hero_grid_customizer.domain.model.HeroNameCustomization;
 import drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.exception.Dota2InvalidFileFormatException;
@@ -14,15 +14,17 @@ import java.io.IOException;
 public class HeroGridCustomizationFromDota2TranslationsFileImporter implements IHeroGridCustomizationFromFileImporter
 {
     private final BufferedFileReaderFactoryInterface readerFactory;
-    private final HeroTranslationByFileLineExtractor heroTranslationByFileLineExtractor;
+    private final HeroNameCustomizationByDota2TranslationsFileLineExtractor
+                                                     heroNameCustomizationByDota2TranslationsFileLineExtractor;
 
     public HeroGridCustomizationFromDota2TranslationsFileImporter(
             BufferedFileReaderFactoryInterface readerFactory,
-            HeroTranslationByFileLineExtractor heroTranslationByFileLineExtractor
+            HeroNameCustomizationByDota2TranslationsFileLineExtractor heroNameCustomizationByDota2TranslationsFileLineExtractor
     )
     {
         this.readerFactory = readerFactory;
-        this.heroTranslationByFileLineExtractor = heroTranslationByFileLineExtractor;
+        this.heroNameCustomizationByDota2TranslationsFileLineExtractor
+                = heroNameCustomizationByDota2TranslationsFileLineExtractor;
     }
 
     public HeroGridCustomization importCustomization(File file) throws InvalidFileFormatException, IOException
@@ -38,7 +40,7 @@ public class HeroGridCustomizationFromDota2TranslationsFileImporter implements I
             }
 
             HeroNameCustomization heroNameCustomization
-                    = this.heroTranslationByFileLineExtractor.extractByLine(currentLine);
+                    = this.heroNameCustomizationByDota2TranslationsFileLineExtractor.extractByLine(currentLine);
 
             if (null == heroNameCustomization) {
                 continue;

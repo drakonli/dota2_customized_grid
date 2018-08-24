@@ -1,4 +1,4 @@
-package drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.storage;
+package drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.storage;
 
 public class StorageException extends Exception
 {

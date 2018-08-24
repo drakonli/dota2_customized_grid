@@ -1,6 +1,6 @@
 package drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.editor.txt;
 
-import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.extractor.HeroTranslationByFileLineExtractor;
+import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.extractor.HeroNameCustomizationByDota2TranslationsFileLineExtractor;
 import drakonli.dota2.hero_grid_customizer.domain.component.hero.names.predicate.HeroTranslationByHeroNameUIDPredicate;
 import drakonli.dota2.hero_grid_customizer.domain.model.HeroGridCustomization;
 import drakonli.dota2.hero_grid_customizer.domain.model.HeroNameCustomization;
@@ -21,14 +21,14 @@ public class Dota2TranslationsFileHeroTranslationsLineEditorAndPredicate impleme
         TxtLineEditorInterface,
         TxtLinePredicateInterface
 {
-    private HeroNameCustomization currentHeroNameCustomizationInLine;
+    private HeroNameCustomization heroNameCustomizationInCurrentLine;
 
-    private final HeroGridCustomization heroGridCustomization;
-    private final HeroTranslationByFileLineExtractor heroTranslationByLineExtractor;
+    private final HeroGridCustomization                                     heroGridCustomization;
+    private final HeroNameCustomizationByDota2TranslationsFileLineExtractor heroTranslationByLineExtractor;
 
     public Dota2TranslationsFileHeroTranslationsLineEditorAndPredicate(
             HeroGridCustomization heroGridCustomization,
-            HeroTranslationByFileLineExtractor heroTranslationByLineExtractor
+            HeroNameCustomizationByDota2TranslationsFileLineExtractor heroTranslationByLineExtractor
     )
     {
         this.heroGridCustomization = heroGridCustomization;
@@ -42,34 +42,45 @@ public class Dota2TranslationsFileHeroTranslationsLineEditorAndPredicate impleme
             return false;
         }
 
-        this.currentHeroNameCustomizationInLine = this.heroTranslationByLineExtractor.extractByLine(line);
+        this.heroNameCustomizationInCurrentLine = this.heroTranslationByLineExtractor.extractByLine(line);
 
-        return null != this.currentHeroNameCustomizationInLine;
+        return null != this.heroNameCustomizationInCurrentLine;
     }
 
     @Override
     public String editLine(String line)
     {
-        if (null == this.currentHeroNameCustomizationInLine) {
+        if (null == this.heroNameCustomizationInCurrentLine) {
             return line;
         }
 
-        Optional<HeroNameCustomization> optionalHeroTranslation = this.heroGridCustomization
+        Optional<HeroNameCustomization> optionalHeroNameCustomizationFromGrid =
+                this.findHeroNameCustomizationInGridByHeroNameUUID(
+                        this.heroNameCustomizationInCurrentLine.getHeroNameUID()
+                );
+
+        if (!optionalHeroNameCustomizationFromGrid.isPresent()) {
+            return line;
+        }
+
+        return this.replaceHeroNameInLineByHeroNameFromGrid(line, optionalHeroNameCustomizationFromGrid.get());
+    }
+
+    private Optional<HeroNameCustomization> findHeroNameCustomizationInGridByHeroNameUUID(String heroNameUUID)
+    {
+        return this.heroGridCustomization
                 .stream()
                 .filter(
-                        new HeroTranslationByHeroNameUIDPredicate(
-                                this.currentHeroNameCustomizationInLine.getHeroNameUID()
-                        )
+                        new HeroTranslationByHeroNameUIDPredicate(heroNameUUID)
                 )
                 .findFirst();
+    }
 
-        if (!optionalHeroTranslation.isPresent()) {
-            return line;
-        }
-
+    private String replaceHeroNameInLineByHeroNameFromGrid(String line, HeroNameCustomization heroNameCustomization)
+    {
         return line.replace(
-                "\"" + this.currentHeroNameCustomizationInLine.getHeroName() + "\"",
-                "\"" + optionalHeroTranslation.get().getHeroName() + "\""
+                "\"" + this.heroNameCustomizationInCurrentLine.getHeroName() + "\"",
+                "\"" + heroNameCustomization.getHeroName() + "\""
         );
     }
 }
