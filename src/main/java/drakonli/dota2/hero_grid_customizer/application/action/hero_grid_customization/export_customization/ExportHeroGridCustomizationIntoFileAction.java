@@ -1,7 +1,7 @@
 package drakonli.dota2.hero_grid_customizer.application.action.hero_grid_customization.export_customization;
 
 import drakonli.dota2.hero_grid_customizer.application.action.ApplicationActionException;
-import drakonli.dota2.hero_grid_customizer.application.action.hero_grid_customization.export_customization.event.publisher.IExportConfigIntoFileActionEventPublisher;
+import drakonli.dota2.hero_grid_customizer.application.action.hero_grid_customization.export_customization.event.publisher.IExportHeroGridCustomizationIntoFileActionEventPublisher;
 import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroNameCustomizationVM;
 import drakonli.dota2.hero_grid_customizer.application.view_model.services.HeroGridCustomizationByViewModelsFactory;
 import drakonli.dota2.hero_grid_customizer.domain.model.HeroGridCustomization;
@@ -13,16 +13,16 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public class BasicExportConfigIntoFileAction implements IExportConfigIntoFileAction
+public class ExportHeroGridCustomizationIntoFileAction implements IExportHeroGridCustomizationIntoFileAction
 {
-    private final IHeroGridConfigToFileExporter exporter;
-    private final HeroGridCustomizationByViewModelsFactory heroGridCustomizationFactory;
-    private final IExportConfigIntoFileActionEventPublisher eventPublisher;
+    private final IHeroGridConfigToFileExporter                            exporter;
+    private final HeroGridCustomizationByViewModelsFactory                 heroGridCustomizationFactory;
+    private final IExportHeroGridCustomizationIntoFileActionEventPublisher eventPublisher;
 
-    public BasicExportConfigIntoFileAction(
+    public ExportHeroGridCustomizationIntoFileAction(
             IHeroGridConfigToFileExporter exporter,
             HeroGridCustomizationByViewModelsFactory heroGridCustomizationFactory,
-            IExportConfigIntoFileActionEventPublisher eventPublisher
+            IExportHeroGridCustomizationIntoFileActionEventPublisher eventPublisher
     )
     {
         this.exporter = exporter;
@@ -31,7 +31,7 @@ public class BasicExportConfigIntoFileAction implements IExportConfigIntoFileAct
     }
 
     @Override
-    public void exportConfig(File file, List<HeroNameCustomizationVM> heroNameCustomizationVMListToExport)
+    public void exportCustomization(File file, List<HeroNameCustomizationVM> heroNameCustomizationVMListToExport)
             throws InvalidFileFormatException, IOException, ApplicationActionException
     {
         HeroGridCustomization heroGridCustomization =

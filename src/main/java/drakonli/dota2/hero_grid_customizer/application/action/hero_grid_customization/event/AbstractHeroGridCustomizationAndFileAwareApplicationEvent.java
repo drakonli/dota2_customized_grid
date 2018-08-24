@@ -7,13 +7,13 @@ import org.springframework.context.ApplicationEvent;
 import java.io.File;
 import java.util.List;
 
-abstract public class AbstractHeroTranslationsAndFileAwareApplicationEvent extends ApplicationEvent
+abstract public class AbstractHeroGridCustomizationAndFileAwareApplicationEvent extends ApplicationEvent
 {
     private File file;
     private List<HeroNameCustomizationVM> heroNameCustomizationVMList;
     private HeroGridCustomization heroGridCustomization;
 
-    public AbstractHeroTranslationsAndFileAwareApplicationEvent(
+    public AbstractHeroGridCustomizationAndFileAwareApplicationEvent(
             Object source, File file,
             List<HeroNameCustomizationVM> heroNameCustomizationVMList,
             HeroGridCustomization heroGridCustomization

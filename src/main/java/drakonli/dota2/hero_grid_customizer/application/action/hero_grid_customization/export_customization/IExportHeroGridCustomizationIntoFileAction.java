@@ -8,8 +8,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public interface IExportConfigIntoFileAction
+public interface IExportHeroGridCustomizationIntoFileAction
 {
-    public void exportConfig(File file, List<HeroNameCustomizationVM> heroNameCustomizationVMListToExport) throws
-            InvalidFileFormatException, IOException, ApplicationActionException;
+    public void exportCustomization(File file, List<HeroNameCustomizationVM> heroNameCustomizationVMListToExport)
+            throws InvalidFileFormatException, IOException, ApplicationActionException;
 }

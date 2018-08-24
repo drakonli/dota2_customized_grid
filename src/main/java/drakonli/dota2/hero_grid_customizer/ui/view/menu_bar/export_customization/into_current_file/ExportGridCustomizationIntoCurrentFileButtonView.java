@@ -1,6 +1,6 @@
 package drakonli.dota2.hero_grid_customizer.ui.view.menu_bar.export_customization.into_current_file;
 
-import drakonli.dota2.hero_grid_customizer.application.action.hero_grid_customization.export_customization.IExportConfigIntoFileAction;
+import drakonli.dota2.hero_grid_customizer.application.action.hero_grid_customization.export_customization.IExportHeroGridCustomizationIntoFileAction;
 import drakonli.dota2.hero_grid_customizer.application.view_model.models.ExportImportHeroGridCustomizationByFileVM;
 import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroGridCustomizationVM;
 import drakonli.jcomponents.notificator.NotificatorInterface;
@@ -18,14 +18,14 @@ public class ExportGridCustomizationIntoCurrentFileButtonView implements Initial
     @FXML
     public MenuItem exportCustomizationIntoCurrentFileMenuItem;
 
-    private final NotificatorInterface notificator;
-    private final IExportConfigIntoFileAction exportConfigIntoFileAction;
-    private final ExportImportHeroGridCustomizationByFileVM exportImportHeroGridCustomizationByFileVM;
-    private final HeroGridCustomizationVM heroGridCustomizationVM;
+    private final NotificatorInterface                       notificator;
+    private final IExportHeroGridCustomizationIntoFileAction exportConfigIntoFileAction;
+    private final ExportImportHeroGridCustomizationByFileVM  exportImportHeroGridCustomizationByFileVM;
+    private final HeroGridCustomizationVM                    heroGridCustomizationVM;
 
     public ExportGridCustomizationIntoCurrentFileButtonView(
             NotificatorInterface notificator,
-            IExportConfigIntoFileAction exportConfigIntoFileAction,
+            IExportHeroGridCustomizationIntoFileAction exportConfigIntoFileAction,
             ExportImportHeroGridCustomizationByFileVM exportImportHeroGridCustomizationByFileVM,
             HeroGridCustomizationVM heroGridCustomizationVM
     )
@@ -51,7 +51,7 @@ public class ExportGridCustomizationIntoCurrentFileButtonView implements Initial
                     .getOptionalChosenHeroGridFile()
                     .orElseThrow(() -> new NullPointerException("No File was chosen"));
 
-            this.exportConfigIntoFileAction.exportConfig(
+            this.exportConfigIntoFileAction.exportCustomization(
                     file,
                     this.heroGridCustomizationVM.getHeroNameCustomizationVMList()
             );

@@ -6,7 +6,7 @@ import drakonli.dota2.hero_grid_customizer.domain.model.HeroGridCustomization;
 import java.io.File;
 import java.util.List;
 
-public interface IExportConfigIntoFileActionEventPublisher
+public interface IExportHeroGridCustomizationIntoFileActionEventPublisher
 {
     public void publishBeforeExportEvent(
             File file,
