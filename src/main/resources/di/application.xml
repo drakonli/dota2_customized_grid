@@ -18,7 +18,7 @@
     </bean>
 
     <bean id="dota2HeroGridCustomizer_fileStorageRestoreAvailabilityManager"
-          class="drakonli.dota2.hero_grid_customizer.application.services.FileStorageImportByLatestExportAvailabilityManager">
+          class="drakonli.dota2.hero_grid_customizer.application.services.impl.FileStorageImportByLatestExportAvailabilityManager">
         <constructor-arg ref="dota2HeroGridCustomizer-heroGridCustomizationByFileStorage"/>
     </bean>
 
@@ -29,34 +29,34 @@
     </bean>
 
     <bean id="dota2HeroGridCustomizer-heroGridCustomizationToViewModelsMapper"
-          class="drakonli.dota2.hero_grid_customizer.application.services.HeroGridCustomizationToViewModelsMapper">
+          class="drakonli.dota2.hero_grid_customizer.application.services.impl.HeroGridCustomizationToViewModelsMapper">
     </bean>
 
     <bean id="dota2HeroGridCustomizer-exportHeroGridCustomizationIntoFileAction"
-          class="drakonli.dota2.hero_grid_customizer.application.actions.hero_grid_customization.export_customization.ExportHeroGridCustomizationIntoFileAction">
+          class="drakonli.dota2.hero_grid_customizer.application.actions.hero_grid_customization.impl.export_customization.ExportHeroGridCustomizationIntoFileAction">
         <constructor-arg ref="dota2HeroGridCustomizer-heroGridCustomizationToDota2TranslationsFileExporter"/>
         <constructor-arg ref="dota2HeroGridCustomizer-heroGridCustomizationByHeroNamesCustomizationVMFactory"/>
         <constructor-arg ref="dota2HeroGridCustomizer-applicationEventPublisherAwareActionEventPublisher"/>
     </bean>
 
     <bean id="dota2HeroGridCustomizer-applicationEventPublisherAwareActionEventPublisher"
-          class="drakonli.dota2.hero_grid_customizer.application.actions.hero_grid_customization.export_customization.event.publisher.ApplicationEventPublisherAwareActionEventPublisher">
+          class="drakonli.dota2.hero_grid_customizer.application.actions.hero_grid_customization.impl.export_customization.event.publisher.ApplicationEventPublisherAwareActionEventPublisher">
     </bean>
 
     <bean id="dota2HeroGridCustomizer-SetImportByLatestExportAvailableEventListener"
-          class="drakonli.dota2.hero_grid_customizer.application.actions.hero_grid_customization.export_customization.event.listener.SetImportByLatestExportAvailableEventListener">
+          class="drakonli.dota2.hero_grid_customizer.application.actions.hero_grid_customization.impl.export_customization.event.listener.SetImportByLatestExportAvailableEventListener">
         <constructor-arg ref="dota2HeroGridCustomizer_fileStorageRestoreAvailabilityManager"/>
         <constructor-arg ref="dota2HeroGridCustomizer-exportImportHeroGridByLatestSaveVM"/>
     </bean>
 
     <bean id="dota2HeroGridCustomizer-basicImportHeroGridCustomizationFromFileAction"
-          class="drakonli.dota2.hero_grid_customizer.application.actions.hero_grid_customization.import_customization.from_file.ImportHeroGridCustomizationFromFileAction">
+          class="drakonli.dota2.hero_grid_customizer.application.actions.hero_grid_customization.impl.import_customization.from_file.ImportHeroGridCustomizationFromFileAction">
         <constructor-arg ref="dota2HeroGridCustomizer-heroNamesByDota2TranslationsFileImporter"/>
         <constructor-arg ref="dota2HeroGridCustomizer-heroGridCustomizationToViewModelsMapper"/>
     </bean>
 
     <bean id="dota2HeroGridCustomizer-basicImportHeroGridCustomizationFromFileAction-setCurrentFileDecorated"
-          class="drakonli.dota2.hero_grid_customizer.application.actions.hero_grid_customization.import_customization.from_file.decorator.SetCurrentFileDecorator">
+          class="drakonli.dota2.hero_grid_customizer.application.actions.hero_grid_customization.impl.import_customization.from_file.decorator.SetCurrentFileDecorator">
         <constructor-arg ref="dota2HeroGridCustomizer-basicImportHeroGridCustomizationFromFileAction"/>
         <constructor-arg ref="dota2HeroGridCustomizer-exportImportByFileVM"/>
     </bean>
@@ -65,11 +65,11 @@
           parent="dota2HeroGridCustomizer-basicImportHeroGridCustomizationFromFileAction-setCurrentFileDecorated"/>
 
     <bean id="dota2HeroGridCustomizer-importHeroGridCustomizationFromStorageByLatestSaveAction"
-          class="drakonli.dota2.hero_grid_customizer.application.actions.hero_grid_customization.import_customization.latest_save.ImportHeroGridCustomizationFromStorageByLatestSaveAction">
+          class="drakonli.dota2.hero_grid_customizer.application.actions.hero_grid_customization.impl.import_customization.latest_save.ImportHeroGridCustomizationFromStorageByLatestSaveAction">
         <constructor-arg ref="dota2HeroGridCustomizer-heroGridCustomizationByFileStorage"/>
         <constructor-arg ref="dota2HeroGridCustomizer-heroGridCustomizationToViewModelsMapper"/>
     </bean>
 
     <bean id="dota2HeroGridCustomizer-heroGridCustomizationByHeroNamesCustomizationVMFactory"
-          class="drakonli.dota2.hero_grid_customizer.application.services.HeroGridCustomizationByViewModelsFactory"/>
+          class="drakonli.dota2.hero_grid_customizer.application.services.impl.HeroGridCustomizationByViewModelsFactory"/>
 </beans>

@@ -1,6 +1,6 @@
 package drakonli.dota2.hero_grid_customizer.ui.views.menu_bar.import_customization.from_file;
 
-import drakonli.dota2.hero_grid_customizer.application.actions.hero_grid_customization.import_customization.from_file.IImportHeroGridCustomizationFromFileAction;
+import drakonli.dota2.hero_grid_customizer.application.actions.hero_grid_customization.IImportHeroGridCustomizationFromFileAction;
 import drakonli.dota2.hero_grid_customizer.application.models.HeroGridCustomizationVM;
 import drakonli.jcomponents.file.chooser.FileChooserFactoryInterface;
 import drakonli.jcomponents.notificator.NotificatorInterface;

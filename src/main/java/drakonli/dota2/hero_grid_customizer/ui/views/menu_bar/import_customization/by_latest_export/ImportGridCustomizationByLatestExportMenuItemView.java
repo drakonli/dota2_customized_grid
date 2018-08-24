@@ -1,6 +1,6 @@
 package drakonli.dota2.hero_grid_customizer.ui.views.menu_bar.import_customization.by_latest_export;
 
-import drakonli.dota2.hero_grid_customizer.application.actions.hero_grid_customization.import_customization.latest_save.IImportHeroGridCustomizationByLatestSaveAction;
+import drakonli.dota2.hero_grid_customizer.application.actions.hero_grid_customization.IImportHeroGridCustomizationByLatestSaveAction;
 import drakonli.dota2.hero_grid_customizer.application.models.HeroGridCustomizationVM;
 import drakonli.dota2.hero_grid_customizer.application.models.ImportHeroGridCustomizationByLatestExportVM;
 import drakonli.jcomponents.notificator.NotificatorInterface;
