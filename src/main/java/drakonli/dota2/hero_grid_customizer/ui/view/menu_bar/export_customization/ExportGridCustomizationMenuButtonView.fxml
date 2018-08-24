@@ -6,4 +6,6 @@
       mnemonicParsing="false" text="Export" fx:id="export_button_menu" xmlns:fx="http://javafx.com/fxml/1">
     <fx:include
             source="/drakonli/dota2/hero_grid_customizer/ui/view/menu_bar/export_customization/into_current_file/ExportGridCustomizationIntoCurrentFileButtonView.fxml"/>
+    <fx:include
+            source="/drakonli/dota2/hero_grid_customizer/ui/view/menu_bar/export_customization/into_file/ExportGridCustomizationIntoFileButtonView.fxml"/>
 </Menu>

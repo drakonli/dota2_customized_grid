@@ -28,6 +28,15 @@
         <constructor-arg ref="dota2HeroGridCustomizer-heroGridVM"/>
     </bean>
 
+    <bean id="drakonli.dota2.hero_grid_customizer.ui.view.menu_bar.export_customization.into_file.ExportGridCustomizationIntoFileButtonView"
+          class="drakonli.dota2.hero_grid_customizer.ui.view.menu_bar.export_customization.into_file.ExportGridCustomizationIntoFileButtonView"
+          scope="prototype">
+        <constructor-arg ref="dota2HeroGridCustomizer-notificator-main"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-exportHeroGridCustomizationIntoFileAction"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-heroGridVM"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-fileChooserFactory-main"/>
+    </bean>
+
     <bean id="drakonli.dota2.hero_grid_customizer.ui.view.menu_bar.import_customization.by_latest_export.ImportGridCustomizationByLatestExportMenuItemView"
           class="drakonli.dota2.hero_grid_customizer.ui.view.menu_bar.import_customization.by_latest_export.ImportGridCustomizationByLatestExportMenuItemView"
           scope="prototype">
