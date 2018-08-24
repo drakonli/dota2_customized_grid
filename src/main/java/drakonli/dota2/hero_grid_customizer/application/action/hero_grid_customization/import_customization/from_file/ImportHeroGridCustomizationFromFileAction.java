@@ -10,12 +10,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public class BasicImportHeroGridCustomizationFromFileAction implements IImportHeroGridCustomizationFromFileAction
+public class ImportHeroGridCustomizationFromFileAction implements IImportHeroGridCustomizationFromFileAction
 {
     private final IHeroGridCustomizationFromFileImporter  importer;
     private final HeroGridCustomizationToViewModelsMapper heroGridCustomizationToViewModelsMapper;
 
-    public BasicImportHeroGridCustomizationFromFileAction(
+    public ImportHeroGridCustomizationFromFileAction(
             IHeroGridCustomizationFromFileImporter importer,
             HeroGridCustomizationToViewModelsMapper heroGridCustomizationToViewModelsMapper
     )

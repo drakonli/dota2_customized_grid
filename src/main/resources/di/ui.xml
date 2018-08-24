@@ -23,7 +23,7 @@
           class="drakonli.dota2.hero_grid_customizer.ui.view.menu_bar.export_customization.into_current_file.ExportGridCustomizationIntoCurrentFileButtonView"
           scope="prototype">
         <constructor-arg ref="dota2HeroGridCustomizer-notificator-main"/>
-        <constructor-arg ref="dota2HeroGridCustomizer-basicExportConfigIntoFileAction"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-exportHeroGridCustomizationIntoFileAction"/>
         <constructor-arg ref="dota2HeroGridCustomizer-exportImportByFileVM"/>
         <constructor-arg ref="dota2HeroGridCustomizer-heroGridVM"/>
     </bean>
@@ -34,7 +34,7 @@
         <constructor-arg ref="dota2HeroGridCustomizer-notificator-main"/>
         <constructor-arg ref="dota2HeroGridCustomizer-exportImportHeroGridByLatestSaveVM"/>
         <constructor-arg ref="dota2HeroGridCustomizer-heroGridVM"/>
-        <constructor-arg ref="dota2HeroGridCustomizer-importConfigFromStorageByLatestSaveAction"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-importHeroGridCustomizationFromStorageByLatestSaveAction"/>
     </bean>
 
     <bean id="drakonli.dota2.hero_grid_customizer.ui.view.clear_button.ClearGridCustomizationButtonView"

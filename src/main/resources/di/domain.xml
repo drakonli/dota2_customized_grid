@@ -66,25 +66,26 @@
           class="drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.storage.HeroGridCustomizationByFileStorage">
     </bean>
 
-    <bean id="dota2HeroGridCustomizer-heroGridConfigToDota2TranslationsFileExporter-basic"
+    <bean id="dota2HeroGridCustomizer-heroGridCustomizationToDota2TranslationsFileExporter-basic"
           class="drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.customization_exporter.HeroGridCustomizationToDota2TranslationsFileExporter">
         <constructor-arg ref="dota2HeroGridCustomizer-txtFileByLineEditor-main"/>
         <constructor-arg ref="dota2HeroGridCustomizer-heroNameCustomizationByDota2TranslationsFileLineExtractor"/>
     </bean>
 
-    <bean id="dota2HeroGridCustomizer-heroGridConfigToDota2TranslationsFileExporter-backupFileDecorated"
+    <bean id="dota2HeroGridCustomizer-heroGridCustomizationToDota2TranslationsFileExporter-backupFileDecorated"
           class="drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.customization_exporter.decorator.BackupFileDecorator">
-        <constructor-arg ref="dota2HeroGridCustomizer-heroGridConfigToDota2TranslationsFileExporter-basic"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-heroGridCustomizationToDota2TranslationsFileExporter-basic"/>
         <constructor-arg ref="dota2HeroGridCustomizer-fileBackuper-main"/>
     </bean>
 
-    <bean id="dota2HeroGridCustomizer-heroGridConfigToDota2TranslationsFileExporter-backupFileDecorated-storeHeroTranslationsDecorated"
+    <bean id="dota2HeroGridCustomizer-heroGridCustomizationToDota2TranslationsFileExporter-backupFileDecorated-storeHeroTranslationsDecorated"
           class="drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.customization_exporter.decorator.StoreHeroGridCustomizationDecorator">
-        <constructor-arg ref="dota2HeroGridCustomizer-heroGridConfigToDota2TranslationsFileExporter-backupFileDecorated"/>
+        <constructor-arg
+                ref="dota2HeroGridCustomizer-heroGridCustomizationToDota2TranslationsFileExporter-backupFileDecorated"/>
         <constructor-arg ref="dota2HeroGridCustomizer-heroGridCustomizationByFileStorage"/>
     </bean>
 
-    <bean id="dota2HeroGridCustomizer-heroGridConfigToDota2TranslationsFileExporter"
-          parent="dota2HeroGridCustomizer-heroGridConfigToDota2TranslationsFileExporter-backupFileDecorated-storeHeroTranslationsDecorated">
+    <bean id="dota2HeroGridCustomizer-heroGridCustomizationToDota2TranslationsFileExporter"
+          parent="dota2HeroGridCustomizer-heroGridCustomizationToDota2TranslationsFileExporter-backupFileDecorated-storeHeroTranslationsDecorated">
     </bean>
 </beans>
