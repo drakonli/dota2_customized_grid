@@ -7,5 +7,5 @@
         fx:id="exportCustomizationIntoCurrentFileMenuItem"
         fx:controller="drakonli.dota2.hero_grid_customizer.ui.view.menu_bar.export_customization.into_current_file.ExportGridCustomizationIntoCurrentFileButtonView"
         onAction="#onExportClick"
-        text="Export customization to current dota2 translations file"
+        text="Export to current dota2 translations file"
 />
