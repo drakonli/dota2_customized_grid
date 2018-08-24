@@ -61,7 +61,7 @@ public class Dota2TranslationsFileHeroTranslationsLineEditorAndPredicate impleme
             return line;
         }
 
-        return this.replaceHeroNameInLineByHeroNameFromGrid(line, optionalHeroNameCustomizationFromGrid.get());
+        return this.replaceHeroNameInLineByHeroCustomizationFromGrid(line, optionalHeroNameCustomizationFromGrid.get());
     }
 
     private Optional<HeroNameCustomization> findHeroNameCustomizationInGridByHeroNameUUID(String heroNameUUID)
@@ -69,12 +69,15 @@ public class Dota2TranslationsFileHeroTranslationsLineEditorAndPredicate impleme
         return this.heroGridCustomization
                 .stream()
                 .filter(
-                        new HeroTranslationByHeroNameUIDPredicate(heroNameUUID)
+                        new HeroNameCustomizationSameAsHeroUIDPredicate(heroNameUUID)
                 )
                 .findFirst();
     }
 
-    private String replaceHeroNameInLineByHeroNameFromGrid(String line, HeroNameCustomization heroNameCustomization)
+    private String replaceHeroNameInLineByHeroCustomizationFromGrid(
+            String line,
+            HeroNameCustomization heroNameCustomization
+    )
     {
         return line.replace(
                 "\"" + this.heroNameCustomizationInCurrentLine.getHeroName() + "\"",

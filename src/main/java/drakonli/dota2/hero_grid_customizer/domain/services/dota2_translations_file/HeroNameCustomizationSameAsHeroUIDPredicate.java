@@ -4,11 +4,11 @@ import drakonli.dota2.hero_grid_customizer.domain.model.HeroNameCustomization;
 
 import java.util.function.Predicate;
 
-public class HeroTranslationByHeroNameUIDPredicate implements Predicate<HeroNameCustomization>
+public class HeroNameCustomizationSameAsHeroUIDPredicate implements Predicate<HeroNameCustomization>
 {
     private final String heroCode;
 
-    public HeroTranslationByHeroNameUIDPredicate(String heroCode)
+    public HeroNameCustomizationSameAsHeroUIDPredicate(String heroCode)
     {
         this.heroCode = heroCode;
     }
