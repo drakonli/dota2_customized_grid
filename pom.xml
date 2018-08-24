@@ -12,7 +12,7 @@
         <dependency>
             <groupId>com.github.drakonli</groupId>
             <artifactId>jcomponents</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>master-SNAPSHOT</version>
         </dependency>
 
         <dependency>
