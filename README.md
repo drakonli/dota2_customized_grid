@@ -38,3 +38,5 @@ Also, about my vision of MVVM:
 I see ViewModels as a "glue" between UI/Application and Domain Layer. Application and UI layer concerns itself with
 changing ViewModels, Application concerns itself with invoking appropriate Domain services when user actions are
 received, but never is ViewModel passed to Domain services. Only Application and UI are aware of ViewModels.
+
+![This is how app should look on start](/app_start.png)
