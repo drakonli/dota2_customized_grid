@@ -33,18 +33,18 @@
     </bean>
 
     <bean id="dota2HeroGridCustomizer-basicExportConfigIntoFileAction"
-            class="drakonli.dota2.hero_grid_customizer.application.action.config_export.dota_translation_file.BasicExportConfigIntoFileAction">
+          class="drakonli.dota2.hero_grid_customizer.application.action.hero_grid_customization.export_customization.BasicExportConfigIntoFileAction">
         <constructor-arg ref="dota2HeroGridCustomizer-heroGridConfigToDota2TranslationsFileExporter"/>
         <constructor-arg ref="dota2HeroGridCustomizer-heroGridCustomizationByHeroNamesCustomizationVMFactory"/>
         <constructor-arg ref="dota2HeroGridCustomizer-applicationEventPublisherAwareExportConfigIntoFileActionEventPublisher"/>
     </bean>
 
     <bean id="dota2HeroGridCustomizer-applicationEventPublisherAwareExportConfigIntoFileActionEventPublisher"
-          class="drakonli.dota2.hero_grid_customizer.application.action.config_export.dota_translation_file.event.publisher.ApplicationEventPublisherAwareExportConfigIntoFileActionEventPublisher">
+          class="drakonli.dota2.hero_grid_customizer.application.action.hero_grid_customization.export_customization.event.publisher.ApplicationEventPublisherAwareExportConfigIntoFileActionEventPublisher">
     </bean>
 
     <bean id="dota2HeroGridCustomizer-SetRestoreAvailableBeforeExportConfigIntoFileActionEventListener"
-          class="drakonli.dota2.hero_grid_customizer.application.action.config_export.dota_translation_file.event.listener.SetImportByLatestExportAvailableEventListener">
+          class="drakonli.dota2.hero_grid_customizer.application.action.hero_grid_customization.export_customization.event.listener.SetImportByLatestExportAvailableEventListener">
         <constructor-arg ref="dota2HeroGridCustomizer_fileStorageRestoreAvailabilityManager"/>
         <constructor-arg ref="dota2HeroGridCustomizer-exportImportHeroGridByLatestSaveVM"/>
     </bean>
