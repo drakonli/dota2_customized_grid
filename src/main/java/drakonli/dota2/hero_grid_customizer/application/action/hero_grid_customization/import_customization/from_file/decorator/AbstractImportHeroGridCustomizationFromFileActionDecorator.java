@@ -1,7 +1,7 @@
-package drakonli.dota2.hero_grid_customizer.application.action.config_import.dota_translation_file.decorator;
+package drakonli.dota2.hero_grid_customizer.application.action.hero_grid_customization.import_customization.from_file.decorator;
 
 import drakonli.dota2.hero_grid_customizer.application.action.ApplicationActionException;
-import drakonli.dota2.hero_grid_customizer.application.action.config_import.dota_translation_file.IImportHeroGridCustomizationFromFileAction;
+import drakonli.dota2.hero_grid_customizer.application.action.hero_grid_customization.import_customization.from_file.IImportHeroGridCustomizationFromFileAction;
 import drakonli.dota2.hero_grid_customizer.application.view_model.models.HeroNameCustomizationVM;
 import drakonli.jcomponents.file.exception.InvalidFileFormatException;
 
