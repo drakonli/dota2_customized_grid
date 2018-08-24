@@ -10,7 +10,7 @@ import java.io.IOException;
 
 abstract class HeroGridCustomizationToFileExporterAbstractDecorator implements IHeroGridCustomizationToFileExporter
 {
-    private IHeroGridCustomizationToFileExporter heroGridCustomizationToFileExporter;
+    private final IHeroGridCustomizationToFileExporter heroGridCustomizationToFileExporter;
 
     public HeroGridCustomizationToFileExporterAbstractDecorator(
             IHeroGridCustomizationToFileExporter heroGridCustomizationToFileExporter

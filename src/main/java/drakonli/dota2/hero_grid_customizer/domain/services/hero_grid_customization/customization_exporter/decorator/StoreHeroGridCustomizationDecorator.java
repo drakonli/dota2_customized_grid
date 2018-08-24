@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class StoreHeroGridCustomizationDecorator extends HeroGridCustomizationToFileExporterAbstractDecorator
 {
-    private IHeroGridCustomizationStorage heroGridCustomizationStorage;
+    private final IHeroGridCustomizationStorage heroGridCustomizationStorage;
 
     public StoreHeroGridCustomizationDecorator(
             IHeroGridCustomizationToFileExporter heroGridCustomizationToFileExporter,

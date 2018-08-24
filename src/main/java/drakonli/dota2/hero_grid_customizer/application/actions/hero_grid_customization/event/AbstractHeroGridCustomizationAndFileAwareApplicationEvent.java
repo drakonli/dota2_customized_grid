@@ -9,9 +9,9 @@ import java.util.List;
 
 abstract public class AbstractHeroGridCustomizationAndFileAwareApplicationEvent extends ApplicationEvent
 {
-    private File file;
-    private List<HeroNameCustomizationVM> heroNameCustomizationVMList;
-    private HeroGridCustomization heroGridCustomization;
+    private final File                          file;
+    private final List<HeroNameCustomizationVM> heroNameCustomizationVMList;
+    private final HeroGridCustomization         heroGridCustomization;
 
     public AbstractHeroGridCustomizationAndFileAwareApplicationEvent(
             Object source, File file,
@@ -28,12 +28,12 @@ abstract public class AbstractHeroGridCustomizationAndFileAwareApplicationEvent 
 
     public File getFile()
     {
-        return file;
+        return this.file;
     }
 
     public List<HeroNameCustomizationVM> getHeroNameCustomizationVMList()
     {
-        return heroNameCustomizationVMList;
+        return this.heroNameCustomizationVMList;
     }
 
     public HeroGridCustomization getHeroNameCustomization()

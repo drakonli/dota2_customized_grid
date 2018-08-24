@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class BackupFileDecorator extends HeroGridCustomizationToFileExporterAbstractDecorator
 {
-    private IFileBackuper backuper;
+    private final IFileBackuper backuper;
 
     public BackupFileDecorator(
             IHeroGridCustomizationToFileExporter heroGridCustomizationToFileExporter,
