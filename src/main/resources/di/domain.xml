@@ -79,7 +79,7 @@
     </bean>
 
     <bean id="dota2HeroGridCustomizer-heroGridConfigToDota2TranslationsFileExporter-backupFileDecorated-storeHeroTranslationsDecorated"
-          class="drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.customization_exporter.decorator.StoreHeroTranslationsDecorator">
+          class="drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.customization_exporter.decorator.StoreHeroGridCustomizationDecorator">
         <constructor-arg ref="dota2HeroGridCustomizer-heroGridConfigToDota2TranslationsFileExporter-backupFileDecorated"/>
         <constructor-arg ref="dota2HeroGridCustomizer-heroGridCustomizationByFileStorage"/>
     </bean>

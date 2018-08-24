@@ -10,11 +10,11 @@ import drakonli.jcomponents.file.exception.InvalidFileFormatException;
 import java.io.File;
 import java.io.IOException;
 
-public class StoreHeroTranslationsDecorator extends HeroGridCustomizationToFileExporterAbstractDecorator
+public class StoreHeroGridCustomizationDecorator extends HeroGridCustomizationToFileExporterAbstractDecorator
 {
     private HeroGridCustomizationByFileStorage heroGridCustomizationByFileStorage;
 
-    public StoreHeroTranslationsDecorator(
+    public StoreHeroGridCustomizationDecorator(
             IHeroGridCustomizationToFileExporter heroGridCustomizationToFileExporter,
             HeroGridCustomizationByFileStorage heroGridCustomizationByFileStorage
     )
