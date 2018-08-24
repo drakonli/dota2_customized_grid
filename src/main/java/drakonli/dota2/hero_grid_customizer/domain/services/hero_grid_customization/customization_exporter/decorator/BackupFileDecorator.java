@@ -1,24 +1,24 @@
-package drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.exporter.decorator;
+package drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.customization_exporter.decorator;
 
 import drakonli.dota2.hero_grid_customizer.domain.model.HeroGridCustomization;
-import drakonli.dota2.hero_grid_customizer.domain.services.IHeroGridConfigToFileExporter;
-import drakonli.dota2.hero_grid_customizer.domain.services.export.ExportException;
+import drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.customization_exporter.IHeroGridCustomizationToFileExporter;
+import drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.customization_exporter.exception.ExportException;
 import drakonli.jcomponents.file.backuper.FileBackuper;
 import drakonli.jcomponents.file.exception.InvalidFileFormatException;
 
 import java.io.File;
 import java.io.IOException;
 
-public class BackupFileDecorator extends HeroGridConfigToFileExporterAbstractDecorator
+public class BackupFileDecorator extends HeroGridCustomizationToFileExporterAbstractDecorator
 {
     private FileBackuper backuper;
 
     public BackupFileDecorator(
-            IHeroGridConfigToFileExporter heroGridConfigToFileExporter,
+            IHeroGridCustomizationToFileExporter heroGridCustomizationToFileExporter,
             FileBackuper backuper
     )
     {
-        super(heroGridConfigToFileExporter);
+        super(heroGridCustomizationToFileExporter);
 
         this.backuper = backuper;
     }

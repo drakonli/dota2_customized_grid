@@ -67,19 +67,19 @@
     </bean>
 
     <bean id="dota2HeroGridCustomizer-heroGridConfigToDota2TranslationsFileExporter-basic"
-          class="drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.exporter.HeroGridConfigToDota2TranslationsFileExporter">
+          class="drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.customization_exporter.HeroGridCustomizationToDota2TranslationsFileExporter">
         <constructor-arg ref="dota2HeroGridCustomizer-txtFileByLineEditor-main"/>
         <constructor-arg ref="dota2HeroGridCustomizer-heroTranslationByFileLineExtractor"/>
     </bean>
 
     <bean id="dota2HeroGridCustomizer-heroGridConfigToDota2TranslationsFileExporter-backupFileDecorated"
-          class="drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.exporter.decorator.BackupFileDecorator">
+          class="drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.customization_exporter.decorator.BackupFileDecorator">
         <constructor-arg ref="dota2HeroGridCustomizer-heroGridConfigToDota2TranslationsFileExporter-basic"/>
         <constructor-arg ref="dota2HeroGridCustomizer-fileBackuper-main"/>
     </bean>
 
     <bean id="dota2HeroGridCustomizer-heroGridConfigToDota2TranslationsFileExporter-backupFileDecorated-storeHeroTranslationsDecorated"
-          class="drakonli.dota2.hero_grid_customizer.domain.component.hero.names.file.exporter.decorator.StoreHeroTranslationsDecorator">
+          class="drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.customization_exporter.decorator.StoreHeroTranslationsDecorator">
         <constructor-arg ref="dota2HeroGridCustomizer-heroGridConfigToDota2TranslationsFileExporter-backupFileDecorated"/>
         <constructor-arg ref="dota2HeroGridCustomizer-heroGridCustomizationByFileStorage"/>
     </bean>
