@@ -6,8 +6,12 @@
      http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
      http://www.springframework.org/schema/util  http://www.springframework.org/schema/util/spring-util.xsd">
 
+    <bean id="dota2HeroGridCustomizer-simpleAlertFactory"
+          class="drakonli.jcomponents.alert.SimpleAlertFactory"/>
+
     <bean id="dota2HeroGridCustomizer-notificator-main"
           class="drakonli.jcomponents.notificator.AlertNotificator">
+        <constructor-arg ref="dota2HeroGridCustomizer-simpleAlertFactory"/>
     </bean>
 
     <util:list id="dota2HeroGridCustomizer-TranslationFileDirectoryGuesses">
