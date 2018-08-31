@@ -35,7 +35,7 @@
     </bean>
 
     <bean id="dota2HeroGridCustomizer-dota2TranslationReaderFactory"
-          class="drakonli.jcomponents.file.impl.BufferedCharsetFileReaderFactory">
+          class="drakonli.jcomponents.file.impl.BufferedCharsetLineEndingIncludedFileReaderFactory">
         <constructor-arg ref="dota2HeroGridCustomizer-translationsFileCharset"/>
     </bean>
 
