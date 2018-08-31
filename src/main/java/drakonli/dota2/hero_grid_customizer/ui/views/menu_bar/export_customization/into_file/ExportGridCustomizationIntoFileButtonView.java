@@ -2,8 +2,8 @@ package drakonli.dota2.hero_grid_customizer.ui.views.menu_bar.export_customizati
 
 import drakonli.dota2.hero_grid_customizer.application.actions.hero_grid_customization.IExportHeroGridCustomizationIntoFileAction;
 import drakonli.dota2.hero_grid_customizer.application.models.HeroGridCustomizationVM;
-import drakonli.jcomponents.file.chooser.FileChooserFactoryInterface;
-import drakonli.jcomponents.notificator.NotificatorInterface;
+import drakonli.jcomponents.file.chooser.IFileChooserFactory;
+import drakonli.jcomponents.notificator.INotificator;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,16 +19,16 @@ public class ExportGridCustomizationIntoFileButtonView implements Initializable
     @FXML
     public MenuItem exportCustomizationIntoFileMenuItem;
 
-    private final NotificatorInterface                       notificator;
+    private final INotificator                               notificator;
     private final IExportHeroGridCustomizationIntoFileAction exportHeroGridCustomizationIntoFileAction;
     private final HeroGridCustomizationVM                    heroGridCustomizationVM;
-    private final FileChooserFactoryInterface                fileChooserFactory;
+    private final IFileChooserFactory                        fileChooserFactory;
 
     public ExportGridCustomizationIntoFileButtonView(
-            NotificatorInterface notificator,
+            INotificator notificator,
             IExportHeroGridCustomizationIntoFileAction exportHeroGridCustomizationIntoFileAction,
             HeroGridCustomizationVM heroGridCustomizationVM,
-            FileChooserFactoryInterface fileChooserFactory
+            IFileChooserFactory fileChooserFactory
     )
     {
         this.notificator = notificator;

@@ -2,7 +2,7 @@ package drakonli.dota2.hero_grid_customizer.ui.views.clear_button;
 
 import drakonli.dota2.hero_grid_customizer.application.models.ExportImportHeroGridCustomizationByFileVM;
 import drakonli.dota2.hero_grid_customizer.application.models.HeroGridCustomizationVM;
-import drakonli.jcomponents.notificator.NotificatorInterface;
+import drakonli.jcomponents.notificator.INotificator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,14 +12,14 @@ public class ClearGridCustomizationButtonView
     @FXML
     public Button clearButton;
 
-    private final HeroGridCustomizationVM heroGridCustomizationVM;
+    private final HeroGridCustomizationVM                   heroGridCustomizationVM;
     private final ExportImportHeroGridCustomizationByFileVM exportImportHeroGridCustomizationByFileVM;
-    private final NotificatorInterface notificator;
+    private final INotificator                              notificator;
 
     public ClearGridCustomizationButtonView(
             HeroGridCustomizationVM heroGridCustomizationVM,
             ExportImportHeroGridCustomizationByFileVM exportImportHeroGridCustomizationByFileVM,
-            NotificatorInterface notificator
+            INotificator notificator
     )
     {
         this.heroGridCustomizationVM = heroGridCustomizationVM;

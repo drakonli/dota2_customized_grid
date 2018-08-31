@@ -3,7 +3,7 @@ package drakonli.dota2.hero_grid_customizer.ui.views.menu_bar.export_customizati
 import drakonli.dota2.hero_grid_customizer.application.actions.hero_grid_customization.IExportHeroGridCustomizationIntoFileAction;
 import drakonli.dota2.hero_grid_customizer.application.models.ExportImportHeroGridCustomizationByFileVM;
 import drakonli.dota2.hero_grid_customizer.application.models.HeroGridCustomizationVM;
-import drakonli.jcomponents.notificator.NotificatorInterface;
+import drakonli.jcomponents.notificator.INotificator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,13 +18,13 @@ public class ExportGridCustomizationIntoCurrentFileButtonView implements Initial
     @FXML
     public MenuItem exportCustomizationIntoCurrentFileMenuItem;
 
-    private final NotificatorInterface                       notificator;
+    private final INotificator                               notificator;
     private final IExportHeroGridCustomizationIntoFileAction exportHeroGridCustomizationIntoFileAction;
     private final ExportImportHeroGridCustomizationByFileVM  exportImportHeroGridCustomizationByFileVM;
     private final HeroGridCustomizationVM                    heroGridCustomizationVM;
 
     public ExportGridCustomizationIntoCurrentFileButtonView(
-            NotificatorInterface notificator,
+            INotificator notificator,
             IExportHeroGridCustomizationIntoFileAction exportHeroGridCustomizationIntoFileAction,
             ExportImportHeroGridCustomizationByFileVM exportImportHeroGridCustomizationByFileVM,
             HeroGridCustomizationVM heroGridCustomizationVM

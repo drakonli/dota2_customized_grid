@@ -8,16 +8,26 @@
     <util:constant id="dota2HeroGridCustomizer-translationsFileCharset"
                    static-field="java.nio.charset.StandardCharsets.UTF_16LE"/>
 
+    <bean id="dota2HeroGridCustomizer-byNameFileFactory"
+          class="drakonli.jcomponents.file.factory.ByNameFileFactory"/>
+
+    <bean id="dota2HeroGridCustomizer-nioFileManager"
+          class="drakonli.jcomponents.file.manager.NioFileManager">
+        <constructor-arg value="txt_by_line_editor"/>
+        <constructor-arg value=".tmp"/>
+    </bean>
+
     <bean id="dota2HeroGridCustomizer-fileBackuper-main"
-          class="drakonli.jcomponents.file.backuper.ReplaceExistingFileSystemFileBackuper">
+          class="drakonli.jcomponents.file.backuper.DoNotOverwriteFileSystemFileBackuper">
+        <constructor-arg ref="dota2HeroGridCustomizer-byNameFileFactory"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-nioFileManager"/>
     </bean>
 
     <bean id="dota2HeroGridCustomizer-txtFileByLineEditor-main"
           class="drakonli.jcomponents.file.editor.txt.tmp.TmpTxtFileByLineEditor">
-        <constructor-arg value="txt_by_line_editor"/>
-        <constructor-arg value=".tmp"/>
         <constructor-arg ref="dota2HeroGridCustomizer-dota2TranslationReaderFactory"/>
         <constructor-arg ref="dota2HeroGridCustomizer-dota2TranslationWriterFactory"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-nioFileManager"/>
     </bean>
 
     <bean id="dota2HeroGridCustomizer-heroNameCustomizationByDota2TranslationsFileLineExtractor"

@@ -5,7 +5,7 @@ import drakonli.dota2.hero_grid_customizer.domain.services.dota2_translations_fi
 import drakonli.dota2.hero_grid_customizer.domain.services.dota2_translations_file.impl.Dota2TranslationsFileHeroTranslationsLineEditorAndPredicate;
 import drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.IHeroGridCustomizationToFileExporter;
 import drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.impl.exceptions.Dota2InvalidFileFormatException;
-import drakonli.jcomponents.file.editor.txt.TxtFileByLineEditorInterface;
+import drakonli.jcomponents.file.editor.txt.ITxtFileByLineEditor;
 import drakonli.jcomponents.file.editor.txt.exception.NoLineQualifiedForEditException;
 
 import java.io.File;
@@ -13,11 +13,11 @@ import java.io.IOException;
 
 public class HeroGridCustomizationToDota2TranslationsFileExporter implements IHeroGridCustomizationToFileExporter
 {
-    private final TxtFileByLineEditorInterface          txtFileByLineEditor;
+    private final ITxtFileByLineEditor                  txtFileByLineEditor;
     private final IHeroNameCustomizationByLineExtractor heroNameCustomizationByLineExtractor;
 
     public HeroGridCustomizationToDota2TranslationsFileExporter(
-            TxtFileByLineEditorInterface txtFileByLineEditor,
+            ITxtFileByLineEditor txtFileByLineEditor,
             IHeroNameCustomizationByLineExtractor heroNameCustomizationByLineExtractor
     )
     {

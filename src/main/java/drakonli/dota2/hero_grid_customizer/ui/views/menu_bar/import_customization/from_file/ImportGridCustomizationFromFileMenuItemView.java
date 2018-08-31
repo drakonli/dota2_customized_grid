@@ -2,8 +2,8 @@ package drakonli.dota2.hero_grid_customizer.ui.views.menu_bar.import_customizati
 
 import drakonli.dota2.hero_grid_customizer.application.actions.hero_grid_customization.IImportHeroGridCustomizationFromFileAction;
 import drakonli.dota2.hero_grid_customizer.application.models.HeroGridCustomizationVM;
-import drakonli.jcomponents.file.chooser.FileChooserFactoryInterface;
-import drakonli.jcomponents.notificator.NotificatorInterface;
+import drakonli.jcomponents.file.chooser.IFileChooserFactory;
+import drakonli.jcomponents.notificator.INotificator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -15,14 +15,14 @@ public class ImportGridCustomizationFromFileMenuItemView
     @FXML
     public MenuItem importByFileMenuItem;
 
-    private final FileChooserFactoryInterface                fileChooserFactory;
-    private final NotificatorInterface                       notificator;
+    private final IFileChooserFactory                        fileChooserFactory;
+    private final INotificator                               notificator;
     private final IImportHeroGridCustomizationFromFileAction importHeroGridCustomizationFromFileAction;
     private final HeroGridCustomizationVM                    heroGridCustomizationVM;
 
     public ImportGridCustomizationFromFileMenuItemView(
-            FileChooserFactoryInterface fileChooserFactory,
-            NotificatorInterface notificator,
+            IFileChooserFactory fileChooserFactory,
+            INotificator notificator,
             IImportHeroGridCustomizationFromFileAction importHeroGridCustomizationFromFileAction,
             HeroGridCustomizationVM heroGridCustomizationVM
     )

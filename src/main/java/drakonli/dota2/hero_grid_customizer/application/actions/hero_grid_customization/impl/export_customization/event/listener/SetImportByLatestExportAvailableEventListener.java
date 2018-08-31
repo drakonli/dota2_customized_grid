@@ -2,17 +2,17 @@ package drakonli.dota2.hero_grid_customizer.application.actions.hero_grid_custom
 
 import drakonli.dota2.hero_grid_customizer.application.actions.hero_grid_customization.impl.export_customization.event.AfterExportHeroGridCustomizationIntoFileActionEvent;
 import drakonli.dota2.hero_grid_customizer.application.models.ImportHeroGridCustomizationByLatestExportVM;
-import drakonli.dota2.hero_grid_customizer.application.services.ImportByLatestExportAvailabilityManagerInterface;
+import drakonli.dota2.hero_grid_customizer.application.services.IImportByLatestExportAvailabilityManager;
 import org.springframework.context.ApplicationListener;
 
 public class SetImportByLatestExportAvailableEventListener implements
         ApplicationListener<AfterExportHeroGridCustomizationIntoFileActionEvent>
 {
-    private final ImportByLatestExportAvailabilityManagerInterface restoreAvailabilityManager;
+    private final IImportByLatestExportAvailabilityManager    restoreAvailabilityManager;
     private final ImportHeroGridCustomizationByLatestExportVM importHeroGridCustomizationByLatestExportVM;
 
     public SetImportByLatestExportAvailableEventListener(
-            ImportByLatestExportAvailabilityManagerInterface restoreAvailabilityManager,
+            IImportByLatestExportAvailabilityManager restoreAvailabilityManager,
             ImportHeroGridCustomizationByLatestExportVM importHeroGridCustomizationByLatestExportVM
     )
     {

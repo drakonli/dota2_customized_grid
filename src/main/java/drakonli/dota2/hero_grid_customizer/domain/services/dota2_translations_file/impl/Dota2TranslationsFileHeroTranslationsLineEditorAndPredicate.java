@@ -3,8 +3,8 @@ package drakonli.dota2.hero_grid_customizer.domain.services.dota2_translations_f
 import drakonli.dota2.hero_grid_customizer.domain.models.HeroGridCustomization;
 import drakonli.dota2.hero_grid_customizer.domain.models.HeroNameCustomization;
 import drakonli.dota2.hero_grid_customizer.domain.services.dota2_translations_file.IHeroNameCustomizationByLineExtractor;
-import drakonli.jcomponents.file.editor.txt.TxtLineEditorInterface;
-import drakonli.jcomponents.predicate.TxtLinePredicateInterface;
+import drakonli.jcomponents.file.editor.txt.ITxtLineEditor;
+import drakonli.jcomponents.predicate.ITxtLinePredicate;
 
 import java.util.Optional;
 
@@ -17,8 +17,8 @@ import java.util.Optional;
  * twice from a line.
  */
 public class Dota2TranslationsFileHeroTranslationsLineEditorAndPredicate implements
-        TxtLineEditorInterface,
-        TxtLinePredicateInterface
+        ITxtLineEditor,
+        ITxtLinePredicate
 {
     private HeroNameCustomization heroNameCustomizationInCurrentLine;
 

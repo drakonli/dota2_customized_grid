@@ -3,7 +3,7 @@ package drakonli.dota2.hero_grid_customizer.ui.views.menu_bar.import_customizati
 import drakonli.dota2.hero_grid_customizer.application.actions.hero_grid_customization.IImportHeroGridCustomizationByLatestSaveAction;
 import drakonli.dota2.hero_grid_customizer.application.models.HeroGridCustomizationVM;
 import drakonli.dota2.hero_grid_customizer.application.models.ImportHeroGridCustomizationByLatestExportVM;
-import drakonli.jcomponents.notificator.NotificatorInterface;
+import drakonli.jcomponents.notificator.INotificator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,13 +17,13 @@ public class ImportGridCustomizationByLatestExportMenuItemView implements Initia
     @FXML
     public MenuItem importByLatestExportMenuItem;
 
-    private NotificatorInterface                           notificator;
+    private INotificator                                   notificator;
     private ImportHeroGridCustomizationByLatestExportVM    importHeroGridCustomizationByLatestExportVM;
     private HeroGridCustomizationVM                        heroGridCustomizationVM;
     private IImportHeroGridCustomizationByLatestSaveAction importHeroGridCustomizationByLatestSaveAction;
 
     public ImportGridCustomizationByLatestExportMenuItemView(
-            NotificatorInterface notificator,
+            INotificator notificator,
             ImportHeroGridCustomizationByLatestExportVM importHeroGridCustomizationByLatestExportVM,
             HeroGridCustomizationVM heroGridCustomizationVM,
             IImportHeroGridCustomizationByLatestSaveAction importHeroGridCustomizationByLatestSaveAction
