@@ -7,10 +7,10 @@
      http://www.springframework.org/schema/util  http://www.springframework.org/schema/util/spring-util.xsd">
 
     <bean id="dota2HeroGridCustomizer-simpleAlertFactory"
-          class="drakonli.jcomponents.alert.SimpleAlertFactory"/>
+          class="drakonli.jcomponents.impl.SimpleAlertFactory"/>
 
     <bean id="dota2HeroGridCustomizer-notificator-main"
-          class="drakonli.jcomponents.notificator.AlertNotificator">
+          class="drakonli.jcomponents.impl.AlertNotificator">
         <constructor-arg ref="dota2HeroGridCustomizer-simpleAlertFactory"/>
     </bean>
 
@@ -20,7 +20,7 @@
     </util:list>
 
     <bean id="dota2HeroGridCustomizer-fileChooserFactory-main"
-          class="drakonli.jcomponents.file.chooser.GuessedDirectoryTxtFileChooserFactory">
+          class="drakonli.jcomponents.file.impl.GuessedDirectoryWithAllowedExtensionsFileChooserFactory">
         <constructor-arg ref="dota2HeroGridCustomizer-TranslationFileDirectoryGuesses"/>
         <constructor-arg>
             <list>

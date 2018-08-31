@@ -2,7 +2,7 @@ package drakonli.dota2.hero_grid_customizer.ui.views.clear_button;
 
 import drakonli.dota2.hero_grid_customizer.application.models.ExportImportHeroGridCustomizationByFileVM;
 import drakonli.dota2.hero_grid_customizer.application.models.HeroGridCustomizationVM;
-import drakonli.jcomponents.notificator.INotificator;
+import drakonli.jcomponents.INotificator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

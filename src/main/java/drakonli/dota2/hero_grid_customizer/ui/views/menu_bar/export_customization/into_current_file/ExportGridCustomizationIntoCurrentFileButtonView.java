@@ -3,7 +3,7 @@ package drakonli.dota2.hero_grid_customizer.ui.views.menu_bar.export_customizati
 import drakonli.dota2.hero_grid_customizer.application.actions.hero_grid_customization.IExportHeroGridCustomizationIntoFileAction;
 import drakonli.dota2.hero_grid_customizer.application.models.ExportImportHeroGridCustomizationByFileVM;
 import drakonli.dota2.hero_grid_customizer.application.models.HeroGridCustomizationVM;
-import drakonli.jcomponents.notificator.INotificator;
+import drakonli.jcomponents.INotificator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

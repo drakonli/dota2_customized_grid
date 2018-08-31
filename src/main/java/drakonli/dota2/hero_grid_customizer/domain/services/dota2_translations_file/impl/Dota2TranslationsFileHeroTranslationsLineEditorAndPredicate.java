@@ -3,8 +3,8 @@ package drakonli.dota2.hero_grid_customizer.domain.services.dota2_translations_f
 import drakonli.dota2.hero_grid_customizer.domain.models.HeroGridCustomization;
 import drakonli.dota2.hero_grid_customizer.domain.models.HeroNameCustomization;
 import drakonli.dota2.hero_grid_customizer.domain.services.dota2_translations_file.IHeroNameCustomizationByLineExtractor;
-import drakonli.jcomponents.file.editor.txt.ITxtLineEditor;
-import drakonli.jcomponents.predicate.ITxtLinePredicate;
+import drakonli.jcomponents.ITxtLineEditor;
+import drakonli.jcomponents.ITxtLinePredicate;
 
 import java.util.Optional;
 

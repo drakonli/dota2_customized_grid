@@ -5,8 +5,8 @@ import drakonli.dota2.hero_grid_customizer.domain.models.HeroNameCustomization;
 import drakonli.dota2.hero_grid_customizer.domain.services.dota2_translations_file.IHeroNameCustomizationByLineExtractor;
 import drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.IHeroGridCustomizationFromFileImporter;
 import drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.impl.exceptions.Dota2InvalidFileFormatException;
+import drakonli.jcomponents.file.IBufferedFileReaderFactory;
 import drakonli.jcomponents.file.exception.InvalidFileFormatException;
-import drakonli.jcomponents.file.reader.buffered.IBufferedFileReaderFactory;
 
 import java.io.BufferedReader;
 import java.io.File;
