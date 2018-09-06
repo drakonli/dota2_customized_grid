@@ -10,22 +10,22 @@ import java.util.Optional;
 public class Dota2HeroTranslationsLineByGridCustomizationEditor implements ITxtLineEditor
 {
     private final HeroGridCustomization                 heroGridCustomization;
-    private final IHeroNameCustomizationByLineExtractor heroTranslationByLineExtractor;
+    private final IHeroNameCustomizationByLineExtractor heroCustomizationByLineExtractor;
 
     public Dota2HeroTranslationsLineByGridCustomizationEditor(
             HeroGridCustomization heroGridCustomization,
-            IHeroNameCustomizationByLineExtractor heroTranslationByLineExtractor
+            IHeroNameCustomizationByLineExtractor heroCustomizationByLineExtractor
     )
     {
         this.heroGridCustomization = heroGridCustomization;
-        this.heroTranslationByLineExtractor = heroTranslationByLineExtractor;
+        this.heroCustomizationByLineExtractor = heroCustomizationByLineExtractor;
     }
 
     @Override
     public String editLine(String line)
     {
         Optional<HeroNameCustomization> optionalHeroNameCustomizationFromLine =
-                this.heroTranslationByLineExtractor.extractByLine(line);
+                this.heroCustomizationByLineExtractor.extractByLine(line);
 
         if (!optionalHeroNameCustomizationFromLine.isPresent()) {
             return line;
