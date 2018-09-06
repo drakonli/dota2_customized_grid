@@ -34,7 +34,9 @@ public class Dota2HeroTranslationsLineByGridCustomizationEditor implements ITxtL
         HeroNameCustomization heroNameCustomizationFromLine = optionalHeroNameCustomizationFromLine.get();
 
         Optional<HeroNameCustomization> optionalHeroNameCustomizationFromGrid =
-                this.findHeroNameCustomizationInGridByHeroNameUUID(heroNameCustomizationFromLine.getHeroNameUID());
+                this.heroGridCustomization.findHeroNameCustomizationByHeroNameUUID(
+                        heroNameCustomizationFromLine.getHeroNameUID()
+                );
 
         if (!optionalHeroNameCustomizationFromGrid.isPresent()) {
             return line;
@@ -46,15 +48,5 @@ public class Dota2HeroTranslationsLineByGridCustomizationEditor implements ITxtL
                 "\"" + heroNameCustomizationFromLine.getHeroName() + "\"",
                 "\"" + heroNameCustomizationFromGrid.getHeroName() + "\""
         );
-    }
-
-    private Optional<HeroNameCustomization> findHeroNameCustomizationInGridByHeroNameUUID(String heroNameUUID)
-    {
-        return this.heroGridCustomization
-                .stream()
-                .filter(
-                        new HeroNameCustomizationSameAsHeroUIDPredicate(heroNameUUID)
-                )
-                .findFirst();
     }
 }
