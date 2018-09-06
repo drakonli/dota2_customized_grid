@@ -11,6 +11,7 @@ import drakonli.jcomponents.file.exception.InvalidFileFormatException;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.util.Optional;
 
 public class HeroGridCustomizationFromDota2TranslationsFileImporter implements IHeroGridCustomizationFromFileImporter
 {
@@ -38,14 +39,14 @@ public class HeroGridCustomizationFromDota2TranslationsFileImporter implements I
                 continue;
             }
 
-            HeroNameCustomization heroNameCustomization
+            Optional<HeroNameCustomization> optionalHeroNameCustomization
                     = this.heroNameCustomizationByLineExtractor.extractByLine(currentLine);
 
-            if (null == heroNameCustomization) {
+            if (!optionalHeroNameCustomization.isPresent()) {
                 continue;
             }
 
-            heroGridCustomization.add(heroNameCustomization);
+            heroGridCustomization.add(optionalHeroNameCustomization.get());
         }
 
         reader.close();
