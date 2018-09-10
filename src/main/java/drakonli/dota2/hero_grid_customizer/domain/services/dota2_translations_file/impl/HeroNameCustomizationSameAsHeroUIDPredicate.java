@@ -6,16 +6,16 @@ import java.util.function.Predicate;
 
 public class HeroNameCustomizationSameAsHeroUIDPredicate implements Predicate<HeroNameCustomization>
 {
-    private final String heroCode;
+    private final String heroNameUID;
 
-    public HeroNameCustomizationSameAsHeroUIDPredicate(String heroCode)
+    public HeroNameCustomizationSameAsHeroUIDPredicate(String heroNameUID)
     {
-        this.heroCode = heroCode;
+        this.heroNameUID = heroNameUID;
     }
 
     @Override
     public boolean test(HeroNameCustomization heroNameCustomization)
     {
-        return heroNameCustomization.getHeroNameUID().equals(this.heroCode);
+        return heroNameCustomization.getHeroNameUID().equals(this.heroNameUID);
     }
 }

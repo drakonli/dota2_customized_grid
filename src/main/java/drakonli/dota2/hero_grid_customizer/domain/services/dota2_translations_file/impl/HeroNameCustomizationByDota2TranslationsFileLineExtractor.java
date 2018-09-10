@@ -9,9 +9,9 @@ import java.util.regex.Pattern;
 
 public class HeroNameCustomizationByDota2TranslationsFileLineExtractor implements IHeroNameCustomizationByLineExtractor
 {
-    private static final String HERO_TRANSLATION_MATCH_PATTERN = "\"(npc_dota_hero_[^_]*)\".*\"(.*)\"";
+    private static final String   HERO_TRANSLATION_MATCH_PATTERN     = "\"(npc_dota_hero_[^\"]*)\".*\"(.*)\"";
     private static final String[] HERO_TRANSLATION_UNSUITED_SUFFIXES = {
-            "_bio", "_radiant", "_dire", "_hype", "_bio"
+            "_bio", "_radiant", "_dire", "_hype", "_none"
     };
 
     @Override
