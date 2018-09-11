@@ -8,8 +8,15 @@
     <util:constant id="dota2HeroGridCustomizer-translationsFileCharset"
                    static-field="java.nio.charset.StandardCharsets.UTF_16LE"/>
 
+    <bean id="dota2HeroGridCustomizer-parentDirectoryForFileCreations"
+          class="java.io.File">
+        <constructor-arg value="."/>
+    </bean>
+
     <bean id="dota2HeroGridCustomizer-byNameFileFactory"
-          class="drakonli.jcomponents.file.impl.ByNameFileFactory"/>
+          class="drakonli.jcomponents.file.impl.ByNameFileFactory">
+        <constructor-arg ref="dota2HeroGridCustomizer-parentDirectoryForFileCreations"/>
+    </bean>
 
     <bean id="dota2HeroGridCustomizer-nioFileManager"
           class="drakonli.jcomponents.file.impl.NioFileManager">
