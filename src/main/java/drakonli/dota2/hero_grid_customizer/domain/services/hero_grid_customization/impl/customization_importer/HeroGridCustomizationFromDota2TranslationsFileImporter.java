@@ -6,7 +6,6 @@ import drakonli.dota2.hero_grid_customizer.domain.services.dota2_translations_fi
 import drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.IHeroGridCustomizationFromFileImporter;
 import drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.impl.exceptions.Dota2InvalidFileFormatException;
 import drakonli.jcomponents.file.IBufferedFileReaderFactory;
-import drakonli.jcomponents.file.exception.InvalidFileFormatException;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -27,7 +26,7 @@ public class HeroGridCustomizationFromDota2TranslationsFileImporter implements I
         this.heroNameCustomizationByLineExtractor = heroNameCustomizationByLineExtractor;
     }
 
-    public HeroGridCustomization importCustomization(File file) throws InvalidFileFormatException, IOException
+    public HeroGridCustomization importCustomization(File file) throws Dota2InvalidFileFormatException, IOException
     {
         BufferedReader reader = this.readerFactory.createFileReader(file);
 

@@ -3,23 +3,29 @@ package drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customizat
 import drakonli.dota2.hero_grid_customizer.domain.models.HeroGridCustomization;
 import drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.IHeroGridCustomizationStorage;
 import drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.StorageException;
+import drakonli.jcomponents.file.IByNameFileFactory;
 
 import java.io.*;
 
 public class HeroGridCustomizationByFileStorage implements IHeroGridCustomizationStorage
 {
-    private final String heroGridCustomizationSaveFileName;
+    private final String             heroGridCustomizationSaveFileName;
+    private final IByNameFileFactory byNameFileFactory;
 
-    public HeroGridCustomizationByFileStorage(String heroGridCustomizationSaveFileName)
+    public HeroGridCustomizationByFileStorage(
+            String heroGridCustomizationSaveFileName,
+            IByNameFileFactory byNameFileFactory
+    )
     {
         this.heroGridCustomizationSaveFileName = heroGridCustomizationSaveFileName;
+        this.byNameFileFactory = byNameFileFactory;
     }
 
     @Override
     public void store(HeroGridCustomization heroGridCustomization) throws StorageException
     {
         try {
-            File heroSavesFile = new File(this.heroGridCustomizationSaveFileName);
+            File heroSavesFile = this.byNameFileFactory.create(this.heroGridCustomizationSaveFileName);
             FileOutputStream fileOut = new FileOutputStream(heroSavesFile);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(heroGridCustomization);
@@ -33,14 +39,14 @@ public class HeroGridCustomizationByFileStorage implements IHeroGridCustomizatio
     @Override
     public HeroGridCustomization getLatest() throws StorageException
     {
-        File heroNamesSaveFile = new File(this.heroGridCustomizationSaveFileName);
+        File heroNamesSaveFile = this.byNameFileFactory.create(this.heroGridCustomizationSaveFileName);
 
         if (!heroNamesSaveFile.isFile()) {
             throw new StorageException(new FileNotFoundException());
         }
 
         try {
-            FileInputStream fileIn = new FileInputStream(this.heroGridCustomizationSaveFileName);
+            FileInputStream fileIn = new FileInputStream(heroNamesSaveFile);
             ObjectInputStream in = new ObjectInputStream(fileIn);
             HeroGridCustomization heroGridCustomization = (HeroGridCustomization) in.readObject();
             in.close();
