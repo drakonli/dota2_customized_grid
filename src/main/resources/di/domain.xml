@@ -64,6 +64,7 @@
 
     <bean id="dota2HeroGridCustomizer-heroGridCustomizationByFileStorage"
           class="drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.impl.storage.HeroGridCustomizationByFileStorage">
+        <constructor-arg value="hero_names_save.txt"/>
         <constructor-arg ref="dota2HeroGridCustomizer-byNameFileFactory"/>
     </bean>
 
