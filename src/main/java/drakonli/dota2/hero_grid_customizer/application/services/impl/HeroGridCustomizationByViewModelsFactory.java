@@ -10,9 +10,9 @@ import java.util.List;
 public class HeroGridCustomizationByViewModelsFactory implements IHeroGridCustomizationByViewModelsFactory
 {
     @Override
-    public HeroGridCustomization create(List<HeroNameCustomizationVM> heroNameCustomizationVMList)
+    public HeroGridCustomization create(String name, List<HeroNameCustomizationVM> heroNameCustomizationVMList)
     {
-        HeroGridCustomization heroGridCustomization = new HeroGridCustomization();
+        HeroGridCustomization heroGridCustomization = new HeroGridCustomization(name);
 
         for (HeroNameCustomizationVM heroNameCustomizationVM : heroNameCustomizationVMList) {
             heroGridCustomization.add(

@@ -32,7 +32,7 @@ public class HeroGridCustomizationByFileStorageTest
     protected HeroGridCustomizationByFileStorage testedStorage;
 
     @Before
-    public void setUp() throws Exception
+    public void setUp()
     {
         this.testedStorage = new HeroGridCustomizationByFileStorage(this.fileName, this.byNameFileFactoryMock);
     }
@@ -46,7 +46,7 @@ public class HeroGridCustomizationByFileStorageTest
 
         when(this.byNameFileFactoryMock.create(this.fileName)).thenReturn(expectedFile);
 
-        HeroGridCustomization expectedHeroGridCustomization = new HeroGridCustomization();
+        HeroGridCustomization expectedHeroGridCustomization = new HeroGridCustomization("someName");
         expectedHeroGridCustomization.add(new HeroNameCustomization("someUid", "someName"));
         expectedHeroGridCustomization.add(new HeroNameCustomization("someUid1", "someName1"));
         expectedHeroGridCustomization.add(new HeroNameCustomization("someUid2", "someName2"));
@@ -64,7 +64,7 @@ public class HeroGridCustomizationByFileStorageTest
     @Test(expected = StorageException.class)
     public void storeWithException() throws StorageException
     {
-        this.testedStorage.store(new HeroGridCustomization());
+        this.testedStorage.store(new HeroGridCustomization("someName"));
     }
 
     @Test
@@ -72,7 +72,7 @@ public class HeroGridCustomizationByFileStorageTest
     {
         File expectedFile = this.folder.newFile(this.fileName);
 
-        HeroGridCustomization expectedHeroGridCustomization = new HeroGridCustomization();
+        HeroGridCustomization expectedHeroGridCustomization = new HeroGridCustomization("someName");
         expectedHeroGridCustomization.add(new HeroNameCustomization("someUid", "someName"));
         expectedHeroGridCustomization.add(new HeroNameCustomization("someUid1", "someName1"));
         expectedHeroGridCustomization.add(new HeroNameCustomization("someUid2", "someName2"));

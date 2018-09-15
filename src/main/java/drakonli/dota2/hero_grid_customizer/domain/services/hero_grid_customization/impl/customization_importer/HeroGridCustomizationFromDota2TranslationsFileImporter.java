@@ -30,7 +30,7 @@ public class HeroGridCustomizationFromDota2TranslationsFileImporter implements I
     {
         BufferedReader reader = this.readerFactory.createFileReader(file);
 
-        HeroGridCustomization heroGridCustomization = new HeroGridCustomization();
+        HeroGridCustomization heroGridCustomization = new HeroGridCustomization(file.getName());
 
         String currentLine;
         while (null != (currentLine = reader.readLine())) {

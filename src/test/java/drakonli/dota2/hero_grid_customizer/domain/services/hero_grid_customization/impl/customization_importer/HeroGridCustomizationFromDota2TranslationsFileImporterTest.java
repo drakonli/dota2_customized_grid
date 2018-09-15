@@ -44,6 +44,7 @@ public class HeroGridCustomizationFromDota2TranslationsFileImporterTest
         );
 
         when(this.readerFactoryMock.createFileReader(this.fileMock)).thenReturn(this.readerMock);
+        when(this.fileMock.getName()).thenReturn("someName");
     }
 
     @Test
@@ -70,7 +71,7 @@ public class HeroGridCustomizationFromDota2TranslationsFileImporterTest
 
         verify(this.readerMock).close();
 
-        HeroGridCustomization expectedHeroGridCustomization = new HeroGridCustomization();
+        HeroGridCustomization expectedHeroGridCustomization = new HeroGridCustomization("someName");
         expectedHeroGridCustomization.add(hnc1);
         expectedHeroGridCustomization.add(hnc2);
         expectedHeroGridCustomization.add(hnc3);

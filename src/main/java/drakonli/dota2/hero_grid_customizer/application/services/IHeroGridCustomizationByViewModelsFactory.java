@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface IHeroGridCustomizationByViewModelsFactory
 {
-    HeroGridCustomization create(List<HeroNameCustomizationVM> heroNameCustomizationVMList);
+    HeroGridCustomization create(String name, List<HeroNameCustomizationVM> heroNameCustomizationVMList);
 }

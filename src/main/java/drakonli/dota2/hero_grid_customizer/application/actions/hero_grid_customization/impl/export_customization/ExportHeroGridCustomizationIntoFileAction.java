@@ -36,7 +36,7 @@ public class ExportHeroGridCustomizationIntoFileAction implements IExportHeroGri
             throws InvalidFileFormatException, IOException, ApplicationActionException
     {
         HeroGridCustomization heroGridCustomization =
-                this.heroGridCustomizationFactory.create(heroNameCustomizationVMListToExport);
+                this.heroGridCustomizationFactory.create(file.getName(), heroNameCustomizationVMListToExport);
 
         this.eventPublisher.publishBeforeExportEvent(
                 file,

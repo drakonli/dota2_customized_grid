@@ -7,6 +7,18 @@ import java.util.Optional;
 
 public class HeroGridCustomization extends ArrayList<HeroNameCustomization>
 {
+    private String name;
+
+    public HeroGridCustomization(String name)
+    {
+        this.name = name;
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
     public Optional<HeroNameCustomization> findHeroNameCustomizationByHeroNameUUID(String heroNameUUID)
     {
         return this

@@ -15,13 +15,14 @@ public class HeroGridCustomizationTest
     {
         HeroNameCustomization heroNameCustomizationOne = new HeroNameCustomization("1", "2");
 
-        HeroGridCustomization heroGridCustomization = new HeroGridCustomization();
+        HeroGridCustomization heroGridCustomization = new HeroGridCustomization("someName");
         heroGridCustomization.add(heroNameCustomizationOne);
 
         List<HeroNameCustomization> expectedHeroNameCustomizationList = new ArrayList<>();
         expectedHeroNameCustomizationList.add(heroNameCustomizationOne);
 
         assertEquals(expectedHeroNameCustomizationList, heroGridCustomization);
+        assertEquals("someName", heroGridCustomization.getName());
     }
 
     @Test
@@ -30,7 +31,7 @@ public class HeroGridCustomizationTest
         HeroNameCustomization heroNameCustomizationOne = new HeroNameCustomization("someName", "someValue");
         HeroNameCustomization heroNameCustomizationTwo = new HeroNameCustomization("someName1", "someValue1");
 
-        HeroGridCustomization heroGridCustomization = new HeroGridCustomization();
+        HeroGridCustomization heroGridCustomization = new HeroGridCustomization("someName");
         heroGridCustomization.add(heroNameCustomizationOne);
         heroGridCustomization.add(heroNameCustomizationTwo);
 
@@ -47,5 +48,6 @@ public class HeroGridCustomizationTest
         assertEquals("someValue1", actualHeroNameCustomizationTwo.get().getHeroName());
 
         assertFalse(heroGridCustomization.findHeroNameCustomizationByHeroNameUUID("invalid name").isPresent());
+        assertEquals("someName", heroGridCustomization.getName());
     }
 }
