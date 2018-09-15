@@ -15,7 +15,7 @@ public class HeroGridCustomizationByViewModelsFactory implements IHeroGridCustom
         HeroGridCustomization heroGridCustomization = new HeroGridCustomization(name);
 
         for (HeroNameCustomizationVM heroNameCustomizationVM : heroNameCustomizationVMList) {
-            heroGridCustomization.add(
+            heroGridCustomization.getHeroNameCustomizations().add(
                     new HeroNameCustomization(
                             heroNameCustomizationVM.getHeroCode(),
                             heroNameCustomizationVM.getHeroName()

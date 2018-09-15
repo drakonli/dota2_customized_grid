@@ -10,6 +10,7 @@ import drakonli.jcomponents.file.IBufferedFileReaderFactory;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 public class HeroGridCustomizationFromDota2TranslationsFileImporter implements IHeroGridCustomizationFromFileImporter
@@ -31,6 +32,7 @@ public class HeroGridCustomizationFromDota2TranslationsFileImporter implements I
         BufferedReader reader = this.readerFactory.createFileReader(file);
 
         HeroGridCustomization heroGridCustomization = new HeroGridCustomization(file.getName());
+        List<HeroNameCustomization> heroNameCustomizations = heroGridCustomization.getHeroNameCustomizations();
 
         String currentLine;
         while (null != (currentLine = reader.readLine())) {
@@ -45,12 +47,12 @@ public class HeroGridCustomizationFromDota2TranslationsFileImporter implements I
                 continue;
             }
 
-            heroGridCustomization.add(optionalHeroNameCustomization.get());
+            heroNameCustomizations.add(optionalHeroNameCustomization.get());
         }
 
         reader.close();
 
-        if (heroGridCustomization.isEmpty()) {
+        if (heroNameCustomizations.isEmpty()) {
             throw new Dota2InvalidFileFormatException();
         }
 

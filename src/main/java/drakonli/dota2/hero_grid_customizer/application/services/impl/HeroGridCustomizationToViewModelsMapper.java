@@ -17,7 +17,7 @@ public class HeroGridCustomizationToViewModelsMapper implements IHeroGridCustomi
     {
         heroNameCustomizationVMList.clear();
 
-        for (HeroNameCustomization heroNameCustomization : heroGridCustomization) {
+        for (HeroNameCustomization heroNameCustomization : heroGridCustomization.getHeroNameCustomizations()) {
             heroNameCustomizationVMList.add(
                     new HeroNameCustomizationVM(
                             heroNameCustomization.getHeroName(),

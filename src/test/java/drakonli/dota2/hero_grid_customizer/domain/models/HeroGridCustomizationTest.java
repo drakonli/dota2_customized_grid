@@ -1,5 +1,7 @@
 package drakonli.dota2.hero_grid_customizer.domain.models;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -16,12 +18,16 @@ public class HeroGridCustomizationTest
         HeroNameCustomization heroNameCustomizationOne = new HeroNameCustomization("1", "2");
 
         HeroGridCustomization heroGridCustomization = new HeroGridCustomization("someName");
-        heroGridCustomization.add(heroNameCustomizationOne);
+        heroGridCustomization.getHeroNameCustomizations().add(heroNameCustomizationOne);
 
         List<HeroNameCustomization> expectedHeroNameCustomizationList = new ArrayList<>();
         expectedHeroNameCustomizationList.add(heroNameCustomizationOne);
 
-        assertEquals(expectedHeroNameCustomizationList, heroGridCustomization);
+        Assert.assertTrue(EqualsBuilder.reflectionEquals(
+                expectedHeroNameCustomizationList,
+                heroGridCustomization.getHeroNameCustomizations()
+        ));
+
         assertEquals("someName", heroGridCustomization.getName());
     }
 
@@ -32,8 +38,8 @@ public class HeroGridCustomizationTest
         HeroNameCustomization heroNameCustomizationTwo = new HeroNameCustomization("someName1", "someValue1");
 
         HeroGridCustomization heroGridCustomization = new HeroGridCustomization("someName");
-        heroGridCustomization.add(heroNameCustomizationOne);
-        heroGridCustomization.add(heroNameCustomizationTwo);
+        heroGridCustomization.getHeroNameCustomizations().add(heroNameCustomizationOne);
+        heroGridCustomization.getHeroNameCustomizations().add(heroNameCustomizationTwo);
 
         Optional<HeroNameCustomization> actualHeroNameCustomizationOne
                 = heroGridCustomization.findHeroNameCustomizationByHeroNameUUID("someName");

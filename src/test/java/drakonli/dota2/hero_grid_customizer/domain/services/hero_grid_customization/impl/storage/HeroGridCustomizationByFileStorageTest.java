@@ -14,8 +14,11 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.io.*;
+import java.util.List;
+import java.util.Optional;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -23,6 +26,9 @@ public class HeroGridCustomizationByFileStorageTest
 {
     @Rule
     public TemporaryFolder folder = new TemporaryFolder();
+
+    @Mock
+    File fileMock;
 
     String fileName = "someStorageFile.txt";
 
@@ -47,9 +53,10 @@ public class HeroGridCustomizationByFileStorageTest
         when(this.byNameFileFactoryMock.create(this.fileName)).thenReturn(expectedFile);
 
         HeroGridCustomization expectedHeroGridCustomization = new HeroGridCustomization("someName");
-        expectedHeroGridCustomization.add(new HeroNameCustomization("someUid", "someName"));
-        expectedHeroGridCustomization.add(new HeroNameCustomization("someUid1", "someName1"));
-        expectedHeroGridCustomization.add(new HeroNameCustomization("someUid2", "someName2"));
+        List<HeroNameCustomization> heroNameCustomizations = expectedHeroGridCustomization.getHeroNameCustomizations();
+        heroNameCustomizations.add(new HeroNameCustomization("someUid", "someName"));
+        heroNameCustomizations.add(new HeroNameCustomization("someUid1", "someName1"));
+        heroNameCustomizations.add(new HeroNameCustomization("someUid2", "someName2"));
 
         this.testedStorage.store(expectedHeroGridCustomization);
 
@@ -57,7 +64,17 @@ public class HeroGridCustomizationByFileStorageTest
 
         HeroGridCustomization actualHeroGridCustomization = this.unserializeFile(expectedFile);
 
-        assertTrue(EqualsBuilder.reflectionEquals(expectedHeroGridCustomization, actualHeroGridCustomization));
+        assertTrue(EqualsBuilder.reflectionEquals(
+                expectedHeroGridCustomization.getHeroNameCustomizations(),
+                actualHeroGridCustomization.getHeroNameCustomizations()
+        ));
+
+        assertTrue(EqualsBuilder.reflectionEquals(
+                expectedHeroGridCustomization,
+                actualHeroGridCustomization,
+                new String[]{"heroNameCustomizations"}
+        ));
+
         assertTrue(expectedFile.delete());
     }
 
@@ -73,39 +90,62 @@ public class HeroGridCustomizationByFileStorageTest
         File expectedFile = this.folder.newFile(this.fileName);
 
         HeroGridCustomization expectedHeroGridCustomization = new HeroGridCustomization("someName");
-        expectedHeroGridCustomization.add(new HeroNameCustomization("someUid", "someName"));
-        expectedHeroGridCustomization.add(new HeroNameCustomization("someUid1", "someName1"));
-        expectedHeroGridCustomization.add(new HeroNameCustomization("someUid2", "someName2"));
+        List<HeroNameCustomization> heroNameCustomizations = expectedHeroGridCustomization.getHeroNameCustomizations();
+        heroNameCustomizations.add(new HeroNameCustomization("someUid", "someName"));
+        heroNameCustomizations.add(new HeroNameCustomization("someUid1", "someName1"));
+        heroNameCustomizations.add(new HeroNameCustomization("someUid2", "someName2"));
 
         when(this.byNameFileFactoryMock.create(this.fileName)).thenReturn(expectedFile);
 
         this.serializeAndSaveHeroGridCustomization(expectedHeroGridCustomization, expectedFile);
 
-        HeroGridCustomization actualHeroGridCustomization = this.testedStorage.getLatest();
+        Optional<HeroGridCustomization> actualHeroGridCustomization = this.testedStorage.getLatest();
 
-        assertTrue(EqualsBuilder.reflectionEquals(expectedHeroGridCustomization, actualHeroGridCustomization));
+        assertTrue(actualHeroGridCustomization.isPresent());
+
+        assertTrue(EqualsBuilder.reflectionEquals(
+                expectedHeroGridCustomization.getHeroNameCustomizations(),
+                actualHeroGridCustomization.get().getHeroNameCustomizations()
+        ));
+
+        assertTrue(EqualsBuilder.reflectionEquals(
+                expectedHeroGridCustomization,
+                actualHeroGridCustomization.get(),
+                new String[]{"heroNameCustomizations"}
+        ));
 
         assertTrue(expectedFile.delete());
     }
 
     @Test
-    public void testGetLatestException() throws IOException
+    public void testGetLatestEmptyResult() throws StorageException
     {
-        HeroGridCustomizationByFileStorage testedStorage =
-                new HeroGridCustomizationByFileStorage("directoryName", this.byNameFileFactoryMock);
+        when(this.fileMock.isFile()).thenReturn(false);
+        when(this.byNameFileFactoryMock.create(this.fileName)).thenReturn(this.fileMock);
 
-        File expectedFile = this.folder.newFolder("directoryName");
+        Optional<HeroGridCustomization> heroGridCustomization = this.testedStorage.getLatest();
 
-        when(this.byNameFileFactoryMock.create("directoryName")).thenReturn(expectedFile);
-
-        try {
-            testedStorage.getLatest();
-
-            fail("Expected" + StorageException.class);
-        } catch (StorageException e) {
-            assertEquals("Storage error", e.getMessage());
-        }
+        assertFalse(heroGridCustomization.isPresent());
     }
+
+//    @Test
+//    public void testGetLatestException() throws IOException
+//    {
+//        HeroGridCustomizationByFileStorage testedStorage =
+//                new HeroGridCustomizationByFileStorage("directoryName", this.byNameFileFactoryMock);
+//
+//        File expectedFile = this.folder.newFolder("directoryName");
+//
+//        when(this.byNameFileFactoryMock.create("directoryName")).thenReturn(expectedFile);
+//
+//        try {
+//            testedStorage.getLatest();
+//
+//            fail("Expected" + StorageException.class);
+//        } catch (StorageException e) {
+//            assertEquals("Storage error", e.getMessage());
+//        }
+//    }
 
     protected void serializeAndSaveHeroGridCustomization(HeroGridCustomization heroGridCustomization, File file)
             throws Exception

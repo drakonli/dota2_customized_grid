@@ -6,6 +6,7 @@ import drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customizati
 import drakonli.jcomponents.file.IByNameFileFactory;
 
 import java.io.*;
+import java.util.Optional;
 
 public class HeroGridCustomizationByFileStorage implements IHeroGridCustomizationStorage
 {
@@ -37,12 +38,12 @@ public class HeroGridCustomizationByFileStorage implements IHeroGridCustomizatio
     }
 
     @Override
-    public HeroGridCustomization getLatest() throws StorageException
+    public Optional<HeroGridCustomization> getLatest() throws StorageException
     {
         File heroNamesSaveFile = this.byNameFileFactory.create(this.heroGridCustomizationSaveFileName);
 
         if (!heroNamesSaveFile.isFile()) {
-            throw new StorageException(new FileNotFoundException());
+            return Optional.empty();
         }
 
         try {
@@ -52,7 +53,7 @@ public class HeroGridCustomizationByFileStorage implements IHeroGridCustomizatio
             in.close();
             fileIn.close();
 
-            return heroGridCustomization;
+            return Optional.of(heroGridCustomization);
         } catch (Exception e) {
             throw new StorageException(e);
         }

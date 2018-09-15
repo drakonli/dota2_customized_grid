@@ -72,9 +72,9 @@ public class HeroGridCustomizationFromDota2TranslationsFileImporterTest
         verify(this.readerMock).close();
 
         HeroGridCustomization expectedHeroGridCustomization = new HeroGridCustomization("someName");
-        expectedHeroGridCustomization.add(hnc1);
-        expectedHeroGridCustomization.add(hnc2);
-        expectedHeroGridCustomization.add(hnc3);
+        expectedHeroGridCustomization.getHeroNameCustomizations().add(hnc1);
+        expectedHeroGridCustomization.getHeroNameCustomizations().add(hnc2);
+        expectedHeroGridCustomization.getHeroNameCustomizations().add(hnc3);
 
         assertTrue(EqualsBuilder.reflectionEquals(expectedHeroGridCustomization, actualHeroGridCustomization));
     }
