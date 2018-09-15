@@ -29,6 +29,14 @@ public class HeroGridCustomizationTest
         ));
 
         assertEquals("someName", heroGridCustomization.getName());
+        assertTrue(null != heroGridCustomization.getCreateDate());
+
+        HeroGridCustomization heroGridCustomizationDefaultConstructor = new HeroGridCustomization();
+
+        assertTrue(EqualsBuilder.reflectionEquals(
+                new ArrayList<>(),
+                heroGridCustomizationDefaultConstructor.getHeroNameCustomizations()
+        ));
     }
 
     @Test

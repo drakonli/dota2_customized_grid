@@ -1,11 +1,23 @@
 package drakonli.dota2.hero_grid_customizer.domain.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.io.Serializable;
 
+@Entity
 public class HeroNameCustomization implements Serializable
 {
-    private final String heroNameUID;
-    private final String heroName;
+    @Id
+    @GeneratedValue
+    private int id;
+
+    private String heroNameUID;
+    private String heroName;
+
+    public HeroNameCustomization()
+    {
+    }
 
     public HeroNameCustomization(String heroNameUID, String heroName)
     {

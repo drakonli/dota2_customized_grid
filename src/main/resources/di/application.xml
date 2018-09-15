@@ -19,7 +19,7 @@
 
     <bean id="dota2HeroGridCustomizer_fileStorageRestoreAvailabilityManager"
           class="drakonli.dota2.hero_grid_customizer.application.services.impl.FileStorageImportByLatestExportAvailabilityManager">
-        <constructor-arg ref="dota2HeroGridCustomizer-heroGridCustomizationByFileStorage"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-heroGridCustomizationStorage"/>
     </bean>
 
     <bean id="dota2HeroGridCustomizer-initialValueForFileStorageRestoreAvailability"
@@ -66,7 +66,7 @@
 
     <bean id="dota2HeroGridCustomizer-importHeroGridCustomizationFromStorageByLatestSaveAction"
           class="drakonli.dota2.hero_grid_customizer.application.actions.hero_grid_customization.impl.import_customization.latest_save.ImportHeroGridCustomizationFromStorageByLatestSaveAction">
-        <constructor-arg ref="dota2HeroGridCustomizer-heroGridCustomizationByFileStorage"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-heroGridCustomizationStorage"/>
         <constructor-arg ref="dota2HeroGridCustomizer-heroGridCustomizationToViewModelsMapper"/>
     </bean>
 

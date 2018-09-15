@@ -62,6 +62,9 @@
         <constructor-arg ref="dota2HeroGridCustomizer-cachedHeroNameCustomizationByLineExtractor"/>
     </bean>
 
+    <bean id="dota2HeroGridCustomizer-heroGridCustomizationStorage"
+          parent="dota2HeroGridCustomizer-heroGridCustomizationRepositoryStorage"/>
+
     <bean id="dota2HeroGridCustomizer-heroGridCustomizationByFileStorage"
           class="drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.impl.storage.HeroGridCustomizationByFileStorage">
         <constructor-arg value="hero_names_save.txt"/>
@@ -95,10 +98,20 @@
           class="drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.impl.customization_exporter.decorator.StoreHeroGridCustomizationDecorator">
         <constructor-arg
                 ref="dota2HeroGridCustomizer-heroGridCustomizationToDota2TranslationsFileExporter-backupFileDecorated"/>
-        <constructor-arg ref="dota2HeroGridCustomizer-heroGridCustomizationByFileStorage"/>
+        <constructor-arg ref="dota2HeroGridCustomizer-heroGridCustomizationStorage"/>
     </bean>
 
     <bean id="dota2HeroGridCustomizer-heroGridCustomizationToDota2TranslationsFileExporter"
           parent="dota2HeroGridCustomizer-heroGridCustomizationToDota2TranslationsFileExporter-backupFileDecorated-storeHeroTranslationsDecorated">
+    </bean>
+
+    <bean id="dota2HeroGridCustomizer-springHeroGridCustomizationRepository"
+          class="drakonli.dota2.hero_grid_customizer.domain.repository.HeroGridCustomizationHibernateRepository">
+        <constructor-arg ref="sessionFactory"/>
+    </bean>
+
+    <bean id="dota2HeroGridCustomizer-heroGridCustomizationRepositoryStorage"
+          class="drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.impl.storage.HeroGridCustomizationRepositoryStorage">
+        <constructor-arg ref="dota2HeroGridCustomizer-springHeroGridCustomizationRepository"/>
     </bean>
 </beans>

@@ -3,6 +3,7 @@ package drakonli.dota2.hero_grid_customizer.domain.models;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class HeroNameCustomizationTest
 {
@@ -16,5 +17,7 @@ public class HeroNameCustomizationTest
 
         assertEquals(heroNameCustomization.getHeroNameUID(), uid);
         assertEquals(heroNameCustomization.getHeroName(), name);
+
+        assertTrue(null != new HeroNameCustomization());
     }
 }
