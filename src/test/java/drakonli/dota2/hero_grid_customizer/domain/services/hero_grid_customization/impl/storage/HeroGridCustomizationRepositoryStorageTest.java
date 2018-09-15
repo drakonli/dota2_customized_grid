@@ -1,7 +1,7 @@
 package drakonli.dota2.hero_grid_customizer.domain.services.hero_grid_customization.impl.storage;
 
 import drakonli.dota2.hero_grid_customizer.domain.models.HeroGridCustomization;
-import drakonli.dota2.hero_grid_customizer.domain.repository.IHeroGridCustomizationRepository;
+import drakonli.dota2.hero_grid_customizer.domain.repositories.IHeroGridCustomizationRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

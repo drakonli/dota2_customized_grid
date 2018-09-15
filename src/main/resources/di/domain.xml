@@ -106,7 +106,7 @@
     </bean>
 
     <bean id="dota2HeroGridCustomizer-springHeroGridCustomizationRepository"
-          class="drakonli.dota2.hero_grid_customizer.domain.repository.HeroGridCustomizationHibernateRepository">
+          class="drakonli.dota2.hero_grid_customizer.domain.repositories.HeroGridCustomizationHibernateRepository">
         <constructor-arg ref="sessionFactory"/>
     </bean>
 

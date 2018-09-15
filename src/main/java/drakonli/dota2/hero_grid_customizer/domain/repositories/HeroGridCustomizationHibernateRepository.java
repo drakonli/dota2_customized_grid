@@ -1,4 +1,4 @@
-package drakonli.dota2.hero_grid_customizer.domain.repository;
+package drakonli.dota2.hero_grid_customizer.domain.repositories;
 
 import drakonli.dota2.hero_grid_customizer.domain.models.HeroGridCustomization;
 import org.hibernate.Session;
